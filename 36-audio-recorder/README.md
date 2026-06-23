@@ -433,5 +433,5 @@ Log.d("AUDIO", "Putanja: " + audioPutanja + " postoji=" + new File(audioPutanja)
 
 ## Sledeći korak
 
-- Sačuvaj trajanje snimka u `SharedPreferences` – folder `09-shared-preferences/`
+- Sačuvaj trajanje snimka u `SharedPreferences` – folder `13-shared-preferences/`
 - Pošalji fajl na server – folder `23-retrofit-post/` ili Firebase Storage (nije u materijalu)

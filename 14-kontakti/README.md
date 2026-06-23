@@ -6,7 +6,7 @@
 
 ## Šta ti treba pre ovoga
 
-- `09-shared-preferences/` – `obradiSwitchOff()` poziva `postaviImePrvogKontakta()`
+- `13-shared-preferences/` – `obradiSwitchOff()` poziva `postaviImePrvogKontakta()`
 - Dozvola `READ_CONTACTS` u Manifest-u
 
 ---
@@ -129,4 +129,4 @@ private void obradiSwitchOff() {
 
 ## Zadatak 9 je završen
 
-Kad su urađeni `09-shared-preferences/` i `10-kontakti/`, zadatak 9 je kompletan.
+Kad su urađeni `13-shared-preferences/` i `14-kontakti/`, zadatak 9 je kompletan.

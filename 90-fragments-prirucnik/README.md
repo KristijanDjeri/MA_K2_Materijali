@@ -118,12 +118,16 @@ implementation 'androidx.fragment:fragment:1.6.2'
 | [02-geo-lokacija](../02-geo-lokacija/) | Metode lokacije | `onViewCreated` + polja |
 | [03-kamera](../03-kamera/) | `ActivityResultLauncher` | Polje u Fragmentu, registrovano u `onCreate` |
 | [04-senzor-ziroskop](../04-senzor-ziroskop/) | `SensorEventListener` | Fragment `implements SensorEventListener`, `onResume`/`onPause` |
-| [05-retrofit-room](../05-retrofit-room/) | Room + API klase | **Ostaju iste**; u Fragmentu samo poziv |
-| [06-switch-postovi](../06-switch-postovi/) | Switch listener | `onViewCreated` |
-| [07-brisanje-notifikacije](../07-brisanje-notifikacije/) | Notifikacija | `requireContext()` umesto `this` |
-| [08-senzor-akcelerometar](../08-senzor-akcelerometar/) | `onSensorChanged` | Isto kao žiroskop |
-| [09-shared-preferences](../09-shared-preferences/) | `getSharedPreferences` | `requireContext().getSharedPreferences(...)` |
-| [10-kontakti](../10-kontakti/) | ContentResolver | `requireContext().getContentResolver()` |
+| [05-room-baza](../05-room-baza/) | Room klase | **Ostaju iste**; u Fragmentu samo poziv |
+| [06-retrofit-get](../06-retrofit-get/) | API interfejs + client | Isto |
+| [07-ucitaj-10-postova](../07-ucitaj-10-postova/) | GET + insert | `onViewCreated` |
+| [08-toast-prvi-post](../08-toast-prvi-post/) | Toast iz baze | Dugme ili Switch |
+| [09-switch-listener](../09-switch-listener/) | Switch listener | `onViewCreated` |
+| [10-brisanje-prvog-posta](../10-brisanje-prvog-posta/) | Brisanje | Klik na dugme |
+| [11-notifikacija-prazna-baza](../11-notifikacija-prazna-baza/) | Notifikacija | `requireContext()` umesto `this` |
+| [12-senzor-akcelerometar](../12-senzor-akcelerometar/) | `onSensorChanged` | Isto kao žiroskop |
+| [13-shared-preferences](../13-shared-preferences/) | `getSharedPreferences` | `requireContext().getSharedPreferences(...)` |
+| [14-kontakti](../14-kontakti/) | ContentResolver | `requireContext().getContentResolver()` |
 | [20-recyclerview](../20-recyclerview/) | Adapter + RV | `view.findViewById(R.id.recyclerView)` |
 
 ---
@@ -207,7 +211,7 @@ public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceStat
 
 ## 9. Senzori u Fragmentu
 
-Iz [04-senzor-ziroskop](../04-senzor-ziroskop/) i [08-senzor-akcelerometar](../08-senzor-akcelerometar/):
+Iz [04-senzor-ziroskop](../04-senzor-ziroskop/) i [12-senzor-akcelerometar](../12-senzor-akcelerometar/):
 
 ```java
 public class HomeFragment extends Fragment implements SensorEventListener {

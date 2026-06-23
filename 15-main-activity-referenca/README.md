@@ -4,14 +4,14 @@ Ovaj folder sadrži **jedan spojeni fajl** sa svim zadacima. Koristi ga kad:
 - nešto ne radi i hoćeš da uporediš
 - hoćeš da vidiš kako sve izgleda zajedno
 
-**Preporuka:** Na kolokvijumu ipak gradi po segmentima iz ostalih foldera – lakše je za debag.
+**Preporuka:** Gradi po **nezavisnim** segmentima (`05`–`14`), pa spoji prema **`16-spajanje-zadataka/`**.
 
 ---
 
 ## Preduslovi
 
 1. Uradi `01-osnovni-projekat/` (layout, Gradle, Manifest)
-2. Kopiraj sve fajlove iz `05-retrofit-room/` u projekat
+2. Kopiraj fajlove iz `05-room-baza/` i `06-retrofit-get/` u projekat
 3. Zameni `MainActivity.java` kodom ispod (ili iz fajla `MainActivity.java` u ovom folderu)
 
 ---

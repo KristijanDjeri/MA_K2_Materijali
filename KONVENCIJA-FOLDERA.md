@@ -7,7 +7,7 @@ Svi segmenti imaju prefiks **`NN-`** (dvocifrena enumeracija) radi reda na disku
 | Pravilo | Primer |
 |---------|--------|
 | Prefiks broja + crtica | `01-osnovni-projekat` |
-| Mala slova, crtice umesto razmaka | `07-brisanje-notifikacije` |
+| Mala slova, crtice umesto razmaka | `10-brisanje-prvog-posta` |
 | **Notifikacije** (dodatno) | `37-notifikacije-pregled` … `40-notifikacija-prosirena` |
 | **Senzori** počinju sa `senzor-` | `04-senzor-ziroskop`, `43-senzor-svetlosti` |
 | Firebase grupa | `50-firebase` … `54-firebase-fcm` |
@@ -20,7 +20,9 @@ Svi segmenti imaju prefiks **`NN-`** (dvocifrena enumeracija) radi reda na disku
 
 ## Enumeracija – kompletna tabela
 
-### 01–11 Zvanični zadaci (PDF)
+### 01–16 Zvanični zadaci (PDF)
+
+Segmenti su **razdvojeni** – svaki radi samostalno. Spajanje: [16-spajanje-zadataka](16-spajanje-zadataka/).
 
 | Folder | Naziv | Zadatak |
 |--------|-------|---------|
@@ -28,13 +30,18 @@ Svi segmenti imaju prefiks **`NN-`** (dvocifrena enumeracija) radi reda na disku
 | [02-geo-lokacija](02-geo-lokacija/) | Geolokacija | 3 |
 | [03-kamera](03-kamera/) | Kamera | 4 |
 | [04-senzor-ziroskop](04-senzor-ziroskop/) | Senzor – žiroskop | 4 |
-| [05-retrofit-room](05-retrofit-room/) | Retrofit + Room | 5 |
-| [06-switch-postovi](06-switch-postovi/) | Switch i postovi | 6 |
-| [07-brisanje-notifikacije](07-brisanje-notifikacije/) | Brisanje i notifikacija | 7 |
-| [08-senzor-akcelerometar](08-senzor-akcelerometar/) | Senzor – akcelerometar | 8 |
-| [09-shared-preferences](09-shared-preferences/) | SharedPreferences | 9 |
-| [10-kontakti](10-kontakti/) | Kontakti | 9 |
-| [11-main-activity-referenca](11-main-activity-referenca/) | MainActivity referenca | sve |
+| [05-room-baza](05-room-baza/) | Room model + DAO | 5 |
+| [06-retrofit-get](06-retrofit-get/) | Retrofit GET | 5 |
+| [07-ucitaj-10-postova](07-ucitaj-10-postova/) | API → 10 postova | 6 |
+| [08-toast-prvi-post](08-toast-prvi-post/) | Toast prvog posta | 6 |
+| [09-switch-listener](09-switch-listener/) | Switch listener | 6, 9 |
+| [10-brisanje-prvog-posta](10-brisanje-prvog-posta/) | Brisanje prvog reda | 7 |
+| [11-notifikacija-prazna-baza](11-notifikacija-prazna-baza/) | Notifikacija | 7 |
+| [12-senzor-akcelerometar](12-senzor-akcelerometar/) | Senzor – akcelerometar | 8 |
+| [13-shared-preferences](13-shared-preferences/) | SharedPreferences | 9 |
+| [14-kontakti](14-kontakti/) | Kontakti | 9 |
+| [15-main-activity-referenca](15-main-activity-referenca/) | MainActivity referenca | sve |
+| [16-spajanje-zadataka](16-spajanje-zadataka/) | Kako spojiti segmente | — |
 
 ### 20–36 Dodatni segmenti (UI, mreža, storage…)
 
@@ -113,7 +120,7 @@ Svi segmenti imaju prefiks **`NN-`** (dvocifrena enumeracija) radi reda na disku
 
 ## Kako naći segment na kolokvijumu
 
-1. Pogledaj broj zadatka u PDF-u → tabela **01–11** gore
+1. Pogledaj broj zadatka u PDF-u → tabela **01–16** gore (više foldera po zadatku 5–9)
 2. Ako je senzor a nije u PDF-u → **41–49**
 3. Ako traži notifikacije → **37–40**
 4. Ako traži Fragment → **[90-fragments-prirucnik](90-fragments-prirucnik/)**

@@ -1,13 +1,17 @@
 # Žiroskop (zadatak 4 – deo 2)
 
-**Cilj:** Svaki put kad se slika u `ImageView` **zameni**, prikaži **Toast** sa očitanjem žiroskopa po **X, Y, Z** osi.
+**Cilj:** Prikaži **Toast** sa očitanjem žiroskopa po **X, Y, Z** osi.
+
+Na ispitu: Toast posle nove slike u `ImageView` (spajanje sa `03-kamera/` u `16-spajanje-zadataka/`).
+
+**Samostalna vežba:** Testiraj Toast na **dugme** – bez kamere.
 
 ---
 
 ## Šta ti treba pre ovoga
 
-- Folder `03-kamera/` – u callback-u kamere pozivaš `prikaziZiroskopToast()`
-- `MainActivity` mora implementirati `SensorEventListener`
+- `01-osnovni-projekat/` – layout
+- `MainActivity` implementira `SensorEventListener`
 
 ---
 
@@ -103,16 +107,18 @@ private void prikaziZiroskopToast() {
 }
 ```
 
-### 8. U launcher-u kamere (već bi trebalo da imaš)
+### 8a. Samostalni test (bez kamere)
 
 ```java
-private final ActivityResultLauncher<Void> takePictureLauncher =
-        registerForActivityResult(new ActivityResultContracts.TakePicturePreview(), bitmap -> {
-            if (bitmap != null) {
-                imageView.setImageBitmap(bitmap);
-                prikaziZiroskopToast(); // OVO MORA BITI OVDE
-            }
-        });
+button.setOnClickListener(v -> prikaziZiroskopToast());
+```
+
+### 8b. Na ispitu – posle kamere (`16-spajanje-zadataka/`)
+
+U callback-u iz `03-kamera/`, posle `setImageBitmap`:
+
+```java
+prikaziZiroskopToast();
 ```
 
 ---
@@ -125,7 +131,7 @@ private final ActivityResultLauncher<Void> takePictureLauncher =
 | `SENSOR_DELAY_NORMAL` | `SENSOR_DELAY_FASTEST` – brže očitavanje |
 | Jedan `SensorEventListener` | Odvojeni listener samo za žiroskop – čistije ako imaš više senzora |
 
-> **Važno:** Kad dodaš **08-senzor-akcelerometar** (`08-senzor-akcelerometar/`), u istom `onSensorChanged` dodaješ `else if` za `TYPE_ACCELEROMETER`. Ne pravi dva listenera osim ako moraš.
+> **Važno:** Kad dodaš **12-senzor-akcelerometar/**, u istom `onSensorChanged` dodaješ `else if` za `TYPE_ACCELEROMETER`.
 
 ---
 
@@ -134,7 +140,7 @@ private final ActivityResultLauncher<Void> takePictureLauncher =
 - [ ] Klasa implementira `SensorEventListener`
 - [ ] Žiroskop registrovan u `onResume`
 - [ ] Odjavljen u `onPause`
-- [ ] `prikaziZiroskopToast()` pozvan posle `setImageBitmap`
+- [ ] `prikaziZiroskopToast()` radi (dugme ili posle kamere)
 - [ ] Toast prikazuje X, Y, Z
 
 ---
@@ -147,4 +153,4 @@ Emulator često **nema** žiroskop. Na fizičkom telefonu radi pouzdano. Za kolo
 
 ## Sledeći korak
 
-Folder **`05-retrofit-room/`** za zadatak 5 (baza + API).
+Folder **`05-room-baza/`** za zadatak 5 (Room model).

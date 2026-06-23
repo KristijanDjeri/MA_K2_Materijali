@@ -6,28 +6,30 @@
 - Gradle: `01-osnovni-projekat/gradle-zavisnosti.txt`
 - Dozvole: `01-osnovni-projekat/AndroidManifest-dozvole.xml`
 
-## 2. Zadaci → folder
+## 2. Zadaci → folder (nezavisni segmenti)
 
-| # | Zahtev | Folder |
-|---|--------|--------|
+| # | Zahtev | Folder(i) |
+|---|--------|-----------|
 | 3 | Lat/long u TextView | `02-geo-lokacija/` |
 | 4a | Kamera → ImageView | `03-kamera/` |
-| 4b | Toast žiroskop pri novoj slici | `04-senzor-ziroskop/` |
-| 5 | Room + Retrofit GET | `05-retrofit-room/` |
-| 6 | Switch ON: 10 postova / Toast title | `06-switch-postovi/` |
-| 7 | Button: briši prvi, notifikacija | `07-brisanje-notifikacije/` |
-| 8 | Button tekst = akcelerometar | `08-senzor-akcelerometar/` |
-| 9 | Switch OFF: SharedPrefs + kontakt | `09-shared-preferences/` + `10-kontakti/` |
+| 4b | Toast žiroskop | `04-senzor-ziroskop/` |
+| 5a | Room model + DAO | `05-room-baza/` |
+| 5b | Retrofit GET | `06-retrofit-get/` |
+| 6a | Učitaj 10 postova | `07-ucitaj-10-postova/` |
+| 6b | Toast title prvog reda | `08-toast-prvi-post/` |
+| 6c | Switch ON/OFF | `09-switch-listener/` |
+| 7a | Briši prvi post | `10-brisanje-prvog-posta/` |
+| 7b | Notifikacija prazna baza | `11-notifikacija-prazna-baza/` |
+| 8 | Akcelerometar na dugmetu | `12-senzor-akcelerometar/` |
+| 9 | Switch OFF | `13-shared-preferences/` + `14-kontakti/` |
 
-## 3. Redosled kopiranja u MainActivity
+**Spajanje za ispit:** `16-spajanje-zadataka/`
 
-1. Polja + findViewById
-2. Baza: `AppDatabase.getInstance(this).postDao()`
-3. Geolokacija
-4. Kamera + žiroskop
-5. Switch listener (ON i OFF)
-6. Button click (brisanje)
-7. Senzori u onResume/onPause/onSensorChanged
+## 3. Redosled učenja
+
+1. Svaki segment **posebno** (dugme/Switch test)
+2. Spoji po `16-spajanje-zadataka/`
+3. Uporedi sa `15-main-activity-referenca/`
 
 ## 4. Runtime dozvole (ne zaboravi!)
 
@@ -38,7 +40,7 @@
 
 ## 5. Kompletan primer
 
-`11-main-activity-referenca/MainActivity.java` – sve spojeno.
+`15-main-activity-referenca/MainActivity.java` – sve spojeno.
 
 ## 6. Dodatno (ako profesor promeni zadatak)
 

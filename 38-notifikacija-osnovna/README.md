@@ -1,7 +1,7 @@
 # Notifikacija – osnovna
 
 **Jednostavna notifikacija:** ikonica + naslov + kratak tekst.  
-Isti princip kao u [07-brisanje-notifikacije](../07-brisanje-notifikacije/) (zadatak 7).
+Isti princip kao u [11-notifikacija-prazna-baza](../11-notifikacija-prazna-baza/) (zadatak 7).
 
 ---
 

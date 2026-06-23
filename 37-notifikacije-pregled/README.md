@@ -1,6 +1,6 @@
 # Notifikacije – pregled svih tipova
 
-Mapa notifikacija u materijalu. **Zadatak 7** koristi osnovnu notifikaciju u [07-brisanje-notifikacije](../07-brisanje-notifikacije/).
+Mapa notifikacija u materijalu. **Zadatak 7** koristi [10-brisanje-prvog-posta](../10-brisanje-prvog-posta/) + [11-notifikacija-prazna-baza](../11-notifikacija-prazna-baza/).
 
 ---
 
@@ -9,7 +9,7 @@ Mapa notifikacija u materijalu. **Zadatak 7** koristi osnovnu notifikaciju u [07
 | Tip | Folder | Kada koristiti |
 |-----|--------|----------------|
 | **Osnovna** (naslov + tekst) | [38-notifikacija-osnovna](../38-notifikacija-osnovna/) | Jednostavan Toast u status baru |
-| **Zadatak 7** (prazna baza) | [07-brisanje-notifikacije](../07-brisanje-notifikacije/) | Kolokvijum |
+| **Zadatak 7** (prazna baza) | [10-brisanje-prvog-posta](../10-brisanje-prvog-posta/) + [11-notifikacija-prazna-baza](../11-notifikacija-prazna-baza/) | Kolokvijum |
 | **Sa akcijama** (dugmad) | [39-notifikacija-akcije](../39-notifikacija-akcije/) | „Obriši“, „Otvori“, „Odustani“ |
 | **Proširena** (big text, slika, lista) | [40-notifikacija-prosirena](../40-notifikacija-prosirena/) | Duži tekst, BigPicture |
 | **Zakazana** (AlarmManager) | [28-alarm-notifikacija](../28-alarm-notifikacija/) | Posle X sekundi |
@@ -59,7 +59,7 @@ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
 ## Redosled učenja
 
 1. [38-notifikacija-osnovna](../38-notifikacija-osnovna/) – razumevanje kanala i buildera
-2. [07-brisanje-notifikacije](../07-brisanje-notifikacije/) – zadatak 7
+2. [11-notifikacija-prazna-baza](../11-notifikacija-prazna-baza/) – zadatak 7
 3. [39-notifikacija-akcije](../39-notifikacija-akcije/) – dugmad
 4. [40-notifikacija-prosirena](../40-notifikacija-prosirena/) – stilovi
 

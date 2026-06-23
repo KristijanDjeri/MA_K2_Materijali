@@ -90,7 +90,7 @@ Obriši sav postojeći sadržaj i nalepi **ceo** ovaj kod:
 - `imageButton` – dugme za kameru
 - `imageView` – prikaz slike
 - `switchPosts` – Switch za postove
-- `button` – dugme (08-senzor-akcelerometar + brisanje)
+- `button` – dugme (`12-senzor-akcelerometar` tekst; `10-brisanje-prvog-posta` klik na ispitu)
 
 ---
 

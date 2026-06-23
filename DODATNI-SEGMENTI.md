@@ -56,14 +56,14 @@ Ovi folderi pokrivaju teme **slične težine i principa** kao zvanični zadaci, 
 ## Mapa principa
 
 ```
-Dozvole (runtime)     → geo, 03-kamera, 21-galerija, 10-kontakti, poziv
-Senzori               → 04-senzor-ziroskop, 08-senzor-akcelerometar, 42-senzor-magnetometar, 41-senzori-pregled/
+Dozvole (runtime)     → geo, 03-kamera, 21-galerija, 14-kontakti, poziv
+Senzori               → 04-senzor-ziroskop, 12-senzor-akcelerometar, 42-senzor-magnetometar, 41-senzori-pregled/
 Audio                 → 36-audio-recorder/
 Mreža + JSON          → retrofit, 23-retrofit-post, 32-okhttp-json, 24-webview
-Perzistencija         → room, 09-shared-preferences, 26-interni-fajl, 53-firebase-firestore/
+Perzistencija         → room, 13-shared-preferences, 26-interni-fajl, 53-firebase-firestore/
 Firebase              → 51-firebase-setup/, 52-firebase-auth/, 54-firebase-fcm/
 UI komponente         → osnovni layout, 30-spinner, edit-text, 31-date-picker
 Navigacija            → 22-intent-druga-aktivnost
 Pozadina              → 25-thread-executor, 35-progress-bar
-Obaveštenja           → 07-brisanje-notifikacije, 28-alarm-notifikacija
+Obaveštenja           → 11-notifikacija-prazna-baza, 28-alarm-notifikacija
 ```

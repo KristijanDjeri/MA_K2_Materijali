@@ -1,6 +1,6 @@
 # Rotation Vector, Gravity, Linear Acceleration
 
-**Dodatni segment.** **Slično:** žiroskop + 08-senzor-akcelerometar, ali Android **već spaja** podatke u izvedene senzore.
+**Dodatni segment.** **Slično:** žiroskop + 12-senzor-akcelerometar, ali Android **već spaja** podatke u izvedene senzore.
 
 ---
 
@@ -12,7 +12,7 @@
 | Gravity | `TYPE_GRAVITY` | Gravitaciona komponenta (bez pokreta) |
 | Linear Acceleration | `TYPE_LINEAR_ACCELERATION` | Ubrzanje bez gravitacije |
 | Gyroscope | `TYPE_GYROSCOPE` | Već u `04-senzor-ziroskop/` |
-| Accelerometer | `TYPE_ACCELEROMETER` | Već u `08-senzor-akcelerometar/` |
+| Accelerometer | `TYPE_ACCELEROMETER` | Već u `12-senzor-akcelerometar/` |
 
 ---
 
@@ -101,7 +101,7 @@ else if (event.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
 }
 ```
 
-> **Alternativa:** Kompas iz `42-senzor-magnetometar/KompasSegment.java` koristi 08-senzor-akcelerometar + 42-senzor-magnetometar umesto rotation vector-a.
+> **Alternativa:** Kompas iz `42-senzor-magnetometar/KompasSegment.java` koristi 12-senzor-akcelerometar + 42-senzor-magnetometar umesto rotation vector-a.
 
 ---
 

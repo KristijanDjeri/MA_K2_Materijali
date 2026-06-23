@@ -44,12 +44,12 @@ private final ActivityResultLauncher<Void> takePictureLauncher =
         registerForActivityResult(new ActivityResultContracts.TakePicturePreview(), bitmap -> {
             if (bitmap != null) {
                 imageView.setImageBitmap(bitmap);
-                prikaziZiroskopToast(); // metoda iz foldera 04-senzor-ziroskop/
+                // Na ispitu: prikaziZiroskopToast(); — vidi 04-senzor-ziroskop/ i 16-spajanje-zadataka/
             }
         });
 ```
 
-> **Napomena:** `prikaziZiroskopToast()` dodaješ kad uradiš folder `04-senzor-ziroskop/`. Do tada možeš staviti običan Toast ili zakomentarisati tu liniju.
+> **Samostalna vežba:** Ovaj segment radi **bez** žiroskopa – samo slika u `ImageView`. Toast sa žiroskopom spajaš kasnije (`16-spajanje-zadataka/`).
 
 ### 3. U `onCreate`, posle `findViewById`
 

@@ -1,6 +1,6 @@
 # Firebase Cloud Messaging (FCM) – push notifikacije
 
-**Dodatni segment.** **Slično:** lokalne notifikacije (`07-brisanje-notifikacije/`), ali poruka stiže sa servera.
+**Dodatni segment.** **Slično:** lokalne notifikacije (`11-notifikacija-prazna-baza/`), ali poruka stiže sa servera.
 
 **Cilj:** Primi push notifikaciju; prikaži je pomoću `NotificationCompat`.
 
@@ -117,7 +117,7 @@ Token kopiraj iz **Logcat** za test slanje iz konzole.
 <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 ```
 
-Runtime dozvola – već imaš u `07-brisanje-notifikacije/`.
+Runtime dozvola – već imaš u `11-notifikacija-prazna-baza/`.
 
 ---
 
@@ -135,7 +135,7 @@ Runtime dozvola – već imaš u `07-brisanje-notifikacije/`.
 
 ## Alternativa
 
-- Samo **lokalne** notifikacije bez FCM → `07-brisanje-notifikacije/` (dovoljno za zadatak 7)
+- Samo **lokalne** notifikacije bez FCM → `11-notifikacija-prazna-baza/` (dovoljno za zadatak 7)
 - **Data payload** umesto notification payload – fleksibilnije, više koda
 
 ---

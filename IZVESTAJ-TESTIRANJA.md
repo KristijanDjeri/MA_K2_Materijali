@@ -21,7 +21,7 @@
 ## 1. Automatski build test
 
 Kreiran je pun Android projekat sa:
-- `MainActivity` (svi zadaci 1–9 iz `11-main-activity-referenca/`)
+- `MainActivity` (svi zadaci 1–9 iz `15-main-activity-referenca/`)
 - Room (`Post`, `PostDao`, `AppDatabase`)
 - Retrofit sa **radnim** URL-om
 - Layout `activity_main.xml`
@@ -69,12 +69,12 @@ cd 99-test-okruzenje
 | 3 | `02-geo-lokacija/` | ✅ | ⚠️ | Treba GPS / emulator Location |
 | 4 | `03-kamera/` | ✅ | ⚠️ | Treba 03-kamera ili emulator camera |
 | 4 | `04-senzor-ziroskop/` | ✅ | ⚠️ | Emulator često nema žiroskop |
-| 5 | `05-retrofit-room/` | ✅ | ✅ API | URL iz PDF-a ne radi – koristi testirani |
-| 6 | `06-switch-postovi/` | ✅ | ⚠️ | Zavisi od API-ja + interneta |
-| 7 | `07-brisanje-notifikacije/` | ✅ | ⚠️ | API 33+ traži POST_NOTIFICATIONS runtime |
-| 8 | `08-senzor-akcelerometar/` | ✅ | ⚠️ | Emulator ima virtual sensors |
-| 9 | `09-shared-preferences/` | ✅ | ✅ | Radi bez hardvera |
-| 9 | `10-kontakti/` | ✅ | ⚠️ | Treba kontakt u adresaru + dozvola |
+| 5 | `05-room-baza/`, `06-retrofit-get/` | ✅ | ✅ API | URL iz PDF-a ne radi – koristi testirani |
+| 6 | `07-ucitaj-10-postova/`, `08-toast-prvi-post/`, `09-switch-listener/` | ✅ | ⚠️ | Zavisi od API-ja + interneta |
+| 7 | `10-brisanje-prvog-posta/`, `11-notifikacija-prazna-baza/` | ✅ | ⚠️ | API 33+ traži POST_NOTIFICATIONS runtime |
+| 8 | `12-senzor-akcelerometar/` | ✅ | ⚠️ | Emulator ima virtual sensors |
+| 9 | `13-shared-preferences/` | ✅ | ✅ | Radi bez hardvera |
+| 9 | `14-kontakti/` | ✅ | ⚠️ | Treba kontakt u adresaru + dozvola |
 
 **Legenda:** ✅ potvrđeno | ⚠️ nije pokrenuto na uređaju | ❌ ne radi
 
@@ -97,7 +97,7 @@ cd 99-test-okruzenje
 ## 5. Poznati rizici na kolokvijumu
 
 1. **API URL** – proveri na početku ispita u browseru da li vraća JSON
-2. **Dozvole** – lokacija, 03-kamera, 10-kontakti, mikrofon, notifikacije (API 33+)
+2. **Dozvole** – lokacija, 03-kamera, 14-kontakti, mikrofon, notifikacije (API 33+)
 3. **Emulator vs telefon** – senzori, mikrofon, shake pouzdaniji na telefonu
 4. **Room na main thread** – `allowMainThreadQueries()` OK za kolokvijum; profesor može tražiti pozadinsku nit
 5. **Firebase** – samo ako dobiješ `google-services.json` na času
@@ -108,9 +108,10 @@ cd 99-test-okruzenje
 
 | Šta | Izmena |
 |-----|--------|
-| `05-retrofit-room/RetrofitClient.java` | Podrazumevani URL → `dummy-json.mock.beeceptor.com` |
-| `05-retrofit-room/JsonPlaceholderApi.java` | `@GET("posts")` |
-| `05-retrofit-room/README.md` | Napomena o neispravnom PDF URL-u |
+| `06-retrofit-get/RetrofitClient.java` | Podrazumevani URL → `dummy-json.mock.beeceptor.com` |
+| `06-retrofit-get/JsonPlaceholderApi.java` | `@GET("posts")` |
+| `06-retrofit-get/README.md` | Napomena o neispravnom PDF URL-u |
+| Struktura 05–16 | Segmenti razdvojeni za nezavisnu vežbu; spajanje u `16-spajanje-zadataka/` |
 | `36-audio-recorder/README.md` | Ranije: `.m4a`, lifecycle, delete starog fajla |
 
 ---

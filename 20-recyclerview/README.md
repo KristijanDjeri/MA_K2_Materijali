@@ -9,7 +9,7 @@
 
 ## Preduslovi
 
-- `05-retrofit-room/` urađen
+- `05-room-baza/` urađen
 - Gradle: `implementation 'androidx.20-recyclerview:20-recyclerview:1.3.2'`
 
 ---

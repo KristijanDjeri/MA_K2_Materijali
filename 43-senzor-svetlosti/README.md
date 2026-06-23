@@ -1,6 +1,6 @@
 # Senzor svetlosti (Light)
 
-**Dodatni segment.** **Slično:** žiroskop, 08-senzor-akcelerometar (SensorEventListener).
+**Dodatni segment.** **Slično:** žiroskop, 12-senzor-akcelerometar (SensorEventListener).
 
 **Cilj:** Prikaži jačinu svetlosti u lux vrednostima u TextView.
 

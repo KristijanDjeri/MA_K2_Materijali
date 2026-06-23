@@ -32,7 +32,7 @@ private static final String BASE_URL = "https://jsonplaceholder.typicode.com/";
 
 ## 3. U `MainActivity.java`
 
-### Importi (već imaš iz 06-switch-postovi)
+### Importi (već imaš iz 09-switch-listener)
 
 ```java
 import retrofit2.Call;

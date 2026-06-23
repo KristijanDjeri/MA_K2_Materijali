@@ -1,6 +1,6 @@
 # Magnetometar i kompas
 
-**Dodatni segment.** **Slično:** žiroskop i 08-senzor-akcelerometar (zadaci 4, 8).
+**Dodatni segment.** **Slično:** žiroskop i 12-senzor-akcelerometar (zadaci 4, 8).
 
 ---
 
@@ -43,7 +43,7 @@ else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
 
 ## Deo B: Kompas (azimut u stepenima) – naprednije
 
-Za azimut trebaju **oba**: 08-senzor-akcelerometar + 42-senzor-magnetometar.
+Za azimut trebaju **oba**: 12-senzor-akcelerometar + 42-senzor-magnetometar.
 
 ### Polja
 
@@ -85,7 +85,7 @@ public void onSensorChanged(SensorEvent event) {
 
 ### Registracija u `onResume`
 
-Moraš registrovati **08-senzor-akcelerometar**, **42-senzor-magnetometar** i **žiroskop** (ako koristiš sve).
+Moraš registrovati **12-senzor-akcelerometar**, **42-senzor-magnetometar** i **žiroskop** (ako koristiš sve).
 
 ---
 

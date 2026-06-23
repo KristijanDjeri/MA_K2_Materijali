@@ -1,18 +1,14 @@
-# Retrofit + Room baza (zadatak 5)
+# Room baza – model i DAO (zadatak 5, deo 1)
 
-**Cilj:** Napraviti **model posta** u bazi i podesiti **Retrofit** za **GET** zahtev.
+**Cilj:** Napraviti **model posta** u bazi (Room) – bez mrežnog poziva.
 
-> **Testirano (jun 2026):** URL iz PDF-a (`app.beeceptor.com/mock-server/dummy-json`) vraća **HTML**, ne JSON.  
-> U materijalu je podrazumevani radni endpoint:  
-> `https://dummy-json.mock.beeceptor.com/posts`  
-> Na kolokvijumu proveri da li profesor da drugačiji URL.
+Ovaj segment radi **samostalno**: samo kreira tabele i `PostDao`. API i upis postova su u sledećim folderima.
 
 ---
 
 ## Šta ti treba pre ovoga
 
-- Gradle zavisnosti za Retrofit i Room (`01-osnovni-projekat/`)
-- Dozvola `INTERNET` u Manifest-u
+- Gradle zavisnosti za **Room** (`01-osnovni-projekat/`)
 
 ---
 
@@ -23,10 +19,10 @@
 | Post.java | `app/src/main/java/com/example/kolokvijum2/model/Post.java` |
 | PostDao.java | `app/src/main/java/com/example/kolokvijum2/db/PostDao.java` |
 | AppDatabase.java | `app/src/main/java/com/example/kolokvijum2/db/AppDatabase.java` |
-| JsonPlaceholderApi.java | `app/src/main/java/com/example/kolokvijum2/api/JsonPlaceholderApi.java` |
-| RetrofitClient.java | `app/src/main/java/com/example/kolokvijum2/api/RetrofitClient.java` |
 
-**Kako napraviti pakete:** desni klik na `com.example.kolokvijum2` → **New → Package** → npr. `model`, pa `db`, pa `api`.
+**Kako napraviti pakete:** desni klik na `com.example.kolokvijum2` → **New → Package** → `model`, pa `db`.
+
+U ovom folderu su gotovi fajlovi: `Post.java`, `PostDao.java`, `AppDatabase.java`.
 
 ---
 
@@ -155,55 +151,7 @@ public abstract class AppDatabase extends RoomDatabase {
 }
 ```
 
-> **Alternativa:** `allowMainThreadQueries()` olakšava kolokvijum, ali u „pravoj" aplikaciji koristi pozadinsku nit → folder `25-thread-executor/`.
-
----
-
-## Fajl 4: `JsonPlaceholderApi.java` (ceo kod)
-
-```java
-package com.example.kolokvijum2.api;
-
-import com.example.kolokvijum2.model.Post;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.http.GET;
-
-public interface JsonPlaceholderApi {
-
-    @GET("mock-server/dummy-json")
-    Call<List<Post>> getPosts();
-}
-```
-
----
-
-## Fajl 5: `RetrofitClient.java` (ceo kod)
-
-```java
-package com.example.kolokvijum2.api;
-
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-public class RetrofitClient {
-
-    private static final String BASE_URL = "https://app.beeceptor.com/";
-    private static Retrofit retrofit;
-
-    public static JsonPlaceholderApi getApi() {
-        if (retrofit == null) {
-            retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-        }
-        return retrofit.create(JsonPlaceholderApi.class);
-    }
-}
-```
+> **Alternativa:** `allowMainThreadQueries()` olakšava kolokvijum; u produkciji koristi pozadinsku nit → `25-thread-executor/`.
 
 ---
 
@@ -228,48 +176,29 @@ private PostDao postDao;
 postDao = AppDatabase.getInstance(this).postDao();
 ```
 
-GET poziv i upis u bazu ide u folderu **`06-switch-postovi/`** (zadatak 6).
+### (Opciono) Brzi test bez API-ja
 
----
-
-## Alternativa ako URL ne radi
-
-Ako mock server ne vrati JSON, koristi:
-
-**RetrofitClient.java:**
 ```java
-private static final String BASE_URL = "https://dummy-json.mock.beeceptor.com/";
+// Samo da proveriš da Room radi – obriši posle testa
+postDao.insert(new Post(1, "Test naslov", "Test body", 1));
 ```
-
-**JsonPlaceholderApi.java:**
-```java
-@GET("posts")
-Call<List<Post>> getPosts();
-```
-
----
-
-## API odgovor (format)
-
-```json
-[
-  { "userId": 1, "id": 1, "title": "...", "body": "..." }
-]
-```
-
-Gson automatski mapira na klasu `Post`. Dodatna polja u JSON-u (npr. `link`) se ignorišu.
 
 ---
 
 ## Checklist
 
-- [ ] 5 novih Java fajlova kreirano
-- [ ] Package imena ispravna (`com.example.kolokvijum2...`)
+- [ ] 3 Java fajla kreirana
 - [ ] Gradle Sync bez greške
 - [ ] `postDao` inicijalizovan u MainActivity
 
 ---
 
-## Sledeći korak
+## Sledeći koraci (nezavisno)
 
-Folder **`06-switch-postovi/`** za zadatak 6.
+| Folder | Šta radi |
+|--------|----------|
+| **`06-retrofit-get/`** | Retrofit GET – test mreže (bez upisa u bazu) |
+| **`07-ucitaj-10-postova/`** | API → upis 10 postova u bazu |
+| **`08-toast-prvi-post/`** | Toast sa `title` prvog reda u bazi |
+
+Na ispitu sve spajaš u **`16-spajanje-zadataka/`** ili **`15-main-activity-referenca/`**.

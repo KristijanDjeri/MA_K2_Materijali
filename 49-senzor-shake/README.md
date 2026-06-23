@@ -19,7 +19,7 @@
 
 ## Preduslovi
 
-- `04-senzor-ziroskop/` i `08-senzor-akcelerometar/` – već imaš `SensorManager`, `SensorEventListener`, 08-senzor-akcelerometar u `onResume`
+- `04-senzor-ziroskop/` i `12-senzor-akcelerometar/` – već imaš `SensorManager`, `SensorEventListener`, 12-senzor-akcelerometar u `onResume`
 
 ---
 
@@ -45,9 +45,9 @@ private long poslednjiShakeVreme = 0;
 
 > **Napomena:** `SHAKE_THRESHOLD = 12.0f` radi sa običnim akcelerometrom (posle oduzimanja gravitacije). Za `LINEAR_ACCELERATION` koristi manji prag, npr. `4.0f`.
 
-### 3. U `onSensorChanged` – zameni ili dopuni deo za 08-senzor-akcelerometar
+### 3. U `onSensorChanged` – zameni ili dopuni deo za 12-senzor-akcelerometar
 
-**Varijanta A – običan 08-senzor-akcelerometar (preporučeno, već ga imaš):**
+**Varijanta A – običan 12-senzor-akcelerometar (preporučeno, već ga imaš):**
 
 ```java
 else if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
@@ -180,7 +180,7 @@ shakeDetector = new ShakeDetector(() ->
         Toast.makeText(this, "Tresenje detektovano!", Toast.LENGTH_SHORT).show()
 );
 
-// onSensorChanged (08-senzor-akcelerometar):
+// onSensorChanged (12-senzor-akcelerometar):
 shakeDetector.obradiSensorEvent(event);
 ```
 
@@ -191,7 +191,7 @@ shakeDetector.obradiSensorEvent(event);
 ```java
 private void onShakeDetektovan() {
     Toast.makeText(this, "Shake – brišem prvi post", Toast.LENGTH_SHORT).show();
-    obrisiPrviPost(); // iz 07-brisanje-notifikacije/
+    obrisiPrviPost(); // iz 11-notifikacija-prazna-baza/
 }
 ```
 
@@ -247,4 +247,4 @@ Na emulatoru: Extended Controls → Sensors → pomeri vrednosti akcelerometra n
 
 ## Sledeći korak
 
-Poveži sa drugim segmentima po potrebi: `33-povratna-vibracija/`, `07-brisanje-notifikacije/`, `06-switch-postovi/`.
+Poveži sa drugim segmentima po potrebi: `33-povratna-vibracija/`, `11-notifikacija-prazna-baza/`, `09-switch-listener/`.
