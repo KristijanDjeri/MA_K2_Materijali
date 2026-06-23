@@ -50,6 +50,7 @@ Pogledaj **[DODATNI-SEGMENTI.md](DODATNI-SEGMENTI.md)** za pregled verovatnoće.
 | [brojac-koraka](brojac-koraka/) | Step counter / detector |
 | [senzori-izvedeni](senzori-izvedeni/) | Gravity, linear accel, rotation vector |
 | [senzor-vlage-temperature](senzor-vlage-temperature/) | Vlaga i temperatura |
+| [shake-senzor](shake-senzor/) | Detekcija tresenja (akcelerometar) |
 
 ## Redosled rada na kolokvijumu
 

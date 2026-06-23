@@ -40,6 +40,7 @@ Ovi folderi pokrivaju teme **slične težine i principa** kao zvanični zadaci, 
 | [brojac-koraka](brojac-koraka/) | Koraci + ACTIVITY_RECOGNITION |
 | [senzori-izvedeni](senzori-izvedeni/) | Gravity, rotation vector… |
 | [senzor-vlage-temperature](senzor-vlage-temperature/) | Retko na telefonima |
+| [shake-senzor](shake-senzor/) | Tresenje preko akcelerometra |
 
 **Pregled svih senzora:** [senzori-pregled](senzori-pregled/)
 

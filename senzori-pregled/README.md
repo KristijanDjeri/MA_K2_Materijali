@@ -10,8 +10,7 @@ Ovaj folder je **mapa** – svaki senzor ima svoj folder sa kompletnim kodom u R
 |--------|--------|
 | Žiroskop | [ziroskop/](../ziroskop/) |
 | Akcelerometar | [akcelerometar/](../akcelerometar/) |
-
----
+| **Shake (tresenje)** | [shake-senzor/](../shake-senzor/) – preko akcelerometra |
 
 ## Dodatni senzori (novi folderi)
 
@@ -89,5 +88,6 @@ Pozovi u `onCreate` i pogledaj **Logcat** u Android Studio.
 1. `ziroskop/` + `akcelerometar/` (kolokvijum)
 2. `magnetometar/` (najčešća zamena)
 3. `senzor-svetlosti/` ili `senzor-proksimiteta/` (jednostavni)
-4. `senzori-izvedeni/` ako traže orijentaciju
-5. `audio-recorder/` ako traže mikrofon
+4. `shake-senzor/` (akcelerometar + prag – česta vežba)
+5. `senzori-izvedeni/` ako traže orijentaciju
+6. `audio-recorder/` ako traže mikrofon

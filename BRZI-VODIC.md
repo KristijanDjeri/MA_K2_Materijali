@@ -51,6 +51,7 @@
 | Bazu u pozadini | `thread-executor/` |
 | Još senzor | `senzori-pregled/` → pojedinačni folder |
 | Audio snimanje | `audio-recorder/` |
+| Shake / tresenje | `shake-senzor/` |
 
 Detaljnije: `DODATNI-SEGMENTI.md`
 
