@@ -1,61 +1,40 @@
 # Senzor svetlosti (Light)
 
-**Dodatni segment.** **Slično:** žiroskop, 12-senzor-akcelerometar (SensorEventListener).
-
-**Cilj:** Prikaži jačinu svetlosti u lux vrednostima u TextView.
+**Dodatni segment.** Helper: **`SvetlostiHelper.java`**
 
 ---
 
-## Preduslovi
+## Gde nalepiti kod
 
-- `MainActivity` već implementira `SensorEventListener` (folder `04-senzor-ziroskop/`)
-
----
-
-## Kompletan kod za `MainActivity.java`
-
-### 1. Polje
-
-```java
-private Sensor lightSensor;
-```
-
-### 2. U `onCreate`
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`SvetlostiHelper.java`** | `app/.../helper/` |
+| 2 | `MainActivity.java` | **`onCreate`**: `svetlostiHelper = new SvetlostiHelper(this, textView);` |
+| 3 | `MainActivity.java` | **`onResume`**: `svetlostiHelper.onResume();` |
+| 4 | `MainActivity.java` | **`onPause`**: `svetlostiHelper.onPause();` |
 
 ```java
-lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+import com.example.kolokvijum2.helper.SvetlostiHelper;
+
+private SvetlostiHelper svetlostiHelper;
+
+// onCreate:
+svetlostiHelper = new SvetlostiHelper(this, textView);
 ```
 
-### 3. U `onResume`
-
-```java
-if (lightSensor != null) {
-    sensorManager.registerListener(this, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
-}
-```
-
-### 4. U `onSensorChanged`
-
-```java
-else if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
-    float lux = event.values[0];
-    textView.setText("Svetlina: " + lux + " lux");
-}
-```
-
-> **Napomena:** Na emulatoru pokrij/otkrij senzor u Extended Controls → Sensors.
-
----
-
-## Alternativa
-
-- Promeni pozadinu ekrana kad je tamno (`lux < 10`)
-- Ne diraj TextView ako ga koristi lokacija – koristi Toast ili drugi TextView
+Puna implementacija senzora je u **`SvetlostiHelper.java`** – ne u MainActivity.
 
 ---
 
 ## Checklist
 
-- [ ] `TYPE_LIGHT` senzor
-- [ ] Registrovan u onResume
-- [ ] Prikaz lux vrednosti
+- [ ] Helper u paketu `helper`
+- [ ] `onResume` / `onPause` u MainActivity
+- [ ] TextView prikazuje lux
+
+---
+
+## Povezano
+
+- **`HELPER-KLASE.md`**
+- **`42-senzor-magnetometar/`** – isti obrazac

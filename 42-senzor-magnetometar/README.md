@@ -1,96 +1,115 @@
 # Magnetometar i kompas
 
-**Dodatni segment.** **Slično:** žiroskop i 12-senzor-akcelerometar (zadaci 4, 8).
+**Dodatni segment.** **Slično:** žiroskop i `12-senzor-akcelerometar/`.
+
+**Cilj:** Magnetometar (X,Y,Z) ili kompas (azimut) – **puna logika u helper klasi**, ne u `MainActivity`.
 
 ---
 
-## Deo A: Magnetometar (X, Y, Z) – osnovno
+## Gde nalepiti kod
 
-### Polje u `MainActivity`
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`MagnetometarHelper.java`** ili **`KompasHelper.java`** | `app/.../helper/` |
+| 2 | `MainActivity.java` | Polje: `private MagnetometarHelper magnetometarHelper;` |
+| 3 | `MainActivity.java` | **`onCreate`**, posle `findViewById`: `magnetometarHelper = new MagnetometarHelper(this, textView);` |
+| 4 | `MainActivity.java` | **`onResume`**: `magnetometarHelper.onResume();` |
+| 5 | `MainActivity.java` | **`onPause`**: `magnetometarHelper.onPause();` |
 
-```java
-private Sensor magnetometer;
-```
-
-### U `onCreate`
-
-```java
-magnetometer = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-```
-
-### U `onResume`
-
-```java
-if (magnetometer != null) {
-    sensorManager.registerListener(this, magnetometer, SensorManager.SENSOR_DELAY_NORMAL);
-}
-```
-
-### U `onSensorChanged`
-
-```java
-else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
-    float mx = event.values[0];
-    float my = event.values[1];
-    float mz = event.values[2];
-    textView.setText("Mag X:" + mx + " Y:" + my + " Z:" + mz);
-}
-```
-
-> **Alternativa:** Toast umesto TextView – ako ne želiš da pregaziš lokaciju/kontakt.
+> **Ne** implementiraj `SensorEventListener` u MainActivity – helper to radi sam.
 
 ---
 
-## Deo B: Kompas (azimut u stepenima) – naprednije
+## Deo A: Magnetometar – ceo helper
 
-Za azimut trebaju **oba**: 12-senzor-akcelerometar + 42-senzor-magnetometar.
+Kopiraj **`MagnetometarHelper.java`** iz ovog foldera.
 
-### Polja
+### MainActivity – samo povezivanje
 
 ```java
-private float[] gravity = new float[3];
-private float[] geomagnetic = new float[3];
-private float[] rotationMatrix = new float[9];
-private float[] orientation = new float[3];
+import com.example.kolokvijum2.helper.MagnetometarHelper;
+
+private MagnetometarHelper magnetometarHelper;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    textView = findViewById(R.id.textView);
+    // ... ostali findViewById ...
+
+    magnetometarHelper = new MagnetometarHelper(this, textView);
+}
+
+@Override
+protected void onResume() {
+    super.onResume();
+    // drugi helperi (npr. ziroskopHelper.onResume()) ...
+    magnetometarHelper.onResume();
+}
+
+@Override
+protected void onPause() {
+    super.onPause();
+    magnetometarHelper.onPause();
+    // drugi helperi onPause ...
+}
 ```
 
-### U `onSensorChanged` (zameni ili dopuni logiku)
+---
+
+## Deo B: Kompas (azimut)
+
+Koristi **`KompasHelper.java`** – sam registruje akcelerometar **i** magnetometar.
+
+```java
+private KompasHelper kompasHelper;
+
+// onCreate:
+kompasHelper = new KompasHelper(this, textView);
+
+// onResume / onPause – isto kao gore
+kompasHelper.onResume();
+kompasHelper.onPause();
+```
+
+> **Ne koristi** istovremeno `MagnetometarHelper` i `KompasHelper` na istom TextView.
+
+---
+
+## Više helpera u istom Activity
 
 ```java
 @Override
-public void onSensorChanged(SensorEvent event) {
-    if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-        gravity = event.values.clone();
-        float ax = event.values[0];
-        float ay = event.values[1];
-        float az = event.values[2];
-        button.setText("X: " + ax + " Y: " + ay + " Z: " + az);
-    } else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
-        geomagnetic = event.values.clone();
-    } else if (event.sensor.getType() == Sensor.TYPE_GYROSCOPE) {
-        gyroX = event.values[0];
-        gyroY = event.values[1];
-        gyroZ = event.values[2];
-    }
+protected void onResume() {
+    super.onResume();
+    ziroskopHelper.onResume();
+    akcelerometarHelper.onResume();
+    magnetometarHelper.onResume();
+}
 
-    if (SensorManager.getRotationMatrix(rotationMatrix, null, gravity, geomagnetic)) {
-        SensorManager.getOrientation(rotationMatrix, orientation);
-        float azimutRad = orientation[0];
-        float azimutStepeni = (float) Math.toDegrees(azimutRad);
-        // Opciono prikaži negde:
-        // textView.setText("Azimut: " + azimutStepeni + "°");
-    }
+@Override
+protected void onPause() {
+    super.onPause();
+    ziroskopHelper.onPause();
+    akcelerometarHelper.onPause();
+    magnetometarHelper.onPause();
 }
 ```
 
-### Registracija u `onResume`
-
-Moraš registrovati **12-senzor-akcelerometar**, **42-senzor-magnetometar** i **žiroskop** (ako koristiš sve).
+Svaki helper ima **svoj** `SensorEventListener` – ne treba `implements SensorEventListener` na Activity.
 
 ---
 
 ## Checklist
 
-- [ ] `TYPE_MAGNETIC_FIELD` senzor
-- [ ] Registrovan u onResume
-- [ ] (Kompas) Oba senzora + `getRotationMatrix`
+- [ ] Helper klasa u paketu `helper`
+- [ ] `onResume()` / `onPause()` pozvani iz MainActivity
+- [ ] TextView prikazuje Mag X/Y/Z ili azimut
+
+---
+
+## Povezano
+
+- Mapa svih helpera: **`HELPER-KLASE.md`**
+- Akcelerometar: `12-senzor-akcelerometar/AkcelerometarHelper.java`

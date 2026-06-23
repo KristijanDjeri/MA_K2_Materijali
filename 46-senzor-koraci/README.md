@@ -14,7 +14,15 @@
 
 Na API 28–29 obično **nije** potrebna ova dozvola.
 
+**Helper (ceo kod):** `KoraciHelper.java` – uključuje dozvolu + `onResume()` / `onPause()` + `onPermissionGranted()`.
+
+```java
+koraciHelper = new KoraciHelper(this, textView);
+```
+
 ---
+
+## Inline varijanta (zastarelo)
 
 ## Kompletan kod za `MainActivity.java`
 

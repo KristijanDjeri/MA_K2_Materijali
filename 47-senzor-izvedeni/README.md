@@ -1,6 +1,8 @@
 # Rotation Vector, Gravity, Linear Acceleration
 
-**Dodatni segment.** **Slično:** žiroskop + 12-senzor-akcelerometar, ali Android **već spaja** podatke u izvedene senzore.
+**Dodatni segment.** **Slično:** žiroskop + akcelerometar, ali Android **već spaja** podatke u izvedene senzore.
+
+**Helper (ceo kod):** `IzvedeniSenzorHelper.java` (Gravity) – `onResume()` / `onPause()`. **`HELPER-KLASE.md`**
 
 ---
 

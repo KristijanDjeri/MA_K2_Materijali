@@ -1,25 +1,45 @@
-# Helper klase – konvencija (kopiraj u projekat)
+# Helper + lifecycle – šablon za MainActivity
 
-Svaki segment može imati **zasebnu helper klasu** umesto metoda u `MainActivity`.
+Svaki helper sa senzorom/mapom/audio ima **pune metode** u svojoj klasi.  
+MainActivity **samo delegira**:
 
-## Paket u Android Studio projektu
+```java
+@Override
+protected void onResume() {
+    super.onResume();
+    // pozovi onResume za SVE aktivne helpere:
+    ziroskopHelper.onResume();
+    akcelerometarHelper.onResume();
+    // magnetometarHelper.onResume();
+    // mapsOsmHelper.onResume();
+    // lokacijaRealtimeHelper.onResume();
+}
 
+@Override
+protected void onPause() {
+    super.onPause();
+    ziroskopHelper.onPause();
+    akcelerometarHelper.onPause();
+    // ...
+}
+
+@Override
+protected void onDestroy() {
+    super.onDestroy();
+    // audioRecorder.onDestroy();
+    // okHttpHelper.shutdown();
+}
+
+@Override
+public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    geoHelper.onPermissionGranted(requestCode, grantResults);
+    kameraHelper.onPermissionGranted(requestCode, grantResults);
+    kontaktiHelper.onPermissionGranted(requestCode, grantResults);
+    galerijaHelper.onPermissionGranted(requestCode, grantResults);
+    koraciHelper.onPermissionGranted(requestCode, grantResults);
+    audioRecorder.onPermissionGranted(requestCode, grantResults);
+}
 ```
-app/src/main/java/com/example/kolokvijum2/helper/
-```
 
-Desni klik na `com.example.kolokvijum2` → **New → Package** → `helper`  
-Zatim kopiraj `.java` fajl iz foldera segmenta u taj paket.
-
-## Šablon – gde nalepiti u MainActivity
-
-| Korak | Gde u `MainActivity.java` | Primer |
-|-------|---------------------------|--------|
-| 1. Import | vrh fajla | `import com.example.kolokvijum2.helper.GeoLokacijaHelper;` |
-| 2. Polje | iznad `onCreate` | `private GeoLokacijaHelper geoHelper;` |
-| 3. Inicijalizacija | **`onCreate`**, posle `findViewById` | `geoHelper = new GeoLokacijaHelper(this, textView);` |
-| 4. Pokretanje | **`onCreate`** ili listener | `geoHelper.pokreni();` |
-| 5. Lifecycle | `onResume` / `onPause` / `onDestroy` | `sensorsHelper.onResume();` |
-| 6. Dozvole | **`onRequestPermissionsResult`** | `geoHelper.onPermissionGranted(requestCode, grantResults);` |
-
-**Pravilo:** `MainActivity` drži samo UI (`findViewById`, listeneri) i poziva helper – poslovna logika je u helper klasi.
+Mapa svih helper fajlova: **`HELPER-KLASE.md`**

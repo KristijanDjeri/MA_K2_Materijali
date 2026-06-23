@@ -4,6 +4,14 @@
 
 **Cilj:** Kada korisnik protrese telefon → Toast „Tresenje detektovano!" (ili neka druga akcija).
 
+**Helper (ceo kod):** `ShakeHelper.java` + `ShakeDetector.java` – **`onResume()` / `onPause()`** u MainActivity. Vidi **`HELPER-KLASE.md`**.
+
+```java
+shakeHelper = new ShakeHelper(this, () -> Toast.makeText(this, "Tresenje!", Toast.LENGTH_SHORT).show());
+// onResume: shakeHelper.onResume();
+// onPause: shakeHelper.onPause();
+```
+
 ---
 
 ## Kako radi (ukratko)

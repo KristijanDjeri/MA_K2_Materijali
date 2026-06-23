@@ -9,21 +9,32 @@ Radi **samostalno** – samo senzor i `setText` na dugmetu. **Brisanje posta** j
 ## Šta ti treba pre ovoga
 
 - `01-osnovni-projekat/` – `button` u layoutu
-- Za žiroskop (zadatak 4): `04-senzor-ziroskop/` – isti `SensorEventListener` (opciono)
+- `04-senzor-ziroskop/ZiroskopHelper` – oba helpera, **bez** `SensorEventListener` u Activity
 
 ---
 
-## Koji fajlovi se menjaju
+## Gde nalepiti kod (helper)
 
-| Fajl | Šta radiš |
-|------|-----------|
-| `MainActivity.java` | Akcelerometar u postojećem senzor kodu |
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`AkcelerometarHelper.java`** | `app/.../helper/` |
+| 2 | `MainActivity.java` | **`onCreate`**: `akcelerometarHelper = new AkcelerometarHelper(this, button);` |
+| 3 | `MainActivity.java` | **`onResume`**: `akcelerometarHelper.onResume();` |
+| 4 | `MainActivity.java` | **`onPause`**: `akcelerometarHelper.onPause();` |
+
+```java
+import com.example.kolokvijum2.helper.AkcelerometarHelper;
+
+private AkcelerometarHelper akcelerometarHelper;
+```
+
+Brisanje posta: **`onCreate`** → `button.setOnClickListener` (zadatak 10) – odvojeno od senzora u vežbi.
 
 ---
 
-## Kompletan kod (samo akcelerometar)
+## Kompletan kod (inline varijanta – zastarelo)
 
-Ako nemaš žiroskop, klasa i dalje implementira `SensorEventListener`.
+Ako nemaš helper, klasa implementira `SensorEventListener` u MainActivity.
 
 ### 1. Importi
 

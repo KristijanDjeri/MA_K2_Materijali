@@ -6,6 +6,16 @@
 
 ---
 
+**Helper (ceo kod):** `BarometarHelper.java` – `onResume()` / `onPause()`. **`HELPER-KLASE.md`**
+
+```java
+barometarHelper = new BarometarHelper(this, textView);
+```
+
+---
+
+## Inline varijanta (zastarelo)
+
 ## Kompletan kod za `MainActivity.java`
 
 ### 1. Polje

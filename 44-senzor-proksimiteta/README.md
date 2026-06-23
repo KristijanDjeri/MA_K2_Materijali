@@ -4,7 +4,21 @@
 
 **Cilj:** Detektuj da li je nešto blizu senzora (npr. telefon uz uvo).
 
+**Helper (ceo kod):** `ProksimitetHelper.java` → `onResume()` / `onPause()` u MainActivity. Vidi **`HELPER-KLASE.md`**.
+
 ---
+
+## Gde nalepiti
+
+```java
+proksimitetHelper = new ProksimitetHelper(this, textView);
+// onResume: proksimitetHelper.onResume();
+// onPause: proksimitetHelper.onPause();
+```
+
+---
+
+## Inline varijanta (zastarelo)
 
 ## Kompletan kod za `MainActivity.java`
 

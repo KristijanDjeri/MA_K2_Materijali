@@ -1,6 +1,9 @@
 # Pregled svih senzora
 
-Ovaj folder je **mapa** – svaki senzor ima svoj folder sa kompletnim kodom u README.
+Ovaj folder je **mapa** – svaki senzor ima **helper klasu** sa punim `onResume()` / `onPause()`.
+
+> **Obrazac:** kopiraj `XxxHelper.java` u paket `helper`, u MainActivity samo pozovi lifecycle.  
+> Mapa: **`HELPER-KLASE.md`**
 
 ---
 

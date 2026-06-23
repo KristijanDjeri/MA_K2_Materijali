@@ -15,15 +15,44 @@ Na ispitu: Toast posle nove slike u `ImageView` (spajanje sa `03-kamera/` u `16-
 
 ---
 
-## Koji fajlovi se menjaju
+## Koji fajlovi se menjaju / dodaju
 
-| Fajl | Šta radiš |
-|------|-----------|
-| `MainActivity.java` | Senzor, listener, Toast metoda, onResume/onPause |
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`ZiroskopHelper.java`** | Novi fajl → `app/.../helper/` |
+| 2 | `MainActivity.java` | Polje: `private ZiroskopHelper ziroskopHelper;` |
+| 3 | `MainActivity.java` | **`onCreate`**: `ziroskopHelper = new ZiroskopHelper(this);` |
+| 4 | `MainActivity.java` | **`onResume`**: `ziroskopHelper.onResume();` |
+| 5 | `MainActivity.java` | **`onPause`**: `ziroskopHelper.onPause();` |
+| 6 | Kamera (opciono) | U `KameraHelper` callback: `ziroskopHelper.prikaziToast();` |
+
+> **Ne** dodaj `implements SensorEventListener` u MainActivity.
 
 ---
 
-## Kompletan kod za `MainActivity.java` (deo za žiroskop)
+## MainActivity – povezivanje (helper)
+
+```java
+import com.example.kolokvijum2.helper.ZiroskopHelper;
+
+private ZiroskopHelper ziroskopHelper;
+
+// onCreate, posle findViewById:
+ziroskopHelper = new ZiroskopHelper(this);
+
+// onResume:
+ziroskopHelper.onResume();
+
+// onPause:
+ziroskopHelper.onPause();
+
+// posle kamere (KameraHelper listener):
+ziroskopHelper.prikaziToast();
+```
+
+---
+
+## Kompletan kod za `MainActivity.java` (inline varijanta – zastarelo)
 
 ### 1. Importi
 

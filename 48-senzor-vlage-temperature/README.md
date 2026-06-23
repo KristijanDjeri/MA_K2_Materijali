@@ -2,6 +2,12 @@
 
 **Dodatni segment.** Retki na telefonima, ali se ponekad pominju na vežbama.
 
+**Helper (ceo kod):** `VlagaTemperaturaHelper.java` – oba senzora, `onResume()` / `onPause()`.
+
+```java
+vlagaHelper = new VlagaTemperaturaHelper(this, textView);
+```
+
 ---
 
 ## Senzor vlage
