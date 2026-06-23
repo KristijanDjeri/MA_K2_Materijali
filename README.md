@@ -1,0 +1,54 @@
+# Priprema za Kolokvijum 2 – Mobilne Aplikacije
+
+Materijal za kolokvijum: gotovi segmenti koda i uputstva po temama.  
+**Android Studio**, **minSdk 28** (Android 9+).
+
+## Struktura foldera
+
+| Folder | Šta pokriva (zadaci) |
+|--------|----------------------|
+| [osnovni-projekat](osnovni-projekat/) | Novi projekat, MainActivity, layout (zadaci 1–2) |
+| [geo-lokacija](geo-lokacija/) | Prikaz širine i dužine u TextView (zadatak 3) |
+| [kamera](kamera/) | Slikanje i prikaz u ImageView (zadatak 4) |
+| [ziroskop](ziroskop/) | Toast sa X, Y, Z pri zameni slike (zadatak 4) |
+| [retrofit-room](retrofit-room/) | API, model, baza, Retrofit GET (zadatak 5) |
+| [switch-postovi](switch-postovi/) | Switch ON – učitavanje 10 postova / Toast title (zadatak 6) |
+| [brisanje-notifikacije](brisanje-notifikacije/) | Brisanje prvog posta, notifikacija (zadatak 7) |
+| [akcelerometar](akcelerometar/) | Tekst dugmeta = vrednosti akcelerometra (zadatak 8) |
+| [shared-preferences](shared-preferences/) | Čuvanje TextView teksta (zadatak 9) |
+| [kontakti](kontakti/) | Ime prvog kontakta u TextView (zadatak 9) |
+| [main-activity-referenca](main-activity-referenca/) | Spojeni MainActivity primer (sve u jednom) |
+
+## Redosled rada na kolokvijumu
+
+1. Kreiraj projekat **Kolokvijum2** → pogledaj `osnovni-projekat/`
+2. Dodaj dozvole u `AndroidManifest.xml` (svaki folder navodi svoje)
+3. Dodaj zavisnosti u `build.gradle` → `osnovni-projekat/gradle-zavisnosti.txt`
+4. Za svaki zadatak kopiraj segmente iz odgovarajućeg foldera u projekat
+5. Na kraju uporedi sa `main-activity-referenca/MainActivity.java` ako nešto ne radi
+
+## API endpoint
+
+```
+GET https://app.beeceptor.com/mock-server/dummy-json
+```
+
+Odgovor je JSON niz objekata sa poljima poput `id`, `title`, `body`, itd. (prilagodi model prema stvarnom odgovoru).
+
+## Dozvole (sve u Manifest-u)
+
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<uses-permission android:name="android.permission.CAMERA" />
+<uses-permission android:name="android.permission.READ_CONTACTS" />
+<!-- Android 13+ za notifikacije -->
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+```
+
+## Napomene
+
+- Na Android 6+ dozvole za lokaciju, kameru i kontakte traži **u runtime-u** (primeri u folderima).
+- Notifikacije na API 26+ zahtevaju **NotificationChannel** (`brisanje-notifikacije/`).
+- Room i Retrofit rade na pozadinskoj niti (`ExecutorService` ili `new Thread()`).

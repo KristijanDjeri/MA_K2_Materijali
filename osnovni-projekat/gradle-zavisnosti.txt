@@ -1,0 +1,12 @@
+// Dodaj u app/build.gradle → dependencies { }
+
+// Retrofit (GET zahtev ka API-ju)
+implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+// Room (baza postova)
+implementation 'androidx.room:room-runtime:2.6.1'
+annotationProcessor 'androidx.room:room-compiler:2.6.1'
+
+// Geolokacija (Fused Location Provider)
+implementation 'com.google.android.gms:play-services-location:21.0.1'

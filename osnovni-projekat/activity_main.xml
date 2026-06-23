@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lokacija..."
+        android:textSize="16sp"
+        android:paddingBottom="8dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_camera"
+        android:contentDescription="Slikaj"
+        android:paddingBottom="8dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:background="#EEEEEE"
+        android:contentDescription="Fotografija"
+        android:paddingBottom="8dp" />
+
+    <Switch
+        android:id="@+id/switchPosts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Postovi"
+        android:paddingBottom="8dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Akcelerometar" />
+
+</LinearLayout>
