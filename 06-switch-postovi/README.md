@@ -8,7 +8,7 @@
 
 ## Šta ti treba pre ovoga
 
-- `retrofit-room/` – `PostDao`, `RetrofitClient`, `postDao` u MainActivity
+- `05-retrofit-room/` – `PostDao`, `RetrofitClient`, `postDao` u MainActivity
 - `switchPosts` u layoutu
 
 ---
@@ -42,7 +42,7 @@ import retrofit2.Response;
 ```java
 private Switch switchPosts;
 private boolean postsUcitani = false;
-// postDao već imaš iz retrofit-room/
+// postDao već imaš iz 05-retrofit-room/
 ```
 
 ### 3. U `onCreate`, posle `findViewById` i `postDao = ...`
@@ -52,7 +52,7 @@ switchPosts.setOnCheckedChangeListener((buttonView, isChecked) -> {
     if (isChecked) {
         obradiSwitchOn();
     } else {
-        obradiSwitchOff(); // folder shared-preferences/ + kontakti/
+        obradiSwitchOff(); // folder 09-shared-preferences/ + 10-kontakti/
     }
 });
 ```
@@ -106,7 +106,7 @@ private void ucitajPostoveSaApi() {
 
 ```java
 private void obradiSwitchOff() {
-    // Popuni iz foldera shared-preferences/ i kontakti/
+    // Popuni iz foldera 09-shared-preferences/ i 10-kontakti/
 }
 ```
 
@@ -142,5 +142,5 @@ private void obradiSwitchOff() {
 
 ## Sledeći korak
 
-- Zadatak 7: **`brisanje-notifikacije/`**
-- Zadatak 9: **`shared-preferences/`** + **`kontakti/`**
+- Zadatak 7: **`07-brisanje-notifikacije/`**
+- Zadatak 9: **`09-shared-preferences/`** + **`10-kontakti/`**

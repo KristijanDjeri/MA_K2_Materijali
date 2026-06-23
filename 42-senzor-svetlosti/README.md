@@ -1,6 +1,6 @@
 # Senzor svetlosti (Light)
 
-**Dodatni segment.** **Slično:** žiroskop, akcelerometar (SensorEventListener).
+**Dodatni segment.** **Slično:** žiroskop, 08-senzor-akcelerometar (SensorEventListener).
 
 **Cilj:** Prikaži jačinu svetlosti u lux vrednostima u TextView.
 
@@ -8,7 +8,7 @@
 
 ## Preduslovi
 
-- `MainActivity` već implementira `SensorEventListener` (folder `ziroskop/`)
+- `MainActivity` već implementira `SensorEventListener` (folder `04-senzor-ziroskop/`)
 
 ---
 

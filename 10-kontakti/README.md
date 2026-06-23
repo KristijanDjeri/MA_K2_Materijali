@@ -6,7 +6,7 @@
 
 ## Šta ti treba pre ovoga
 
-- `shared-preferences/` – `obradiSwitchOff()` poziva `postaviImePrvogKontakta()`
+- `09-shared-preferences/` – `obradiSwitchOff()` poziva `postaviImePrvogKontakta()`
 - Dozvola `READ_CONTACTS` u Manifest-u
 
 ---
@@ -112,7 +112,7 @@ private void obradiSwitchOff() {
 
 | Ovaj primer | Alternativa |
 |-------------|-------------|
-| `DISPLAY_NAME` | `ContactsContract.CommonDataKinds.Phone` – broj telefona → folder `poziv-telefon/` |
+| `DISPLAY_NAME` | `ContactsContract.CommonDataKinds.Phone` – broj telefona → folder `29-poziv-telefon/` |
 | `LIMIT 1` u sort | `moveToFirst()` bez LIMIT – uzima prvi red kako ga sistem vrati |
 | `getColumnIndex` | Direktno `cursor.getString(0)` ako si siguran u redosled kolona |
 
@@ -129,4 +129,4 @@ private void obradiSwitchOff() {
 
 ## Zadatak 9 je završen
 
-Kad su urađeni `shared-preferences/` i `kontakti/`, zadatak 9 je kompletan.
+Kad su urađeni `09-shared-preferences/` i `10-kontakti/`, zadatak 9 je kompletan.

@@ -32,7 +32,7 @@ private static final String BASE_URL = "https://jsonplaceholder.typicode.com/";
 
 ## 3. U `MainActivity.java`
 
-### Importi (već imaš iz switch-postovi)
+### Importi (već imaš iz 06-switch-postovi)
 
 ```java
 import retrofit2.Call;
@@ -79,7 +79,7 @@ button.setOnLongClickListener(v -> {
 ## Alternativa
 
 - `@FormUrlEncoded` + `@Field` – slanje forme umesto JSON
-- OkHttp bez Retrofit-a → folder `okhttp-json/`
+- OkHttp bez Retrofit-a → folder `32-okhttp-json/`
 
 ---
 

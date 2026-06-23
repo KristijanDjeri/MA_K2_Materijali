@@ -1,6 +1,10 @@
-# Vibrator
+# Povratna vibracija (haptic feedback)
 
-**Dodatni segment.** Kratka povratna informacija (npr. kad nema više postova).
+**Dodatni segment.** Koristi sistemsku **VIBRATE** dozvolu – kratka vibracija kao povratna informacija (npr. kad nema više postova).
+
+> **Napomena:** Folder se zove `33-povratna-vibracija` (ne „vibrator") – jasniji i neutralniji naziv.
+
+**Slično:** kratki fizički odziv na događaj (kao zvuk ili Toast).
 
 ---
 
@@ -10,7 +14,7 @@
 <uses-permission android:name="android.permission.VIBRATE" />
 ```
 
-(Normalna dozvola – **ne** traži se u runtime.)
+(Normalna dozvola – **ne** traži runtime na većini uređaja.)
 
 ---
 
@@ -29,7 +33,7 @@ import android.os.VibratorManager;
 ### Metoda
 
 ```java
-private void vibracijaKratka() {
+private void povratnaVibracijaKratka() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
         VibratorManager vm = (VibratorManager) getSystemService(Context.VIBRATOR_MANAGER_SERVICE);
         vm.getDefaultVibrator().vibrate(
@@ -47,11 +51,13 @@ private void vibracijaKratka() {
 }
 ```
 
-### Poziv u `obrisiPrviPost` kad je count == 0
+> U **Fragmentu** koristi `requireContext().getSystemService(...)` umesto `getSystemService`.
+
+### Poziv (npr. kad nema postova)
 
 ```java
 if (postDao.count() == 0) {
-    vibracijaKratka();
+    povratnaVibracijaKratka();
     posaljiNotifikaciju("Nema više postova!");
 }
 ```
@@ -60,12 +66,12 @@ if (postDao.count() == 0) {
 
 ## Alternativa
 
-- Kraće trajanje: `200` ms umesto `500`
-- `VibrationEffect.createWaveform` – pattern vibracije
+- Kraće trajanje: `200` ms
+- `VibrationEffect.createWaveform` – uzorak vibracije
 
 ---
 
 ## Checklist
 
-- [ ] VIBRATE u Manifest-u
-- [ ] vibracijaKratka() pozvana na događaj
+- [ ] `VIBRATE` u Manifest-u
+- [ ] Pozvano na jasan događaj (brisanje, greška, shake…)

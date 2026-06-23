@@ -63,18 +63,18 @@ apply plugin: 'com.google.gms.google-services'   // DODAJ OVO
 implementation platform('com.google.firebase:firebase-bom:33.7.0')
 implementation 'com.google.firebase:firebase-analytics'
 
-// Za Auth (folder firebase-auth/):
-implementation 'com.google.firebase:firebase-auth'
+// Za Auth (folder 52-firebase-auth/):
+implementation 'com.google.firebase:52-firebase-auth'
 
-// Za Firestore (folder firebase-firestore/):
-implementation 'com.google.firebase:firebase-firestore'
+// Za Firestore (folder 53-firebase-firestore/):
+implementation 'com.google.firebase:53-firebase-firestore'
 
-// Za FCM notifikacije (folder firebase-fcm/):
+// Za FCM notifikacije (folder 54-firebase-fcm/):
 implementation 'com.google.firebase:firebase-messaging'
 ```
 
 > **Napomena:** Sa BOM-om ne pišeš verziju na svakom `firebase-*` – BOM je određuje.  
-> **Alternativa:** Bez BOM-a: `implementation 'com.google.firebase:firebase-firestore:25.1.1'` itd.
+> **Alternativa:** Bez BOM-a: `implementation 'com.google.firebase:53-firebase-firestore:25.1.1'` itd.
 
 Klikni **Sync Now**.
 
@@ -100,7 +100,7 @@ U Android Studio u Project view: **Android** → `app` → vidiš `google-servic
 
 ## Korak 5: Internet dozvola
 
-Već postoji u `osnovni-projekat/`:
+Već postoji u `01-osnovni-projekat/`:
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
@@ -170,5 +170,5 @@ service cloud.firestore {
 
 ## Sledeći korak
 
-- Autentifikacija: **`firebase-auth/`**
-- Baza postova: **`firebase-firestore/`**
+- Autentifikacija: **`52-firebase-auth/`**
+- Baza postova: **`53-firebase-firestore/`**

@@ -20,7 +20,7 @@ private final ActivityResultLauncher<Void> takePictureLauncher =
         registerForActivityResult(new ActivityResultContracts.TakePicturePreview(), bitmap -> {
             if (bitmap != null) {
                 imageView.setImageBitmap(bitmap);
-                // Pozovi žiroskop Toast (folder ziroskop/):
+                // Pozovi žiroskop Toast (folder 04-senzor-ziroskop/):
                 prikaziZiroskopToast();
             }
         });

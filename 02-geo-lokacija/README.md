@@ -6,7 +6,7 @@
 
 ## Šta ti treba pre ovoga
 
-- Završen folder `osnovni-projekat/`
+- Završen folder `01-osnovni-projekat/`
 - Dozvole `ACCESS_FINE_LOCATION` i `ACCESS_COARSE_LOCATION` u Manifest-u
 - Gradle zavisnost `play-services-location`
 
@@ -116,7 +116,7 @@ public void onRequestPermissionsResult(int requestCode, String[] permissions, in
 
 | Ovaj primer | Alternativa |
 |-------------|-------------|
-| `getLastLocation()` – jednokratno | `requestLocationUpdates()` – lokacija uživo → pogledaj folder `lokacija-realtime/` |
+| `getLastLocation()` – jednokratno | `requestLocationUpdates()` – lokacija uživo → pogledaj folder `34-lokacija-realtime/` |
 | Samo `ACCESS_FINE_LOCATION` | Možeš tražiti i `ACCESS_COARSE_LOCATION` |
 | Fused Location Provider | Stariji `LocationManager` – ne preporučujem, ali profesor može pomenuti |
 
@@ -134,4 +134,4 @@ public void onRequestPermissionsResult(int requestCode, String[] permissions, in
 
 ## Sledeći korak
 
-Folder **`kamera/`** za zadatak 4.
+Folder **`03-kamera/`** za zadatak 4.

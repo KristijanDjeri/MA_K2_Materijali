@@ -2,7 +2,7 @@ package com.example.kolokvijum2.model;
 
 /**
  * Model za Firestore – mora imati prazan konstruktor.
- * Vidi firebase-firestore/README.md
+ * Vidi 53-firebase-firestore/README.md
  */
 public class PostFirestore {
 

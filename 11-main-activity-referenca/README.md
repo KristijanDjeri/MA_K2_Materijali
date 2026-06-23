@@ -10,8 +10,8 @@ Ovaj folder sadrži **jedan spojeni fajl** sa svim zadacima. Koristi ga kad:
 
 ## Preduslovi
 
-1. Uradi `osnovni-projekat/` (layout, Gradle, Manifest)
-2. Kopiraj sve fajlove iz `retrofit-room/` u projekat
+1. Uradi `01-osnovni-projekat/` (layout, Gradle, Manifest)
+2. Kopiraj sve fajlove iz `05-retrofit-room/` u projekat
 3. Zameni `MainActivity.java` kodom ispod (ili iz fajla `MainActivity.java` u ovom folderu)
 
 ---
@@ -332,7 +332,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 |---------|--------|
 | 1–2 | `onCreate`, `findViewById` |
 | 3 | `pokreniLokaciju`, `ucitajLokaciju` |
-| 4 kamera | `pokreniKameru`, `takePictureLauncher` |
+| 4 03-kamera | `pokreniKameru`, `takePictureLauncher` |
 | 4 žiroskop | `prikaziZiroskopToast`, `onSensorChanged` (GYRO) |
 | 5 | `postDao`, `AppDatabase`, `RetrofitClient` |
 | 6 | `obradiSwitchOn`, `ucitajPostoveSaApi` |

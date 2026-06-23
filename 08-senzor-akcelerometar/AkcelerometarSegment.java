@@ -32,4 +32,4 @@ public void onSensorChanged(SensorEvent event) {
     }
 }
 
-// button.setOnClickListener za brisanje ostaje iz brisanje-notifikacije/
+// button.setOnClickListener za brisanje ostaje iz 07-brisanje-notifikacije/

@@ -1,6 +1,6 @@
 # Audio snimanje i reprodukcija
 
-**Dodatni segment.** **Slično:** kamera (runtime dozvola + hardver + fajl na disku).
+**Dodatni segment.** **Slično:** 03-kamera (runtime dozvola + hardver + fajl na disku).
 
 **Cilj:**
 - Dugme **Snimi** → počne snimanje mikrofonom (`MediaRecorder`)
@@ -31,9 +31,9 @@
 
 ## Preduslovi
 
-- `osnovni-projekat/` urađen
+- `01-osnovni-projekat/` urađen
 - Fizički telefon **ili** emulator sa uključenim mikrofonom
-- Manifest dozvola `RECORD_AUDIO` (već u `osnovni-projekat/AndroidManifest-dozvole.xml`)
+- Manifest dozvola `RECORD_AUDIO` (već u `01-osnovni-projekat/AndroidManifest-dozvole.xml`)
 
 ---
 
@@ -433,5 +433,5 @@ Log.d("AUDIO", "Putanja: " + audioPutanja + " postoji=" + new File(audioPutanja)
 
 ## Sledeći korak
 
-- Sačuvaj trajanje snimka u `SharedPreferences` – folder `shared-preferences/`
-- Pošalji fajl na server – folder `retrofit-post/` ili Firebase Storage (nije u materijalu)
+- Sačuvaj trajanje snimka u `SharedPreferences` – folder `09-shared-preferences/`
+- Pošalji fajl na server – folder `23-retrofit-post/` ili Firebase Storage (nije u materijalu)

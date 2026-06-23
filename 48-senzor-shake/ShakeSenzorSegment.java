@@ -22,5 +22,5 @@
 //     Toast.makeText(this, "Tresenje detektovano!", Toast.LENGTH_SHORT).show()
 // );
 
-// onSensorChanged (akcelerometar):
+// onSensorChanged (08-senzor-akcelerometar):
 // shakeDetector.obradiSensorEvent(event);

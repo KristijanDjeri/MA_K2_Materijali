@@ -11,7 +11,7 @@
 
 ## Šta ti treba pre ovoga
 
-- Gradle zavisnosti za Retrofit i Room (`osnovni-projekat/`)
+- Gradle zavisnosti za Retrofit i Room (`01-osnovni-projekat/`)
 - Dozvola `INTERNET` u Manifest-u
 
 ---
@@ -155,7 +155,7 @@ public abstract class AppDatabase extends RoomDatabase {
 }
 ```
 
-> **Alternativa:** `allowMainThreadQueries()` olakšava kolokvijum, ali u „pravoj" aplikaciji koristi pozadinsku nit → folder `thread-executor/`.
+> **Alternativa:** `allowMainThreadQueries()` olakšava kolokvijum, ali u „pravoj" aplikaciji koristi pozadinsku nit → folder `25-thread-executor/`.
 
 ---
 
@@ -228,7 +228,7 @@ private PostDao postDao;
 postDao = AppDatabase.getInstance(this).postDao();
 ```
 
-GET poziv i upis u bazu ide u folderu **`switch-postovi/`** (zadatak 6).
+GET poziv i upis u bazu ide u folderu **`06-switch-postovi/`** (zadatak 6).
 
 ---
 
@@ -272,4 +272,4 @@ Gson automatski mapira na klasu `Post`. Dodatna polja u JSON-u (npr. `link`) se 
 
 ## Sledeći korak
 
-Folder **`switch-postovi/`** za zadatak 6.
+Folder **`06-switch-postovi/`** za zadatak 6.

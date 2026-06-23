@@ -9,8 +9,8 @@
 
 ## Preduslovi
 
-- `retrofit-room/` urađen
-- Gradle: `implementation 'androidx.recyclerview:recyclerview:1.3.2'`
+- `05-retrofit-room/` urađen
+- Gradle: `implementation 'androidx.20-recyclerview:20-recyclerview:1.3.2'`
 
 ---
 
@@ -42,7 +42,7 @@
 ## 2. U `activity_main.xml` dodaj (npr. ispod Button)
 
 ```xml
-<androidx.recyclerview.widget.RecyclerView
+<androidx.20-recyclerview.widget.RecyclerView
     android:id="@+id/recyclerView"
     android:layout_width="match_parent"
     android:layout_height="200dp" />
@@ -62,7 +62,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.20-recyclerview.widget.RecyclerView;
 
 import com.example.kolokvijum2.R;
 import com.example.kolokvijum2.model.Post;
@@ -119,8 +119,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
 ### Importi
 
 ```java
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.20-recyclerview.widget.LinearLayoutManager;
+import androidx.20-recyclerview.widget.RecyclerView;
 import com.example.kolokvijum2.adapter.PostAdapter;
 import java.util.List;
 ```

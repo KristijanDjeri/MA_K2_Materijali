@@ -1,4 +1,4 @@
-# Kolokvijum2-test
+# 99-test-okruzenje
 
 Automatski generisan Android projekat za **proveru kompajliranja** materijala.
 

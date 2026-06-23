@@ -6,7 +6,7 @@
 
 ## Šta ti treba pre ovoga
 
-- Folder `kamera/` – u callback-u kamere pozivaš `prikaziZiroskopToast()`
+- Folder `03-kamera/` – u callback-u kamere pozivaš `prikaziZiroskopToast()`
 - `MainActivity` mora implementirati `SensorEventListener`
 
 ---
@@ -125,7 +125,7 @@ private final ActivityResultLauncher<Void> takePictureLauncher =
 | `SENSOR_DELAY_NORMAL` | `SENSOR_DELAY_FASTEST` – brže očitavanje |
 | Jedan `SensorEventListener` | Odvojeni listener samo za žiroskop – čistije ako imaš više senzora |
 
-> **Važno:** Kad dodaš **akcelerometar** (`akcelerometar/`), u istom `onSensorChanged` dodaješ `else if` za `TYPE_ACCELEROMETER`. Ne pravi dva listenera osim ako moraš.
+> **Važno:** Kad dodaš **08-senzor-akcelerometar** (`08-senzor-akcelerometar/`), u istom `onSensorChanged` dodaješ `else if` za `TYPE_ACCELEROMETER`. Ne pravi dva listenera osim ako moraš.
 
 ---
 
@@ -147,4 +147,4 @@ Emulator često **nema** žiroskop. Na fizičkom telefonu radi pouzdano. Za kolo
 
 ## Sledeći korak
 
-Folder **`retrofit-room/`** za zadatak 5 (baza + API).
+Folder **`05-retrofit-room/`** za zadatak 5 (baza + API).

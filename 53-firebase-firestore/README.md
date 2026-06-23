@@ -11,8 +11,8 @@
 
 ## Preduslovi
 
-- `firebase-setup/` – Firestore baza kreirana u konzoli
-- `implementation 'com.google.firebase:firebase-firestore'` u Gradle
+- `51-firebase-setup/` – Firestore baza kreirana u konzoli
+- `implementation 'com.google.firebase:53-firebase-firestore'` u Gradle
 
 ---
 
@@ -244,4 +244,4 @@ if (p != null) postDao.insert(p);
 
 ## Sledeći korak
 
-**`firebase-fcm/`** – push notifikacije (opciono).
+**`54-firebase-fcm/`** – push notifikacije (opciono).

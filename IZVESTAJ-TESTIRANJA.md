@@ -1,8 +1,8 @@
 # Izveštaj testiranja – Priprema Kolokvijum 2
 
 **Datum:** jun 2026  
-**Test projekat:** `Kolokvijum2-test/` (u ovom repou)  
-**APK:** `Kolokvijum2-test/app/build/outputs/apk/debug/app-debug.apk`
+**Test projekat:** `99-test-okruzenje/` (u ovom repou)  
+**APK:** `99-test-okruzenje/app/build/outputs/apk/debug/app-debug.apk`
 
 ---
 
@@ -21,14 +21,14 @@
 ## 1. Automatski build test
 
 Kreiran je pun Android projekat sa:
-- `MainActivity` (svi zadaci 1–9 iz `main-activity-referenca/`)
+- `MainActivity` (svi zadaci 1–9 iz `11-main-activity-referenca/`)
 - Room (`Post`, `PostDao`, `AppDatabase`)
 - Retrofit sa **radnim** URL-om
 - Layout `activity_main.xml`
-- Sve dozvole iz `osnovni-projekat/`
+- Sve dozvole iz `01-osnovni-projekat/`
 
 ```bash
-cd Kolokvijum2-test
+cd 99-test-okruzenje
 ./gradlew assembleDebug
 # BUILD SUCCESSFUL
 ```
@@ -65,16 +65,16 @@ cd Kolokvijum2-test
 
 | # | Segment | Kompajlira | Runtime test | Napomena |
 |---|---------|------------|--------------|----------|
-| 1–2 | `osnovni-projekat/` | ✅ | ⚠️ | Layout + MainActivity OK |
-| 3 | `geo-lokacija/` | ✅ | ⚠️ | Treba GPS / emulator Location |
-| 4 | `kamera/` | ✅ | ⚠️ | Treba kamera ili emulator camera |
-| 4 | `ziroskop/` | ✅ | ⚠️ | Emulator često nema žiroskop |
-| 5 | `retrofit-room/` | ✅ | ✅ API | URL iz PDF-a ne radi – koristi testirani |
-| 6 | `switch-postovi/` | ✅ | ⚠️ | Zavisi od API-ja + interneta |
-| 7 | `brisanje-notifikacije/` | ✅ | ⚠️ | API 33+ traži POST_NOTIFICATIONS runtime |
-| 8 | `akcelerometar/` | ✅ | ⚠️ | Emulator ima virtual sensors |
-| 9 | `shared-preferences/` | ✅ | ✅ | Radi bez hardvera |
-| 9 | `kontakti/` | ✅ | ⚠️ | Treba kontakt u adresaru + dozvola |
+| 1–2 | `01-osnovni-projekat/` | ✅ | ⚠️ | Layout + MainActivity OK |
+| 3 | `02-geo-lokacija/` | ✅ | ⚠️ | Treba GPS / emulator Location |
+| 4 | `03-kamera/` | ✅ | ⚠️ | Treba 03-kamera ili emulator camera |
+| 4 | `04-senzor-ziroskop/` | ✅ | ⚠️ | Emulator često nema žiroskop |
+| 5 | `05-retrofit-room/` | ✅ | ✅ API | URL iz PDF-a ne radi – koristi testirani |
+| 6 | `06-switch-postovi/` | ✅ | ⚠️ | Zavisi od API-ja + interneta |
+| 7 | `07-brisanje-notifikacije/` | ✅ | ⚠️ | API 33+ traži POST_NOTIFICATIONS runtime |
+| 8 | `08-senzor-akcelerometar/` | ✅ | ⚠️ | Emulator ima virtual sensors |
+| 9 | `09-shared-preferences/` | ✅ | ✅ | Radi bez hardvera |
+| 9 | `10-kontakti/` | ✅ | ⚠️ | Treba kontakt u adresaru + dozvola |
 
 **Legenda:** ✅ potvrđeno | ⚠️ nije pokrenuto na uređaju | ❌ ne radi
 
@@ -84,12 +84,12 @@ cd Kolokvijum2-test
 
 | Segment | Kompajlira | Runtime | Napomena |
 |---------|------------|---------|----------|
-| `recyclerview/` | ✅ | ⚠️ | Adapter OK; treba RecyclerView u layoutu + poziv `osveziListu` |
-| `galerija/` | ✅ | ⚠️ | READ_MEDIA_IMAGES / storage |
-| `shake-senzor/` | ✅ | ⚠️ | Fizički telefon preporučen |
-| `audio-recorder/` | ✅* | ⚠️ | *logika pregledana i popravljena; nije u build testu kao MainActivity deo |
-| `magnetometar/`, senzori | ✅ | ⚠️ | Isti Sensor pattern |
-| `thread-executor/` | ✅ | ⚠️ | Logika standardna |
+| `20-recyclerview/` | ✅ | ⚠️ | Adapter OK; treba RecyclerView u layoutu + poziv `osveziListu` |
+| `21-galerija/` | ✅ | ⚠️ | READ_MEDIA_IMAGES / storage |
+| `48-senzor-shake/` | ✅ | ⚠️ | Fizički telefon preporučen |
+| `36-audio-recorder/` | ✅* | ⚠️ | *logika pregledana i popravljena; nije u build testu kao MainActivity deo |
+| `41-senzor-magnetometar/`, senzori | ✅ | ⚠️ | Isti Sensor pattern |
+| `25-thread-executor/` | ✅ | ⚠️ | Logika standardna |
 | `firebase-*` | ⏭️ | ⏭️ | Bez `google-services.json` nije smisleno testirati |
 
 ---
@@ -97,7 +97,7 @@ cd Kolokvijum2-test
 ## 5. Poznati rizici na kolokvijumu
 
 1. **API URL** – proveri na početku ispita u browseru da li vraća JSON
-2. **Dozvole** – lokacija, kamera, kontakti, mikrofon, notifikacije (API 33+)
+2. **Dozvole** – lokacija, 03-kamera, 10-kontakti, mikrofon, notifikacije (API 33+)
 3. **Emulator vs telefon** – senzori, mikrofon, shake pouzdaniji na telefonu
 4. **Room na main thread** – `allowMainThreadQueries()` OK za kolokvijum; profesor može tražiti pozadinsku nit
 5. **Firebase** – samo ako dobiješ `google-services.json` na času
@@ -108,10 +108,10 @@ cd Kolokvijum2-test
 
 | Šta | Izmena |
 |-----|--------|
-| `retrofit-room/RetrofitClient.java` | Podrazumevani URL → `dummy-json.mock.beeceptor.com` |
-| `retrofit-room/JsonPlaceholderApi.java` | `@GET("posts")` |
-| `retrofit-room/README.md` | Napomena o neispravnom PDF URL-u |
-| `audio-recorder/README.md` | Ranije: `.m4a`, lifecycle, delete starog fajla |
+| `05-retrofit-room/RetrofitClient.java` | Podrazumevani URL → `dummy-json.mock.beeceptor.com` |
+| `05-retrofit-room/JsonPlaceholderApi.java` | `@GET("posts")` |
+| `05-retrofit-room/README.md` | Napomena o neispravnom PDF URL-u |
+| `36-audio-recorder/README.md` | Ranije: `.m4a`, lifecycle, delete starog fajla |
 
 ---
 
@@ -120,7 +120,7 @@ cd Kolokvijum2-test
 ```bash
 # 1. Build
 export ANDROID_HOME=~/Android/Sdk
-cd "Kolokvijum2-test"
+cd "99-test-okruzenje"
 ./gradlew assembleDebug
 
 # 2. Instalacija (telefon USB debugging ili emulator)
@@ -137,8 +137,8 @@ curl -s https://dummy-json.mock.beeceptor.com/posts | head
 **Kod za zvaničnih 9 zadataka se uspešno kompajlira** i spreman je za kolokvijum.  
 **Retrofit URL iz PDF-a trenutno ne vraća JSON** – materijal je usklađen sa radnim endpointom; na ispitu proveri šta profesor kaže.
 
-Runtime testovi (kamera, GPS, senzori, audio) **nisu automatski pokriveni** jer nije bio povezan emulator/telefon. Logika je standardna Android praksa; preporuka: na telefonu probaj bar Switch (API) + lokaciju + jednu sliku pre ispita (~15 min).
+Runtime testovi (03-kamera, GPS, senzori, audio) **nisu automatski pokriveni** jer nije bio povezan emulator/telefon. Logika je standardna Android praksa; preporuka: na telefonu probaj bar Switch (API) + lokaciju + jednu sliku pre ispita (~15 min).
 
 ---
 
-*Generisano automatskim build + API proverom. Test projekat ostaje u `Kolokvijum2-test/` za tvoju proveru.*
+*Generisano automatskim build + API proverom. Test projekat ostaje u `99-test-okruzenje/` za tvoju proveru.*

@@ -7,7 +7,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.20-recyclerview.widget.RecyclerView;
 
 import com.example.kolokvijum2.R;
 import com.example.kolokvijum2.model.Post;

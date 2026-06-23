@@ -6,64 +6,64 @@ Ovi folderi pokrivaju teme **slične težine i principa** kao zvanični zadaci, 
 
 | Folder | Zašto bi pitao | Sličan zadatku |
 |--------|----------------|----------------|
-| [recyclerview](recyclerview/) | Lista postova iz baze | 5, 6, 7 |
-| [galerija](galerija/) | Izbor slike umesto kamere | 4 |
-| [thread-executor](thread-executor/) | Room bez main thread | 5, 6, 7 |
-| [retrofit-post](retrofit-post/) | Par uz GET | 5 |
-| [intent-druga-aktivnost](intent-druga-aktivnost/) | Prenos podataka | 9 |
-| [edit-text-validacija](edit-text-validacija/) | Unos + provera | 2 |
-| [progress-bar](progress-bar/) | Učitavanje sa API-ja | 5 |
+| [20-recyclerview](20-recyclerview/) | Lista postova iz baze | 5, 6, 7 |
+| [21-galerija](21-galerija/) | Izbor slike umesto kamere | 4 |
+| [25-thread-executor](25-thread-executor/) | Room bez main thread | 5, 6, 7 |
+| [23-retrofit-post](23-retrofit-post/) | Par uz GET | 5 |
+| [22-intent-druga-aktivnost](22-intent-druga-aktivnost/) | Prenos podataka | 9 |
+| [27-edit-text-validacija](27-edit-text-validacija/) | Unos + provera | 2 |
+| [35-progress-bar](35-progress-bar/) | Učitavanje sa API-ja | 5 |
 
 ## Srednja verovatnoća
 
 | Folder | Zašto bi pitao | Sličan zadatku |
 |--------|----------------|----------------|
-| [magnetometar](magnetometar/) | Još jedan senzor | 4, 8 |
-| [lokacija-realtime](lokacija-realtime/) | Varijanta lokacije | 3 |
-| [interni-fajl](interni-fajl/) | Čuvanje podataka | 9 |
-| [okhttp-json](okhttp-json/) | API bez Retrofit-a | 5 |
-| [webview](webview/) | Prikaz web sadržaja | 5 |
-| [alarm-notifikacija](alarm-notifikacija/) | Zakazana notifikacija | 7 |
-| [poziv-telefon](poziv-telefon/) | Kontakti + Intent | 9 |
-| [spinner](spinner/) | UI izbor | 2 |
-| [date-picker](date-picker/) | Dijalog datum/vreme | 2 |
+| [41-senzor-magnetometar](41-senzor-magnetometar/) | Još jedan senzor | 4, 8 |
+| [34-lokacija-realtime](34-lokacija-realtime/) | Varijanta lokacije | 3 |
+| [26-interni-fajl](26-interni-fajl/) | Čuvanje podataka | 9 |
+| [32-okhttp-json](32-okhttp-json/) | API bez Retrofit-a | 5 |
+| [24-webview](24-webview/) | Prikaz web sadržaja | 5 |
+| [28-alarm-notifikacija](28-alarm-notifikacija/) | Zakazana notifikacija | 7 |
+| [29-poziv-telefon](29-poziv-telefon/) | Kontakti + Intent | 9 |
+| [30-spinner](30-spinner/) | UI izbor | 2 |
+| [31-date-picker](31-date-picker/) | Dijalog datum/vreme | 2 |
 
 ## Niža verovatnoća (ali brzo za naučiti)
 
 | Folder | Napomena |
 |--------|----------|
-| [vibrator](vibrator/) | Kratka vibracija uz događaj |
-| [audio-recorder](audio-recorder/) | MediaRecorder + MediaPlayer |
-| [senzor-svetlosti](senzor-svetlosti/) | Lux vrednost |
-| [senzor-proksimiteta](senzor-proksimiteta/) | Blizu/daleko |
-| [barometar](barometar/) | Pritisak u hPa |
-| [brojac-koraka](brojac-koraka/) | Koraci + ACTIVITY_RECOGNITION |
-| [senzori-izvedeni](senzori-izvedeni/) | Gravity, rotation vector… |
-| [senzor-vlage-temperature](senzor-vlage-temperature/) | Retko na telefonima |
-| [shake-senzor](shake-senzor/) | Tresenje preko akcelerometra |
-| [firebase-setup](firebase-setup/) | Firebase projekat + Gradle |
-| [firebase-firestore](firebase-firestore/) | Oblak umesto Retrofit/Room |
+| [33-povratna-vibracija](33-povratna-vibracija/) | Kratka vibracija uz događaj |
+| [36-audio-recorder](36-audio-recorder/) | MediaRecorder + MediaPlayer |
+| [42-senzor-svetlosti](42-senzor-svetlosti/) | Lux vrednost |
+| [43-senzor-proksimiteta](43-senzor-proksimiteta/) | Blizu/daleko |
+| [44-senzor-barometar](44-senzor-barometar/) | Pritisak u hPa |
+| [45-senzor-koraci](45-senzor-koraci/) | Koraci + ACTIVITY_RECOGNITION |
+| [46-senzor-izvedeni](46-senzor-izvedeni/) | Gravity, rotation vector… |
+| [47-senzor-vlage-temperature](47-senzor-vlage-temperature/) | Retko na telefonima |
+| [48-senzor-shake](48-senzor-shake/) | Tresenje preko akcelerometra |
+| [51-firebase-setup](51-firebase-setup/) | Firebase projekat + Gradle |
+| [53-firebase-firestore](53-firebase-firestore/) | Oblak umesto Retrofit/Room |
 
-**Pregled svih senzora:** [senzori-pregled](senzori-pregled/)  
-**Pregled Firebase:** [firebase](firebase/)
+**Pregled svih senzora:** [40-senzori-pregled](40-senzori-pregled/)  
+**Pregled Firebase:** [50-firebase](50-firebase/)
 
 ## Kako učiti
 
-1. Prvo savladaj **zvanične** foldere (geo, kamera, retrofit, switch…)
-2. Dodaj **recyclerview**, **galerija**, **thread-executor** – najčešće varijante
+1. Prvo savladaj **zvanične** foldere (geo, 03-kamera, retrofit, switch…)
+2. Dodaj **20-recyclerview**, **21-galerija**, **25-thread-executor** – najčešće varijante
 3. Ostalo pročitaj README – dovoljno je znati gde kopirati kod
 
 ## Mapa principa
 
 ```
-Dozvole (runtime)     → geo, kamera, galerija, kontakti, poziv
-Senzori               → ziroskop, akcelerometar, magnetometar, senzori-pregled/
-Audio                 → audio-recorder/
-Mreža + JSON          → retrofit, retrofit-post, okhttp-json, webview
-Perzistencija         → room, shared-preferences, interni-fajl, firebase-firestore/
-Firebase              → firebase-setup/, firebase-auth/, firebase-fcm/
-UI komponente         → osnovni layout, spinner, edit-text, date-picker
-Navigacija            → intent-druga-aktivnost
-Pozadina              → thread-executor, progress-bar
-Obaveštenja           → brisanje-notifikacije, alarm-notifikacija
+Dozvole (runtime)     → geo, 03-kamera, 21-galerija, 10-kontakti, poziv
+Senzori               → 04-senzor-ziroskop, 08-senzor-akcelerometar, 41-senzor-magnetometar, 40-senzori-pregled/
+Audio                 → 36-audio-recorder/
+Mreža + JSON          → retrofit, 23-retrofit-post, 32-okhttp-json, 24-webview
+Perzistencija         → room, 09-shared-preferences, 26-interni-fajl, 53-firebase-firestore/
+Firebase              → 51-firebase-setup/, 52-firebase-auth/, 54-firebase-fcm/
+UI komponente         → osnovni layout, 30-spinner, edit-text, 31-date-picker
+Navigacija            → 22-intent-druga-aktivnost
+Pozadina              → 25-thread-executor, 35-progress-bar
+Obaveštenja           → 07-brisanje-notifikacije, 28-alarm-notifikacija
 ```

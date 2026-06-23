@@ -16,6 +16,6 @@ private void obradiSwitchOff() {
     String trenutniTekst = textView.getText().toString();
     prefs.edit().putString("tekst", trenutniTekst).apply();
 
-    // 2. Zameni TextView imenom prvog kontakta (folder kontakti/)
+    // 2. Zameni TextView imenom prvog kontakta (folder 10-kontakti/)
     postaviImePrvogKontakta();
 }

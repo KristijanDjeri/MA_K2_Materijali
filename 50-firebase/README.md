@@ -6,10 +6,10 @@ Firebase je Google-ova platforma za backend usluge. Na kolokvijumu može zamenit
 
 | # | Folder | Šta radi |
 |---|--------|----------|
-| 1 | [firebase-setup](firebase-setup/) | Gradle, `google-services.json`, inicijalizacija |
-| 2 | [firebase-auth](firebase-auth/) | Registracija i prijava (email/lozinka) |
-| 3 | [firebase-firestore](firebase-firestore/) | Čitanje/pisanje postova u oblaku |
-| 4 | [firebase-fcm](firebase-fcm/) | Push notifikacije (opciono) |
+| 1 | [51-firebase-setup](51-firebase-setup/) | Gradle, `google-services.json`, inicijalizacija |
+| 2 | [52-firebase-auth](52-firebase-auth/) | Registracija i prijava (email/lozinka) |
+| 3 | [53-firebase-firestore](53-firebase-firestore/) | Čitanje/pisanje postova u oblaku |
+| 4 | [54-firebase-fcm](54-firebase-fcm/) | Push notifikacije (opciono) |
 
 ## Uporedba sa zvaničnim zadatkom
 
@@ -32,11 +32,11 @@ Firebase je Google-ova platforma za backend usluge. Na kolokvijumu može zamenit
 1. Firebase Console → **Add project** → ime npr. `Kolokvijum2`
 2. **Add app** → Android → package: `com.example.kolokvijum2`
 3. Preuzmi **`google-services.json`** → stavi u `app/`
-4. Prati **`firebase-setup/`** za Gradle
-5. Prati **`firebase-firestore/`** za podatke
+4. Prati **`51-firebase-setup/`** za Gradle
+5. Prati **`53-firebase-firestore/`** za podatke
 
 ## Napomena za kolokvijum
 
 - Na času profesor može dati **svoj** `google-services.json` – bez njega Firebase ne radi.
 - Za vežbu kod kuće napravi sopstveni Firebase projekat (besplatno).
-- Internet mora biti uključen (`INTERNET` dozvola već postoji u `osnovni-projekat/`).
+- Internet mora biti uključen (`INTERNET` dozvola već postoji u `01-osnovni-projekat/`).

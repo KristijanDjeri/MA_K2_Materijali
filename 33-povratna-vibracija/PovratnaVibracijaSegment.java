@@ -1,4 +1,5 @@
 // === DODAJ U MainActivity.java ===
+// Priručnik: 33-povratna-vibracija/README.md
 
 // IMPORTI:
 import android.content.Context;
@@ -8,7 +9,7 @@ import android.os.Vibrator;
 import android.os.VibratorManager;
 
 // METODA:
-private void vibracijaKratka() {
+private void povratnaVibracijaKratka() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
         VibratorManager vm = (VibratorManager) getSystemService(Context.VIBRATOR_MANAGER_SERVICE);
         vm.getDefaultVibrator().vibrate(
@@ -26,4 +27,4 @@ private void vibracijaKratka() {
 }
 
 // Pozovi npr. kad nema više postova:
-// vibracijaKratka();
+// povratnaVibracijaKratka();

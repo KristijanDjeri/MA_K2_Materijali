@@ -1,6 +1,6 @@
 # Galerija – izbor slike iz galerije
 
-**Dodatni segment.** **Slično:** `kamera/` (ActivityResult + dozvola + ImageView).
+**Dodatni segment.** **Slično:** `03-kamera/` (ActivityResult + dozvola + ImageView).
 
 **Cilj:** Korisnik bira sliku iz galerije umesto da slika kamerom.
 
@@ -42,7 +42,7 @@ private final ActivityResultLauncher<String> pickImageLauncher =
         registerForActivityResult(new ActivityResultContracts.GetContent(), uri -> {
             if (uri != null) {
                 imageView.setImageURI(uri);
-                prikaziZiroskopToast(); // opciono, iz ziroskop/
+                prikaziZiroskopToast(); // opciono, iz 04-senzor-ziroskop/
             }
         });
 ```

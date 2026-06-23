@@ -6,8 +6,8 @@
 
 ## Šta ti treba pre ovoga
 
-- `osnovni-projekat/` – `button` u layoutu
-- `ziroskop/` – već imaš `SensorManager`, `SensorEventListener`, `onResume`/`onPause`
+- `01-osnovni-projekat/` – `button` u layoutu
+- `04-senzor-ziroskop/` – već imaš `SensorManager`, `SensorEventListener`, `onResume`/`onPause`
 
 ---
 
@@ -15,13 +15,13 @@
 
 | Fajl | Šta radiš |
 |------|-----------|
-| `MainActivity.java` | Dodaješ akcelerometar u postojeći senzor kod |
+| `MainActivity.java` | Dodaješ 08-senzor-akcelerometar u postojeći senzor kod |
 
 > **Pažnja:** Isti `button` koristiš i za **brisanje posta** (zadatak 7). Oba `setOnClickListener` ne možeš pozvati – spoji logiku u jedan listener ili koristi različita dugmad. Primer ispod zadržava brisanje na klik.
 
 ---
 
-## Kompletan kod za `MainActivity.java` (deo za akcelerometar)
+## Kompletan kod za `MainActivity.java` (deo za 08-senzor-akcelerometar)
 
 ### 1. Importi (većina već postoji iz žiroskopa)
 
@@ -84,7 +84,7 @@ Tekst se menja iz senzora, ali klik i dalje briše post. **Jedan** listener:
 button.setOnClickListener(v -> obrisiPrviPost());
 ```
 
-Metodu `obrisiPrviPost()` dodaješ iz foldera `brisanje-notifikacije/`.
+Metodu `obrisiPrviPost()` dodaješ iz foldera `07-brisanje-notifikacije/`.
 
 ---
 
@@ -109,4 +109,4 @@ Metodu `obrisiPrviPost()` dodaješ iz foldera `brisanje-notifikacije/`.
 
 ## Sledeći korak
 
-Ako nisi – folder **`brisanje-notifikacije/`** za zadatak 7.
+Ako nisi – folder **`07-brisanje-notifikacije/`** za zadatak 7.

@@ -6,7 +6,7 @@
 
 ## Šta ti treba pre ovoga
 
-- `switchPosts` listener iz `switch-postovi/`
+- `switchPosts` listener iz `06-switch-postovi/`
 - `textView` u layoutu
 
 ---
@@ -47,7 +47,7 @@ private void obradiSwitchOff() {
     String trenutniTekst = textView.getText().toString();
     prefs.edit().putString("tekst", trenutniTekst).apply();
 
-    // 2. Zameni TextView imenom prvog kontakta (folder kontakti/)
+    // 2. Zameni TextView imenom prvog kontakta (folder 10-kontakti/)
     postaviImePrvogKontakta();
 }
 ```
@@ -79,7 +79,7 @@ if (!sacuvano.isEmpty()) {
 
 | Ovaj primer | Alternativa |
 |-------------|-------------|
-| SharedPreferences | Interni fajl → folder `interni-fajl/` |
+| SharedPreferences | Interni fajl → folder `26-interni-fajl/` |
 | Ključ `"tekst"` | Bilo koji string, ali zadatak traži `"tekst"` |
 | `apply()` | `commit()` |
 
@@ -95,4 +95,4 @@ if (!sacuvano.isEmpty()) {
 
 ## Sledeći korak
 
-Folder **`kontakti/`** – deo 2 zadatka 9 (ime prvog kontakta u TextView).
+Folder **`10-kontakti/`** – deo 2 zadatka 9 (ime prvog kontakta u TextView).

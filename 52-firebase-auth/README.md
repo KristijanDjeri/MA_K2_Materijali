@@ -8,8 +8,8 @@
 
 ## Preduslovi
 
-- `firebase-setup/` završen
-- U `app/build.gradle`: `implementation 'com.google.firebase:firebase-auth'`
+- `51-firebase-setup/` završen
+- U `app/build.gradle`: `implementation 'com.google.firebase:52-firebase-auth'`
 - U Firebase Console → **Authentication** → **Get started** → uključi **Email/Password**
 
 ---
@@ -44,7 +44,7 @@
     android:text="Prijava" />
 ```
 
-> **Alternativa:** Posebna `LoginActivity` – folder `intent-druga-aktivnost/`.
+> **Alternativa:** Posebna `LoginActivity` – folder `22-intent-druga-aktivnost/`.
 
 ---
 
@@ -177,7 +177,7 @@ U konzoli: Authentication → Sign-in method → **Anonymous** → Enable.
 ## Checklist
 
 - [ ] Email/Password uključen u Firebase Console
-- [ ] `firebase-auth` u Gradle
+- [ ] `52-firebase-auth` u Gradle
 - [ ] Registracija i prijava rade
 - [ ] Toast na uspeh i grešku
 
@@ -185,4 +185,4 @@ U konzoli: Authentication → Sign-in method → **Anonymous** → Enable.
 
 ## Sledeći korak
 
-**`firebase-firestore/`** – čuvanje postova u oblaku.
+**`53-firebase-firestore/`** – čuvanje postova u oblaku.

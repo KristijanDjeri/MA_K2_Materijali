@@ -26,7 +26,7 @@ switchPosts.setOnCheckedChangeListener((buttonView, isChecked) -> {
   if (isChecked) {
     obradiSwitchOn();
   } else {
-    obradiSwitchOff(); // iz foldera shared-preferences + kontakti
+    obradiSwitchOff(); // iz foldera 09-shared-preferences + 10-kontakti
   }
 });
 
@@ -67,4 +67,4 @@ private void ucitajPostoveSaApi() {
     });
 }
 
-// obradiSwitchOff() definisan u shared-preferences/KontaktiSegment kombinaciji
+// obradiSwitchOff() definisan u 09-shared-preferences/KontaktiSegment kombinaciji

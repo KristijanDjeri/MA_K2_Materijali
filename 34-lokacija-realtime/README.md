@@ -8,7 +8,7 @@
 
 ## Preduslovi
 
-- `geo-lokacija/` – FusedLocationProviderClient već postoji
+- `02-geo-lokacija/` – FusedLocationProviderClient već postoji
 - Iste dozvole za lokaciju
 
 ---

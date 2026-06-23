@@ -2,22 +2,22 @@
 
 ## 1. Novi projekat
 - Ime: **Kolokvijum2**, aktivnost: **MainActivity**, minSdk **28**
-- Layout: `osnovni-projekat/activity_main.xml`
-- Gradle: `osnovni-projekat/gradle-zavisnosti.txt`
-- Dozvole: `osnovni-projekat/AndroidManifest-dozvole.xml`
+- Layout: `01-osnovni-projekat/activity_main.xml`
+- Gradle: `01-osnovni-projekat/gradle-zavisnosti.txt`
+- Dozvole: `01-osnovni-projekat/AndroidManifest-dozvole.xml`
 
 ## 2. Zadaci → folder
 
 | # | Zahtev | Folder |
 |---|--------|--------|
-| 3 | Lat/long u TextView | `geo-lokacija/` |
-| 4a | Kamera → ImageView | `kamera/` |
-| 4b | Toast žiroskop pri novoj slici | `ziroskop/` |
-| 5 | Room + Retrofit GET | `retrofit-room/` |
-| 6 | Switch ON: 10 postova / Toast title | `switch-postovi/` |
-| 7 | Button: briši prvi, notifikacija | `brisanje-notifikacije/` |
-| 8 | Button tekst = akcelerometar | `akcelerometar/` |
-| 9 | Switch OFF: SharedPrefs + kontakt | `shared-preferences/` + `kontakti/` |
+| 3 | Lat/long u TextView | `02-geo-lokacija/` |
+| 4a | Kamera → ImageView | `03-kamera/` |
+| 4b | Toast žiroskop pri novoj slici | `04-senzor-ziroskop/` |
+| 5 | Room + Retrofit GET | `05-retrofit-room/` |
+| 6 | Switch ON: 10 postova / Toast title | `06-switch-postovi/` |
+| 7 | Button: briši prvi, notifikacija | `07-brisanje-notifikacije/` |
+| 8 | Button tekst = akcelerometar | `08-senzor-akcelerometar/` |
+| 9 | Switch OFF: SharedPrefs + kontakt | `09-shared-preferences/` + `10-kontakti/` |
 
 ## 3. Redosled kopiranja u MainActivity
 
@@ -38,21 +38,23 @@
 
 ## 5. Kompletan primer
 
-`main-activity-referenca/MainActivity.java` – sve spojeno.
+`11-main-activity-referenca/MainActivity.java` – sve spojeno.
 
 ## 6. Dodatno (ako profesor promeni zadatak)
 
 | Ako traži… | Folder |
 |------------|--------|
-| Listu postova | `recyclerview/` |
-| Galeriju umesto kamere | `galerija/` |
-| Drugu aktivnost | `intent-druga-aktivnost/` |
-| POST umesto GET | `retrofit-post/` |
-| Bazu u pozadini | `thread-executor/` |
-| Još senzor | `senzori-pregled/` → pojedinačni folder |
-| Audio snimanje | `audio-recorder/` |
-| Shake / tresenje | `shake-senzor/` |
-| Firebase oblak | `firebase/` → `firebase-setup/` pa `firebase-firestore/` |
+| Listu postova | `20-recyclerview/` |
+| Galeriju umesto kamere | `21-galerija/` |
+| Drugu aktivnost | `22-intent-druga-aktivnost/` |
+| POST umesto GET | `23-retrofit-post/` |
+| Bazu u pozadini | `25-thread-executor/` |
+| Još senzor | `40-senzori-pregled/` → pojedinačni folder |
+| Audio snimanje | `36-audio-recorder/` |
+| Shake / tresenje | `48-senzor-shake/` |
+| Firebase oblak | `50-firebase/` → `51-firebase-setup/` |
+| **Fragmenti** | `90-fragments-prirucnik/` |
+| Mapa foldera | `KONVENCIJA-FOLDERA.md` |
 
 Detaljnije: `DODATNI-SEGMENTI.md`
 

@@ -6,7 +6,7 @@
 
 ## Šta ti treba pre ovoga
 
-- `osnovni-projekat/` – layout sa `imageButton` i `imageView`
+- `01-osnovni-projekat/` – layout sa `imageButton` i `imageView`
 - Dozvola `CAMERA` u Manifest-u
 
 ---
@@ -44,12 +44,12 @@ private final ActivityResultLauncher<Void> takePictureLauncher =
         registerForActivityResult(new ActivityResultContracts.TakePicturePreview(), bitmap -> {
             if (bitmap != null) {
                 imageView.setImageBitmap(bitmap);
-                prikaziZiroskopToast(); // metoda iz foldera ziroskop/
+                prikaziZiroskopToast(); // metoda iz foldera 04-senzor-ziroskop/
             }
         });
 ```
 
-> **Napomena:** `prikaziZiroskopToast()` dodaješ kad uradiš folder `ziroskop/`. Do tada možeš staviti običan Toast ili zakomentarisati tu liniju.
+> **Napomena:** `prikaziZiroskopToast()` dodaješ kad uradiš folder `04-senzor-ziroskop/`. Do tada možeš staviti običan Toast ili zakomentarisati tu liniju.
 
 ### 3. U `onCreate`, posle `findViewById`
 
@@ -110,7 +110,7 @@ public void onRequestPermissionsResult(int requestCode, String[] permissions, in
 |-------------|-------------|
 | `TakePicturePreview()` – brzo, bez fajla | `TakePicture()` + `FileProvider` – puna rezolucija, više koda |
 | Bitmap u ImageView | `setImageURI(uri)` – ako čuvaš sliku u fajl |
-| Kamera | Galerija – folder `galerija/` |
+| Kamera | Galerija – folder `21-galerija/` |
 
 ---
 
@@ -126,4 +126,4 @@ public void onRequestPermissionsResult(int requestCode, String[] permissions, in
 
 ## Sledeći korak
 
-Folder **`ziroskop/`** – Toast sa X, Y, Z posle svake nove slike.
+Folder **`04-senzor-ziroskop/`** – Toast sa X, Y, Z posle svake nove slike.

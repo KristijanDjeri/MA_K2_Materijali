@@ -17,7 +17,7 @@ import java.io.IOException;
 
 /**
  * Segment za kopiranje u MainActivity.
- * Kompletno objašnjenje: README.md u folderu audio-recorder/
+ * Kompletno objašnjenje: README.md u folderu 36-audio-recorder/
  *
  * U MainActivity dodaj polja i metode iz ovog fajla.
  * onPause/onDestroy moraju pozvati zaustaviSnimanje() i zaustaviReprodukciju().

@@ -19,7 +19,7 @@
 
 ## Preduslovi
 
-- `ziroskop/` i `akcelerometar/` – već imaš `SensorManager`, `SensorEventListener`, akcelerometar u `onResume`
+- `04-senzor-ziroskop/` i `08-senzor-akcelerometar/` – već imaš `SensorManager`, `SensorEventListener`, 08-senzor-akcelerometar u `onResume`
 
 ---
 
@@ -45,9 +45,9 @@ private long poslednjiShakeVreme = 0;
 
 > **Napomena:** `SHAKE_THRESHOLD = 12.0f` radi sa običnim akcelerometrom (posle oduzimanja gravitacije). Za `LINEAR_ACCELERATION` koristi manji prag, npr. `4.0f`.
 
-### 3. U `onSensorChanged` – zameni ili dopuni deo za akcelerometar
+### 3. U `onSensorChanged` – zameni ili dopuni deo za 08-senzor-akcelerometar
 
-**Varijanta A – običan akcelerometar (preporučeno, već ga imaš):**
+**Varijanta A – običan 08-senzor-akcelerometar (preporučeno, već ga imaš):**
 
 ```java
 else if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
@@ -82,7 +82,7 @@ private void detektujShake(float x, float y, float z) {
 private void onShakeDetektovan() {
     Toast.makeText(this, "Tresenje detektovano!", Toast.LENGTH_SHORT).show();
     // Opciono: vibracija, osveži listu, obriši post...
-    // vibracijaKratka(); // iz foldera vibrator/
+    // vibracijaKratka(); // iz foldera 33-povratna-vibracija/
 }
 ```
 
@@ -90,7 +90,7 @@ private void onShakeDetektovan() {
 
 ## Varijanta B – Linear Acceleration (alternativa)
 
-Ako registruješ `TYPE_LINEAR_ACCELERATION` (folder `senzori-izvedeni/`):
+Ako registruješ `TYPE_LINEAR_ACCELERATION` (folder `46-senzor-izvedeni/`):
 
 ```java
 private Sensor linearAccelSensor;
@@ -180,7 +180,7 @@ shakeDetector = new ShakeDetector(() ->
         Toast.makeText(this, "Tresenje detektovano!", Toast.LENGTH_SHORT).show()
 );
 
-// onSensorChanged (akcelerometar):
+// onSensorChanged (08-senzor-akcelerometar):
 shakeDetector.obradiSensorEvent(event);
 ```
 
@@ -191,7 +191,7 @@ shakeDetector.obradiSensorEvent(event);
 ```java
 private void onShakeDetektovan() {
     Toast.makeText(this, "Shake – brišem prvi post", Toast.LENGTH_SHORT).show();
-    obrisiPrviPost(); // iz brisanje-notifikacije/
+    obrisiPrviPost(); // iz 07-brisanje-notifikacije/
 }
 ```
 
@@ -247,4 +247,4 @@ Na emulatoru: Extended Controls → Sensors → pomeri vrednosti akcelerometra n
 
 ## Sledeći korak
 
-Poveži sa drugim segmentima po potrebi: `vibrator/`, `brisanje-notifikacije/`, `switch-postovi/`.
+Poveži sa drugim segmentima po potrebi: `33-povratna-vibracija/`, `07-brisanje-notifikacije/`, `06-switch-postovi/`.

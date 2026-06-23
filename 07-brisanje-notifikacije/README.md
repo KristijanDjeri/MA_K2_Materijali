@@ -8,7 +8,7 @@
 
 ## Šta ti treba pre ovoga
 
-- `retrofit-room/` – `postDao`
+- `05-retrofit-room/` – `postDao`
 - `button` u layoutu
 - Dozvola `POST_NOTIFICATIONS` (Android 13+)
 
@@ -49,7 +49,7 @@ kreirajNotificationChannel();
 button.setOnClickListener(v -> obrisiPrviPost());
 ```
 
-> **Napomena:** Ako na istom dugmetu imaš i akcelerometar tekst, **jedan** `setOnClickListener` – ne pozivaj ga dva puta. Akcelerometar menja tekst iz senzora, klik i dalje briše.
+> **Napomena:** Ako na istom dugmetu imaš i 08-senzor-akcelerometar tekst, **jedan** `setOnClickListener` – ne pozivaj ga dva puta. Akcelerometar menja tekst iz senzora, klik i dalje briše.
 
 ### 4. NotificationChannel (obavezno Android 8+)
 
@@ -144,4 +144,4 @@ Pozovi `proveriNotifikacijeDozvolu()` u `onCreate`. U `onRequestPermissionsResul
 
 ## Sledeći korak
 
-Zadatak 8: **`akcelerometar/`** (tekst na istom dugmetu).
+Zadatak 8: **`08-senzor-akcelerometar/`** (tekst na istom dugmetu).
