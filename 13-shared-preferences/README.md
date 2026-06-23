@@ -79,7 +79,7 @@ if (!sacuvano.isEmpty()) {
 
 | Ovaj primer | Alternativa |
 |-------------|-------------|
-| SharedPreferences | Interni fajl → folder `26-interni-fajl/` |
+| SharedPreferences | Interni fajl → folder `75-interni-fajl/` |
 | Ključ `"tekst"` | Bilo koji string, ali zadatak traži `"tekst"` |
 | `apply()` | `commit()` |
 

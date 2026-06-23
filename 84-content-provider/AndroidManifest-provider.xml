@@ -1,0 +1,6 @@
+<!-- Dodaj unutar <application> u AndroidManifest.xml (folder 84-content-provider/) -->
+
+<provider
+    android:name=".PostContentProvider"
+    android:authorities="com.example.kolokvijum2.provider.posts"
+    android:exported="false" />

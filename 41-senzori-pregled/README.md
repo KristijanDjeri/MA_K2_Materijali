@@ -82,8 +82,8 @@ Pozovi u `onCreate` i pogledaj **Logcat** u Android Studio.
 
 | Funkcija | Folder |
 |----------|--------|
-| Snimanje i puštanje zvuka | [36-audio-recorder/](../36-audio-recorder/) |
-| Povratna vibracija (haptic) | [33-povratna-vibracija/](../33-povratna-vibracija/) |
+| Snimanje i puštanje zvuka | [83-audio-recorder/](../83-audio-recorder/) |
+| Povratna vibracija (haptic) | [82-povratna-vibracija/](../82-povratna-vibracija/) |
 
 ---
 
@@ -94,4 +94,4 @@ Pozovi u `onCreate` i pogledaj **Logcat** u Android Studio.
 3. `43-senzor-svetlosti/` ili `44-senzor-proksimiteta/` (jednostavni)
 4. `49-senzor-shake/` (12-senzor-akcelerometar + prag – česta vežba)
 5. `47-senzor-izvedeni/` ako traže orijentaciju
-6. `36-audio-recorder/` ako traže mikrofon
+6. `83-audio-recorder/` ako traže mikrofon

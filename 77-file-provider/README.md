@@ -198,5 +198,5 @@ private void podeliSliku() {
 ## Povezano
 
 - Brza kamera: `03-kamera/`
-- Implicit share: `56-implicit-intent/`
-- Galerija: `21-galerija/`
+- Implicit share: `71-implicit-intent/`
+- Galerija: `76-galerija/`

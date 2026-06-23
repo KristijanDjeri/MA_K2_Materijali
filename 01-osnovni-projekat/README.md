@@ -113,7 +113,7 @@ annotationProcessor 'androidx.room:room-compiler:2.6.1'
 implementation 'com.google.android.gms:play-services-location:21.0.1'
 
 // RecyclerView (lista postova – dodatni segment, opciono za sada)
-implementation 'androidx.20-recyclerview:20-recyclerview:1.3.2'
+implementation 'androidx.recyclerview:recyclerview:1.3.2'
 ```
 
 Proveri da u istom fajlu postoji i ovo (obično već postoji):
@@ -200,7 +200,7 @@ Primer kako manifest treba da izgleda (skraćeno):
 </manifest>
 ```
 
-> **Napomena:** `POST_NOTIFICATIONS` je obavezna runtime dozvola na Android 13+. `VIBRATE` je za dodatni segment 33-povratna-vibracijaa – možeš je ostaviti unapred.
+> **Napomena:** `POST_NOTIFICATIONS` je obavezna runtime dozvola na Android 13+. `VIBRATE` je za dodatni segment 82-povratna-vibracija – možeš je ostaviti unapred.
 
 ---
 

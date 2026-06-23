@@ -44,24 +44,27 @@
 
 ## 6. Dodatno (ako profesor promeni zadatak)
 
+**UI komponente (60–67):** Spinner `63-ui-spinner/`, lista `60-ui-recyclerview/`, meni `67-ui-toolbar-options-menu/` … → [GRAFICKI-SEGMENTI.md](GRAFICKI-SEGMENTI.md)
+
 | Ako traži… | Folder |
 |------------|--------|
-| Listu postova | `20-recyclerview/` |
-| Galeriju umesto kamere | `21-galerija/` |
-| Drugu aktivnost | `22-intent-druga-aktivnost/` |
-| POST umesto GET | `23-retrofit-post/` |
-| Bazu u pozadini | `25-thread-executor/` |
+| Listu postova | `60-ui-recyclerview/` |
+| Galeriju umesto kamere | `76-galerija/` |
+| Drugu aktivnost | `70-intent-druga-aktivnost/` |
+| POST umesto GET | `72-retrofit-post/` |
+| Bazu u pozadini | `74-thread-executor/` |
 | Još senzor | `41-senzori-pregled/` → pojedinačni folder |
 | Notifikacije (osnovna, akcije…) | `37-notifikacije-pregled/` |
-| Audio snimanje | `36-audio-recorder/` |
+| Audio snimanje | `83-audio-recorder/` |
 | Shake / tresenje | `49-senzor-shake/` |
 | AlertDialog / Room UPDATE | `17-alert-dialog/`, `18-room-update/` |
 | Fragment primer | `19-fragment-primer/` |
-| CheckBox / RadioButton | `55-checkbox-radiobutton/` |
-| Share, SMS, email | `56-implicit-intent/` |
-| Toolbar / meni | `57-toolbar-options-menu/` |
-| Mape (OSM / Google) | `58-maps-google-osm/` |
-| FileProvider + kamera | `59-file-provider/` |
+| CheckBox / RadioButton | `66-ui-checkbox-radiobutton/` |
+| Share, SMS, email | `71-implicit-intent/` |
+| Toolbar / meni | `67-ui-toolbar-options-menu/` |
+| Mape (OSM / Google) | `79-maps-google-osm/` |
+| FileProvider + kamera | `77-file-provider/` |
+| ContentProvider / BroadcastReceiver | `84-content-provider/`, `85-broadcast-receiver/` |
 | Firebase oblak | `50-firebase/` → `51-firebase-setup/` |
 | **Fragmenti** | `90-fragments-prirucnik/` |
 | Mapa foldera | `KONVENCIJA-FOLDERA.md` |

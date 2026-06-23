@@ -114,7 +114,7 @@ public void onRequestPermissionsResult(int requestCode, String[] permissions, in
 |-------------|-------------|
 | `TakePicturePreview()` – brzo, bez fajla | `TakePicture()` + `FileProvider` – puna rezolucija, više koda |
 | Bitmap u ImageView | `setImageURI(uri)` – ako čuvaš sliku u fajl |
-| Kamera | Galerija – folder `21-galerija/` |
+| Kamera | Galerija – folder `76-galerija/` |
 
 ---
 

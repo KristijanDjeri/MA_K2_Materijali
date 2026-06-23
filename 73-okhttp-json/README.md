@@ -41,7 +41,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 ```
 
-### Polja (iz 25-thread-executor – ili kreiraj ovde)
+### Polja (iz 74-thread-executor – ili kreiraj ovde)
 
 ```java
 private final ExecutorService executor = Executors.newSingleThreadExecutor();

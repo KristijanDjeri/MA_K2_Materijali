@@ -1,0 +1,9 @@
+<!-- Unutar <application> u AndroidManifest.xml (folder 85-broadcast-receiver/) -->
+
+<receiver
+    android:name=".PostUpdateReceiver"
+    android:exported="false">
+    <intent-filter>
+        <action android:name="com.example.kolokvijum2.POSTS_UPDATED" />
+    </intent-filter>
+</receiver>

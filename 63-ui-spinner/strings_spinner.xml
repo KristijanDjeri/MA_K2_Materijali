@@ -1,6 +1,6 @@
 <!-- Dodaj u res/values/strings.xml -->
 
-<string-array name="30-spinner_opcije">
+<string-array name="spinner_opcije">
     <item>Svi postovi</item>
     <item>Prvih 5</item>
     <item>Prvih 10</item>

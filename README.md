@@ -3,7 +3,8 @@
 Materijal za kolokvijum: gotovi segmenti koda i uputstva po temama.  
 **Android Studio**, **minSdk 28** (Android 9+).
 
-**Organizacija foldera:** [KONVENCIJA-FOLDERA.md](KONVENCIJA-FOLDERA.md) (enumeracija `01-`, `senzor-`, …)  
+**Organizacija foldera:** [KONVENCIJA-FOLDERA.md](KONVENCIJA-FOLDERA.md)  
+**Grafičke komponente (UI):** [GRAFICKI-SEGMENTI.md](GRAFICKI-SEGMENTI.md) – **60–67**  
 **Helper klase:** [HELPER-KLASE.md](HELPER-KLASE.md) – logika van `MainActivity`  
 **Spajanje za ispit:** [16-spajanje-zadataka](16-spajanje-zadataka/)  
 **Fragmenti na ispitu:** [90-fragments-prirucnik](90-fragments-prirucnik/)  
@@ -34,23 +35,69 @@ Segmenti su **razdvojeni** da svaki radi samostalno. PDF zadaci 5–9 imaju viš
 | [15-main-activity-referenca](15-main-activity-referenca/) | Sve spojeno u jednom fajlu |
 | [16-spajanje-zadataka](16-spajanje-zadataka/) | Kako spojiti segmente za ispit |
 
-### Proširenje (17–19, 55–59)
+### Proširenje zvaničnih (17–19)
 
 | Folder | Šta pokriva |
 |--------|-------------|
 | [17-alert-dialog](17-alert-dialog/) | AlertDialog – potvrda, poruke |
 | [18-room-update](18-room-update/) | Room UPDATE |
 | [19-fragment-primer](19-fragment-primer/) | Gotov Fragment primer |
-| [55-checkbox-radiobutton](55-checkbox-radiobutton/) | CheckBox, RadioButton |
-| [56-implicit-intent](56-implicit-intent/) | Share, SMS, email, URL |
-| [57-toolbar-options-menu](57-toolbar-options-menu/) | Toolbar / meni |
-| [58-maps-google-osm](58-maps-google-osm/) | Google Maps + OSM |
-| [59-file-provider](59-file-provider/) | FileProvider, kamera u fajl |
 
-## Dodatno (20–54) i priručnici (90, 99)
+---
+
+## Grafičke / UI komponente (60–67)
+
+Odvojeno od senzora i logike podataka.
+
+| Folder | Šta pokriva |
+|--------|-------------|
+| [60-ui-recyclerview](60-ui-recyclerview/) | RecyclerView – lista postova |
+| [61-ui-webview](61-ui-webview/) | WebView |
+| [62-ui-edit-text-validacija](62-ui-edit-text-validacija/) | EditText + validacija |
+| [63-ui-spinner](63-ui-spinner/) | Spinner |
+| [64-ui-date-picker](64-ui-date-picker/) | Date/Time picker |
+| [65-ui-progress-bar](65-ui-progress-bar/) | ProgressBar |
+| [66-ui-checkbox-radiobutton](66-ui-checkbox-radiobutton/) | CheckBox, RadioButton |
+| [67-ui-toolbar-options-menu](67-ui-toolbar-options-menu/) | Toolbar / Options Menu |
+
+Detalji: [GRAFICKI-SEGMENTI.md](GRAFICKI-SEGMENTI.md)
+
+---
+
+## Logika / podaci / platforma (70–79)
+
+| Folder | Šta pokriva |
+|--------|-------------|
+| [70-intent-druga-aktivnost](70-intent-druga-aktivnost/) | Explicit Intent, druga aktivnost |
+| [71-implicit-intent](71-implicit-intent/) | Share, SMS, email, URL |
+| [72-retrofit-post](72-retrofit-post/) | Retrofit POST |
+| [73-okhttp-json](73-okhttp-json/) | OkHttp JSON |
+| [74-thread-executor](74-thread-executor/) | Pozadinska nit (Room) |
+| [75-interni-fajl](75-interni-fajl/) | Interni fajl |
+| [76-galerija](76-galerija/) | Galerija / izbor slike |
+| [77-file-provider](77-file-provider/) | FileProvider + kamera u fajl |
+| [78-lokacija-realtime](78-lokacija-realtime/) | Lokacija u realnom vremenu |
+| [79-maps-google-osm](79-maps-google-osm/) | Google Maps / OpenStreetMap |
+
+---
+
+## Servisi / hardver (80–85)
+
+| Folder | Šta pokriva |
+|--------|-------------|
+| [80-alarm-notifikacija](80-alarm-notifikacija/) | Alarm + notifikacija |
+| [81-poziv-telefon](81-poziv-telefon/) | Poziv / dialer |
+| [82-povratna-vibracija](82-povratna-vibracija/) | Vibracija (haptic) |
+| [83-audio-recorder](83-audio-recorder/) | Audio snimanje |
+| [84-content-provider](84-content-provider/) | ContentProvider – postovi iz Room |
+| [85-broadcast-receiver](85-broadcast-receiver/) | BroadcastReceiver – custom broadcast |
+
+---
+
+## Senzori (41–49) · Notifikacije (37–40) · Firebase (50–54)
 
 Puna tabela: **[KONVENCIJA-FOLDERA.md](KONVENCIJA-FOLDERA.md)**  
-Notifikacije: **37–40** · Verovatnoća tema: **[DODATNI-SEGMENTI.md](DODATNI-SEGMENTI.md)**
+Verovatnoća tema: **[DODATNI-SEGMENTI.md](DODATNI-SEGMENTI.md)**
 
 ---
 

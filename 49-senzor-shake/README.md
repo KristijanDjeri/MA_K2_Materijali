@@ -90,7 +90,7 @@ private void detektujShake(float x, float y, float z) {
 private void onShakeDetektovan() {
     Toast.makeText(this, "Tresenje detektovano!", Toast.LENGTH_SHORT).show();
     // Opciono: vibracija, osveži listu, obriši post...
-    // vibracijaKratka(); // iz foldera 33-povratna-vibracija/
+    // vibracijaKratka(); // iz foldera 82-povratna-vibracija/
 }
 ```
 
@@ -255,4 +255,4 @@ Na emulatoru: Extended Controls → Sensors → pomeri vrednosti akcelerometra n
 
 ## Sledeći korak
 
-Poveži sa drugim segmentima po potrebi: `33-povratna-vibracija/`, `11-notifikacija-prazna-baza/`, `09-switch-listener/`.
+Poveži sa drugim segmentima po potrebi: `82-povratna-vibracija/`, `11-notifikacija-prazna-baza/`, `09-switch-listener/`.

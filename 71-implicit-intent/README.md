@@ -1,6 +1,6 @@
 # Implicit Intent – browser, share, SMS, email
 
-**Dodatni segment.** **Slično:** `22-intent-druga-aktivnost/` (explicit Intent), ali **Android bira** aplikaciju (browser, Gmail, Messages…).
+**Dodatni segment.** **Slično:** `70-intent-druga-aktivnost/` (explicit Intent), ali **Android bira** aplikaciju (browser, Gmail, Messages…).
 
 **Cilj:** Otvori URL, podeli tekst, pošalji SMS ili email – bez pisanja sopstvene aktivnosti.
 
@@ -8,7 +8,7 @@
 
 ## Manifest
 
-Za direktan poziv telefona vidi `29-poziv-telefon/`. Za ostale implicit intent-e **nije** posebna dozvola (browser, share, dialer sa brojem).
+Za direktan poziv telefona vidi `81-poziv-telefon/`. Za ostale implicit intent-e **nije** posebna dozvola (browser, share, dialer sa brojem).
 
 ---
 
@@ -141,7 +141,7 @@ private void otvoriMapu(double lat, double lon) {
 }
 ```
 
-> Za ugrađenu mapu u aplikaciji vidi `58-maps-google-osm/`.
+> Za ugrađenu mapu u aplikaciji vidi `79-maps-google-osm/`.
 
 ---
 
@@ -164,6 +164,6 @@ private void otvoriMapu(double lat, double lon) {
 
 ## Povezano
 
-- Explicit Intent: `22-intent-druga-aktivnost/`
-- Poziv: `29-poziv-telefon/`
-- Mape u app: `58-maps-google-osm/`
+- Explicit Intent: `70-intent-druga-aktivnost/`
+- Poziv: `81-poziv-telefon/`
+- Mape u app: `79-maps-google-osm/`

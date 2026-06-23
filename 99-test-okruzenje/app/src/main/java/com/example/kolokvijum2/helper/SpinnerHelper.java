@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-/** Folder: 30-spinner/ */
+/** Folder: 63-ui-spinner/ */
 public class SpinnerHelper {
 
     public SpinnerHelper(AppCompatActivity activity, Spinner spinner, TextView textView,

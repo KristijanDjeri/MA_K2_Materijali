@@ -172,7 +172,7 @@ Kad `02-geo-lokacija/` vrati lat/long, koristi te vrednosti umesto fiksnih koord
 
 ## Implicit Intent – spoljašnja mapa
 
-Bez ugrađene mape: `56-implicit-intent/` → `geo:lat,lon`.
+Bez ugrađene mape: `71-implicit-intent/` → `geo:lat,lon`.
 
 ---
 
@@ -188,5 +188,5 @@ Bez ugrađene mape: `56-implicit-intent/` → `geo:lat,lon`.
 ## Povezano
 
 - Lat/long: `02-geo-lokacija/`
-- Realtime lokacija: `34-lokacija-realtime/`
-- Spoljašnja mapa: `56-implicit-intent/`
+- Realtime lokacija: `78-lokacija-realtime/`
+- Spoljašnja mapa: `71-implicit-intent/`

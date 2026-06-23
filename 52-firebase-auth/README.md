@@ -44,7 +44,7 @@
     android:text="Prijava" />
 ```
 
-> **Alternativa:** Posebna `LoginActivity` – folder `22-intent-druga-aktivnost/`.
+> **Alternativa:** Posebna `LoginActivity` – folder `70-intent-druga-aktivnost/`.
 
 ---
 

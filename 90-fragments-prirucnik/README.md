@@ -128,7 +128,7 @@ implementation 'androidx.fragment:fragment:1.6.2'
 | [12-senzor-akcelerometar](../12-senzor-akcelerometar/) | `onSensorChanged` | Isto kao žiroskop |
 | [13-shared-preferences](../13-shared-preferences/) | `getSharedPreferences` | `requireContext().getSharedPreferences(...)` |
 | [14-kontakti](../14-kontakti/) | ContentResolver | `requireContext().getContentResolver()` |
-| [20-recyclerview](../20-recyclerview/) | Adapter + RV | `view.findViewById(R.id.recyclerView)` |
+| [60-ui-recyclerview](../60-ui-recyclerview/) | Adapter + RV | `view.findViewById(R.id.recyclerView)` |
 
 ---
 
@@ -192,7 +192,7 @@ Ili **BottomNavigationView** + tri fragmenta – za kolokvijum retko, dovoljna j
 
 ## 8. RecyclerView u Fragmentu
 
-Iz [20-recyclerview](../20-recyclerview/):
+Iz [60-ui-recyclerview](../60-ui-recyclerview/):
 
 ```java
 @Override
@@ -271,4 +271,4 @@ Ako ne stigneš: **ostavi MainActivity** – segmenti i dalje važe; profesor č
 ## Povezano
 
 - Konvencija foldera: [KONVENCIJA-FOLDERA.md](../KONVENCIJA-FOLDERA.md)
-- Druga aktivnost (alternativa fragmentima): [22-intent-druga-aktivnost](../22-intent-druga-aktivnost/)
+- Druga aktivnost (alternativa fragmentima): [70-intent-druga-aktivnost](../70-intent-druga-aktivnost/)

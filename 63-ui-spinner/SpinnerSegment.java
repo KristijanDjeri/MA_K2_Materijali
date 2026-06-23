@@ -7,13 +7,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 // U onCreate():
-Spinner 30-spinner = findViewById(R.id.30-spinner);
+Spinner spinner = findViewById(R.id.spinner);
 ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-        this, R.array.30-spinner_opcije, android.R.layout.simple_30-spinner_item);
-adapter.setDropDownViewResource(android.R.layout.simple_30-spinner_dropdown_item);
-30-spinner.setAdapter(adapter);
+        this, R.array.spinner_opcije, android.R.layout.simple_spinner_item);
+adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+spinner.setAdapter(adapter);
 
-30-spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String izbor = parent.getItemAtPosition(position).toString();

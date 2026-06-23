@@ -130,7 +130,7 @@ private void ukloniOngoingNotifikaciju() {
 }
 ```
 
-Poveži sa [36-audio-recorder](../36-audio-recorder/): `notify` pri startu snimanja, `cancel` pri stopu.
+Poveži sa [83-audio-recorder](../83-audio-recorder/): `notify` pri startu snimanja, `cancel` pri stopu.
 
 ---
 

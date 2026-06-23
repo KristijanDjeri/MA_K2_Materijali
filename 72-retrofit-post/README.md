@@ -79,7 +79,7 @@ button.setOnLongClickListener(v -> {
 ## Alternativa
 
 - `@FormUrlEncoded` + `@Field` – slanje forme umesto JSON
-- OkHttp bez Retrofit-a → folder `32-okhttp-json/`
+- OkHttp bez Retrofit-a → folder `73-okhttp-json/`
 
 ---
 

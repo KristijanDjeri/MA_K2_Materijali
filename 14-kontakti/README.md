@@ -112,7 +112,7 @@ private void obradiSwitchOff() {
 
 | Ovaj primer | Alternativa |
 |-------------|-------------|
-| `DISPLAY_NAME` | `ContactsContract.CommonDataKinds.Phone` – broj telefona → folder `29-poziv-telefon/` |
+| `DISPLAY_NAME` | `ContactsContract.CommonDataKinds.Phone` – broj telefona → folder `81-poziv-telefon/` |
 | `LIMIT 1` u sort | `moveToFirst()` bez LIMIT – uzima prvi red kako ga sistem vrati |
 | `getColumnIndex` | Direktno `cursor.getString(0)` ako si siguran u redosled kolona |
 

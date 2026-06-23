@@ -157,7 +157,7 @@ public void onRequestPermissionsResult(int requestCode, String[] permissions, in
 
 | Ovaj primer | Alternativa |
 |-------------|-------------|
-| `getLastLocation()` – jednokratno | `requestLocationUpdates()` – lokacija uživo → pogledaj folder `34-lokacija-realtime/` |
+| `getLastLocation()` – jednokratno | `requestLocationUpdates()` – lokacija uživo → pogledaj folder `78-lokacija-realtime/` |
 | Samo `ACCESS_FINE_LOCATION` | Možeš tražiti i `ACCESS_COARSE_LOCATION` |
 | Fused Location Provider | Stariji `LocationManager` – ne preporučujem, ali profesor može pomenuti |
 

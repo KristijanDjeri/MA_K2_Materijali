@@ -44,17 +44,23 @@ Helper koji koristi senzor, mapu, lokaciju u realnom vremenu ili audio **mora** 
 | 13 prefs | `SharedPreferencesHelper` | — |
 | 14 kontakti | `KontaktiHelper` | — (+ permission) |
 | 17 alert | `AlertDialogHelper` | statičke metode |
-| 21 galerija | `GalerijaHelper` | — (+ permission) |
-| 24 webview | `WebViewHelper` | — |
-| 26 interni fajl | `InterniFajlHelper` | statičke metode |
-| 28 alarm | `AlarmHelper` | — |
-| 29 poziv | `PozivHelper` | statičke metode |
-| 30 spinner | `SpinnerHelper` | — (listener u konstruktoru) |
-| 31 date picker | `DatePickerHelper` | — |
-| 32 okhttp | `OkHttpHelper` | `shutdown()` u `onDestroy` |
-| 33 vibracija | `VibracijaHelper` | statičke metode |
-| 34 lokacija RT | `LokacijaRealtimeHelper` | `onResume`, `onPause` |
-| 36 audio | `AudioRecorder` | `onPause`, `onDestroy`, permission |
+| **61** webview | `WebViewHelper` | — |
+| **63** spinner | `SpinnerHelper` | — (listener u konstruktoru) |
+| **64** date picker | `DatePickerHelper` | — |
+| **66** checkbox/radio | `CheckBoxRadioHelper` | — |
+| **75** interni fajl | `InterniFajlHelper` | statičke metode |
+| **76** galerija | `GalerijaHelper` | — (+ permission) |
+| **73** okhttp | `OkHttpHelper` | `shutdown()` u `onDestroy` |
+| **78** lokacija RT | `LokacijaRealtimeHelper` | `onResume`, `onPause` |
+| **79** OSM mapa | `MapsOsmHelper` | `onResume`, `onPause` |
+| **79** Google mapa | `MapsGoogleHelper` | — (callback `onMapReady`) |
+| **77** file provider | `FileProviderHelper` | — |
+| **71** implicit | `ImplicitIntentHelper` | statičke metode |
+| **80** alarm | `AlarmHelper` | — |
+| **81** poziv | `PozivHelper` | statičke metode |
+| **82** vibracija | `VibracijaHelper` | statičke metode |
+| **83** audio | `AudioRecorder` | `onPause`, `onDestroy`, permission |
+| **84** content provider | `ContentProviderHelper` | statičke metode |
 | 42 magnetometar | `MagnetometarHelper` | `onResume`, `onPause` |
 | 42 kompas | `KompasHelper` | `onResume`, `onPause` |
 | 43 svetlosti | `SvetlostiHelper` | `onResume`, `onPause` |
@@ -64,13 +70,8 @@ Helper koji koristi senzor, mapu, lokaciju u realnom vremenu ili audio **mora** 
 | 47 izvedeni | `IzvedeniSenzorHelper` | `onResume`, `onPause` |
 | 48 vlaga/temp | `VlagaTemperaturaHelper` | `onResume`, `onPause` |
 | 49 shake | `ShakeHelper` + `ShakeDetector` | `onResume`, `onPause` |
-| 55 checkbox/radio | `CheckBoxRadioHelper` | — |
-| 56 implicit | `ImplicitIntentHelper` | statičke metode |
-| 58 OSM mapa | `MapsOsmHelper` | `onResume`, `onPause` |
-| 58 Google mapa | `MapsGoogleHelper` | — (callback `onMapReady`) |
-| 59 file provider | `FileProviderHelper` | — |
 
-Zasebne klase (ne helper): `PostAdapter`, `DetailActivity`, `AlarmReceiver`, `HomeFragment`, Firebase servisi.
+Zasebne klase (ne helper): `PostAdapter`, `DetailActivity`, `AlarmReceiver`, `PostContentProvider`, `PostUpdateReceiver`, `HomeFragment`, Firebase servisi.
 
 ---
 

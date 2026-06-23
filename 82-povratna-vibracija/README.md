@@ -2,7 +2,7 @@
 
 **Dodatni segment.** Koristi sistemsku **VIBRATE** dozvolu – kratka vibracija kao povratna informacija (npr. kad nema više postova).
 
-> **Napomena:** Folder se zove `33-povratna-vibracija` (ne „vibrator") – jasniji i neutralniji naziv.
+> **Napomena:** Folder se zove `82-povratna-vibracija` (ne „vibrator") – jasniji i neutralniji naziv.
 
 **Slično:** kratki fizički odziv na događaj (kao zvuk ili Toast).
 

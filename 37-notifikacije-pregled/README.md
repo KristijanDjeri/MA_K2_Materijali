@@ -12,7 +12,7 @@ Mapa notifikacija u materijalu. **Zadatak 7** koristi [10-brisanje-prvog-posta](
 | **Zadatak 7** (prazna baza) | [10-brisanje-prvog-posta](../10-brisanje-prvog-posta/) + [11-notifikacija-prazna-baza](../11-notifikacija-prazna-baza/) | Kolokvijum |
 | **Sa akcijama** (dugmad) | [39-notifikacija-akcije](../39-notifikacija-akcije/) | „Obriši“, „Otvori“, „Odustani“ |
 | **Proširena** (big text, slika, lista) | [40-notifikacija-prosirena](../40-notifikacija-prosirena/) | Duži tekst, BigPicture |
-| **Zakazana** (AlarmManager) | [28-alarm-notifikacija](../28-alarm-notifikacija/) | Posle X sekundi |
+| **Zakazana** (AlarmManager) | [80-alarm-notifikacija](../80-alarm-notifikacija/) | Posle X sekundi |
 | **Push sa servera** | [54-firebase-fcm](../54-firebase-fcm/) | Firebase FCM |
 
 ---

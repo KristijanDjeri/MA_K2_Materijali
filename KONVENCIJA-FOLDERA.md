@@ -7,14 +7,35 @@ Svi segmenti imaju prefiks **`NN-`** (dvocifrena enumeracija) radi reda na disku
 | Pravilo | Primer |
 |---------|--------|
 | Prefiks broja + crtica | `01-osnovni-projekat` |
-| Mala slova, crtice umesto razmaka | `10-brisanje-prvog-posta` |
-| **Notifikacije** (dodatno) | `37-notifikacije-pregled` … `40-notifikacija-prosirena` |
-| **Senzori** počinju sa `senzor-` | `04-senzor-ziroskop`, `43-senzor-svetlosti` |
-| Firebase grupa | `50-firebase` … `54-firebase-fcm` |
+| **Kod** – bez broja foldera | `@+id/spinner`, `R.array.spinner_opcije` (ne `30-spinner`) |
+| **UI komponente** – prefiks `ui-` | `63-ui-spinner`, `66-ui-checkbox-radiobutton` |
+| **Senzori** – prefiks `senzor-` | `04-senzor-ziroskop`, `43-senzor-svetlosti` |
+| **Notifikacije** | `37-notifikacije-pregled` … `40-notifikacija-prosirena` |
+| **Firebase** | `50-firebase` … `54-firebase-fcm` |
 | Test projekat | `99-test-okruzenje` |
-| Priručnici (bez koda za kolokvijum) | `90-…` |
+| Priručnici | `90-…` |
 
-**Ne koristimo** kolokvijalne ili dvosmislene nazive (npr. stari folder `vibrator` → sada **`33-povratna-vibracija`**).
+**Ne koristimo** kolokvijalne ili dvosmislene nazive (npr. stari `vibrator` → sada **`82-povratna-vibracija`**).
+
+Broj foldera (`NN-`) **ne prenosi se u kod** – varijable, `@+id/`, `R.array.*` i importi koriste semantička imena (`spinner`, `recyclerview`), ne `30-spinner` ili `androidx.20-recyclerview`.
+
+---
+
+## Grupe po nameni (brzi pregled)
+
+| Opseg | Grupa | Šta sadrži |
+|-------|--------|------------|
+| **01–16** | Zvanični zadaci (PDF) | Layout, geo, kamera, senzori u zadatku, Room, API, Switch… |
+| **17–19** | Proširenje zvaničnih | AlertDialog, Room UPDATE, Fragment |
+| **60–67** | **Grafičke / UI komponente** | RecyclerView, WebView, EditText, Spinner, meni, ProgressBar… |
+| **70–79** | **Logika / podaci / platforma** | Intent, Retrofit POST, OkHttp, nit, fajl, galerija, mape, lokacija… |
+| **80–85** | **Servisi / hardver (ne senzor)** | Alarm, poziv, vibracija, audio, ContentProvider, BroadcastReceiver… |
+| **37–40** | Notifikacije | Osnovna, akcije, proširena |
+| **41–49** | **Senzori** (dodatni) | Magnetometar, svetlost, shake… |
+| **50–54** | Firebase | Auth, Firestore, FCM |
+| **90, 99** | Priručnici / test | Fragmenti, build test |
+
+Detaljnije: [GRAFICKI-SEGMENTI.md](GRAFICKI-SEGMENTI.md) · [DODATNI-SEGMENTI.md](DODATNI-SEGMENTI.md)
 
 ---
 
@@ -22,7 +43,7 @@ Svi segmenti imaju prefiks **`NN-`** (dvocifrena enumeracija) radi reda na disku
 
 ### 01–16 Zvanični zadaci (PDF)
 
-Segmenti su **razdvojeni** – svaki radi samostalno. Spajanje: [16-spajanje-zadataka](16-spajanje-zadataka/).
+Spajanje nezavisnih koraka: [16-spajanje-zadataka](16-spajanje-zadataka/).
 
 | Folder | Naziv | Zadatak |
 |--------|-------|---------|
@@ -47,31 +68,48 @@ Segmenti su **razdvojeni** – svaki radi samostalno. Spajanje: [16-spajanje-zad
 
 | Folder | Naziv |
 |--------|-------|
-| [17-alert-dialog](17-alert-dialog/) | AlertDialog |
+| [17-alert-dialog](17-alert-dialog/) | AlertDialog (UI dijalog) |
 | [18-room-update](18-room-update/) | Room UPDATE |
 | [19-fragment-primer](19-fragment-primer/) | Fragment – gotov primer |
 
-### 20–36 Dodatni segmenti (UI, mreža, storage…)
+### 60–67 Grafičke / UI komponente
 
 | Folder | Naziv |
 |--------|-------|
-| [20-recyclerview](20-recyclerview/) | RecyclerView |
-| [21-galerija](21-galerija/) | Galerija |
-| [22-intent-druga-aktivnost](22-intent-druga-aktivnost/) | Druga aktivnost |
-| [23-retrofit-post](23-retrofit-post/) | Retrofit POST |
-| [24-webview](24-webview/) | WebView |
-| [25-thread-executor](25-thread-executor/) | Pozadinska nit |
-| [26-interni-fajl](26-interni-fajl/) | Interni fajl |
-| [27-edit-text-validacija](27-edit-text-validacija/) | EditText validacija |
-| [28-alarm-notifikacija](28-alarm-notifikacija/) | Alarm notifikacija |
-| [29-poziv-telefon](29-poziv-telefon/) | Poziv telefon |
-| [30-spinner](30-spinner/) | Spinner |
-| [31-date-picker](31-date-picker/) | Date/Time picker |
-| [32-okhttp-json](32-okhttp-json/) | OkHttp JSON |
-| [33-povratna-vibracija](33-povratna-vibracija/) | Povratna vibracija (haptic) |
-| [34-lokacija-realtime](34-lokacija-realtime/) | Lokacija realtime |
-| [35-progress-bar](35-progress-bar/) | ProgressBar |
-| [36-audio-recorder](36-audio-recorder/) | Audio snimanje |
+| [60-ui-recyclerview](60-ui-recyclerview/) | RecyclerView – lista |
+| [61-ui-webview](61-ui-webview/) | WebView |
+| [62-ui-edit-text-validacija](62-ui-edit-text-validacija/) | EditText validacija |
+| [63-ui-spinner](63-ui-spinner/) | Spinner |
+| [64-ui-date-picker](64-ui-date-picker/) | Date/Time picker |
+| [65-ui-progress-bar](65-ui-progress-bar/) | ProgressBar |
+| [66-ui-checkbox-radiobutton](66-ui-checkbox-radiobutton/) | CheckBox i RadioButton |
+| [67-ui-toolbar-options-menu](67-ui-toolbar-options-menu/) | Toolbar / Options Menu |
+
+### 70–79 Logika / podaci / platforma
+
+| Folder | Naziv |
+|--------|-------|
+| [70-intent-druga-aktivnost](70-intent-druga-aktivnost/) | Druga aktivnost (explicit Intent) |
+| [71-implicit-intent](71-implicit-intent/) | Implicit Intent (share, SMS, URL…) |
+| [72-retrofit-post](72-retrofit-post/) | Retrofit POST |
+| [73-okhttp-json](73-okhttp-json/) | OkHttp JSON |
+| [74-thread-executor](74-thread-executor/) | Pozadinska nit |
+| [75-interni-fajl](75-interni-fajl/) | Interni fajl |
+| [76-galerija](76-galerija/) | Galerija / izbor slike |
+| [77-file-provider](77-file-provider/) | FileProvider + kamera u fajl |
+| [78-lokacija-realtime](78-lokacija-realtime/) | Lokacija u realnom vremenu |
+| [79-maps-google-osm](79-maps-google-osm/) | Google Maps / OpenStreetMap |
+
+### 80–85 Servisi i hardver (ne UI, ne senzor)
+
+| Folder | Naziv |
+|--------|-------|
+| [80-alarm-notifikacija](80-alarm-notifikacija/) | Alarm + notifikacija |
+| [81-poziv-telefon](81-poziv-telefon/) | Poziv / dialer |
+| [82-povratna-vibracija](82-povratna-vibracija/) | Vibracija (haptic) |
+| [83-audio-recorder](83-audio-recorder/) | Audio snimanje |
+| [84-content-provider](84-content-provider/) | ContentProvider – sopstveni provider |
+| [85-broadcast-receiver](85-broadcast-receiver/) | BroadcastReceiver – custom broadcast |
 
 ### 37–40 Notifikacije
 
@@ -87,14 +125,14 @@ Segmenti su **razdvojeni** – svaki radi samostalno. Spajanje: [16-spajanje-zad
 | Folder | Naziv |
 |--------|-------|
 | [41-senzori-pregled](41-senzori-pregled/) | Pregled svih senzora |
-| [42-senzor-magnetometar](42-senzor-magnetometar/) | Senzor – magnetometar |
-| [43-senzor-svetlosti](43-senzor-svetlosti/) | Senzor – svetlosti |
-| [44-senzor-proksimiteta](44-senzor-proksimiteta/) | Senzor – proksimiteta |
-| [45-senzor-barometar](45-senzor-barometar/) | Senzor – barometar |
-| [46-senzor-koraci](46-senzor-koraci/) | Senzor – koraci |
-| [47-senzor-izvedeni](47-senzor-izvedeni/) | Senzori izvedeni (gravity, rotation…) |
-| [48-senzor-vlage-temperature](48-senzor-vlage-temperature/) | Senzor – vlage/temperature |
-| [49-senzor-shake](49-senzor-shake/) | Senzor – shake (preko akcelerometra) |
+| [42-senzor-magnetometar](42-senzor-magnetometar/) | Magnetometar / kompas |
+| [43-senzor-svetlosti](43-senzor-svetlosti/) | Senzor svetlosti |
+| [44-senzor-proksimiteta](44-senzor-proksimiteta/) | Proksimitet |
+| [45-senzor-barometar](45-senzor-barometar/) | Barometar |
+| [46-senzor-koraci](46-senzor-koraci/) | Brojač koraka |
+| [47-senzor-izvedeni](47-senzor-izvedeni/) | Izvedeni senzori |
+| [48-senzor-vlage-temperature](48-senzor-vlage-temperature/) | Vlaga / temperatura |
+| [49-senzor-shake](49-senzor-shake/) | Shake (akcelerometar) |
 
 ### 50–54 Firebase
 
@@ -106,16 +144,6 @@ Segmenti su **razdvojeni** – svaki radi samostalno. Spajanje: [16-spajanje-zad
 | [53-firebase-firestore](53-firebase-firestore/) | Firestore |
 | [54-firebase-fcm](54-firebase-fcm/) | FCM notifikacije |
 
-### 55–59 UI, navigacija, mape, fajlovi
-
-| Folder | Naziv |
-|--------|-------|
-| [55-checkbox-radiobutton](55-checkbox-radiobutton/) | CheckBox i RadioButton |
-| [56-implicit-intent](56-implicit-intent/) | Implicit Intent (share, SMS, email, URL) |
-| [57-toolbar-options-menu](57-toolbar-options-menu/) | Toolbar / Options Menu |
-| [58-maps-google-osm](58-maps-google-osm/) | Google Maps i OpenStreetMap |
-| [59-file-provider](59-file-provider/) | FileProvider + kamera u fajl |
-
 ### 90–99 Posebno
 
 | Folder | Naziv |
@@ -125,23 +153,23 @@ Segmenti su **razdvojeni** – svaki radi samostalno. Spajanje: [16-spajanje-zad
 
 ---
 
-## Koreni dokumenti (bez broja)
+## Koreni dokumenti
 
 | Fajl | Svrha |
 |------|-------|
 | [README.md](README.md) | Glavni ulaz |
+| [GRAFICKI-SEGMENTI.md](GRAFICKI-SEGMENTI.md) | UI komponente (60–67) |
+| [DODATNI-SEGMENTI.md](DODATNI-SEGMENTI.md) | Logika, servisi, verovatnoća |
+| [HELPER-KLASE.md](HELPER-KLASE.md) | Helper klase |
 | [BRZI-VODIC.md](BRZI-VODIC.md) | Jedna strana za štampu |
-| [DODATNI-SEGMENTI.md](DODATNI-SEGMENTI.md) | Verovatnoća tema |
-| [IZVESTAJ-TESTIRANJA.md](IZVESTAJ-TESTIRANJA.md) | Šta je automatski testirano |
-| [HELPER-KLASE.md](HELPER-KLASE.md) | Mapa helper klasa i gde ih lepiti |
 
 ---
 
 ## Kako naći segment na kolokvijumu
 
-1. Pogledaj broj zadatka u PDF-u → tabela **01–16** gore (više foldera po zadatku 5–9)
-2. Ako je senzor a nije u PDF-u → **41–49**
-3. Ako traži notifikacije → **37–40**
-4. Ako traži Fragment → **[90-fragments-prirucnik](90-fragments-prirucnik/)**
-5. Ako traži Firebase → **50–54**
-6. Ako traži CheckBox, meni, mape, FileProvider → **55–59**
+1. Broj zadatka u PDF-u → **01–16**
+2. **Spinner, meni, lista…** → **60–67** (`ui-`)
+3. **Senzor** → **04, 12** (zvanično) ili **41–49** (`senzor-`)
+4. **API, Intent, fajl, mapa…** → **70–79**
+5. **Alarm, audio, poziv, provider…** → **80–85**
+6. **Notifikacije** → **37–40** · **Firebase** → **50–54**

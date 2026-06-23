@@ -151,7 +151,7 @@ public abstract class AppDatabase extends RoomDatabase {
 }
 ```
 
-> **Alternativa:** `allowMainThreadQueries()` olakšava kolokvijum; u produkciji koristi pozadinsku nit → `25-thread-executor/`.
+> **Alternativa:** `allowMainThreadQueries()` olakšava kolokvijum; u produkciji koristi pozadinsku nit → `74-thread-executor/`.
 
 ---
 

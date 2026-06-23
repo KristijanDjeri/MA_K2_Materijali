@@ -118,4 +118,4 @@ button.setOnClickListener(v -> {
 ## Povezano
 
 - Switch: `09-switch-listener/`
-- Spinner (padajuća lista): `30-spinner/`
+- Spinner (padajuća lista): `63-ui-spinner/`

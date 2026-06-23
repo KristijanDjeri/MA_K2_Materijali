@@ -1,12 +1,12 @@
 // === DODAJ U MainActivity.java ===
 
 // IMPORTI:
-import androidx.20-recyclerview.widget.LinearLayoutManager;
-import androidx.20-recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.example.kolokvijum2.adapter.PostAdapter;
 
 // U activity_main.xml dodaj (npr. ispod Button):
-// <androidx.20-recyclerview.widget.RecyclerView
+// <androidx.recyclerview.widget.RecyclerView
 //     android:id="@+id/recyclerView"
 //     android:layout_width="match_parent"
 //     android:layout_height="200dp" />

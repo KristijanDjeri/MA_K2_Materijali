@@ -84,12 +84,12 @@ cd 99-test-okruzenje
 
 | Segment | Kompajlira | Runtime | Napomena |
 |---------|------------|---------|----------|
-| `20-recyclerview/` | ✅ | ⚠️ | Adapter OK; treba RecyclerView u layoutu + poziv `osveziListu` |
-| `21-galerija/` | ✅ | ⚠️ | READ_MEDIA_IMAGES / storage |
+| `60-ui-recyclerview/` | ✅ | ⚠️ | Adapter OK; treba RecyclerView u layoutu + poziv `osveziListu` |
+| `76-galerija/` | ✅ | ⚠️ | READ_MEDIA_IMAGES / storage |
 | `49-senzor-shake/` | ✅ | ⚠️ | Fizički telefon preporučen |
-| `36-audio-recorder/` | ✅* | ⚠️ | *logika pregledana i popravljena; nije u build testu kao MainActivity deo |
+| `83-audio-recorder/` | ✅* | ⚠️ | *logika pregledana i popravljena; nije u build testu kao MainActivity deo |
 | `42-senzor-magnetometar/`, senzori | ✅ | ⚠️ | Isti Sensor pattern |
-| `25-thread-executor/` | ✅ | ⚠️ | Logika standardna |
+| `74-thread-executor/` | ✅ | ⚠️ | Logika standardna |
 | `firebase-*` | ⏭️ | ⏭️ | Bez `google-services.json` nije smisleno testirati |
 
 ---
@@ -112,7 +112,7 @@ cd 99-test-okruzenje
 | `06-retrofit-get/JsonPlaceholderApi.java` | `@GET("posts")` |
 | `06-retrofit-get/README.md` | Napomena o neispravnom PDF URL-u |
 | Struktura 05–16 | Segmenti razdvojeni za nezavisnu vežbu; spajanje u `16-spajanje-zadataka/` |
-| `36-audio-recorder/README.md` | Ranije: `.m4a`, lifecycle, delete starog fajla |
+| `83-audio-recorder/README.md` | Ranije: `.m4a`, lifecycle, delete starog fajla |
 
 ---
 
