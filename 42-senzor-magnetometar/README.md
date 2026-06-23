@@ -43,7 +43,7 @@ else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
 
 ## Deo B: Kompas (azimut u stepenima) – naprednije
 
-Za azimut trebaju **oba**: 08-senzor-akcelerometar + 41-senzor-magnetometar.
+Za azimut trebaju **oba**: 08-senzor-akcelerometar + 42-senzor-magnetometar.
 
 ### Polja
 
@@ -85,7 +85,7 @@ public void onSensorChanged(SensorEvent event) {
 
 ### Registracija u `onResume`
 
-Moraš registrovati **08-senzor-akcelerometar**, **41-senzor-magnetometar** i **žiroskop** (ako koristiš sve).
+Moraš registrovati **08-senzor-akcelerometar**, **42-senzor-magnetometar** i **žiroskop** (ako koristiš sve).
 
 ---
 

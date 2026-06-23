@@ -28,7 +28,7 @@ Materijal za kolokvijum: gotovi segmenti koda i uputstva po temama.
 ## Dodatno (20–54) i priručnici (90, 99)
 
 Puna tabela: **[KONVENCIJA-FOLDERA.md](KONVENCIJA-FOLDERA.md)**  
-Verovatnoća tema: **[DODATNI-SEGMENTI.md](DODATNI-SEGMENTI.md)**
+Notifikacije: **37–40** · Verovatnoća tema: **[DODATNI-SEGMENTI.md](DODATNI-SEGMENTI.md)**
 
 ---
 

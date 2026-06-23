@@ -86,9 +86,9 @@ cd 99-test-okruzenje
 |---------|------------|---------|----------|
 | `20-recyclerview/` | ✅ | ⚠️ | Adapter OK; treba RecyclerView u layoutu + poziv `osveziListu` |
 | `21-galerija/` | ✅ | ⚠️ | READ_MEDIA_IMAGES / storage |
-| `48-senzor-shake/` | ✅ | ⚠️ | Fizički telefon preporučen |
+| `49-senzor-shake/` | ✅ | ⚠️ | Fizički telefon preporučen |
 | `36-audio-recorder/` | ✅* | ⚠️ | *logika pregledana i popravljena; nije u build testu kao MainActivity deo |
-| `41-senzor-magnetometar/`, senzori | ✅ | ⚠️ | Isti Sensor pattern |
+| `42-senzor-magnetometar/`, senzori | ✅ | ⚠️ | Isti Sensor pattern |
 | `25-thread-executor/` | ✅ | ⚠️ | Logika standardna |
 | `firebase-*` | ⏭️ | ⏭️ | Bez `google-services.json` nije smisleno testirati |
 

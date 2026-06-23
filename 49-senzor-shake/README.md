@@ -90,7 +90,7 @@ private void onShakeDetektovan() {
 
 ## Varijanta B – Linear Acceleration (alternativa)
 
-Ako registruješ `TYPE_LINEAR_ACCELERATION` (folder `46-senzor-izvedeni/`):
+Ako registruješ `TYPE_LINEAR_ACCELERATION` (folder `47-senzor-izvedeni/`):
 
 ```java
 private Sensor linearAccelSensor;

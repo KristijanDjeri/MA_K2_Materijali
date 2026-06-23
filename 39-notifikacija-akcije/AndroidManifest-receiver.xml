@@ -1,0 +1,5 @@
+<!-- Unutar <application> u AndroidManifest.xml -->
+
+<receiver
+    android:name=".NotifikacijaAkcijaReceiver"
+    android:exported="false" />

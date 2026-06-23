@@ -101,7 +101,7 @@ else if (event.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
 }
 ```
 
-> **Alternativa:** Kompas iz `41-senzor-magnetometar/KompasSegment.java` koristi 08-senzor-akcelerometar + 41-senzor-magnetometar umesto rotation vector-a.
+> **Alternativa:** Kompas iz `42-senzor-magnetometar/KompasSegment.java` koristi 08-senzor-akcelerometar + 42-senzor-magnetometar umesto rotation vector-a.
 
 ---
 

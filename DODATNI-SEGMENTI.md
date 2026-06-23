@@ -18,7 +18,7 @@ Ovi folderi pokrivaju teme **slične težine i principa** kao zvanični zadaci, 
 
 | Folder | Zašto bi pitao | Sličan zadatku |
 |--------|----------------|----------------|
-| [41-senzor-magnetometar](41-senzor-magnetometar/) | Još jedan senzor | 4, 8 |
+| [42-senzor-magnetometar](42-senzor-magnetometar/) | Još jedan senzor | 4, 8 |
 | [34-lokacija-realtime](34-lokacija-realtime/) | Varijanta lokacije | 3 |
 | [26-interni-fajl](26-interni-fajl/) | Čuvanje podataka | 9 |
 | [32-okhttp-json](32-okhttp-json/) | API bez Retrofit-a | 5 |
@@ -34,17 +34,17 @@ Ovi folderi pokrivaju teme **slične težine i principa** kao zvanični zadaci, 
 |--------|----------|
 | [33-povratna-vibracija](33-povratna-vibracija/) | Kratka vibracija uz događaj |
 | [36-audio-recorder](36-audio-recorder/) | MediaRecorder + MediaPlayer |
-| [42-senzor-svetlosti](42-senzor-svetlosti/) | Lux vrednost |
-| [43-senzor-proksimiteta](43-senzor-proksimiteta/) | Blizu/daleko |
-| [44-senzor-barometar](44-senzor-barometar/) | Pritisak u hPa |
-| [45-senzor-koraci](45-senzor-koraci/) | Koraci + ACTIVITY_RECOGNITION |
-| [46-senzor-izvedeni](46-senzor-izvedeni/) | Gravity, rotation vector… |
-| [47-senzor-vlage-temperature](47-senzor-vlage-temperature/) | Retko na telefonima |
-| [48-senzor-shake](48-senzor-shake/) | Tresenje preko akcelerometra |
+| [43-senzor-svetlosti](43-senzor-svetlosti/) | Lux vrednost |
+| [44-senzor-proksimiteta](44-senzor-proksimiteta/) | Blizu/daleko |
+| [45-senzor-barometar](45-senzor-barometar/) | Pritisak u hPa |
+| [46-senzor-koraci](46-senzor-koraci/) | Koraci + ACTIVITY_RECOGNITION |
+| [47-senzor-izvedeni](47-senzor-izvedeni/) | Gravity, rotation vector… |
+| [48-senzor-vlage-temperature](48-senzor-vlage-temperature/) | Retko na telefonima |
+| [49-senzor-shake](49-senzor-shake/) | Tresenje preko akcelerometra |
 | [51-firebase-setup](51-firebase-setup/) | Firebase projekat + Gradle |
 | [53-firebase-firestore](53-firebase-firestore/) | Oblak umesto Retrofit/Room |
 
-**Pregled svih senzora:** [40-senzori-pregled](40-senzori-pregled/)  
+**Pregled svih senzora:** [41-senzori-pregled](41-senzori-pregled/)  
 **Pregled Firebase:** [50-firebase](50-firebase/)
 
 ## Kako učiti
@@ -57,7 +57,7 @@ Ovi folderi pokrivaju teme **slične težine i principa** kao zvanični zadaci, 
 
 ```
 Dozvole (runtime)     → geo, 03-kamera, 21-galerija, 10-kontakti, poziv
-Senzori               → 04-senzor-ziroskop, 08-senzor-akcelerometar, 41-senzor-magnetometar, 40-senzori-pregled/
+Senzori               → 04-senzor-ziroskop, 08-senzor-akcelerometar, 42-senzor-magnetometar, 41-senzori-pregled/
 Audio                 → 36-audio-recorder/
 Mreža + JSON          → retrofit, 23-retrofit-post, 32-okhttp-json, 24-webview
 Perzistencija         → room, 09-shared-preferences, 26-interni-fajl, 53-firebase-firestore/

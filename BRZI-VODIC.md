@@ -49,9 +49,10 @@
 | Drugu aktivnost | `22-intent-druga-aktivnost/` |
 | POST umesto GET | `23-retrofit-post/` |
 | Bazu u pozadini | `25-thread-executor/` |
-| Još senzor | `40-senzori-pregled/` → pojedinačni folder |
+| Još senzor | `41-senzori-pregled/` → pojedinačni folder |
+| Notifikacije (osnovna, akcije…) | `37-notifikacije-pregled/` |
 | Audio snimanje | `36-audio-recorder/` |
-| Shake / tresenje | `48-senzor-shake/` |
+| Shake / tresenje | `49-senzor-shake/` |
 | Firebase oblak | `50-firebase/` → `51-firebase-setup/` |
 | **Fragmenti** | `90-fragments-prirucnik/` |
 | Mapa foldera | `KONVENCIJA-FOLDERA.md` |

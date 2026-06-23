@@ -6,7 +6,7 @@ import android.hardware.SensorManager;
 
 /**
  * Detekcija tresenja preko akcelerometra.
- * Kompletno uputstvo: README.md u folderu 48-senzor-shake/
+ * Kompletno uputstvo: README.md u folderu 49-senzor-shake/
  */
 public class ShakeDetector {
 

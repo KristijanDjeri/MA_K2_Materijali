@@ -10,23 +10,23 @@ Ovaj folder je **mapa** – svaki senzor ima svoj folder sa kompletnim kodom u R
 |--------|--------|
 | Žiroskop | [04-senzor-ziroskop/](../04-senzor-ziroskop/) |
 | Akcelerometar | [08-senzor-akcelerometar/](../08-senzor-akcelerometar/) |
-| **Shake (tresenje)** | [48-senzor-shake/](../48-senzor-shake/) – preko akcelerometra |
+| **Shake (tresenje)** | [49-senzor-shake/](../49-senzor-shake/) – preko akcelerometra |
 
 ## Dodatni senzori (novi folderi)
 
 | Senzor | Android tip | Folder |
 |--------|-------------|--------|
-| Magnetometar / kompas | `TYPE_MAGNETIC_FIELD` | [41-senzor-magnetometar/](../41-senzor-magnetometar/) |
-| Svetlina (lux) | `TYPE_LIGHT` | [42-senzor-svetlosti/](../42-senzor-svetlosti/) |
-| Proksimitet | `TYPE_PROXIMITY` | [43-senzor-proksimiteta/](../43-senzor-proksimiteta/) |
-| Barometar (pritisak) | `TYPE_PRESSURE` | [44-senzor-barometar/](../44-senzor-barometar/) |
-| Brojač koraka | `TYPE_STEP_COUNTER` | [45-senzor-koraci/](../45-senzor-koraci/) |
-| Detektor koraka | `TYPE_STEP_DETECTOR` | [45-senzor-koraci/](../45-senzor-koraci/) (alternativa) |
-| Gravity | `TYPE_GRAVITY` | [46-senzor-izvedeni/](../46-senzor-izvedeni/) |
-| Linear acceleration | `TYPE_LINEAR_ACCELERATION` | [46-senzor-izvedeni/](../46-senzor-izvedeni/) |
-| Rotation vector | `TYPE_ROTATION_VECTOR` | [46-senzor-izvedeni/](../46-senzor-izvedeni/) |
-| Vlaga | `TYPE_RELATIVE_HUMIDITY` | [47-senzor-vlage-temperature/](../47-senzor-vlage-temperature/) |
-| Temperatura | `TYPE_AMBIENT_TEMPERATURE` | [47-senzor-vlage-temperature/](../47-senzor-vlage-temperature/) |
+| Magnetometar / kompas | `TYPE_MAGNETIC_FIELD` | [42-senzor-magnetometar/](../42-senzor-magnetometar/) |
+| Svetlina (lux) | `TYPE_LIGHT` | [43-senzor-svetlosti/](../43-senzor-svetlosti/) |
+| Proksimitet | `TYPE_PROXIMITY` | [44-senzor-proksimiteta/](../44-senzor-proksimiteta/) |
+| Barometar (pritisak) | `TYPE_PRESSURE` | [45-senzor-barometar/](../45-senzor-barometar/) |
+| Brojač koraka | `TYPE_STEP_COUNTER` | [46-senzor-koraci/](../46-senzor-koraci/) |
+| Detektor koraka | `TYPE_STEP_DETECTOR` | [46-senzor-koraci/](../46-senzor-koraci/) (alternativa) |
+| Gravity | `TYPE_GRAVITY` | [47-senzor-izvedeni/](../47-senzor-izvedeni/) |
+| Linear acceleration | `TYPE_LINEAR_ACCELERATION` | [47-senzor-izvedeni/](../47-senzor-izvedeni/) |
+| Rotation vector | `TYPE_ROTATION_VECTOR` | [47-senzor-izvedeni/](../47-senzor-izvedeni/) |
+| Vlaga | `TYPE_RELATIVE_HUMIDITY` | [48-senzor-vlage-temperature/](../48-senzor-vlage-temperature/) |
+| Temperatura | `TYPE_AMBIENT_TEMPERATURE` | [48-senzor-vlage-temperature/](../48-senzor-vlage-temperature/) |
 
 ---
 
@@ -87,8 +87,8 @@ Pozovi u `onCreate` i pogledaj **Logcat** u Android Studio.
 ## Redosled učenja
 
 1. `04-senzor-ziroskop/` + `08-senzor-akcelerometar/` (kolokvijum)
-2. `41-senzor-magnetometar/` (najčešća zamena)
-3. `42-senzor-svetlosti/` ili `43-senzor-proksimiteta/` (jednostavni)
-4. `48-senzor-shake/` (08-senzor-akcelerometar + prag – česta vežba)
-5. `46-senzor-izvedeni/` ako traže orijentaciju
+2. `42-senzor-magnetometar/` (najčešća zamena)
+3. `43-senzor-svetlosti/` ili `44-senzor-proksimiteta/` (jednostavni)
+4. `49-senzor-shake/` (08-senzor-akcelerometar + prag – česta vežba)
+5. `47-senzor-izvedeni/` ako traže orijentaciju
 6. `36-audio-recorder/` ako traže mikrofon

@@ -8,7 +8,8 @@ Svi segmenti imaju prefiks **`NN-`** (dvocifrena enumeracija) radi reda na disku
 |---------|--------|
 | Prefiks broja + crtica | `01-osnovni-projekat` |
 | Mala slova, crtice umesto razmaka | `07-brisanje-notifikacije` |
-| **Senzori** počinju sa `senzor-` | `04-senzor-ziroskop`, `42-senzor-svetlosti` |
+| **Notifikacije** (dodatno) | `37-notifikacije-pregled` … `40-notifikacija-prosirena` |
+| **Senzori** počinju sa `senzor-` | `04-senzor-ziroskop`, `43-senzor-svetlosti` |
 | Firebase grupa | `50-firebase` … `54-firebase-fcm` |
 | Test projekat | `99-test-okruzenje` |
 | Priručnici (bez koda za kolokvijum) | `90-…` |
@@ -57,19 +58,28 @@ Svi segmenti imaju prefiks **`NN-`** (dvocifrena enumeracija) radi reda na disku
 | [35-progress-bar](35-progress-bar/) | ProgressBar |
 | [36-audio-recorder](36-audio-recorder/) | Audio snimanje |
 
-### 40–48 Senzori (dodatni)
+### 37–40 Notifikacije
 
 | Folder | Naziv |
 |--------|-------|
-| [40-senzori-pregled](40-senzori-pregled/) | Pregled svih senzora |
-| [41-senzor-magnetometar](41-senzor-magnetometar/) | Senzor – magnetometar |
-| [42-senzor-svetlosti](42-senzor-svetlosti/) | Senzor – svetlosti |
-| [43-senzor-proksimiteta](43-senzor-proksimiteta/) | Senzor – proksimiteta |
-| [44-senzor-barometar](44-senzor-barometar/) | Senzor – barometar |
-| [45-senzor-koraci](45-senzor-koraci/) | Senzor – koraci |
-| [46-senzor-izvedeni](46-senzor-izvedeni/) | Senzori izvedeni (gravity, rotation…) |
-| [47-senzor-vlage-temperature](47-senzor-vlage-temperature/) | Senzor – vlage/temperature |
-| [48-senzor-shake](48-senzor-shake/) | Senzor – shake (preko akcelerometra) |
+| [37-notifikacije-pregled](37-notifikacije-pregled/) | Pregled notifikacija |
+| [38-notifikacija-osnovna](38-notifikacija-osnovna/) | Osnovna notifikacija |
+| [39-notifikacija-akcije](39-notifikacija-akcije/) | Notifikacija sa dugmadima |
+| [40-notifikacija-prosirena](40-notifikacija-prosirena/) | BigText, slika, progress |
+
+### 41–49 Senzori (dodatni)
+
+| Folder | Naziv |
+|--------|-------|
+| [41-senzori-pregled](41-senzori-pregled/) | Pregled svih senzora |
+| [42-senzor-magnetometar](42-senzor-magnetometar/) | Senzor – magnetometar |
+| [43-senzor-svetlosti](43-senzor-svetlosti/) | Senzor – svetlosti |
+| [44-senzor-proksimiteta](44-senzor-proksimiteta/) | Senzor – proksimiteta |
+| [45-senzor-barometar](45-senzor-barometar/) | Senzor – barometar |
+| [46-senzor-koraci](46-senzor-koraci/) | Senzor – koraci |
+| [47-senzor-izvedeni](47-senzor-izvedeni/) | Senzori izvedeni (gravity, rotation…) |
+| [48-senzor-vlage-temperature](48-senzor-vlage-temperature/) | Senzor – vlage/temperature |
+| [49-senzor-shake](49-senzor-shake/) | Senzor – shake (preko akcelerometra) |
 
 ### 50–54 Firebase
 
@@ -104,6 +114,7 @@ Svi segmenti imaju prefiks **`NN-`** (dvocifrena enumeracija) radi reda na disku
 ## Kako naći segment na kolokvijumu
 
 1. Pogledaj broj zadatka u PDF-u → tabela **01–11** gore
-2. Ako je senzor a nije u PDF-u → **40–48**
-3. Ako traži Fragment → **[90-fragments-prirucnik](90-fragments-prirucnik/)**
-4. Ako traži Firebase → **50–54**
+2. Ako je senzor a nije u PDF-u → **41–49**
+3. Ako traži notifikacije → **37–40**
+4. Ako traži Fragment → **[90-fragments-prirucnik](90-fragments-prirucnik/)**
+5. Ako traži Firebase → **50–54**

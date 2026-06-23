@@ -144,4 +144,6 @@ Pozovi `proveriNotifikacijeDozvolu()` u `onCreate`. U `onRequestPermissionsResul
 
 ## Sledeći korak
 
-Zadatak 8: **`08-senzor-akcelerometar/`** (tekst na istom dugmetu).
+Za druge tipove notifikacija pogledaj **[37-notifikacije-pregled](../37-notifikacije-pregled/)** (osnovna, akcije, proširena).
+
+Zadatak 8: **[08-senzor-akcelerometar](../08-senzor-akcelerometar/)** (tekst na istom dugmetu).
