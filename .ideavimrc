@@ -1,0 +1,62 @@
+set clipboard=unnamedplus
+
+let mapleader = " "
+
+nnoremap <leader>ff :action GotoFile<CR>
+nnoremap <leader><space> :action GotoFile<CR>
+nnoremap <leader>sg :action FindInPath<CR>
+nnoremap <leader>ss :action GotoSymbol<CR>
+nnoremap <leader>fr :action RecentFiles<CR>
+xnoremap <leader>p \"_dP
+nnoremap <leader>cf :action ReformatCode<CR>
+nnoremap <leader>i :action ShowIntentionActions<CR>
+nnoremap <leader>nf :action NewFile<CR>
+nnoremap <leader>ne :action NewElement<CR>
+
+nnoremap [b :action PreviousTab<CR>
+nnoremap ]b :action NextTab<CR>
+nnoremap <leader>bd :action CloseContent<CR>
+nnoremap <leader>bl :action CloseAllToTheLeft<CR>
+nnoremap <leader>br :action CloseAllToTheRight<CR>
+nnoremap <leader>bo :action CloseAllEditorsButActive<CR>
+
+
+nnoremap <leader>bp :action PinActiveEditorTab<CR>
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+
+nnoremap <leader>cr :action RenameElement<CR>
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gr :action FindUsages<CR>
+nnoremap gI :action GotoImplementation<CR>
+
+nnoremap ]d :action GotoNextError<CR>
+nnoremap [d :action GotoPreviousError<CR>
+
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+
+imap <C-y> <Action>(EditorChooseLookupItem)
+
+
+nnoremap <A-k> :action MoveLineUp<CR>
+nnoremap <A-j> :action MoveLineDown<CR>
+vnoremap <A-k> :action MoveLineUp<CR>
+vnoremap <A-j> :action MoveLineDown<CR>
+
+nnoremap gcc :action CommentByLineComment<CR>
+vnoremap gc :action CommentByLineComment<CR>
+
+vnoremap > >gv
+vnoremap < <gv
+
+" IntelliJ IDEA specific
+nnoremap <leader>fc :action GotoClass<CR>
+nnoremap <leader>io :action FixImports<CR>
+
+" DataGrip specific
+nnoremap <leader>nq :action Jdbc.OpenConsole.New.Generate<CR>
+nnoremap <leader>sd :action GoToDatabase<CR>
