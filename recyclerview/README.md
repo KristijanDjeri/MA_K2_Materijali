@@ -1,43 +1,173 @@
-# RecyclerView (lista postova iz baze)
+# RecyclerView – lista postova iz baze
 
-**Slično:** Room baza + prikaz podataka (kao zadaci 5–7, ali sa listom umesto Toast-a).
+**Dodatni segment** (nije u PDF-u, ali česta varijanta).  
+**Slično:** Room baza + prikaz podataka (zadaci 5–7).
 
-**Mogući zadatak:** Prikaži sve postove iz baze u `RecyclerView`. Klik na stavku → Toast sa `title`.
+**Cilj:** Prikaži sve postove iz baze u listi. Klik na stavku → Toast sa naslovom.
 
-## Gde u projektu
+---
+
+## Preduslovi
+
+- `retrofit-room/` urađen
+- Gradle: `implementation 'androidx.recyclerview:recyclerview:1.3.2'`
+
+---
+
+## Fajlovi koje praviš
 
 | Fajl | Putanja |
 |------|---------|
-| Layout stavke | `res/layout/item_post.xml` |
-| Layout aktivnosti | `res/layout/activity_main.xml` (dodaj RecyclerView) |
-| Adapter | `.../adapter/PostAdapter.java` |
-| Logika | `MainActivity.java` |
+| `item_post.xml` | `res/layout/item_post.xml` |
+| `PostAdapter.java` | `.../adapter/PostAdapter.java` |
+| Izmene u `activity_main.xml` | dodaj RecyclerView |
+| Izmene u `MainActivity.java` | adapter + osvežavanje |
 
-## Gradle
+---
 
-U `dependencies` dodaj:
+## 1. `res/layout/item_post.xml` (ceo fajl)
 
-```gradle
-implementation 'androidx.recyclerview:recyclerview:1.3.2'
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tvTitle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    android:textSize="16sp" />
 ```
 
-## Koraci
+---
 
-1. Kreiraj `item_post.xml` sa jednim `TextView` (title)
-2. Kreiraj `PostAdapter` koji prima `List<Post>`
-3. U layout dodaj `RecyclerView` sa `android:id="@+id/recyclerView"`
-4. U `onCreate`: `recyclerView.setLayoutManager(new LinearLayoutManager(this))`
-5. Učitaj iz baze: `postDao.getAll()` → `adapter.notifyDataSetChanged()`
+## 2. U `activity_main.xml` dodaj (npr. ispod Button)
 
-## Fajlovi u folderu
+```xml
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/recyclerView"
+    android:layout_width="match_parent"
+    android:layout_height="200dp" />
+```
 
-- `item_post.xml`
-- `PostAdapter.java`
-- `RecyclerViewSegment.java`
+---
+
+## 3. `PostAdapter.java` (ceo fajl)
+
+```java
+package com.example.kolokvijum2.adapter;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.kolokvijum2.R;
+import com.example.kolokvijum2.model.Post;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
+
+    private List<Post> posts = new ArrayList<>();
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts != null ? posts : new ArrayList<>();
+        notifyDataSetChanged();
+    }
+
+    @NonNull
+    @Override
+    public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_post, parent, false);
+        return new PostViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
+        Post post = posts.get(position);
+        holder.tvTitle.setText(post.getTitle());
+        holder.itemView.setOnClickListener(v ->
+                Toast.makeText(v.getContext(), post.getTitle(), Toast.LENGTH_SHORT).show()
+        );
+    }
+
+    @Override
+    public int getItemCount() {
+        return posts.size();
+    }
+
+    static class PostViewHolder extends RecyclerView.ViewHolder {
+        TextView tvTitle;
+
+        PostViewHolder(@NonNull View itemView) {
+            super(itemView);
+            tvTitle = itemView.findViewById(R.id.tvTitle);
+        }
+    }
+}
+```
+
+---
+
+## 4. Deo u `MainActivity.java`
+
+### Importi
+
+```java
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import com.example.kolokvijum2.adapter.PostAdapter;
+import java.util.List;
+```
+
+### Polja
+
+```java
+private RecyclerView recyclerView;
+private PostAdapter postAdapter;
+```
+
+### U `onCreate`
+
+```java
+recyclerView = findViewById(R.id.recyclerView);
+postAdapter = new PostAdapter();
+recyclerView.setLayoutManager(new LinearLayoutManager(this));
+recyclerView.setAdapter(postAdapter);
+osveziListuPostova();
+```
+
+### Metoda za osvežavanje
+
+```java
+private void osveziListuPostova() {
+    List<Post> svi = postDao.getAll();
+    postAdapter.setPosts(svi);
+}
+```
+
+### Pozovi `osveziListuPostova()` posle:
+
+- `postDao.insertAll(...)` u Retrofit callback-u
+- `postDao.delete(...)` u `obrisiPrviPost()`
+
+---
+
+## Alternativa
+
+- `GridLayoutManager` umesto `LinearLayoutManager` – mreža umesto liste
+- ViewHolder sa više TextView polja (title + body)
+
+---
 
 ## Checklist
 
-- [ ] `RecyclerView` + `LinearLayoutManager`
-- [ ] ViewHolder u adapteru
-- [ ] `onBindViewHolder` postavlja title
-- [ ] Opciono: klik → Toast
+- [ ] `item_post.xml` kreiran
+- [ ] RecyclerView u layoutu
+- [ ] PostAdapter kreiran
+- [ ] Lista se osvežava posle insert/delete

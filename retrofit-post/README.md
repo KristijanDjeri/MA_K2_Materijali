@@ -1,35 +1,90 @@
 # Retrofit POST zahtev
 
-**Slično:** Retrofit GET + Room (zadatak 5), ali slanje podataka na server.
+**Dodatni segment.** **Slično:** Retrofit GET (zadatak 5).
 
-**Mogući zadatak:** Dugme šalje novi post na API (`POST`) ili mock endpoint prihvata JSON telo.
+**Cilj:** Pošalji novi post na server metodom POST.
 
-## Gde u projektu
+---
 
-| Fajl | Putanja |
-|------|---------|
-| API interfejs | `JsonPlaceholderApi.java` |
-| Poziv | `MainActivity.java` |
+## 1. U `JsonPlaceholderApi.java` dodaj metodu
 
-## Koraci
+```java
+import retrofit2.http.Body;
+import retrofit2.http.POST;
 
-1. U interfejs dodaj `@POST` metodu
-2. Telo zahteva: `@Body Post post`
-3. `RetrofitClient.getApi().createPost(post).enqueue(...)`
+@POST("posts")
+Call<Post> createPost(@Body Post post);
+```
 
-## Napomena
+> **Napomena:** Za test često koriste `https://jsonplaceholder.typicode.com/` kao base URL. Za kolokvijum mock možda ne čuva POST – dovoljan je Toast "Poslato" u `onResponse`.
 
-Mock server možda ne čuva POST – dovoljno je da u `onResponse` prikažeš Toast "Poslato".  
-Za test možeš koristiti `https://jsonplaceholder.typicode.com/posts` (često na vežbama).
+---
 
-## Fajlovi
+## 2. (Opciono) Drugi RetrofitClient za test
 
-- `JsonPlaceholderApiPost.java` – POST metoda
-- `RetrofitPostSegment.java`
+```java
+private static final String BASE_URL = "https://jsonplaceholder.typicode.com/";
+```
+
+**Alternativa:** Zadrži isti client – zavisi šta profesor da na času.
+
+---
+
+## 3. U `MainActivity.java`
+
+### Importi (već imaš iz switch-postovi)
+
+```java
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+```
+
+### Metoda
+
+```java
+private void posaljiPostNaServer() {
+    Post novi = new Post(0, "Naslov sa uređaja", "Tekst posta", 1);
+
+    RetrofitClient.getApi().createPost(novi).enqueue(new Callback<Post>() {
+        @Override
+        public void onResponse(Call<Post> call, Response<Post> response) {
+            if (response.isSuccessful()) {
+                Toast.makeText(MainActivity.this, "POST uspešan", Toast.LENGTH_SHORT).show();
+                if (response.body() != null) {
+                    postDao.insert(response.body());
+                }
+            }
+        }
+
+        @Override
+        public void onFailure(Call<Post> call, Throwable t) {
+            Toast.makeText(MainActivity.this, "POST greška", Toast.LENGTH_SHORT).show();
+        }
+    });
+}
+```
+
+### Poziv (npr. dugi klik na button)
+
+```java
+button.setOnLongClickListener(v -> {
+    posaljiPostNaServer();
+    return true;
+});
+```
+
+---
+
+## Alternativa
+
+- `@FormUrlEncoded` + `@Field` – slanje forme umesto JSON
+- OkHttp bez Retrofit-a → folder `okhttp-json/`
+
+---
 
 ## Checklist
 
-- [ ] `@POST` anotacija
-- [ ] `@Body` parametar
-- [ ] `enqueue` callback
-- [ ] Toast uspeh/greška
+- [ ] `@POST` u interfejsu
+- [ ] `@Body Post post`
+- [ ] `enqueue` sa callback-om

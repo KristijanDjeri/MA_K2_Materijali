@@ -1,35 +1,85 @@
-# Interni fajl (čuvanje teksta/slike)
+# Interni fajl – čuvanje teksta
 
-**Slično:** SharedPreferences (zadatak 9), ali za veći sadržaj ili fajl na disku.
+**Dodatni segment.** **Slično:** SharedPreferences (zadatak 9).
 
-**Mogući zadatak:** Sačuvaj sadržaj TextView u interni fajl `podaci.txt`. Pri pokretanju učitaj.
+**Cilj:** Sačuvaj tekst u fajl `podaci.txt` u internom skladištu aplikacije.
 
-## Gde u projektu
+---
 
-| Šta | Putanja |
-|-----|---------|
-| Čitanje/pisanje | `MainActivity.java` |
-| Fajl | `getFilesDir()/podaci.txt` (privatno za app) |
+## Kompletan kod za `MainActivity.java`
 
-## API
+### Importi
 
-- `openFileOutput("podaci.txt", MODE_PRIVATE)` – pisanje
-- `openFileInput("podaci.txt")` – čitanje
-- `FileOutputStream` / `BufferedReader`
+```java
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+```
 
-## Fajlovi
+### Čuvanje
 
-- `InterniFajlSegment.java`
+```java
+private void sacuvajUTxtFajl(String tekst) {
+    try (FileOutputStream fos = openFileOutput("podaci.txt", MODE_PRIVATE)) {
+        fos.write(tekst.getBytes(StandardCharsets.UTF_8));
+        Toast.makeText(this, "Sačuvano u fajl", Toast.LENGTH_SHORT).show();
+    } catch (Exception e) {
+        Toast.makeText(this, "Greška pisanja", Toast.LENGTH_SHORT).show();
+    }
+}
+```
+
+### Čitanje
+
+```java
+private String ucitajIzTxtFajla() {
+    StringBuilder sb = new StringBuilder();
+    try (FileInputStream fis = openFileInput("podaci.txt");
+         BufferedReader reader = new BufferedReader(
+                 new InputStreamReader(fis, StandardCharsets.UTF_8))) {
+        String linija;
+        while ((linija = reader.readLine()) != null) {
+            sb.append(linija);
+        }
+    } catch (Exception e) {
+        return "";
+    }
+    return sb.toString();
+}
+```
+
+### Primer poziva (umesto ili pored SharedPreferences)
+
+```java
+private void obradiSwitchOff() {
+    String tekst = textView.getText().toString();
+    prefs.edit().putString("tekst", tekst).apply();
+    sacuvajUTxtFajl(tekst);
+    postaviImePrvogKontakta();
+}
+```
+
+### Učitavanje pri startu (opciono)
+
+```java
+String izFajla = ucitajIzTxtFajla();
+if (!izFajla.isEmpty()) {
+    // pažnja: lokacija može pregaziti ovaj tekst
+}
+```
+
+---
+
+## Alternativa
+
+- `getExternalFilesDir(null)` – eksterni storage, i dalje privatno za app
+- SharedPreferences – jednostavnije za mali tekst
+
+---
 
 ## Checklist
 
-- [ ] `openFileOutput` + `write`
-- [ ] `openFileInput` + čitanje linija
-- [ ] Nema posebne dozvole (interni storage)
-
-## Razlika od SharedPreferences
-
-| SharedPreferences | Interni fajl |
-|-------------------|--------------|
-| ključ-vrednost | proizvoljan tekst/binarno |
-| mali podaci | veći sadržaj |
+- [ ] `openFileOutput` / `openFileInput`
+- [ ] Nema posebne Manifest dozvole za interni fajl

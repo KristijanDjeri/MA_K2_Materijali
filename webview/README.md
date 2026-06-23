@@ -1,39 +1,72 @@
-# WebView
+# WebView – prikaz web stranice
 
-**Slično:** Retrofit (internet sadržaj), ali prikaz stranice u aplikaciji.
+**Dodatni segment.** **Slično:** internet sadržaj kao Retrofit.
 
-**Mogući zadatak:** `WebView` učitava URL sajta ili API dokumentaciju.
+**Cilj:** Učitaj URL u `WebView` unutar aplikacije.
 
-## Gde u projektu
+---
 
-| Šta | Putanja |
-|-----|---------|
-| Layout | `activity_main.xml` ili poseban layout |
-| Kod | `MainActivity.java` |
-| Manifest | `android:usesCleartextTraffic="true"` samo ako je HTTP (ne HTTPS) |
+## 1. U `activity_main.xml` dodaj
 
-## Koraci
+```xml
+<WebView
+    android:id="@+id/webView"
+    android:layout_width="match_parent"
+    android:layout_height="300dp" />
+```
 
-1. U layout dodaj `WebView` sa `id/webView`
-2. `WebSettings.setJavaScriptEnabled(true)` – samo ako treba JS
-3. `webView.loadUrl("https://...")`
+---
 
-## Fajlovi
+## 2. U `MainActivity.java` (ceo deo)
 
-- `WebViewSegment.java`
-- `webview_layout_snippet.xml`
+### Importi
+
+```java
+import android.webkit.WebView;
+import android.webkit.WebSettings;
+```
+
+### U `onCreate`
+
+```java
+WebView webView = findViewById(R.id.webView);
+WebSettings settings = webView.getSettings();
+settings.setJavaScriptEnabled(true);
+webView.loadUrl("https://dummy-json.mock.beeceptor.com/posts");
+```
+
+> **Napomena:** `setJavaScriptEnabled(true)` nije uvek obavezno – stavi ako stranica ne radi bez JS.
+
+---
+
+## Alternativa: otvori u spoljašnjem browseru
+
+```java
+import android.content.Intent;
+import android.net.Uri;
+
+Intent browser = new Intent(Intent.ACTION_VIEW, Uri.parse("https://example.com"));
+startActivity(browser);
+```
+
+Ne treba WebView u layoutu.
+
+---
+
+## HTTP (ne HTTPS) stranice
+
+U `AndroidManifest.xml` unutar `<application>`:
+
+```xml
+android:usesCleartextTraffic="true"
+```
+
+> Samo ako učitavaš `http://` URL. Za kolokvijum preferiraj HTTPS.
+
+---
 
 ## Checklist
 
 - [ ] `INTERNET` dozvola (već u manifestu)
-- [ ] `findViewById(R.id.webView)`
-- [ ] `loadUrl(url)`
-
-## Napomena
-
-Za otvaranje linka u **spoljašnjem browseru** koristi implicitni Intent:
-
-```java
-Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-startActivity(i);
-```
+- [ ] WebView u layoutu
+- [ ] `loadUrl(...)` pozvan

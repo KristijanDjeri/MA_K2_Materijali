@@ -1,33 +1,109 @@
-# Poziv telefona / broj iz kontakta
+# Poziv telefona – broj iz kontakta
 
-**Slično:** Kontakti (zadatak 9) – ContentProvider + runtime dozvole.
+**Dodatni segment.** **Slično:** čitanje kontakata (zadatak 9).
 
-**Mogući zadatak:** Pročitaj broj prvog kontakta i pozovi ga (`ACTION_CALL` ili `ACTION_DIAL`).
+**Cilj:** Uzmi broj prvog kontakta i otvori dialer ili pozovi.
 
-## Gde u projektu
+---
 
-| Šta | Putanja |
-|-----|---------|
-| Čitanje broja | `MainActivity.java` |
-| Dozvole | `CALL_PHONE` (za direktan poziv) |
-
-## Manifest
+## Manifest (samo za direktan poziv)
 
 ```xml
 <uses-permission android:name="android.permission.CALL_PHONE" />
 ```
 
-## Bezbednija varijanta
+> Za `ACTION_DIAL` (samo otvara tastaturu) **ne treba** `CALL_PHONE`.
 
-`Intent.ACTION_DIAL` – otvara tastaturu telefona **bez** `CALL_PHONE` dozvole.
+---
 
-## Fajlovi
+## Kompletan kod za `MainActivity.java`
 
-- `PozivSegment.java`
+### Importi
+
+```java
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.ContactsContract;
+```
+
+### Konstanta (samo za CALL)
+
+```java
+private static final int REQ_CALL = 104;
+```
+
+### Čitanje broja prvog kontakta
+
+```java
+private String uzmiBrojPrvogKontakta() {
+    Cursor cursor = getContentResolver().query(
+            ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+            new String[]{ContactsContract.CommonDataKinds.Phone.NUMBER},
+            null, null,
+            ContactsContract.CommonDataKinds.Phone._ID + " ASC LIMIT 1"
+    );
+    if (cursor != null && cursor.moveToFirst()) {
+        String broj = cursor.getString(0);
+        cursor.close();
+        return broj;
+    }
+    if (cursor != null) cursor.close();
+    return null;
+}
+```
+
+### Varijanta A: Dialer (bez CALL dozvole) – preporučeno
+
+```java
+private void otvoriDialerSaPrvimKontaktom() {
+    String broj = uzmiBrojPrvogKontakta();
+    if (broj == null) {
+        Toast.makeText(this, "Nema broja", Toast.LENGTH_SHORT).show();
+        return;
+    }
+    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + broj));
+    startActivity(intent);
+}
+```
+
+### Varijanta B: Direktan poziv (zahteva CALL_PHONE)
+
+```java
+private void pozoviPrviKontakt() {
+    if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
+            != PackageManager.PERMISSION_GRANTED) {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.CALL_PHONE}, REQ_CALL);
+        return;
+    }
+    String broj = uzmiBrojPrvogKontakta();
+    if (broj != null) {
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + broj));
+        startActivity(intent);
+    }
+}
+```
+
+### U `onRequestPermissionsResult`
+
+```java
+} else if (requestCode == REQ_CALL) {
+    pozoviPrviKontakt();
+}
+```
+
+---
+
+## Alternativa
+
+- Prikaz imena + broja u TextView umesto poziva
+- `READ_CONTACTS` i dalje treba za query – već imaš iz zadatka 9
+
+---
 
 ## Checklist
 
-- [ ] Query `ContactsContract.CommonDataKinds.Phone`
-- [ ] `Intent.ACTION_DIAL` ili `ACTION_CALL`
-- [ ] `Uri.parse("tel:" + broj)`
-- [ ] Runtime dozvola za `CALL_PHONE` ako koristiš CALL
+- [ ] Query na Phone.CONTENT_URI
+- [ ] `tel:` URI u Intent-u
+- [ ] CALL_PHONE samo ako koristiš ACTION_CALL

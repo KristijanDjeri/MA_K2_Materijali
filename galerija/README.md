@@ -1,18 +1,12 @@
-# Galerija – izbor slike (umesto kamere)
+# Galerija – izbor slike iz galerije
 
-**Slično:** `kamera/` – isti `ActivityResultLauncher` obrazac, druga dozvola/intent.
+**Dodatni segment.** **Slično:** `kamera/` (ActivityResult + dozvola + ImageView).
 
-**Mogući zadatak:** Dugme otvara galeriju, izabrana slika u `ImageView`.
+**Cilj:** Korisnik bira sliku iz galerije umesto da slika kamerom.
 
-## Gde u projektu
+---
 
-| Šta | Putanja |
-|-----|---------|
-| Logika | `MainActivity.java` |
-| Dozvola (API 33+) | `READ_MEDIA_IMAGES` |
-| Dozvola (API 28–32) | `READ_EXTERNAL_STORAGE` |
-
-## Manifest
+## Manifest – dodaj u `<manifest>` (pored ostalih dozvola)
 
 ```xml
 <!-- Android 13+ -->
@@ -22,19 +16,98 @@
     android:maxSdkVersion="32" />
 ```
 
-## Fajlovi
+---
 
-- `GalerijaSegment.java`
+## Kompletan kod za `MainActivity.java`
 
-## Razlika od kamere
+### 1. Importi
 
-| Kamera | Galerija |
-|--------|----------|
-| `TakePicturePreview()` | `GetContent()` ili `PickVisualMedia()` |
-| `CAMERA` dozvola | `READ_MEDIA_IMAGES` / storage |
+```java
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+```
+
+### 2. Konstanta i launcher
+
+```java
+private static final int REQ_GALLERY = 103;
+
+private final ActivityResultLauncher<String> pickImageLauncher =
+        registerForActivityResult(new ActivityResultContracts.GetContent(), uri -> {
+            if (uri != null) {
+                imageView.setImageURI(uri);
+                prikaziZiroskopToast(); // opciono, iz ziroskop/
+            }
+        });
+```
+
+### 3. Pokretanje (npr. dugi klik na imageButton ili posebno dugme)
+
+```java
+// Primer: dugi klik na kameru otvara galeriju
+imageButton.setOnLongClickListener(v -> {
+    otvoriGaleriju();
+    return true;
+});
+```
+
+### 4. Metode za dozvolu i otvaranje
+
+```java
+private void otvoriGaleriju() {
+    if (!imaDozvoluZaGaleriju()) {
+        traziDozvoluZaGaleriju();
+        return;
+    }
+    pickImageLauncher.launch("image/*");
+}
+
+private boolean imaDozvoluZaGaleriju() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        return ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES)
+                == PackageManager.PERMISSION_GRANTED;
+    }
+    return ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+            == PackageManager.PERMISSION_GRANTED;
+}
+
+private void traziDozvoluZaGaleriju() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.READ_MEDIA_IMAGES}, REQ_GALLERY);
+    } else {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQ_GALLERY);
+    }
+}
+```
+
+### 5. U `onRequestPermissionsResult`
+
+```java
+} else if (requestCode == REQ_GALLERY) {
+    pickImageLauncher.launch("image/*");
+}
+```
+
+---
+
+## Alternativa
+
+- `PickVisualMedia()` umesto `GetContent()` – noviji API za slike
+- `setImageBitmap` umesto `setImageURI` – ako konvertuješ URI u Bitmap
+
+---
 
 ## Checklist
 
-- [ ] `registerForActivityResult(GetContent(), ...)`
-- [ ] `launcher.launch("image/*")`
-- [ ] `imageView.setImageURI(uri)`
+- [ ] Dozvole u Manifest-u
+- [ ] `pickImageLauncher` registrovan
+- [ ] `launch("image/*")` otvara galeriju
+- [ ] Slika u ImageView

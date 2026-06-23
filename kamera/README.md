@@ -1,37 +1,129 @@
 # Kamera (zadatak 4 – deo 1)
 
-**Cilj:** Klik na `ImageButton` → pokrene kameru → snimljena slika u `ImageView`.
+**Cilj:** Klik na `ImageButton` → otvori kameru → snimljena slika se prikaže u `ImageView`.
 
-## Gde u projektu
+---
 
-| Šta | Putanja |
-|-----|---------|
-| Logika | `MainActivity.java` |
-| Dozvola | `CAMERA` u `AndroidManifest.xml` |
+## Šta ti treba pre ovoga
 
-## Kako napraviti
+- `osnovni-projekat/` – layout sa `imageButton` i `imageView`
+- Dozvola `CAMERA` u Manifest-u
 
-### 1. Activity Result (preporučeno, API 28+)
+---
 
-Koristi `ActivityResultContracts.TakePicturePreview()` – vraća `Bitmap` direktno, bez FileProvider-a (dovoljno za kolokvijum).
+## Koji fajlovi se menjaju
 
-### 2. Alternativa – pun rezolucija
+| Fajl | Šta radiš |
+|------|-----------|
+| `MainActivity.java` | ActivityResultLauncher, listener na dugme, dozvola |
 
-`TakePicture()` + `FileProvider` – složenije; za zadatak je dovoljna **preview** verzija.
+---
 
-### 3. Runtime dozvola
+## Kompletan kod za `MainActivity.java` (deo za kameru)
 
-Pre pokretanja kamere traži `Manifest.permission.CAMERA`.
+### 1. Importi
 
-## Fajlovi
+```java
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+```
 
-- `KameraSegment.java` – launcher, listener, dozvola
+### 2. Konstanta i polja
 
-## Povezivanje sa žiroskopom
+```java
+private static final int REQ_CAMERA = 101;
 
-Kada se slika **zameni** u ImageView, pozovi `prikaziZiroskopToast()` iz foldera `ziroskop/`.
+// imageButton i imageView već imaš iz osnovnog projekta
+
+private final ActivityResultLauncher<Void> takePictureLauncher =
+        registerForActivityResult(new ActivityResultContracts.TakePicturePreview(), bitmap -> {
+            if (bitmap != null) {
+                imageView.setImageBitmap(bitmap);
+                prikaziZiroskopToast(); // metoda iz foldera ziroskop/
+            }
+        });
+```
+
+> **Napomena:** `prikaziZiroskopToast()` dodaješ kad uradiš folder `ziroskop/`. Do tada možeš staviti običan Toast ili zakomentarisati tu liniju.
+
+### 3. U `onCreate`, posle `findViewById`
+
+```java
+imageButton.setOnClickListener(v -> pokreniKameru());
+```
+
+### 4. Metoda za pokretanje kamere
+
+```java
+private void pokreniKameru() {
+    if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+            != PackageManager.PERMISSION_GRANTED) {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.CAMERA},
+                REQ_CAMERA);
+        return;
+    }
+    takePictureLauncher.launch(null);
+}
+```
+
+### 5. U `onRequestPermissionsResult` dodaj granu za kameru
+
+Ako već imaš metodu za lokaciju, proširi je ovako:
+
+```java
+@Override
+public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    if (grantResults.length == 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+        return;
+    }
+    if (requestCode == REQ_LOCATION) {
+        ucitajLokaciju();
+    } else if (requestCode == REQ_CAMERA) {
+        takePictureLauncher.launch(null);
+    }
+}
+```
+
+---
+
+## Šta radi svaka linija (ukratko)
+
+| Linija | Značenje |
+|--------|----------|
+| `TakePicturePreview()` | Otvara kameru i vraća **Bitmap** (manja slika, dovoljno za kolokvijum) |
+| `registerForActivityResult(...)` | Moderni način umesto starog `onActivityResult` |
+| `takePictureLauncher.launch(null)` | Pokreće kameru |
+| `imageView.setImageBitmap(bitmap)` | Prikazuje sliku u ImageView |
+
+---
+
+## Alternativne implementacije
+
+| Ovaj primer | Alternativa |
+|-------------|-------------|
+| `TakePicturePreview()` – brzo, bez fajla | `TakePicture()` + `FileProvider` – puna rezolucija, više koda |
+| Bitmap u ImageView | `setImageURI(uri)` – ako čuvaš sliku u fajl |
+| Kamera | Galerija – folder `galerija/` |
+
+---
 
 ## Checklist
 
-- [ ] `imageButton.setOnClickListener` → provera dozvole → `takePictureLauncher.launch(null)`
-- [ ] U callback-u: `imageView.setImageBitmap(bitmap)` + Toast žiroskopa
+- [ ] `REQ_CAMERA` konstanta
+- [ ] `takePictureLauncher` registrovan
+- [ ] Klik na `imageButton` poziva `pokreniKameru()`
+- [ ] Runtime dozvola za kameru
+- [ ] Slika se vidi u `imageView`
+
+---
+
+## Sledeći korak
+
+Folder **`ziroskop/`** – Toast sa X, Y, Z posle svake nove slike.

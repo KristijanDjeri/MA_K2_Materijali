@@ -1,42 +1,137 @@
 # Geolokacija (zadatak 3)
 
-**Cilj:** U `TextView` prikazati geografsku širinu i dužinu uređaja.
+**Cilj:** U `TextView` prikaži geografsku **širinu** i **dužinu** uređaja.
 
-## Gde u projektu
+---
 
-| Šta | Putanja |
-|-----|---------|
-| Kod u aktivnosti | `MainActivity.java` |
-| Dozvole | `AndroidManifest.xml` (već u `osnovni-projekat/`) |
+## Šta ti treba pre ovoga
 
-## Kako napraviti
+- Završen folder `osnovni-projekat/`
+- Dozvole `ACCESS_FINE_LOCATION` i `ACCESS_COARSE_LOCATION` u Manifest-u
+- Gradle zavisnost `play-services-location`
 
-### 1. Dozvole u manifestu
+---
 
-Već dodato: `ACCESS_FINE_LOCATION`, `ACCESS_COARSE_LOCATION`.
+## Koji fajlovi se menjaju
 
-### 2. Runtime dozvola (Android 6+)
+| Fajl | Šta radiš |
+|------|-----------|
+| `MainActivity.java` | Dodaješ importe, polja, metode za lokaciju |
 
-Pre čitanja lokacije pozovi `requestPermissions` – primer u `GeoLokacijaSegment.java`.
+**Ne praviš novi fajl** – sve ide u postojeći `MainActivity`.
 
-### 3. Fused Location Provider
+---
 
-1. Zavisnost: `play-services-location` (u `gradle-zavisnosti.txt`)
-2. U `onCreate` pozovi `pokreniLokaciju()` iz segmenta
-3. Rezultat ide u `textView.setText("Širina: " + lat + ", Dužina: " + lon)`
+## Kompletan kod za `MainActivity.java` (deo za geolokaciju)
 
-## Fajlovi
+### 1. Importi (na vrh fajla, pored ostalih importa)
 
-- `GeoLokacijaSegment.java` – kopiraj metode u `MainActivity`
+```java
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+```
 
-## Na kolokvijumu – brzi checklist
+### 2. Konstanta i polja (unutar klase, iznad `onCreate`)
 
-- [ ] Dozvole u manifestu
-- [ ] `requestPermissions` za lokaciju
-- [ ] `FusedLocationProviderClient` + `getLastLocation()` ili `requestLocationUpdates`
-- [ ] Format: `"Širina: X, Dužina: Y"` u TextView
+```java
+private static final int REQ_LOCATION = 100;
 
-## Napomena
+private FusedLocationProviderClient fusedLocationClient;
+// textView već imaš iz osnovnog projekta
+```
 
-Na emulatoru: **Extended Controls → Location** da postaviš koordinate.  
-Na uređaju mora biti uključen GPS.
+### 3. U `onCreate`, posle `findViewById` linija
+
+```java
+fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+pokreniLokaciju();
+```
+
+### 4. Metode (dodaj na dno klase, pre zatvarajuće `}`)
+
+```java
+private void pokreniLokaciju() {
+    if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED) {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                REQ_LOCATION);
+        return;
+    }
+    ucitajLokaciju();
+}
+
+private void ucitajLokaciju() {
+    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED) {
+        return;
+    }
+    fusedLocationClient.getLastLocation()
+            .addOnSuccessListener(this, location -> {
+                if (location != null) {
+                    double lat = location.getLatitude();
+                    double lon = location.getLongitude();
+                    textView.setText("Širina: " + lat + ", Dužina: " + lon);
+                } else {
+                    textView.setText("Lokacija nije dostupna");
+                }
+            });
+}
+```
+
+### 5. Obrada dozvole (dodaj metodu u klasu)
+
+```java
+@Override
+public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    if (requestCode == REQ_LOCATION
+            && grantResults.length > 0
+            && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        ucitajLokaciju();
+    }
+}
+```
+
+> **Napomena:** Kasnije ćeš u istu `onRequestPermissionsResult` dodavati i `REQ_CAMERA`, `REQ_CONTACTS` itd. – koristi `switch` ili više `if` grananja.
+
+---
+
+## Kako testirati
+
+1. Pokreni aplikaciju na emulatoru ili telefonu
+2. Kad traži dozvolu za lokaciju → klikni **Allow**
+3. U TextView treba da piše npr. `Širina: 44.81..., Dužina: 20.46...`
+
+**Na emulatoru:** klikni `...` pored emulatora → **Location** → unesi koordinate → **Set Location**.
+
+---
+
+## Alternativne implementacije
+
+| Ovaj primer | Alternativa |
+|-------------|-------------|
+| `getLastLocation()` – jednokratno | `requestLocationUpdates()` – lokacija uživo → pogledaj folder `lokacija-realtime/` |
+| Samo `ACCESS_FINE_LOCATION` | Možeš tražiti i `ACCESS_COARSE_LOCATION` |
+| Fused Location Provider | Stariji `LocationManager` – ne preporučujem, ali profesor može pomenuti |
+
+---
+
+## Checklist
+
+- [ ] Importi dodati
+- [ ] `fusedLocationClient` inicijalizovan u `onCreate`
+- [ ] `pokreniLokaciju()` pozvan u `onCreate`
+- [ ] `onRequestPermissionsResult` postoji
+- [ ] TextView prikazuje širinu i dužinu
+
+---
+
+## Sledeći korak
+
+Folder **`kamera/`** za zadatak 4.
