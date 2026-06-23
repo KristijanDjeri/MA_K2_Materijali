@@ -55,6 +55,13 @@
 | Notifikacije (osnovna, akcije…) | `37-notifikacije-pregled/` |
 | Audio snimanje | `36-audio-recorder/` |
 | Shake / tresenje | `49-senzor-shake/` |
+| AlertDialog / Room UPDATE | `17-alert-dialog/`, `18-room-update/` |
+| Fragment primer | `19-fragment-primer/` |
+| CheckBox / RadioButton | `55-checkbox-radiobutton/` |
+| Share, SMS, email | `56-implicit-intent/` |
+| Toolbar / meni | `57-toolbar-options-menu/` |
+| Mape (OSM / Google) | `58-maps-google-osm/` |
+| FileProvider + kamera | `59-file-provider/` |
 | Firebase oblak | `50-firebase/` → `51-firebase-setup/` |
 | **Fragmenti** | `90-fragments-prirucnik/` |
 | Mapa foldera | `KONVENCIJA-FOLDERA.md` |

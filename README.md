@@ -33,6 +33,19 @@ Segmenti su **razdvojeni** da svaki radi samostalno. PDF zadaci 5–9 imaju viš
 | [15-main-activity-referenca](15-main-activity-referenca/) | Sve spojeno u jednom fajlu |
 | [16-spajanje-zadataka](16-spajanje-zadataka/) | Kako spojiti segmente za ispit |
 
+### Proširenje (17–19, 55–59)
+
+| Folder | Šta pokriva |
+|--------|-------------|
+| [17-alert-dialog](17-alert-dialog/) | AlertDialog – potvrda, poruke |
+| [18-room-update](18-room-update/) | Room UPDATE |
+| [19-fragment-primer](19-fragment-primer/) | Gotov Fragment primer |
+| [55-checkbox-radiobutton](55-checkbox-radiobutton/) | CheckBox, RadioButton |
+| [56-implicit-intent](56-implicit-intent/) | Share, SMS, email, URL |
+| [57-toolbar-options-menu](57-toolbar-options-menu/) | Toolbar / meni |
+| [58-maps-google-osm](58-maps-google-osm/) | Google Maps + OSM |
+| [59-file-provider](59-file-provider/) | FileProvider, kamera u fajl |
+
 ## Dodatno (20–54) i priručnici (90, 99)
 
 Puna tabela: **[KONVENCIJA-FOLDERA.md](KONVENCIJA-FOLDERA.md)**  

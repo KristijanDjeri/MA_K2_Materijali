@@ -43,6 +43,14 @@ Segmenti su **razdvojeni** – svaki radi samostalno. Spajanje: [16-spajanje-zad
 | [15-main-activity-referenca](15-main-activity-referenca/) | MainActivity referenca | sve |
 | [16-spajanje-zadataka](16-spajanje-zadataka/) | Kako spojiti segmente | — |
 
+### 17–19 Proširenje zvaničnih tema
+
+| Folder | Naziv |
+|--------|-------|
+| [17-alert-dialog](17-alert-dialog/) | AlertDialog |
+| [18-room-update](18-room-update/) | Room UPDATE |
+| [19-fragment-primer](19-fragment-primer/) | Fragment – gotov primer |
+
 ### 20–36 Dodatni segmenti (UI, mreža, storage…)
 
 | Folder | Naziv |
@@ -98,6 +106,16 @@ Segmenti su **razdvojeni** – svaki radi samostalno. Spajanje: [16-spajanje-zad
 | [53-firebase-firestore](53-firebase-firestore/) | Firestore |
 | [54-firebase-fcm](54-firebase-fcm/) | FCM notifikacije |
 
+### 55–59 UI, navigacija, mape, fajlovi
+
+| Folder | Naziv |
+|--------|-------|
+| [55-checkbox-radiobutton](55-checkbox-radiobutton/) | CheckBox i RadioButton |
+| [56-implicit-intent](56-implicit-intent/) | Implicit Intent (share, SMS, email, URL) |
+| [57-toolbar-options-menu](57-toolbar-options-menu/) | Toolbar / Options Menu |
+| [58-maps-google-osm](58-maps-google-osm/) | Google Maps i OpenStreetMap |
+| [59-file-provider](59-file-provider/) | FileProvider + kamera u fajl |
+
 ### 90–99 Posebno
 
 | Folder | Naziv |
@@ -125,3 +143,4 @@ Segmenti su **razdvojeni** – svaki radi samostalno. Spajanje: [16-spajanje-zad
 3. Ako traži notifikacije → **37–40**
 4. Ako traži Fragment → **[90-fragments-prirucnik](90-fragments-prirucnik/)**
 5. Ako traži Firebase → **50–54**
+6. Ako traži CheckBox, meni, mape, FileProvider → **55–59**

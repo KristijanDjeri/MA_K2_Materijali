@@ -1,0 +1,7 @@
+// Gradle – maps (folder 58-maps-google-osm/)
+
+// OpenStreetMap (bez API ključa – preporučeno za vežbu)
+implementation 'org.osmdroid:osmdroid-android:6.1.18'
+
+// Google Maps (potreban API ključ u Manifest-u)
+implementation 'com.google.android.gms:play-services-maps:18.2.0'
