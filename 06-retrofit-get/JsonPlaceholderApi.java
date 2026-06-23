@@ -13,7 +13,7 @@ public interface JsonPlaceholderApi {
     @GET("posts")
     Call<List<Post>> getPosts();
 
-    // URL sa kolokvijum PDF-a (može preusmeriti na HTML – vidi 05-retrofit-room/README.md):
+    // URL sa kolokvijum PDF-a (Beeceptor) – vidi RetrofitClientAlternativa.java:
     // baseUrl: https://app.beeceptor.com/
     // @GET("mock-server/dummy-json")
 }

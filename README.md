@@ -54,8 +54,10 @@ Notifikacije: **37–40** · Verovatnoća tema: **[DODATNI-SEGMENTI.md](DODATNI-
 Radni endpoint u `06-retrofit-get/`:
 
 ```
-GET https://dummy-json.mock.beeceptor.com/posts
+GET https://jsonplaceholder.typicode.com/posts
 ```
+
+Alternativa (mock kolokvijum): `https://dummy-json.mock.beeceptor.com/posts`
 
 URL iz PDF-a može vratiti HTML – proveri na početku ispita.
 

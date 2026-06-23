@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    private static final String BASE_URL = "https://dummy-json.mock.beeceptor.com/";
+    private static final String BASE_URL = "https://jsonplaceholder.typicode.com/";
     private static Retrofit retrofit;
 
     public static JsonPlaceholderApi getApi() {

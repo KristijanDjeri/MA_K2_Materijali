@@ -4,8 +4,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Alternativa ako URL sa kolokvijuma ne vrati JSON.
- * U JsonPlaceholderApi stavi: @GET("posts")
+ * Alternativa: mock sa kolokvijuma (Beeceptor).
+ * U JsonPlaceholderApi ostaje: @GET("posts")
+ * Ako dobiješ "Unable to resolve host" na emulatoru, koristi glavni RetrofitClient (typicode).
  */
 public class RetrofitClientAlternativa {
 

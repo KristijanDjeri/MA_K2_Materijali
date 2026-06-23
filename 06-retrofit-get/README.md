@@ -4,8 +4,9 @@
 
 Ovaj segment radi **samostalno** – ne upisuje u Room. Samo proverava mrežu (npr. Toast sa brojem postova).
 
-> **Testirano (jun 2026):** URL iz PDF-a vraća **HTML**. Radni endpoint:  
-> `https://dummy-json.mock.beeceptor.com/posts`
+> **Podrazumevani URL (jun 2026):** `https://jsonplaceholder.typicode.com/posts`  
+> Isti format JSON-a (`id`, `title`, `body`, `userId`) – pouzdaniji na emulatoru.  
+> Beeceptor mock (iz PDF-a): `RetrofitClientAlternativa.java` → `dummy-json.mock.beeceptor.com`
 
 ---
 
@@ -23,7 +24,7 @@ Ovaj segment radi **samostalno** – ne upisuje u Room. Samo proverava mrežu (n
 | JsonPlaceholderApi.java | `.../api/JsonPlaceholderApi.java` |
 | RetrofitClient.java | `.../api/RetrofitClient.java` |
 
-Gotovi fajlovi u ovom folderu. Za radni URL koristi **`JsonPlaceholderApi-alternativa.java`** i **`RetrofitClientAlternativa.java`** (preimenuj u glavna imena).
+Gotovi fajlovi u ovom folderu. **Beeceptor** (mock sa ispita) je u `RetrofitClientAlternativa.java`.
 
 ---
 
@@ -58,7 +59,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    private static final String BASE_URL = "https://dummy-json.mock.beeceptor.com/";
+    private static final String BASE_URL = "https://jsonplaceholder.typicode.com/";
     private static Retrofit retrofit;
 
     public static JsonPlaceholderApi getApi() {
@@ -73,7 +74,25 @@ public class RetrofitClient {
 }
 ```
 
-> Za URL iz PDF-a koristi `https://app.beeceptor.com/` i `@GET("mock-server/dummy-json")` – proveri na ispitu da li radi.
+> Za URL sa kolokvijuma (Beeceptor): zameni sa `RetrofitClientAlternativa.java` ili `https://app.beeceptor.com/` + `@GET("mock-server/dummy-json")` – proveri na ispitu.
+
+---
+
+## Greška: „Unable to resolve host …“
+
+Poruka znači da **telefon/emulator ne može da pronađe server** (DNS/mreža), ne da je Retrofit pogrešno podešen.
+
+**Proveri redom:**
+
+1. **INTERNET dozvola** u `AndroidManifest.xml`:
+   ```xml
+   <uses-permission android:name="android.permission.INTERNET" />
+   ```
+2. **Internet na emulatoru** – otvori Chrome na emulatoru i učitaj bilo koji sajt.
+3. **Koristi podrazumevani URL** iz ovog foldera (`jsonplaceholder.typicode.com`) – često radi kad Beeceptor ne prolazi DNS na emulatoru.
+4. **Emulator:** Device Manager → ⋮ na emulatoru → **Cold Boot** ili **Wipe Data**.
+5. **Fizički telefon** – uključen Wi‑Fi/mobilni; VPN/firewall ponekad blokira mock domene.
+6. Na **kolokvijumu** – ako profesor da drugi URL, zameni samo `BASE_URL` i `@GET(...)` u API interfejsu.
 
 ---
 
