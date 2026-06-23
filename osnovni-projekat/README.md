@@ -155,8 +155,11 @@ Unutar `<manifest ...>` taga, **iznad** `<application ...>`, dodaj:
 <uses-permission android:name="android.permission.READ_CONTACTS" />
 <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 <uses-permission android:name="android.permission.VIBRATE" />
+<uses-permission android:name="android.permission.RECORD_AUDIO" />
+<uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
 
 <uses-feature android:name="android.hardware.camera" android:required="false" />
+<uses-feature android:name="android.hardware.microphone" android:required="false" />
 ```
 
 Primer kako manifest treba da izgleda (skraćeno):
@@ -172,8 +175,11 @@ Primer kako manifest treba da izgleda (skraćeno):
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
 
     <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.microphone" android:required="false" />
 
     <application
         android:allowBackup="true"

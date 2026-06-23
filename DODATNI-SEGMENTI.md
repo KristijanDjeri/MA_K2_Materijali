@@ -33,6 +33,15 @@ Ovi folderi pokrivaju teme **slične težine i principa** kao zvanični zadaci, 
 | Folder | Napomena |
 |--------|----------|
 | [vibrator](vibrator/) | Kratka vibracija uz događaj |
+| [audio-recorder](audio-recorder/) | MediaRecorder + MediaPlayer |
+| [senzor-svetlosti](senzor-svetlosti/) | Lux vrednost |
+| [senzor-proksimiteta](senzor-proksimiteta/) | Blizu/daleko |
+| [barometar](barometar/) | Pritisak u hPa |
+| [brojac-koraka](brojac-koraka/) | Koraci + ACTIVITY_RECOGNITION |
+| [senzori-izvedeni](senzori-izvedeni/) | Gravity, rotation vector… |
+| [senzor-vlage-temperature](senzor-vlage-temperature/) | Retko na telefonima |
+
+**Pregled svih senzora:** [senzori-pregled](senzori-pregled/)
 
 ## Kako učiti
 
@@ -44,7 +53,8 @@ Ovi folderi pokrivaju teme **slične težine i principa** kao zvanični zadaci, 
 
 ```
 Dozvole (runtime)     → geo, kamera, galerija, kontakti, poziv
-Senzori               → ziroskop, akcelerometar, magnetometar
+Senzori               → ziroskop, akcelerometar, magnetometar, senzori-pregled/
+Audio                 → audio-recorder/
 Mreža + JSON          → retrofit, retrofit-post, okhttp-json, webview
 Perzistencija         → room, shared-preferences, interni-fajl
 UI komponente         → osnovni layout, spinner, edit-text, date-picker

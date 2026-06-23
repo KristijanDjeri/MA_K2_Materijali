@@ -42,6 +42,14 @@ Pogledaj **[DODATNI-SEGMENTI.md](DODATNI-SEGMENTI.md)** za pregled verovatnoće.
 | [lokacija-realtime](lokacija-realtime/) | Lokacija uživo |
 | [progress-bar](progress-bar/) | ProgressBar pri učitavanju |
 | [vibrator](vibrator/) | Vibracija |
+| [audio-recorder](audio-recorder/) | Snimanje i reprodukcija zvuka |
+| [senzori-pregled](senzori-pregled/) | Mapa svih senzora |
+| [senzor-svetlosti](senzor-svetlosti/) | Senzor svetlosti (lux) |
+| [senzor-proksimiteta](senzor-proksimiteta/) | Senzor blizine |
+| [barometar](barometar/) | Pritisak vazduha |
+| [brojac-koraka](brojac-koraka/) | Step counter / detector |
+| [senzori-izvedeni](senzori-izvedeni/) | Gravity, linear accel, rotation vector |
+| [senzor-vlage-temperature](senzor-vlage-temperature/) | Vlaga i temperatura |
 
 ## Redosled rada na kolokvijumu
 
@@ -67,6 +75,9 @@ Odgovor je JSON niz objekata sa poljima poput `id`, `title`, `body`, itd. (prila
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 <uses-permission android:name="android.permission.CAMERA" />
 <uses-permission android:name="android.permission.READ_CONTACTS" />
+<uses-permission android:name="android.permission.VIBRATE" />
+<uses-permission android:name="android.permission.RECORD_AUDIO" />
+<uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
 <!-- Android 13+ za notifikacije -->
 <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 ```

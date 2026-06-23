@@ -49,8 +49,8 @@
 | Drugu aktivnost | `intent-druga-aktivnost/` |
 | POST umesto GET | `retrofit-post/` |
 | Bazu u pozadini | `thread-executor/` |
-| Još senzor | `magnetometar/` |
-| Unos teksta | `edit-text-validacija/` |
+| Još senzor | `senzori-pregled/` → pojedinačni folder |
+| Audio snimanje | `audio-recorder/` |
 
 Detaljnije: `DODATNI-SEGMENTI.md`
 
