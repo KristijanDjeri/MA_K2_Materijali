@@ -1,4 +1,4 @@
-package com.example.kolokvijum2;
+package com.example.kolokvijum2.helper;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -16,33 +16,62 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Zastarelo – koristi {@link com.example.kolokvijum2.helper.AudioRecorder} (AudioRecorder.java u ovom folderu).
- * Ovaj fajl ostaje kao skraćena referenca.
+ * Snimanje i reprodukcija audio fajla (.m4a).
+ * Folder: 36-audio-recorder/
  */
-@Deprecated
-public class AudioRecorderSegment extends AppCompatActivity {
+public class AudioRecorder {
 
-    private static final int REQ_AUDIO = 106;
+    public static final int REQ_AUDIO = 106;
 
-    private Button btnSnimi;
-    private Button btnPusti;
+    private final AppCompatActivity activity;
+    private final Button btnSnimi;
+    private final Button btnPusti;
+    private final String audioPutanja;
 
     private MediaRecorder mediaRecorder;
     private MediaPlayer mediaPlayer;
     private boolean snima = false;
-    private String audioPutanja;
 
-  // Primer inicijalizacije u onCreate MainActivity-ja:
-  // btnSnimi = findViewById(R.id.btnSnimi);
-  // btnPusti = findViewById(R.id.btnPusti);
-  // audioPutanja = new File(getExternalFilesDir(null), "snimak.m4a").getAbsolutePath();
-  // btnSnimi.setOnClickListener(v -> { if (!snima) pokreniSnimanje(); else zaustaviSnimanje(); });
-  // btnPusti.setOnClickListener(v -> pustiSnimak());
+    public AudioRecorder(AppCompatActivity activity, Button btnSnimi, Button btnPusti) {
+        this.activity = activity;
+        this.btnSnimi = btnSnimi;
+        this.btnPusti = btnPusti;
+        this.audioPutanja = new File(activity.getExternalFilesDir(null), "snimak.m4a")
+                .getAbsolutePath();
+
+        btnSnimi.setOnClickListener(v -> {
+            if (!snima) {
+                pokreniSnimanje();
+            } else {
+                zaustaviSnimanje();
+            }
+        });
+        btnPusti.setOnClickListener(v -> pustiSnimak());
+    }
+
+    public void onPause() {
+        if (snima) {
+            zaustaviSnimanje();
+        }
+        zaustaviReprodukciju();
+    }
+
+    public void onDestroy() {
+        onPause();
+    }
+
+    public void onPermissionGranted(int requestCode, int[] grantResults) {
+        if (requestCode == REQ_AUDIO
+                && grantResults.length > 0
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            zapocniMediaRecorder();
+        }
+    }
 
     private void pokreniSnimanje() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.RECORD_AUDIO)
                 != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
+            ActivityCompat.requestPermissions(activity,
                     new String[]{Manifest.permission.RECORD_AUDIO}, REQ_AUDIO);
             return;
         }
@@ -51,32 +80,28 @@ public class AudioRecorderSegment extends AppCompatActivity {
 
     private void zapocniMediaRecorder() {
         zaustaviReprodukciju();
-
         File stari = new File(audioPutanja);
         if (stari.exists()) {
             stari.delete();
         }
-
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                mediaRecorder = new MediaRecorder(this);
+                mediaRecorder = new MediaRecorder(activity);
             } else {
                 mediaRecorder = new MediaRecorder();
             }
-
             mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
             mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
             mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
             mediaRecorder.setOutputFile(audioPutanja);
             mediaRecorder.prepare();
             mediaRecorder.start();
-
             snima = true;
             btnSnimi.setText("Stop");
-            Toast.makeText(this, "Snimanje...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "Snimanje...", Toast.LENGTH_SHORT).show();
         } catch (IOException | IllegalStateException e) {
             oslobodiMediaRecorder();
-            Toast.makeText(this, "Greška snimanja", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "Greška snimanja", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -90,14 +115,14 @@ public class AudioRecorderSegment extends AppCompatActivity {
             mediaRecorder.stop();
         } catch (RuntimeException e) {
             new File(audioPutanja).delete();
-            Toast.makeText(this, "Snimak prekratak", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "Snimak prekratak", Toast.LENGTH_SHORT).show();
         } finally {
             oslobodiMediaRecorder();
         }
         snima = false;
         btnSnimi.setText("Snimi");
         if (new File(audioPutanja).exists()) {
-            Toast.makeText(this, "Snimljeno", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "Snimljeno", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -110,12 +135,12 @@ public class AudioRecorderSegment extends AppCompatActivity {
 
     private void pustiSnimak() {
         if (snima) {
-            Toast.makeText(this, "Prvo zaustavi snimanje", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "Prvo zaustavi snimanje", Toast.LENGTH_SHORT).show();
             return;
         }
         File f = new File(audioPutanja);
         if (!f.exists() || f.length() == 0) {
-            Toast.makeText(this, "Nema snimka", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "Nema snimka", Toast.LENGTH_SHORT).show();
             return;
         }
         zaustaviReprodukciju();
@@ -127,7 +152,7 @@ public class AudioRecorderSegment extends AppCompatActivity {
             mediaPlayer.setOnCompletionListener(mp -> zaustaviReprodukciju());
         } catch (IOException e) {
             zaustaviReprodukciju();
-            Toast.makeText(this, "Greška reprodukcije", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "Greška reprodukcije", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -5,6 +5,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.kolokvijum2.model.Post;
 
@@ -30,6 +31,9 @@ public interface PostDao {
 
     @Delete
     void delete(Post post);
+
+    @Update
+    void update(Post post);
 
     @Query("DELETE FROM posts WHERE rowid IN (SELECT rowid FROM posts LIMIT 1)")
     void deleteFirst();

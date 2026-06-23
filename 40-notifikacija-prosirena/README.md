@@ -12,6 +12,16 @@ Korisno kad poruka ne stane u jedan red.
 
 ---
 
+## Gde nalepiti kod
+
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | `MainActivity.java` | Metode `posaljiBigTextNotifikaciju()` itd. – **dno klase** |
+| 2 | `MainActivity.java` | **`onCreate`**, test: `button.setOnLongClickListener(...)` ili posle prazne baze |
+| 3 | Kanal | već iz `NotifikacijaHelper.kreirajKanal(this)` u **`onCreate`** |
+
+---
+
 ## 1. BigTextStyle – duži tekst
 
 Korisnik povuče notifikaciju nadole da vidi ceo tekst.

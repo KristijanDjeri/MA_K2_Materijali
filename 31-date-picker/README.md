@@ -6,6 +6,15 @@
 
 ---
 
+## Gde nalepiti kod
+
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | `MainActivity.java` | Metode `otvoriDatePicker()` / `otvoriTimePicker()` – **dno klase** |
+| 2 | `MainActivity.java` | **`onCreate`**: `button.setOnLongClickListener(v -> { otvoriDatePicker(); return true; });` |
+
+---
+
 ## Kompletan kod za `MainActivity.java`
 
 ### Importi

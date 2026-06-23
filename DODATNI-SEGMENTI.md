@@ -75,7 +75,8 @@ Dozvole (runtime)     → geo, 03-kamera, 21-galerija, 14-kontakti, poziv
 Senzori               → 04-senzor-ziroskop, 12-senzor-akcelerometar, 42-senzor-magnetometar, 41-senzori-pregled/
 Audio                 → 36-audio-recorder/
 Mreža + JSON          → retrofit, 23-retrofit-post, 32-okhttp-json, 24-webview
-Perzistencija         → room, 18-room-update, 13-shared-preferences, 26-interni-fajl, 53-firebase-firestore/
+Perzistencija         → room, 18-room-update, 13-shared-preferences, 26-interni-fajl, InterniFajlHelper
+Helper klase          → HELPER-KLASE.md (logika van MainActivity)
 Firebase              → 51-firebase-setup/, 52-firebase-auth/, 54-firebase-fcm/
 UI komponente         → osnovni layout, 55-checkbox-radiobutton, 30-spinner, edit-text, 31-date-picker, 57-toolbar-options-menu
 Navigacija            → 22-intent-druga-aktivnost, 56-implicit-intent

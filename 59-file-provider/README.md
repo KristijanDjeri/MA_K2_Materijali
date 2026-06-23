@@ -8,13 +8,27 @@
 
 ## Fajlovi
 
-| Fajl | Putanja |
-|------|---------|
-| `file_paths.xml` | `res/xml/file_paths.xml` |
-| `AndroidManifest.xml` | `<provider>` unutar `<application>` |
-| `MainActivity.java` | `TakePicture()` + URI |
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | `file_paths.xml` | `res/xml/file_paths.xml` (kopiraj iz ovog foldera) |
+| 2 | `AndroidManifest.xml` | `<provider>` unutar `<application>` |
+| 3 | **`FileProviderHelper.java`** | `app/.../helper/FileProviderHelper.java` |
+| 4 | `MainActivity.java` | Polje + init u **`onCreate`**, listener na kameru |
 
-Gotovi: `file_paths.xml`, `AndroidManifest-provider.xml`, `FileProviderSegment.java`.
+Gotovi: `file_paths.xml`, `AndroidManifest-provider.xml`, `FileProviderHelper.java`.
+
+### MainActivity – povezivanje
+
+```java
+import com.example.kolokvijum2.helper.FileProviderHelper;
+
+private FileProviderHelper fileProviderHelper;
+
+// onCreate, posle findViewById:
+fileProviderHelper = new FileProviderHelper(this, imageView);
+imageButton.setOnClickListener(v -> fileProviderHelper.pokreniKameru());
+// opciono share: fileProviderHelper.podeliSliku();
+```
 
 ---
 

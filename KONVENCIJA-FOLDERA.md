@@ -133,6 +133,7 @@ Segmenti su **razdvojeni** – svaki radi samostalno. Spajanje: [16-spajanje-zad
 | [BRZI-VODIC.md](BRZI-VODIC.md) | Jedna strana za štampu |
 | [DODATNI-SEGMENTI.md](DODATNI-SEGMENTI.md) | Verovatnoća tema |
 | [IZVESTAJ-TESTIRANJA.md](IZVESTAJ-TESTIRANJA.md) | Šta je automatski testirano |
+| [HELPER-KLASE.md](HELPER-KLASE.md) | Mapa helper klasa i gde ih lepiti |
 
 ---
 

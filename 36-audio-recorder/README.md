@@ -114,7 +114,31 @@ audioPutanja = audioFajl.getAbsolutePath();
 
 ---
 
-## Korak 5: Kompletan kod u `MainActivity.java`
+## Korak 5: Helper klasa `AudioRecorder` (preporučeno)
+
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`AudioRecorder.java`** | Novi fajl → `app/.../helper/AudioRecorder.java` |
+| 2 | `MainActivity.java` | Polje: `private AudioRecorder audioRecorder;` |
+| 3 | `MainActivity.java` | **`onCreate`**, posle `findViewById` za `btnSnimi`/`btnPusti`: `audioRecorder = new AudioRecorder(this, btnSnimi, btnPusti);` |
+| 4 | `MainActivity.java` | **`onPause`**: `audioRecorder.onPause();` |
+| 5 | `MainActivity.java` | **`onDestroy`**: `audioRecorder.onDestroy();` |
+| 6 | `MainActivity.java` | **`onRequestPermissionsResult`**: `audioRecorder.onPermissionGranted(requestCode, grantResults);` |
+
+```java
+import com.example.kolokvijum2.helper.AudioRecorder;
+
+private AudioRecorder audioRecorder;
+
+// onCreate:
+audioRecorder = new AudioRecorder(this, btnSnimi, btnPusti);
+```
+
+> Listeneri na dugmad su **unutar** `AudioRecorder` konstruktora – ne dodaj ih ponovo u MainActivity.
+
+---
+
+## Korak 5b: Kompletan kod u `MainActivity.java` (inline varijanta)
 
 ### 1. Importi
 

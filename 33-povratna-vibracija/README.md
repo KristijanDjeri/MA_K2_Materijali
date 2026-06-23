@@ -18,6 +18,15 @@
 
 ---
 
+## Gde nalepiti kod
+
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | `MainActivity.java` | Metoda `vibracija()` – **dno klase** |
+| 2 | `MainActivity.java` | Poziv unutar `PostRepository.obrisiPrviPost` callback-a kad je baza prazna, ili u `onEmpty` listeneru |
+
+---
+
 ## Kompletan kod za `MainActivity.java`
 
 ### Importi

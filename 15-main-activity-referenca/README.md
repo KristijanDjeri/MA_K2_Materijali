@@ -12,7 +12,8 @@ Ovaj folder sadrži **jedan spojeni fajl** sa svim zadacima. Koristi ga kad:
 
 1. Uradi `01-osnovni-projekat/` (layout, Gradle, Manifest)
 2. Kopiraj fajlove iz `05-room-baza/` i `06-retrofit-get/` u projekat
-3. Zameni `MainActivity.java` kodom ispod (ili iz fajla `MainActivity.java` u ovom folderu)
+3. Kopiraj **helper klase** iz segmenata u paket `helper/` (mapa: **`HELPER-KLASE.md`**)
+4. Zameni `MainActivity.java` fajlom iz ovog foldera (tanak Activity + helperi)
 
 ---
 
@@ -24,13 +25,30 @@ Ovaj folder sadrži **jedan spojeni fajl** sa svim zadacima. Koristi ga kad:
 | `model/Post.java` |
 | `db/PostDao.java`, `db/AppDatabase.java` |
 | `api/JsonPlaceholderApi.java`, `api/RetrofitClient.java` |
-| `MainActivity.java` |
+| `helper/GeoLokacijaHelper.java`, `KameraHelper.java`, `ZiroskopHelper.java`, … |
+| `MainActivity.java` (iz ovog foldera) |
+
+Puna lista helpera: **`HELPER-KLASE.md`**.
 
 ---
 
-## Kompletan `MainActivity.java` (sve linije)
+## MainActivity – tanak sloj
 
-Kopiraj **ceo** fajl. Proveri da `package` odgovara tvom projektu.
+`MainActivity.java` u ovom folderu **ne sadrži** poslovnu logiku – samo:
+- `findViewById` i listeneri
+- inicijalizacija helper klasa u **`onCreate`**
+- **`onResume` / `onPause` / `onRequestPermissionsResult`** delegiraju helperima
+
+Za stari inline kod (sve u jednoj klasi), pogledaj git istoriju ili segment README inline sekcije.
+
+---
+
+## Kompletan `MainActivity.java` (trenutna verzija)
+
+Kopiraj **ceo** fajl `MainActivity.java` iz ovog foldera. Proveri `package`.
+
+<details>
+<summary>Stari inline primer (zastareo – samo za poređenje)</summary>
 
 ```java
 package com.example.kolokvijum2;
@@ -323,22 +341,23 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 }
 ```
+</details>
 
 ---
 
-## Mapa: koja metoda = koji zadatak
+## Mapa: helper / metoda = zadatak
 
-| Zadatak | Metode |
-|---------|--------|
+| Zadatak | Helper ili metoda u MainActivity |
+|---------|----------------------------------|
 | 1–2 | `onCreate`, `findViewById` |
-| 3 | `pokreniLokaciju`, `ucitajLokaciju` |
-| 4 03-kamera | `pokreniKameru`, `takePictureLauncher` |
-| 4 žiroskop | `prikaziZiroskopToast`, `onSensorChanged` (GYRO) |
-| 5 | `postDao`, `AppDatabase`, `RetrofitClient` |
-| 6 | `obradiSwitchOn`, `ucitajPostoveSaApi` |
-| 7 | `obrisiPrviPost`, `kreirajNotificationChannel` |
-| 8 | `onSensorChanged` (ACCEL), `button.setText` |
-| 9 | `obradiSwitchOff`, `ucitajPrviKontakt` |
+| 3 | `GeoLokacijaHelper` |
+| 4 kamera | `KameraHelper` |
+| 4 žiroskop | `ZiroskopHelper.prikaziToast()` |
+| 5 | `PostRepository`, Room, Retrofit |
+| 6 | `PostRepository.ucitajPostoveSaApi`, `prikaziTitlePrvogPosta` |
+| 7 | `PostRepository.obrisiPrviPost`, `NotifikacijaHelper` |
+| 8 | `AkcelerometarHelper` |
+| 9 | `SharedPreferencesHelper`, `KontaktiHelper`, `obradiSwitchOff()` |
 
 ---
 

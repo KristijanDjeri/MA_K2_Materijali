@@ -11,15 +11,19 @@
 
 ---
 
-## Koji fajlovi se menjaju
+## Koji fajlovi se menjaju / dodaju
 
-| Fajl | Šta radiš |
-|------|-----------|
-| `MainActivity.java` | ActivityResultLauncher, listener na dugme, dozvola |
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`KameraHelper.java`** | Novi fajl → `app/.../helper/` |
+| 2 | `MainActivity.java` | Polje + init u **`onCreate`** (posle `findViewById`) |
+| 3 | `MainActivity.java` | **`onCreate`**: `imageButton.setOnClickListener(v -> kameraHelper.pokreni());` |
+| 4 | `MainActivity.java` | **`onRequestPermissionsResult`**: `kameraHelper.onPermissionGranted(...)` |
+| 5 | Callback žiroskop | U konstruktoru: `bitmap -> ziroskopHelper.prikaziToast()` (opciono, zadatak 4) |
 
 ---
 
-## Kompletan kod za `MainActivity.java` (deo za kameru)
+## Kompletan kod za `MainActivity.java` (inline varijanta)
 
 ### 1. Importi
 

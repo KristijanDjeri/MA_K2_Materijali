@@ -4,6 +4,7 @@ Materijal za kolokvijum: gotovi segmenti koda i uputstva po temama.
 **Android Studio**, **minSdk 28** (Android 9+).
 
 **Organizacija foldera:** [KONVENCIJA-FOLDERA.md](KONVENCIJA-FOLDERA.md) (enumeracija `01-`, `senzor-`, …)  
+**Helper klase:** [HELPER-KLASE.md](HELPER-KLASE.md) – logika van `MainActivity`  
 **Spajanje za ispit:** [16-spajanje-zadataka](16-spajanje-zadataka/)  
 **Fragmenti na ispitu:** [90-fragments-prirucnik](90-fragments-prirucnik/)  
 **Testiranje:** [IZVESTAJ-TESTIRANJA.md](IZVESTAJ-TESTIRANJA.md) · projekat `99-test-okruzenje/`

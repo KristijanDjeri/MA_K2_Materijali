@@ -14,15 +14,18 @@ Radi **samostalno** – okida se **dugmetom** (ne Switch-om). Switch logiku doda
 
 ---
 
-## Koji fajlovi se menjaju
+## Koji fajlovi se menjaju / dodaju
 
-| Fajl | Šta radiš |
-|------|-----------|
-| `MainActivity.java` | Metoda `ucitajPostoveSaApi()` + listener na dugme |
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`PostRepository.java`** | Novi fajl → `app/.../helper/PostRepository.java` |
+| 2 | `MainActivity.java` | Polje: `private PostRepository postRepository;` |
+| 3 | `MainActivity.java` | **`onCreate`**: `postRepository = new PostRepository(this, postDao);` |
+| 4 | `MainActivity.java` | **`onCreate`**, listener: `button.setOnClickListener(v -> postRepository.ucitajPostoveSaApi(...));` |
 
 ---
 
-## Kompletan kod
+## Kompletan kod (inline varijanta)
 
 ### Importi
 

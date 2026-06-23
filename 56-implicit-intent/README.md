@@ -12,6 +12,34 @@ Za direktan poziv telefona vidi `29-poziv-telefon/`. Za ostale implicit intent-e
 
 ---
 
+## Gde nalepiti kod
+
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`ImplicitIntentHelper.java`** | Novi fajl → `app/.../helper/` |
+| 2 | `MainActivity.java` | **`onCreate`**, listener na dugme (primer ispod) |
+
+### Import
+
+```java
+import com.example.kolokvijum2.helper.ImplicitIntentHelper;
+```
+
+### Primer u `onCreate`
+
+```java
+button.setOnClickListener(v ->
+        ImplicitIntentHelper.otvoriUrl(this, "https://jsonplaceholder.typicode.com/posts/1"));
+
+// ili podeli title posta:
+button.setOnClickListener(v ->
+        ImplicitIntentHelper.podeliTitlePrvogPosta(this, postRepository.getFirst()));
+```
+
+---
+
+## Inline metode (alternativa bez helpera)
+
 ## Import
 
 ```java

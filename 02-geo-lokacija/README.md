@@ -12,17 +12,58 @@
 
 ---
 
-## Koji fajlovi se menjaju
+## Koji fajlovi se menjaju / dodaju
 
-| Fajl | Šta radiš |
-|------|-----------|
-| `MainActivity.java` | Dodaješ importe, polja, metode za lokaciju |
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`GeoLokacijaHelper.java`** | **Novi fajl** → `app/.../helper/GeoLokacijaHelper.java` (kopiraj iz ovog foldera) |
+| 2 | `MainActivity.java` | Polje: `private GeoLokacijaHelper geoHelper;` (iznad `onCreate`) |
+| 3 | `MainActivity.java` | **`onCreate`**, posle `findViewById`: `geoHelper = new GeoLokacijaHelper(this, textView);` |
+| 4 | `MainActivity.java` | **`onCreate`**: `geoHelper.pokreni();` |
+| 5 | `MainActivity.java` | **`onRequestPermissionsResult`**: `geoHelper.onPermissionGranted(requestCode, grantResults);` |
 
-**Ne praviš novi fajl** – sve ide u postojeći `MainActivity`.
+> **Alternativa (stariji način):** metode direktno u `MainActivity` – vidi `GeoLokacijaSegment.java` (samo komentari).
 
 ---
 
-## Kompletan kod za `MainActivity.java` (deo za geolokaciju)
+## Kompletan kod – helper klasa
+
+Kopiraj **`GeoLokacijaHelper.java`** iz ovog foldera u paket `helper`.
+
+---
+
+## MainActivity – samo povezivanje
+
+### Import
+
+```java
+import com.example.kolokvijum2.helper.GeoLokacijaHelper;
+```
+
+### Polje
+
+```java
+private GeoLokacijaHelper geoHelper;
+```
+
+### U `onCreate`, posle `findViewById`
+
+```java
+geoHelper = new GeoLokacijaHelper(this, textView);
+geoHelper.pokreni();
+```
+
+### U `onRequestPermissionsResult` (proširi postojeći, ne pravi novi od nule)
+
+```java
+geoHelper.onPermissionGranted(requestCode, grantResults);
+```
+
+---
+
+## Kompletan kod za `MainActivity.java` (deo za geolokaciju – inline varijanta)
+
+Ako ne koristiš helper, metode idu **na dno klase** (pre zatvarajuće `}`):
 
 ### 1. Importi (na vrh fajla, pored ostalih importa)
 

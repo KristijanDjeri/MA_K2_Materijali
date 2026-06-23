@@ -17,6 +17,16 @@ Sync Now.
 
 ---
 
+## Gde nalepiti kod
+
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | `app/build.gradle` | OkHttp + Gson u `dependencies` |
+| 2 | `MainActivity.java` | Metoda `ucitajOkHttp()` – **dno klase** |
+| 3 | `MainActivity.java` | Poziv iz `obradiSwitchOn()` umesto Retrofit-a, ili test dugme u **`onCreate`** |
+
+---
+
 ## 2. U `MainActivity.java`
 
 ### Importi
