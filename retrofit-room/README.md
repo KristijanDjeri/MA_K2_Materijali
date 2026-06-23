@@ -1,7 +1,11 @@
 # Retrofit + Room baza (zadatak 5)
 
-**Cilj:** Napraviti **model posta** u bazi i podesiti **Retrofit** za **GET** zahtev na:  
-`https://app.beeceptor.com/mock-server/dummy-json`
+**Cilj:** Napraviti **model posta** u bazi i podesiti **Retrofit** za **GET** zahtev.
+
+> **Testirano (jun 2026):** URL iz PDF-a (`app.beeceptor.com/mock-server/dummy-json`) vraća **HTML**, ne JSON.  
+> U materijalu je podrazumevani radni endpoint:  
+> `https://dummy-json.mock.beeceptor.com/posts`  
+> Na kolokvijumu proveri da li profesor da drugačiji URL.
 
 ---
 

@@ -5,7 +5,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    // Testirano 2026-06: ovaj URL vraća JSON niz postova
     private static final String BASE_URL = "https://dummy-json.mock.beeceptor.com/";
     private static Retrofit retrofit;
 

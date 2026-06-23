@@ -9,11 +9,6 @@ import retrofit2.http.GET;
 
 public interface JsonPlaceholderApi {
 
-    // Testirano: vraća JSON niz sa poljima id, title, body, userId
     @GET("posts")
     Call<List<Post>> getPosts();
-
-    // URL sa kolokvijum PDF-a (može preusmeriti na HTML – vidi retrofit-room/README.md):
-    // baseUrl: https://app.beeceptor.com/
-    // @GET("mock-server/dummy-json")
 }

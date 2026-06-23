@@ -3,6 +3,8 @@
 Materijal za kolokvijum: gotovi segmenti koda i uputstva po temama.  
 **Android Studio**, **minSdk 28** (Android 9+).
 
+**Testiranje:** pogledaj [IZVESTAJ-TESTIRANJA.md](IZVESTAJ-TESTIRANJA.md) i test projekat `Kolokvijum2-test/`.
+
 ## Struktura foldera
 
 | Folder | Šta pokriva (zadaci) |
