@@ -52,6 +52,7 @@
 | Još senzor | `senzori-pregled/` → pojedinačni folder |
 | Audio snimanje | `audio-recorder/` |
 | Shake / tresenje | `shake-senzor/` |
+| Firebase oblak | `firebase/` → `firebase-setup/` pa `firebase-firestore/` |
 
 Detaljnije: `DODATNI-SEGMENTI.md`
 

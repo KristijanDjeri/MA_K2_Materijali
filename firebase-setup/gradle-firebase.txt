@@ -1,0 +1,14 @@
+// Firebase Gradle – vidi firebase-setup/README.md za kompletan setup
+
+// === ROOT build.gradle (buildscript dependencies) ===
+// classpath 'com.google.gms:google-services:4.4.2'
+
+// === APP build.gradle (vrh fajla) ===
+// apply plugin: 'com.google.gms.google-services'
+
+// === APP build.gradle (dependencies) ===
+// implementation platform('com.google.firebase:firebase-bom:33.7.0')
+// implementation 'com.google.firebase:firebase-analytics'
+// implementation 'com.google.firebase:firebase-auth'
+// implementation 'com.google.firebase:firebase-firestore'
+// implementation 'com.google.firebase:firebase-messaging'

@@ -51,6 +51,11 @@ Pogledaj **[DODATNI-SEGMENTI.md](DODATNI-SEGMENTI.md)** za pregled verovatnoće.
 | [senzori-izvedeni](senzori-izvedeni/) | Gravity, linear accel, rotation vector |
 | [senzor-vlage-temperature](senzor-vlage-temperature/) | Vlaga i temperatura |
 | [shake-senzor](shake-senzor/) | Detekcija tresenja (akcelerometar) |
+| [firebase](firebase/) | Pregled Firebase segmenata |
+| [firebase-setup](firebase-setup/) | Gradle + google-services.json |
+| [firebase-auth](firebase-auth/) | Email/lozinka prijava |
+| [firebase-firestore](firebase-firestore/) | Postovi u oblaku |
+| [firebase-fcm](firebase-fcm/) | Push notifikacije |
 
 ## Redosled rada na kolokvijumu
 

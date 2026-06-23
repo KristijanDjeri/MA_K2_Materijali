@@ -41,8 +41,11 @@ Ovi folderi pokrivaju teme **slične težine i principa** kao zvanični zadaci, 
 | [senzori-izvedeni](senzori-izvedeni/) | Gravity, rotation vector… |
 | [senzor-vlage-temperature](senzor-vlage-temperature/) | Retko na telefonima |
 | [shake-senzor](shake-senzor/) | Tresenje preko akcelerometra |
+| [firebase-setup](firebase-setup/) | Firebase projekat + Gradle |
+| [firebase-firestore](firebase-firestore/) | Oblak umesto Retrofit/Room |
 
-**Pregled svih senzora:** [senzori-pregled](senzori-pregled/)
+**Pregled svih senzora:** [senzori-pregled](senzori-pregled/)  
+**Pregled Firebase:** [firebase](firebase/)
 
 ## Kako učiti
 
@@ -57,7 +60,8 @@ Dozvole (runtime)     → geo, kamera, galerija, kontakti, poziv
 Senzori               → ziroskop, akcelerometar, magnetometar, senzori-pregled/
 Audio                 → audio-recorder/
 Mreža + JSON          → retrofit, retrofit-post, okhttp-json, webview
-Perzistencija         → room, shared-preferences, interni-fajl
+Perzistencija         → room, shared-preferences, interni-fajl, firebase-firestore/
+Firebase              → firebase-setup/, firebase-auth/, firebase-fcm/
 UI komponente         → osnovni layout, spinner, edit-text, date-picker
 Navigacija            → intent-druga-aktivnost
 Pozadina              → thread-executor, progress-bar
