@@ -2,7 +2,7 @@
 
 Ovi folderi pokrivaju teme **slične težine i principa** kao zvanični zadaci, ali nisu eksplicitno u PDF-u.
 
-**Grafičke komponente** su u **60–67** (`ui-` prefiks).  
+**Grafičke komponente** su u **60–68** (`ui-` prefiks).  
 **Logika / podaci** u **70–79**. **Servisi** u **80–85**. **Senzori** u **41–49**.
 
 ---
@@ -31,6 +31,7 @@ Ovi folderi pokrivaju teme **slične težine i principa** kao zvanični zadaci, 
 | [70-intent-druga-aktivnost](70-intent-druga-aktivnost/) | Prenos podataka | 9 |
 | [62-ui-edit-text-validacija](62-ui-edit-text-validacija/) | Unos + provera | 2 |
 | [65-ui-progress-bar](65-ui-progress-bar/) | Učitavanje sa API-ja | 5 |
+| [68-ui-media-player](68-ui-media-player/) | Slika, video, audio UI | 2, 4 |
 
 ## Srednja verovatnoća
 
@@ -85,7 +86,7 @@ Mreža + JSON          → retrofit, 72-retrofit-post, 73-okhttp-json, 61-ui-web
 Perzistencija         → room, 18-room-update, 13-shared-preferences, 75-interni-fajl, InterniFajlHelper
 Helper klase          → HELPER-KLASE.md (logika van MainActivity)
 Firebase              → 51-firebase-setup/, 52-firebase-auth/, 54-firebase-fcm/
-UI komponente         → 60–67 (ui-): checkbox, spinner, edit-text, date-picker, toolbar, recyclerview…
+UI komponente         → 60–68 (ui-): checkbox, spinner, edit-text, date-picker, toolbar, recyclerview, media-player…
 Navigacija            → 70-intent-druga-aktivnost, 71-implicit-intent
 Fragmenti             → 19-fragment-primer, 90-fragments-prirucnik
 Mape / fajlovi        → 79-maps-google-osm, 77-file-provider, 03-kamera

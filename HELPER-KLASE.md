@@ -48,6 +48,7 @@ Helper koji koristi senzor, mapu, lokaciju u realnom vremenu ili audio **mora** 
 | **63** spinner | `SpinnerHelper` | — (listener u konstruktoru) |
 | **64** date picker | `DatePickerHelper` | — |
 | **66** checkbox/radio | `CheckBoxRadioHelper` | — |
+| **68** media player | `MediaPlayerHelper` | `onPause`, `onDestroy` |
 | **75** interni fajl | `InterniFajlHelper` | statičke metode |
 | **76** galerija | `GalerijaHelper` | — (+ permission) |
 | **73** okhttp | `OkHttpHelper` | `shutdown()` u `onDestroy` |

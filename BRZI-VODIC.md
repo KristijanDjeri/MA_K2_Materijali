@@ -44,7 +44,7 @@
 
 ## 6. Dodatno (ako profesor promeni zadatak)
 
-**UI komponente (60–67):** Spinner `63-ui-spinner/`, lista `60-ui-recyclerview/`, meni `67-ui-toolbar-options-menu/` … → [GRAFICKI-SEGMENTI.md](GRAFICKI-SEGMENTI.md)
+**UI komponente (60–68):** Spinner `63-ui-spinner/`, lista `60-ui-recyclerview/`, media `68-ui-media-player/` … → [GRAFICKI-SEGMENTI.md](GRAFICKI-SEGMENTI.md)
 
 | Ako traži… | Folder |
 |------------|--------|
@@ -62,6 +62,7 @@
 | CheckBox / RadioButton | `66-ui-checkbox-radiobutton/` |
 | Share, SMS, email | `71-implicit-intent/` |
 | Toolbar / meni | `67-ui-toolbar-options-menu/` |
+| Slika, video, audio | `68-ui-media-player/` |
 | Mape (OSM / Google) | `79-maps-google-osm/` |
 | FileProvider + kamera | `77-file-provider/` |
 | ContentProvider / BroadcastReceiver | `84-content-provider/`, `85-broadcast-receiver/` |

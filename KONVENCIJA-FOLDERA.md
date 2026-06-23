@@ -27,7 +27,7 @@ Broj foldera (`NN-`) **ne prenosi se u kod** – varijable, `@+id/`, `R.array.*`
 |-------|--------|------------|
 | **01–16** | Zvanični zadaci (PDF) | Layout, geo, kamera, senzori u zadatku, Room, API, Switch… |
 | **17–19** | Proširenje zvaničnih | AlertDialog, Room UPDATE, Fragment |
-| **60–67** | **Grafičke / UI komponente** | RecyclerView, WebView, EditText, Spinner, meni, ProgressBar… |
+| **60–68** | **Grafičke / UI komponente** | RecyclerView, WebView, EditText, Spinner, meni, media player… |
 | **70–79** | **Logika / podaci / platforma** | Intent, Retrofit POST, OkHttp, nit, fajl, galerija, mape, lokacija… |
 | **80–85** | **Servisi / hardver (ne senzor)** | Alarm, poziv, vibracija, audio, ContentProvider, BroadcastReceiver… |
 | **37–40** | Notifikacije | Osnovna, akcije, proširena |
@@ -72,7 +72,7 @@ Spajanje nezavisnih koraka: [16-spajanje-zadataka](16-spajanje-zadataka/).
 | [18-room-update](18-room-update/) | Room UPDATE |
 | [19-fragment-primer](19-fragment-primer/) | Fragment – gotov primer |
 
-### 60–67 Grafičke / UI komponente
+### 60–68 Grafičke / UI komponente
 
 | Folder | Naziv |
 |--------|-------|
@@ -84,6 +84,7 @@ Spajanje nezavisnih koraka: [16-spajanje-zadataka](16-spajanje-zadataka/).
 | [65-ui-progress-bar](65-ui-progress-bar/) | ProgressBar |
 | [66-ui-checkbox-radiobutton](66-ui-checkbox-radiobutton/) | CheckBox i RadioButton |
 | [67-ui-toolbar-options-menu](67-ui-toolbar-options-menu/) | Toolbar / Options Menu |
+| [68-ui-media-player](68-ui-media-player/) | Media player – slika, video, audio |
 
 ### 70–79 Logika / podaci / platforma
 
@@ -158,7 +159,7 @@ Spajanje nezavisnih koraka: [16-spajanje-zadataka](16-spajanje-zadataka/).
 | Fajl | Svrha |
 |------|-------|
 | [README.md](README.md) | Glavni ulaz |
-| [GRAFICKI-SEGMENTI.md](GRAFICKI-SEGMENTI.md) | UI komponente (60–67) |
+| [GRAFICKI-SEGMENTI.md](GRAFICKI-SEGMENTI.md) | UI komponente (60–68) |
 | [DODATNI-SEGMENTI.md](DODATNI-SEGMENTI.md) | Logika, servisi, verovatnoća |
 | [HELPER-KLASE.md](HELPER-KLASE.md) | Helper klase |
 | [BRZI-VODIC.md](BRZI-VODIC.md) | Jedna strana za štampu |
@@ -168,7 +169,7 @@ Spajanje nezavisnih koraka: [16-spajanje-zadataka](16-spajanje-zadataka/).
 ## Kako naći segment na kolokvijumu
 
 1. Broj zadatka u PDF-u → **01–16**
-2. **Spinner, meni, lista…** → **60–67** (`ui-`)
+2. **Spinner, meni, lista, media…** → **60–68** (`ui-`)
 3. **Senzor** → **04, 12** (zvanično) ili **41–49** (`senzor-`)
 4. **API, Intent, fajl, mapa…** → **70–79**
 5. **Alarm, audio, poziv, provider…** → **80–85**

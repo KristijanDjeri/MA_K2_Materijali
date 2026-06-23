@@ -4,7 +4,7 @@ Materijal za kolokvijum: gotovi segmenti koda i uputstva po temama.
 **Android Studio**, **minSdk 28** (Android 9+).
 
 **Organizacija foldera:** [KONVENCIJA-FOLDERA.md](KONVENCIJA-FOLDERA.md)  
-**Grafičke komponente (UI):** [GRAFICKI-SEGMENTI.md](GRAFICKI-SEGMENTI.md) – **60–67**  
+**Grafičke komponente (UI):** [GRAFICKI-SEGMENTI.md](GRAFICKI-SEGMENTI.md) – **60–68**  
 **Helper klase:** [HELPER-KLASE.md](HELPER-KLASE.md) – logika van `MainActivity`  
 **Spajanje za ispit:** [16-spajanje-zadataka](16-spajanje-zadataka/)  
 **Fragmenti na ispitu:** [90-fragments-prirucnik](90-fragments-prirucnik/)  
@@ -45,7 +45,7 @@ Segmenti su **razdvojeni** da svaki radi samostalno. PDF zadaci 5–9 imaju viš
 
 ---
 
-## Grafičke / UI komponente (60–67)
+## Grafičke / UI komponente (60–68)
 
 Odvojeno od senzora i logike podataka.
 
@@ -59,6 +59,7 @@ Odvojeno od senzora i logike podataka.
 | [65-ui-progress-bar](65-ui-progress-bar/) | ProgressBar |
 | [66-ui-checkbox-radiobutton](66-ui-checkbox-radiobutton/) | CheckBox, RadioButton |
 | [67-ui-toolbar-options-menu](67-ui-toolbar-options-menu/) | Toolbar / Options Menu |
+| [68-ui-media-player](68-ui-media-player/) | Media player – slika, video, audio |
 
 Detalji: [GRAFICKI-SEGMENTI.md](GRAFICKI-SEGMENTI.md)
 

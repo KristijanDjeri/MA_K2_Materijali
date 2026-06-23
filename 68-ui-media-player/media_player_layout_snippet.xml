@@ -1,0 +1,62 @@
+<!-- Dodaj u activity_main.xml (folder 68-ui-media-player/) -->
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Slika"
+    android:textStyle="bold"
+    android:paddingTop="8dp" />
+
+<ImageView
+    android:id="@+id/imageViewMedia"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:scaleType="centerCrop"
+    android:background="#EEEEEE"
+    android:contentDescription="Prikaz slike" />
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Video"
+    android:textStyle="bold"
+    android:paddingTop="8dp" />
+
+<VideoView
+    android:id="@+id/videoView"
+    android:layout_width="match_parent"
+    android:layout_height="200dp" />
+
+<Button
+    android:id="@+id/btnPlayVideo"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Pusti video" />
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Audio"
+    android:textStyle="bold"
+    android:paddingTop="8dp" />
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/btnPustiAudio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Pusti audio" />
+
+    <Button
+        android:id="@+id/btnPauzaAudio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Pauza" />
+
+</LinearLayout>
