@@ -1,0 +1,5 @@
+<!-- Unutar <application> -->
+
+<receiver
+    android:name=".AlarmReceiver"
+    android:exported="false" />

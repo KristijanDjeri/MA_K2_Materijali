@@ -1,0 +1,5 @@
+<!-- Unutar <application>, pored MainActivity -->
+
+<activity
+    android:name=".DetailActivity"
+    android:exported="false" />

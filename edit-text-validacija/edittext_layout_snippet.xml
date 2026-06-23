@@ -1,0 +1,8 @@
+<!-- Dodaj u layout -->
+
+<EditText
+    android:id="@+id/editTextNaslov"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Unesite naslov"
+    android:inputType="text" />

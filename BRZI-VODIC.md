@@ -40,7 +40,21 @@
 
 `main-activity-referenca/MainActivity.java` – sve spojeno.
 
-## 6. Test pre kolokvijuma
+## 6. Dodatno (ako profesor promeni zadatak)
+
+| Ako traži… | Folder |
+|------------|--------|
+| Listu postova | `recyclerview/` |
+| Galeriju umesto kamere | `galerija/` |
+| Drugu aktivnost | `intent-druga-aktivnost/` |
+| POST umesto GET | `retrofit-post/` |
+| Bazu u pozadini | `thread-executor/` |
+| Još senzor | `magnetometar/` |
+| Unos teksta | `edit-text-validacija/` |
+
+Detaljnije: `DODATNI-SEGMENTI.md`
+
+## 7. Test pre kolokvijuma
 
 - [ ] Emulator: GPS uključen, lokacija postavljena
 - [ ] Bar jedan kontakt u Contacts

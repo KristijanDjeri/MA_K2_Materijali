@@ -19,6 +19,30 @@ Materijal za kolokvijum: gotovi segmenti koda i uputstva po temama.
 | [kontakti](kontakti/) | Ime prvog kontakta u TextView (zadatak 9) |
 | [main-activity-referenca](main-activity-referenca/) | Spojeni MainActivity primer (sve u jednom) |
 
+### Dodatni segmenti (mogući na kolokvijumu)
+
+Pogledaj **[DODATNI-SEGMENTI.md](DODATNI-SEGMENTI.md)** za pregled verovatnoće.
+
+| Folder | Tema |
+|--------|------|
+| [recyclerview](recyclerview/) | Lista postova iz baze |
+| [galerija](galerija/) | Izbor slike iz galerije |
+| [intent-druga-aktivnost](intent-druga-aktivnost/) | Druga aktivnost + Intent extras |
+| [retrofit-post](retrofit-post/) | POST zahtev |
+| [webview](webview/) | WebView / browser Intent |
+| [magnetometar](magnetometar/) | Magnetometar / kompas |
+| [thread-executor](thread-executor/) | Pozadinska nit za Room |
+| [interni-fajl](interni-fajl/) | Čuvanje u interni fajl |
+| [edit-text-validacija](edit-text-validacija/) | EditText + validacija |
+| [alarm-notifikacija](alarm-notifikacija/) | AlarmManager + notifikacija |
+| [poziv-telefon](poziv-telefon/) | Broj iz kontakta / poziv |
+| [spinner](spinner/) | Padajuća lista |
+| [date-picker](date-picker/) | DatePicker / TimePicker |
+| [okhttp-json](okhttp-json/) | HTTP bez Retrofit-a |
+| [lokacija-realtime](lokacija-realtime/) | Lokacija uživo |
+| [progress-bar](progress-bar/) | ProgressBar pri učitavanju |
+| [vibrator](vibrator/) | Vibracija |
+
 ## Redosled rada na kolokvijumu
 
 1. Kreiraj projekat **Kolokvijum2** → pogledaj `osnovni-projekat/`

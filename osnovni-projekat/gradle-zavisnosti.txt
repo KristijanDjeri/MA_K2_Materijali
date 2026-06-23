@@ -10,3 +10,10 @@ annotationProcessor 'androidx.room:room-compiler:2.6.1'
 
 // Geolokacija (Fused Location Provider)
 implementation 'com.google.android.gms:play-services-location:21.0.1'
+
+// RecyclerView (lista postova – dodatni segment)
+implementation 'androidx.recyclerview:recyclerview:1.3.2'
+
+// OkHttp + Gson (alternativa Retrofit-u – dodatni segment)
+// implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+// implementation 'com.google.code.gson:gson:2.10.1'
