@@ -10,8 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 /** Folder: 49-senzor-shake/ */
 public class ShakeHelper implements SensorEventListener {
 
-    public interface OnShakeListener {
-        void onShake();
+    public interface OnShakeListener extends ShakeDetector.OnShakeListener {
     }
 
     private final SensorManager sensorManager;
