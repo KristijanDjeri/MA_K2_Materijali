@@ -67,11 +67,30 @@ postRepository.ucitajPostoveSaApi(new PostRepository.OnApiDoneListener() {
 });
 ```
 
-> **Ne piši** `obavestiDaSuPostoviUcitani()` u MainActivity – koristi `BroadcastHelper.posaljiPostsUpdated()`.
 
 ---
 
-> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
+## Alternativa: inline implementacija u MainActivity
+
+> **Koristi ovu varijantu** ako helper klasa ne radi ili ne želiš poseban fajl u paketu `helper`. Sav kod ispod ide **direktno u `MainActivity.java`** — polja, metode i lifecycle pozivi.
+
+```java
+// === DODAJ U MainActivity.java ===
+
+// IMPORTI:
+import android.content.Intent;
+import com.example.kolokvijum2.PostUpdateReceiver;
+
+// METODA – pošalji broadcast posle učitavanja postova u bazu:
+private void obavestiDaSuPostoviUcitani() {
+    Intent intent = new Intent(PostUpdateReceiver.ACTION_POSTS_UPDATED);
+    intent.setPackage(getPackageName()); // obavezno od API 26 za manifest receiver
+    sendBroadcast(intent);
+}
+
+// Pozovi na kraju metode koja upisuje postove (npr. posle postDao.insertAll):
+// obavestiDaSuPostoviUcitani();
+```
 
 ## Checklist
 

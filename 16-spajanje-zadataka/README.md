@@ -109,6 +109,44 @@ Kompletan primer: **`15-main-activity-referenca/MainActivity.java`**
 
 ---
 
+## Alternativa: inline implementacija u MainActivity
+
+> Ako helper klase ne rade ili ne želiš paket `helper/`, spoji segmente tako što **lepiš inline kod** iz svakog foldera u jedan `MainActivity.java`.
+
+Svaki segment README (npr. `02-geo-lokacija/`, `03-kamera/`, …) ima sekciju **„Alternativa: inline implementacija u MainActivity“** sa gotovim delovima koda.
+
+**Redosled lepljenja:**
+
+1. Polja i importi iz svih segmenata (ukloni duplikate)
+2. `onCreate` – spoji init blokove (geo, kamera, postDao, switch listener, …)
+3. `onResume` / `onPause` – registracija svih senzora
+4. `onSensorChanged` – jedan metod sa `if/else` po tipu senzora
+5. `onRequestPermissionsResult` – `switch` po `requestCode`
+
+**Kompletan inline primer** (zadaci 1–9): u **`15-main-activity-referenca/README.md`** → sekcija „Stari inline primer“ (u `<details>` bloku).
+
+**Primer spajanja kamere + žiroskopa (inline):**
+
+```java
+private final ActivityResultLauncher<Void> takePictureLauncher =
+        registerForActivityResult(new ActivityResultContracts.TakePicturePreview(), bitmap -> {
+            if (bitmap != null) {
+                imageView.setImageBitmap(bitmap);
+                prikaziZiroskopToast(); // metoda iz 04-senzor-ziroskop/
+            }
+        });
+```
+
+**Primer spajanja dugmeta (inline):**
+
+```java
+// Tekst menja akcelerometar u onSensorChanged (12-senzor-akcelerometar/)
+// Klik briše + notifikacija (10 + 11):
+button.setOnClickListener(v -> obrisiPrviPostINotifikacija());
+```
+
+---
+
 ## Fragmenti
 
 Ako traže Fragment umesto Activity → **`90-fragments-prirucnik/`** (isti segmenti, drugi kontekst: `requireContext()`).

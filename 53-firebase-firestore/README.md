@@ -82,12 +82,10 @@ button.setOnClickListener(v -> firestoreHelper.ucitajPostove(
 // firestoreHelper.obrisiPrvi(() -> NotifikacijaHelper.posaljiPraznaBaza(this));
 ```
 
-> **Ne piši** `ucitajPostoveIzFirestore()` u MainActivity – logika je u `FirestorePostsHelper`.  
 > Za Switch ON/OFF zameni `PostRepository` pozive u `SwitchPostsHelper` sa `FirestorePostsHelper` (ili hibrid: Firestore učitava → `postRepository.insertPosts`).
 
 ---
 
-> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## FirestorePostsHelper – metode (pozovi iz MainActivity)
 
@@ -160,6 +158,67 @@ if (p != null) postDao.insert(p);
 *(Room `Post` mora imati prazan konstruktor – već ima.)*
 
 ---
+
+## Alternativa: inline implementacija u MainActivity
+
+> **Koristi ovu varijantu** ako helper klasa ne radi ili ne želiš poseban fajl u paketu `helper`. Sav kod ispod ide **direktno u `MainActivity.java`** — polja, metode i lifecycle pozivi.
+
+```java
+// IMPORTI:
+import android.widget.Toast;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.example.kolokvijum2.model.Post;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+// POLJA:
+private FirebaseFirestore firestore;
+private boolean firestorePostsUcitani = false;
+
+// U onCreate():
+firestore = FirebaseFirestore.getInstance();
+button.setOnClickListener(v -> ucitajPostoveIzFirestore());
+
+// METODA:
+
+private void ucitajPostoveIzFirestore() {
+    firestore.collection("posts")
+            .limit(10)
+            .get()
+            .addOnCompleteListener(this, task -> {
+                if (task.isSuccessful() && task.getResult() != null) {
+                    List<Post> lista = new ArrayList<>();
+                    for (QueryDocumentSnapshot doc : task.getResult()) {
+                        Post p = doc.toObject(Post.class);
+                        if (p != null) lista.add(p);
+                    }
+                    int n = Math.min(10, lista.size());
+                    if (n > 0) {
+                        postDao.insertAll(lista.subList(0, n));
+                    }
+                    firestorePostsUcitani = true;
+                    Toast.makeText(this, "Učitano " + n + " postova", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Firestore greška", Toast.LENGTH_SHORT).show();
+                }
+            });
+}
+
+// Dodavanje posta (opciono):
+private void dodajPostUFirestore(String naslov, String body) {
+    Map<String, Object> post = new HashMap<>();
+    post.put("id", System.currentTimeMillis());
+    post.put("title", naslov);
+    post.put("body", body);
+    post.put("userId", 1);
+    firestore.collection("posts").add(post)
+            .addOnSuccessListener(ref ->
+                    Toast.makeText(this, "Post dodat: " + ref.getId(), Toast.LENGTH_SHORT).show());
+}
+```
 
 ## Checklist
 

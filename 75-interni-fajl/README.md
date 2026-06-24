@@ -40,11 +40,55 @@ if (!ucitano.isEmpty()) {
 }
 ```
 
-> Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ---
 
-> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
+## Alternativa: inline implementacija u MainActivity
+
+> **Koristi ovu varijantu** ako helper klasa ne radi ili ne želiš poseban fajl u paketu `helper`. Sav kod ispod ide **direktno u `MainActivity.java`** — polja, metode i lifecycle pozivi.
+
+```java
+// === DODAJ U MainActivity.java ===
+
+// IMPORTI:
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+
+// METODE:
+
+private void sacuvajUTxtFajl(String tekst) {
+    try (FileOutputStream fos = openFileOutput("podaci.txt", MODE_PRIVATE)) {
+        fos.write(tekst.getBytes(StandardCharsets.UTF_8));
+        Toast.makeText(this, "Sačuvano u fajl", Toast.LENGTH_SHORT).show();
+    } catch (Exception e) {
+        Toast.makeText(this, "Greška pisanja", Toast.LENGTH_SHORT).show();
+    }
+}
+
+private String ucitajIzTxtFajla() {
+    StringBuilder sb = new StringBuilder();
+    try (FileInputStream fis = openFileInput("podaci.txt");
+         BufferedReader reader = new BufferedReader(new InputStreamReader(fis, StandardCharsets.UTF_8))) {
+        String linija;
+        while ((linija = reader.readLine()) != null) {
+            sb.append(linija);
+        }
+    } catch (Exception e) {
+        return "";
+    }
+    return sb.toString();
+}
+
+// Primer u onCreate:
+// String sacuvano = ucitajIzTxtFajla();
+// if (!sacuvano.isEmpty()) textView.setText(sacuvano);
+
+// Primer pri Switch OFF (umesto ili pored SharedPreferences):
+// sacuvajUTxtFajl(textView.getText().toString());
+```
 
 ## Alternativa
 

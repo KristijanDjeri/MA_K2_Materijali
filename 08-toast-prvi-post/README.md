@@ -38,11 +38,32 @@ import com.example.kolokvijum2.helper.PostRepository;
 button.setOnClickListener(v -> postRepository.prikaziTitlePrvogPosta());
 ```
 
-> **Ne piši** `prikaziTitlePrvogPosta()` u MainActivity – metoda je u `PostRepository`.
 
 ---
 
-> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
+## Alternativa: inline implementacija u MainActivity
+
+> **Koristi ovu varijantu** ako helper klasa ne radi ili ne želiš poseban fajl u paketu `helper`. Sav kod ispod ide **direktno u `MainActivity.java`** — polja, metode i lifecycle pozivi.
+
+```java
+// IMPORTI:
+import android.widget.Toast;
+import com.example.kolokvijum2.model.Post;
+
+// U onCreate():
+button.setOnClickListener(v -> prikaziTitlePrvogPosta());
+
+// METODA:
+
+private void prikaziTitlePrvogPosta() {
+    Post prvi = postDao.getFirst();
+    if (prvi != null) {
+        Toast.makeText(this, prvi.getTitle(), Toast.LENGTH_SHORT).show();
+    } else {
+        Toast.makeText(this, "Nema postova u bazi", Toast.LENGTH_SHORT).show();
+    }
+}
+```
 
 ## Brzi test bez API-ja
 

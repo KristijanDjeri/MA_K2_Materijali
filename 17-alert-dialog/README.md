@@ -55,11 +55,9 @@ if (prvi != null) {
 }
 ```
 
-> **Ne piši** `obrisiPrviPost()` u MainActivity – koristi `PostRepository` iz `07-ucitaj-10-postova/`.
 
 ---
 
-> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## U Fragmentu
 
@@ -75,6 +73,27 @@ new AlertDialog.Builder(requireContext())
 ```
 
 ---
+
+## Alternativa: inline implementacija u MainActivity
+
+> **Koristi ovu varijantu** ako helper klasa ne radi ili ne želiš poseban fajl u paketu `helper`. Sav kod ispod ide **direktno u `MainActivity.java`** — polja, metode i lifecycle pozivi.
+
+```java
+// Deo za MainActivity – potvrda pre brisanja (folder 17-alert-dialog/)
+
+import androidx.appcompat.app.AlertDialog;
+
+private void potvrdiBrisanje() {
+    new AlertDialog.Builder(this)
+            .setTitle("Brisanje")
+            .setMessage("Obrisati prvi post iz baze?")
+            .setPositiveButton("Da", (dialog, which) -> obrisiPrviPost())
+            .setNegativeButton("Ne", null)
+            .show();
+}
+
+// button.setOnClickListener(v -> potvrdiBrisanje());
+```
 
 ## Checklist
 

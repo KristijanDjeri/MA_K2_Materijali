@@ -48,7 +48,6 @@ shakeHelper.onResume();
 shakeHelper.onPause();
 ```
 
-> Za stari inline primer pogledaj `ShakeSegment.java` u istom folderu.
 
 ---
 
@@ -97,6 +96,39 @@ Prag i cooldown podešavaš u `ShakeDetector.java` (u paketu `helper`), ne u Mai
 Na emulatoru: Extended Controls → Sensors → pomeri vrednosti akcelerometra naglo.
 
 ---
+
+## Alternativa: inline implementacija u MainActivity
+
+> **Koristi ovu varijantu** ako helper klasa ne radi ili ne želiš poseban fajl u paketu `helper`. Sav kod ispod ide **direktno u `MainActivity.java`** — polja, metode i lifecycle pozivi.
+
+```java
+// === DODAJ U MainActivity.java (Varijanta A – bez posebne klase) ===
+
+// POLJA:
+// private static final float SHAKE_THRESHOLD = 12.0f;
+// private static final int SHAKE_COOLDOWN_MS = 1000;
+// private long poslednjiShakeVreme = 0;
+
+// U onSensorChanged, unutar TYPE_ACCELEROMETER grane:
+// detektujShake(x, y, z);
+
+// METODE – vidi README.md za pun kod:
+// detektujShake(float x, float y, float z)
+// onShakeDetektovan()
+
+// === Varijanta C – sa ShakeDetector.java ===
+
+// import com.example.kolokvijum2.ShakeDetector;
+// private ShakeDetector shakeDetector;
+
+// onCreate:
+// shakeDetector = new ShakeDetector(() ->
+//     Toast.makeText(this, "Tresenje detektovano!", Toast.LENGTH_SHORT).show()
+// );
+
+// onSensorChanged (08-senzor-akcelerometar):
+// shakeDetector.obradiSensorEvent(event);
+```
 
 ## Checklist
 

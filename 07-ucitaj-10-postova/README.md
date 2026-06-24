@@ -68,7 +68,6 @@ button.setOnClickListener(v -> postRepository.ucitajPostoveSaApi(
 ));
 ```
 
-> **Ne piši** `ucitajPostoveSaApi()` u MainActivity – metoda **već postoji** u `PostRepository`. Switch u `09-switch-listener/` poziva istu metodu preko `SwitchPostsHelper`.
 
 ---
 
@@ -97,6 +96,51 @@ Kopiraj **`PostRepository.java`** iz `07-ucitaj-10-postova/`. MainActivity **ne 
 4. `postsUcitani` flag – kasnije koristi `09-switch-listener/`
 
 ---
+
+## Alternativa: inline implementacija u MainActivity
+
+> **Koristi ovu varijantu** ako helper klasa ne radi ili ne želiš poseban fajl u paketu `helper`. Sav kod ispod ide **direktno u `MainActivity.java`** — polja, metode i lifecycle pozivi.
+
+```java
+// IMPORTI:
+import android.widget.Toast;
+import com.example.kolokvijum2.api.RetrofitClient;
+import com.example.kolokvijum2.model.Post;
+import java.util.List;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+// POLJE:
+private boolean postsUcitani = false;
+
+// U onCreate(), posle postDao init:
+button.setOnClickListener(v -> ucitajPostoveSaApi());
+
+// METODA:
+
+private void ucitajPostoveSaApi() {
+    RetrofitClient.getApi().getPosts().enqueue(new Callback<List<Post>>() {
+        @Override
+        public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+            if (response.isSuccessful() && response.body() != null) {
+                List<Post> svi = response.body();
+                int n = Math.min(10, svi.size());
+                postDao.insertAll(svi.subList(0, n));
+                postsUcitani = true;
+                Toast.makeText(MainActivity.this,
+                        "Učitano " + n + " postova", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        @Override
+        public void onFailure(Call<List<Post>> call, Throwable t) {
+            Toast.makeText(MainActivity.this,
+                    "Greška: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    });
+}
+```
 
 ## Alternativne implementacije
 

@@ -40,11 +40,32 @@ proksimitetHelper.onResume();
 proksimitetHelper.onPause();
 ```
 
-> Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ---
 
-> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
+## Alternativa: inline implementacija u MainActivity
+
+> **Koristi ovu varijantu** ako helper klasa ne radi ili ne želiš poseban fajl u paketu `helper`. Sav kod ispod ide **direktno u `MainActivity.java`** — polja, metode i lifecycle pozivi.
+
+```java
+// POLJA:
+private Sensor proximitySensor;
+
+// U onCreate():
+proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+
+// U onResume():
+if (proximitySensor != null) {
+    sensorManager.registerListener(this, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL);
+}
+
+// U onSensorChanged():
+} else if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
+    float cm = event.values[0];
+    textView.setText(cm < proximitySensor.getMaximumRange()
+            ? "Blizu (" + cm + " cm)" : "Daleko");
+}
+```
 
 ## Checklist
 

@@ -72,7 +72,6 @@ Brisanje posta: **`onCreate`** → `button.setOnClickListener` (zadatak 10) – 
 
 ---
 
-> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## Ako imaš i žiroskop (zadatak 4)
 
@@ -95,6 +94,48 @@ public void onSensorChanged(SensorEvent event) {
 U `onResume` registruj **oba** senzora.
 
 ---
+
+## Alternativa: inline implementacija u MainActivity
+
+> **Koristi ovu varijantu** ako helper klasa ne radi ili ne želiš poseban fajl u paketu `helper`. Sav kod ispod ide **direktno u `MainActivity.java`** — polja, metode i lifecycle pozivi.
+
+```java
+// === DODAJ U MainActivity.java ===
+
+// IMPORTI:
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorManager;
+
+// POLJA (pored žiroskopa):
+private Sensor accelerometer;
+
+// U onCreate():
+accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
+// U onResume() dodaj registraciju:
+if (accelerometer != null) {
+    sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+}
+
+// U onSensorChanged() proširi switch/if:
+
+@Override
+public void onSensorChanged(SensorEvent event) {
+    if (event.sensor.getType() == Sensor.TYPE_GYROSCOPE) {
+        gyroX = event.values[0];
+        gyroY = event.values[1];
+        gyroZ = event.values[2];
+    } else if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+        float ax = event.values[0];
+        float ay = event.values[1];
+        float az = event.values[2];
+        button.setText("X: " + ax + " Y: " + ay + " Z: " + az);
+    }
+}
+
+// button.setOnClickListener za brisanje ostaje iz 07-brisanje-notifikacije/
+```
 
 ## Alternativne implementacije
 

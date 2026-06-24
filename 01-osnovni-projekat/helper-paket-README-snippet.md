@@ -60,3 +60,9 @@ public void onRequestPermissionsResult(int requestCode, String[] permissions, in
 ```
 
 Mapa svih helper fajlova: **`HELPER-KLASE.md`**
+
+---
+
+## Alternativa: bez helper klase
+
+Ako helper ne radi, u README svakog segmenta pogledaj sekciju **„Alternativa: inline implementacija u MainActivity“** – sav kod ide direktno u Activity. Za spajanje svih zadataka inline vidi **`16-spajanje-zadataka/`** i **`15-main-activity-referenca/README.md`**.

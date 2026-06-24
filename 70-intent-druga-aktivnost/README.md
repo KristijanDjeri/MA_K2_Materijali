@@ -54,11 +54,30 @@ switchPosts.setOnLongClickListener(v -> {
 // DetailIntentHelper.otvoriDetalj(this, "Probni naslov");
 ```
 
-> **Ne piši** `otvoriDetalj()` u MainActivity – helper kreira `Intent` i poziva `startActivity`.
 
 ---
 
-> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
+## Alternativa: inline implementacija u MainActivity
+
+> **Koristi ovu varijantu** ako helper klasa ne radi ili ne želiš poseban fajl u paketu `helper`. Sav kod ispod ide **direktno u `MainActivity.java`** — polja, metode i lifecycle pozivi.
+
+```java
+// === DODAJ U MainActivity.java ===
+
+// IMPORTI:
+import android.content.Intent;
+
+// METODA (npr. dugme ili dugi klik na post):
+private void otvoriDetalj(String naslov) {
+    Intent intent = new Intent(this, DetailActivity.class);
+    intent.putExtra("naslov", naslov);
+    startActivity(intent);
+}
+
+// Primer poziva:
+// Post prvi = postDao.getFirst();
+// if (prvi != null) otvoriDetalj(prvi.getTitle());
+```
 
 ## Checklist
 

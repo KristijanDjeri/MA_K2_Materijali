@@ -62,11 +62,36 @@ Ručni test (bez Switch-a):
 button.setOnClickListener(v -> prefsHelper.sacuvajTextView(textView));
 ```
 
-> Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ---
 
-> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
+## Alternativa: inline implementacija u MainActivity
+
+> **Koristi ovu varijantu** ako helper klasa ne radi ili ne želiš poseban fajl u paketu `helper`. Sav kod ispod ide **direktno u `MainActivity.java`** — polja, metode i lifecycle pozivi.
+
+```java
+// === DODAJ U MainActivity.java ===
+
+// IMPORTI:
+import android.content.SharedPreferences;
+
+// POLJE:
+private SharedPreferences prefs;
+
+// U onCreate():
+prefs = getSharedPreferences("kolokvijum_prefs", MODE_PRIVATE);
+
+// METODA (poziva se iz switch listenera kada je isChecked == false):
+
+private void obradiSwitchOff() {
+    // 1. Sačuvaj TextView u SharedPreferences
+    String trenutniTekst = textView.getText().toString();
+    prefs.edit().putString("tekst", trenutniTekst).apply();
+
+    // 2. Zameni TextView imenom prvog kontakta (folder 10-kontakti/)
+    postaviImePrvogKontakta();
+}
+```
 
 ## Objašnjenje linija
 

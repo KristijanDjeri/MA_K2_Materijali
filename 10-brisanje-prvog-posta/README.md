@@ -51,11 +51,29 @@ button.setOnClickListener(v -> postRepository.obrisiPrviPost(
 ));
 ```
 
-> **Ne piši** `obrisiPrviPost()` u MainActivity – metoda je u `PostRepository`. Callback `onEmpty` se poziva kad je `count() == 0`.
 
 ---
 
-> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
+## Alternativa: inline implementacija u MainActivity
+
+> **Koristi ovu varijantu** ako helper klasa ne radi ili ne želiš poseban fajl u paketu `helper`. Sav kod ispod ide **direktno u `MainActivity.java`** — polja, metode i lifecycle pozivi.
+
+```java
+// IMPORTI:
+import com.example.kolokvijum2.model.Post;
+
+// U onCreate():
+button.setOnClickListener(v -> obrisiPrviPost());
+
+// METODA (samo brisanje – bez notifikacije):
+
+private void obrisiPrviPost() {
+    Post prvi = postDao.getFirst();
+    if (prvi != null) {
+        postDao.delete(prvi);
+    }
+}
+```
 
 ## Važno: odvojeno od akcelerometra
 

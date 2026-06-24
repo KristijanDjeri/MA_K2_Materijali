@@ -130,7 +130,47 @@ Kopiraj **`RetrofitGetHelper.java`** iz ovog foldera u `app/.../helper/`.
 
 ---
 
-> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
+## Alternativa: inline implementacija u MainActivity
+
+> **Koristi ovu varijantu** ako helper klasa ne radi ili ne želiš poseban fajl u paketu `helper`. Sav kod ispod ide **direktno u `MainActivity.java`** — polja, metode i lifecycle pozivi.
+
+```java
+// IMPORTI:
+import android.widget.Toast;
+import com.example.kolokvijum2.api.RetrofitClient;
+import com.example.kolokvijum2.model.Post;
+import java.util.List;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+// U onCreate():
+button.setOnClickListener(v -> testRetrofitGet());
+
+// METODA:
+
+private void testRetrofitGet() {
+    RetrofitClient.getApi().getPosts().enqueue(new Callback<List<Post>>() {
+        @Override
+        public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+            if (response.isSuccessful() && response.body() != null) {
+                int n = response.body().size();
+                Toast.makeText(MainActivity.this,
+                        "API vratio " + n + " postova", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(MainActivity.this,
+                        "Neuspešan odgovor", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        @Override
+        public void onFailure(Call<List<Post>> call, Throwable t) {
+            Toast.makeText(MainActivity.this,
+                    "Greška: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    });
+}
+```
 
 ## API odgovor (format)
 

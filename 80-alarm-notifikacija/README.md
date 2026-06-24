@@ -39,7 +39,6 @@ AlarmHelper alarmHelper = new AlarmHelper(this, AlarmReceiver.class);
 alarmHelper.zakaziZaSekundi(10);
 ```
 
-> Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ---
 
@@ -94,7 +93,34 @@ public class AlarmReceiver extends BroadcastReceiver {
 
 ---
 
-> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
+## Alternativa: inline implementacija u MainActivity
+
+> **Koristi ovu varijantu** ako helper klasa ne radi ili ne želiš poseban fajl u paketu `helper`. Sav kod ispod ide **direktno u `MainActivity.java`** — polja, metode i lifecycle pozivi.
+
+```java
+// === DODAJ U MainActivity.java ===
+
+// IMPORTI:
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.os.SystemClock;
+
+// METODA – notifikacija za 10 sekundi:
+private void zakaziAlarm() {
+    Intent intent = new Intent(this, AlarmReceiver.class);
+    PendingIntent pendingIntent = PendingIntent.getBroadcast(
+            this, 0, intent,
+            PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+    );
+
+    AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+    long kada = SystemClock.elapsedRealtime() + 10_000; // 10 sekundi
+
+    alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, kada, pendingIntent);
+    Toast.makeText(this, "Alarm zakazan za 10s", Toast.LENGTH_SHORT).show();
+}
+```
 
 ## Alternativa
 

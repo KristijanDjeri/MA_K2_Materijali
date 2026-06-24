@@ -75,11 +75,9 @@ new CheckBoxRadioHelper(
 );
 ```
 
-> Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ---
 
-> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## Primer povezivanja sa zadatkom
 
@@ -96,6 +94,37 @@ button.setOnClickListener(v -> {
 ```
 
 ---
+
+## Alternativa: inline implementacija u MainActivity
+
+> **Koristi ovu varijantu** ako helper klasa ne radi ili ne želiš poseban fajl u paketu `helper`. Sav kod ispod ide **direktno u `MainActivity.java`** — polja, metode i lifecycle pozivi.
+
+```java
+// Deo za MainActivity (folder 55-checkbox-radiobutton/)
+
+import android.widget.CheckBox;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+
+private CheckBox checkBoxNotifikacije;
+private RadioGroup radioGroupSort;
+
+// onCreate:
+checkBoxNotifikacije = findViewById(R.id.checkBoxNotifikacije);
+radioGroupSort = findViewById(R.id.radioGroupSort);
+
+checkBoxNotifikacije.setOnCheckedChangeListener((buttonView, isChecked) -> {
+    textView.setText(isChecked ? "Notifikacije: uključene" : "Notifikacije: isključene");
+});
+
+radioGroupSort.setOnCheckedChangeListener((group, checkedId) -> {
+    if (checkedId == R.id.radioPoId) {
+        textView.setText("Sortiranje: po ID");
+    } else if (checkedId == R.id.radioPoTitle) {
+        textView.setText("Sortiranje: po naslovu");
+    }
+});
+```
 
 ## Checklist
 

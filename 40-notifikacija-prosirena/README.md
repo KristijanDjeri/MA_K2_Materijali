@@ -51,11 +51,57 @@ button.setOnLongClickListener(v -> {
 // NotifikacijaProsirenaHelper.ukloniOngoing(this);
 ```
 
-> **Ne piši** `posaljiBigTextNotifikaciju()` u MainActivity – metode su u helperu.
 
 ---
 
-> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
+## Alternativa: inline implementacija u MainActivity
+
+> **Koristi ovu varijantu** ako helper klasa ne radi ili ne želiš poseban fajl u paketu `helper`. Sav kod ispod ide **direktno u `MainActivity.java`** — polja, metode i lifecycle pozivi.
+
+```java
+// IMPORTI:
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+
+// U onCreate() – primeri test poziva:
+button.setOnLongClickListener(v -> {
+    posaljiBigTextNotifikaciju("Naslov", "Ovo je duži tekst koji se vidi kad povučeš notifikaciju...");
+    return true;
+});
+
+// METODE:
+
+private void posaljiBigTextNotifikaciju(String naslov, String dugiTekst) {
+    kreirajOsnovniKanal();
+    NotificationCompat.BigTextStyle style = new NotificationCompat.BigTextStyle()
+            .bigText(dugiTekst)
+            .setBigContentTitle(naslov);
+
+    NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(android.R.drawable.ic_dialog_info)
+            .setContentTitle(naslov)
+            .setContentText("Kratki pregled…")
+            .setStyle(style)
+            .setAutoCancel(true);
+    NotificationManagerCompat.from(this).notify(102, builder.build());
+}
+
+private void posaljiInboxNotifikaciju(String... linije) {
+    kreirajOsnovniKanal();
+    NotificationCompat.InboxStyle inbox = new NotificationCompat.InboxStyle()
+            .setBigContentTitle("Poslednji postovi");
+    for (String linija : linije) {
+        inbox.addLine(linija);
+    }
+    NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(android.R.drawable.ic_dialog_email)
+            .setContentTitle("Nova obaveštenja")
+            .setContentText("Povuci za listu")
+            .setStyle(inbox)
+            .setAutoCancel(true);
+    NotificationManagerCompat.from(this).notify(104, builder.build());
+}
+```
 
 ## Checklist
 

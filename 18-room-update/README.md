@@ -61,11 +61,9 @@ button.setOnClickListener(v -> {
 });
 ```
 
-> **Ne piši** `izmeniTitlePrvogPosta()` u MainActivity – metoda je u `PostRepository` i interno poziva `postDao.update()`.
 
 ---
 
-> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## Napomena
 
@@ -73,6 +71,25 @@ button.setOnClickListener(v -> {
 - `@Insert(onConflict = REPLACE)` ponekad zamenjuje UPDATE – ali eksplicitni `@Update` je jasniji na ispitu.
 
 ---
+
+## Alternativa: inline implementacija u MainActivity
+
+> **Koristi ovu varijantu** ako helper klasa ne radi ili ne želiš poseban fajl u paketu `helper`. Sav kod ispod ide **direktno u `MainActivity.java`** — polja, metode i lifecycle pozivi.
+
+```java
+// Deo za MainActivity (folder 18-room-update/)
+
+private void izmeniTitlePrvogPosta(String noviTitle) {
+    Post prvi = postDao.getFirst();
+    if (prvi != null) {
+        prvi.setTitle(noviTitle);
+        postDao.update(prvi);
+        Toast.makeText(this, "Ažurirano: " + noviTitle, Toast.LENGTH_SHORT).show();
+    } else {
+        Toast.makeText(this, "Nema postova", Toast.LENGTH_SHORT).show();
+    }
+}
+```
 
 ## Checklist
 

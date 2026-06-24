@@ -54,7 +54,6 @@ button.setOnClickListener(v -> postRepository.obrisiPrviPost(
 ));
 ```
 
-> **Ne piši** proveru `postDao.count() == 0` u MainActivity – `PostRepository.obrisiPrviPost()` poziva callback kad je baza prazna.
 
 ### Samostalni test (bez brisanja)
 
@@ -68,7 +67,74 @@ if (postDao.count() == 0) {
 
 ---
 
-> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
+## Alternativa: inline implementacija u MainActivity
+
+> **Koristi ovu varijantu** ako helper klasa ne radi ili ne želiš poseban fajl u paketu `helper`. Sav kod ispod ide **direktno u `MainActivity.java`** — polja, metode i lifecycle pozivi.
+
+```java
+// IMPORTI:
+import android.Manifest;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
+import com.example.kolokvijum2.model.Post;
+
+// POLJA:
+private static final String CHANNEL_ID = "posts_channel";
+private static final int NOTIF_ID = 1;
+private static final int REQ_NOTIF = 110;
+
+// U onCreate():
+kreirajNotificationChannel();
+proveriDozvoluZaNotifikacije();
+
+// METODE:
+
+private void kreirajNotificationChannel() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        NotificationChannel channel = new NotificationChannel(
+                CHANNEL_ID, "Postovi", NotificationManager.IMPORTANCE_DEFAULT);
+        getSystemService(NotificationManager.class).createNotificationChannel(channel);
+    }
+}
+
+private void proveriDozvoluZaNotifikacije() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.POST_NOTIFICATIONS}, REQ_NOTIF);
+        }
+    }
+}
+
+private void obrisiPrviPostINotifikacija() {
+    Post prvi = postDao.getFirst();
+    if (prvi != null) {
+        postDao.delete(prvi);
+    }
+    if (postDao.count() == 0) {
+        posaljiNotifikacijuPraznaBaza();
+    }
+}
+
+private void posaljiNotifikacijuPraznaBaza() {
+    NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(android.R.drawable.ic_dialog_info)
+            .setContentTitle("Obaveštenje")
+            .setContentText("Nema više postova!")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+    NotificationManagerCompat.from(this).notify(NOTIF_ID, builder.build());
+}
+
+// Listener na dugme (spoji sa 10-brisanje-prvog-posta/):
+// button.setOnClickListener(v -> obrisiPrviPostINotifikacija());
+```
 
 ## Samostalni test
 

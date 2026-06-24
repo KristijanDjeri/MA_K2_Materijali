@@ -40,11 +40,30 @@ WebViewHelper webViewHelper = new WebViewHelper(this, webView);
 webViewHelper.ucitajUrl("https://dummy-json.mock.beeceptor.com/posts");
 ```
 
-> Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ---
 
-> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
+## Alternativa: inline implementacija u MainActivity
+
+> **Koristi ovu varijantu** ako helper klasa ne radi ili ne želiš poseban fajl u paketu `helper`. Sav kod ispod ide **direktno u `MainActivity.java`** — polja, metode i lifecycle pozivi.
+
+```java
+// === DODAJ U MainActivity.java ===
+
+// IMPORTI:
+import android.webkit.WebView;
+import android.webkit.WebSettings;
+
+// U onCreate():
+WebView webView = findViewById(R.id.webView);
+WebSettings settings = webView.getSettings();
+settings.setJavaScriptEnabled(true);
+webView.loadUrl("https://app.beeceptor.com/mock-server/dummy-json");
+
+// Implicitni Intent – otvaranje u browseru (alternativa):
+// Intent browser = new Intent(Intent.ACTION_VIEW, Uri.parse("https://example.com"));
+// startActivity(browser);
+```
 
 ## Alternativa: otvori u spoljašnjem browseru
 

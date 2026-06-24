@@ -47,11 +47,46 @@ button.setOnLongClickListener(v -> {
 });
 ```
 
-> **Ne piši** `posaljiPostNaServer()` u MainActivity – metoda je u `PostRepository` (folder `07-ucitaj-10-postova/`).
 
 ---
 
-> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
+## Alternativa: inline implementacija u MainActivity
+
+> **Koristi ovu varijantu** ako helper klasa ne radi ili ne želiš poseban fajl u paketu `helper`. Sav kod ispod ide **direktno u `MainActivity.java`** — polja, metode i lifecycle pozivi.
+
+```java
+// === DODAJ U MainActivity.java ===
+
+// IMPORTI:
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+// METODA:
+private void posaljiPostNaServer() {
+    Post novi = new Post(0, "Naslov sa uređaja", "Tekst posta", 1);
+
+    RetrofitClient.getApi().createPost(novi).enqueue(new Callback<Post>() {
+        @Override
+        public void onResponse(Call<Post> call, Response<Post> response) {
+            if (response.isSuccessful()) {
+                Toast.makeText(MainActivity.this, "POST uspešan", Toast.LENGTH_SHORT).show();
+                // opciono: upiši i u lokalnu bazu
+                // postDao.insert(response.body());
+            }
+        }
+
+        @Override
+        public void onFailure(Call<Post> call, Throwable t) {
+            Toast.makeText(MainActivity.this, "POST greška", Toast.LENGTH_SHORT).show();
+        }
+    });
+}
+
+// U JsonPlaceholderApi dodaj:
+// @POST("posts")
+// Call<Post> createPost(@Body Post post);
+```
 
 ## Checklist
 

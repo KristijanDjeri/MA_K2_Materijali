@@ -76,7 +76,6 @@ FirebaseAuthHelper firebaseAuthHelper = new FirebaseAuthHelper(
 
 ---
 
-> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## Alternativne metode prijave
 
@@ -100,6 +99,80 @@ firebaseAuth.signInAnonymously()
 U konzoli: Authentication → Sign-in method → **Anonymous** → Enable.
 
 ---
+
+## Alternativa: inline implementacija u MainActivity
+
+> **Koristi ovu varijantu** ako helper klasa ne radi ili ne želiš poseban fajl u paketu `helper`. Sav kod ispod ide **direktno u `MainActivity.java`** — polja, metode i lifecycle pozivi.
+
+```java
+// IMPORTI:
+import android.text.TextUtils;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+// POLJA:
+private FirebaseAuth firebaseAuth;
+private EditText editEmail;
+private EditText editLozinka;
+
+// U onCreate():
+firebaseAuth = FirebaseAuth.getInstance();
+editEmail = findViewById(R.id.editEmail);
+editLozinka = findViewById(R.id.editLozinka);
+Button btnRegistracija = findViewById(R.id.btnRegistracija);
+Button btnPrijava = findViewById(R.id.btnPrijava);
+
+btnRegistracija.setOnClickListener(v -> firebaseRegistracija());
+btnPrijava.setOnClickListener(v -> firebasePrijava());
+
+FirebaseUser trenutni = firebaseAuth.getCurrentUser();
+if (trenutni != null) {
+    Toast.makeText(this, "Ulogovan: " + trenutni.getEmail(), Toast.LENGTH_SHORT).show();
+}
+
+// METODE:
+
+private void firebaseRegistracija() {
+    String email = editEmail.getText().toString().trim();
+    String lozinka = editLozinka.getText().toString().trim();
+    if (TextUtils.isEmpty(email) || TextUtils.isEmpty(lozinka)) {
+        Toast.makeText(this, "Unesite email i lozinku", Toast.LENGTH_SHORT).show();
+        return;
+    }
+    firebaseAuth.createUserWithEmailAndPassword(email, lozinka)
+            .addOnCompleteListener(this, task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(this, "Registracija uspešna", Toast.LENGTH_SHORT).show();
+                } else {
+                    String greska = task.getException() != null
+                            ? task.getException().getMessage() : "Greška";
+                    Toast.makeText(this, greska, Toast.LENGTH_SHORT).show();
+                }
+            });
+}
+
+private void firebasePrijava() {
+    String email = editEmail.getText().toString().trim();
+    String lozinka = editLozinka.getText().toString().trim();
+    if (TextUtils.isEmpty(email) || TextUtils.isEmpty(lozinka)) {
+        Toast.makeText(this, "Unesite email i lozinku", Toast.LENGTH_SHORT).show();
+        return;
+    }
+    firebaseAuth.signInWithEmailAndPassword(email, lozinka)
+            .addOnCompleteListener(this, task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(this, "Prijava uspešna", Toast.LENGTH_SHORT).show();
+                } else {
+                    String greska = task.getException() != null
+                            ? task.getException().getMessage() : "Greška";
+                    Toast.makeText(this, greska, Toast.LENGTH_SHORT).show();
+                }
+            });
+}
+```
 
 ## Checklist
 

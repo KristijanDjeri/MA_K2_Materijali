@@ -67,7 +67,41 @@ Vidi pun primer u **`73-okhttp-json/`**.
 
 ---
 
-> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
+## Alternativa: inline implementacija u MainActivity
+
+> **Koristi ovu varijantu** ako helper klasa ne radi ili ne želiš poseban fajl u paketu `helper`. Sav kod ispod ide **direktno u `MainActivity.java`** — polja, metode i lifecycle pozivi.
+
+```java
+// === DODAJ U MainActivity.java ===
+
+// IMPORTI:
+import android.view.View;
+import android.widget.ProgressBar;
+
+// POLJE:
+private ProgressBar progressBar;
+
+// U onCreate():
+progressBar = findViewById(R.id.progressBar);
+
+// U Retrofit pozivu:
+private void ucitajPostoveSaProgressom() {
+    progressBar.setVisibility(View.VISIBLE);
+
+    RetrofitClient.getApi().getPosts().enqueue(new Callback<List<Post>>() {
+        @Override
+        public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+            progressBar.setVisibility(View.GONE);
+            // ... ostatak logike
+        }
+
+        @Override
+        public void onFailure(Call<List<Post>> call, Throwable t) {
+            progressBar.setVisibility(View.GONE);
+        }
+    });
+}
+```
 
 ## Alternativa
 

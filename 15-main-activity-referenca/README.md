@@ -39,7 +39,7 @@ Puna lista helpera: **`HELPER-KLASE.md`**.
 - inicijalizacija helper klasa u **`onCreate`**
 - **`onResume` / `onPause` / `onRequestPermissionsResult`** delegiraju helperima
 
-Za stari inline kod (sve u jednoj klasi), pogledaj git istoriju ili segment README inline sekcije.
+Za inline kod (sve u jednoj klasi): pogledaj sekciju **„Alternativa: inline implementacija u MainActivity“** u README svakog segmenta, ili kompletan primer ispod u `<details>` bloku.
 
 ---
 

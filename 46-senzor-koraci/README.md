@@ -54,11 +54,64 @@ if (koraciHelper != null) {
 }
 ```
 
-> Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ---
 
-> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
+## Alternativa: inline implementacija u MainActivity
+
+> **Koristi ovu varijantu** ako helper klasa ne radi ili ne želiš poseban fajl u paketu `helper`. Sav kod ispod ide **direktno u `MainActivity.java`** — polja, metode i lifecycle pozivi.
+
+```java
+// IMPORTI:
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+// POLJA:
+private static final int REQ_ACTIVITY = 107;
+private Sensor stepCounterSensor;
+private boolean koraciRegistrovan = false;
+
+// U onCreate():
+stepCounterSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+
+// U onResume():
+pokreniKorake();
+
+// U onPause():
+if (koraciRegistrovan) {
+    sensorManager.unregisterListener(this, stepCounterSensor);
+    koraciRegistrovan = false;
+}
+
+// METODE:
+
+private void pokreniKorake() {
+    if (stepCounterSensor == null) return;
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACTIVITY_RECOGNITION}, REQ_ACTIVITY);
+            return;
+        }
+    }
+    if (!koraciRegistrovan) {
+        sensorManager.registerListener(this, stepCounterSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        koraciRegistrovan = true;
+    }
+}
+
+// U onRequestPermissionsResult:
+// if (requestCode == REQ_ACTIVITY && grantResults[0] == PERMISSION_GRANTED) pokreniKorake();
+
+// U onSensorChanged():
+} else if (event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
+    textView.setText("Koraci: " + (int) event.values[0]);
+}
+```
 
 ## Alternativa: STEP_DETECTOR
 

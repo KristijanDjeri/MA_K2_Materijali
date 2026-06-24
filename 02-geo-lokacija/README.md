@@ -22,7 +22,6 @@
 | 4 | `MainActivity.java` | **`onCreate`**: `geoHelper.pokreni();` |
 | 5 | `MainActivity.java` | **`onRequestPermissionsResult`**: `geoHelper.onPermissionGranted(requestCode, grantResults);` |
 
-> Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ---
 
@@ -61,7 +60,66 @@ geoHelper.onPermissionGranted(requestCode, grantResults);
 
 ---
 
-> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
+## Alternativa: inline implementacija u MainActivity
+
+> **Koristi ovu varijantu** ako helper klasa ne radi ili ne želiš poseban fajl u paketu `helper`. Sav kod ispod ide **direktno u `MainActivity.java`** — polja, metode i lifecycle pozivi.
+
+```java
+// === DODAJ U MainActivity.java ===
+
+// IMPORTI:
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.widget.TextView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+
+// POLJA:
+private static final int REQ_LOCATION = 100;
+private TextView textView;
+private FusedLocationProviderClient fusedLocationClient;
+
+// U onCreate(), posle findViewById:
+fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+pokreniGeolokaciju();
+
+// METODE:
+
+private void pokreniGeolokaciju() {
+    if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED) {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQ_LOCATION);
+        return;
+    }
+    ucitajLokaciju();
+}
+
+private void ucitajLokaciju() {
+    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED) {
+        return;
+    }
+    fusedLocationClient.getLastLocation()
+            .addOnSuccessListener(this, location -> {
+                if (location != null) {
+                    textView.setText("Širina: " + location.getLatitude()
+                            + ", Dužina: " + location.getLongitude());
+                } else {
+                    textView.setText("Lokacija nije dostupna");
+                }
+            });
+}
+
+// U onRequestPermissionsResult dodaj:
+// if (requestCode == REQ_LOCATION
+//         && grantResults.length > 0
+//         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//     ucitajLokaciju();
+// }
+```
 
 ## Kako testirati
 
