@@ -1,7 +1,7 @@
 # Brzi vodič za kolokvijum (1 strana)
 
 ## 1. Novi projekat
-- Ime: **Kolokvijum2**, aktivnost: **MainActivity**, minSdk **28**
+- Ime: **Kolokvijum2**, aktivnost: **MainActivity**, minSdk **30**, targetSdk **36**
 - Layout: `01-osnovni-projekat/activity_main.xml`
 - Gradle: `01-osnovni-projekat/gradle-zavisnosti.txt`
 - Dozvole: `01-osnovni-projekat/AndroidManifest-dozvole.xml`

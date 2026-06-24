@@ -22,7 +22,8 @@ Bez ovoga ne možeš raditi ostale segmente.
    - **Name:** `Kolokvijum2`
    - **Package name:** `com.example.kolokvijum2` *(ako profesor ne traži drugačije)*
    - **Language:** `Java`
-   - **Minimum SDK:** `API 28` (Android 9.0)
+   - **Minimum SDK:** `API 30` (Android 11)
+   - **Target SDK:** `API 36`
 5. Klikni **Finish**
 
 Android Studio automatski kreira `MainActivity.java` i `activity_main.xml`.
@@ -127,12 +128,12 @@ Proveri da u istom fajlu postoji i ovo (obično već postoji):
 
 ```gradle
 android {
-    compileSdk 34   // ili noviji, npr. 35
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.example.kolokvijum2"
-        minSdk 28
-        targetSdk 34
+        minSdk 30
+        targetSdk 36
     }
 
     compileOptions {
@@ -143,6 +144,8 @@ android {
 ```
 
 Klikni **Sync Now** kad Android Studio ponudi.
+
+> **SDK 36:** U Android Studio → **SDK Manager** → instaliraj **Android API 36** (Android SDK Platform 36).
 
 > **Alternativa:** Verzije biblioteka mogu biti malo drugačije (npr. `2.11.0` za Retrofit). Za kolokvijum je dovoljno da Sync prođe bez greške.
 

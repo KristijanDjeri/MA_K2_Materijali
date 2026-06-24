@@ -12,7 +12,7 @@
 <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
 ```
 
-Na API 28–29 obično **nije** potrebna ova dozvola.
+Na **minSdk 30** uvek traži runtime dozvolu `ACTIVITY_RECOGNITION` pre registracije senzora koraka.
 
 ---
 

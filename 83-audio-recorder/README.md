@@ -46,7 +46,7 @@ U `AndroidManifest.xml` (ako već nije):
 ```
 
 Ovo je **opasna dozvola** – mora se tražiti u runtime-u na Android 6+ (API 23+).  
-Na API 28+ (tvoj minSdk) **uvek** koristi `requestPermissions` pre snimanja.
+Na **minSdk 30** **uvek** koristi `requestPermissions` pre snimanja.
 
 > **Ne treba** `WRITE_EXTERNAL_STORAGE` jer čuvamo u privatni folder aplikacije.
 

@@ -49,13 +49,7 @@ Unutar `<application>`, **pored** `MainActivity`, dodaj:
     android:theme="@style/Theme.AppCompat.NoActionBar" />
 ```
 
-Za čuvanje u galeriju na **API 28** (opciono):
-
-```xml
-<uses-permission
-    android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-    android:maxSdkVersion="28" />
-```
+> Sa **minSdk 30** dozvola `WRITE_EXTERNAL_STORAGE` za galeriju **nije potrebna** – koristi se `MediaStore` sa `RELATIVE_PATH` (API 29+).
 
 ---
 

@@ -176,7 +176,7 @@ public void onSensorChanged(SensorEvent event) {
 }
 ```
 
-> **Napomena:** `switch` na `event.sensor.getType()` radi na API 28+. Ne registruj senzore koje ne koristiš – troše bateriju.
+> **Napomena:** `switch` na `event.sensor.getType()` radi na minSdk 30+. Ne registruj senzore koje ne koristiš – troše bateriju.
 
 ---
 

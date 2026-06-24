@@ -1,7 +1,7 @@
 # Priprema za Kolokvijum 2 – Mobilne Aplikacije
 
 Materijal za kolokvijum: gotovi segmenti koda i uputstva po temama.  
-**Android Studio**, **minSdk 28** (Android 9+).
+**Android Studio**, **minSdk 30** (Android 11+), **targetSdk 36**, **compileSdk 36**.
 
 **Organizacija foldera:** [KONVENCIJA-FOLDERA.md](KONVENCIJA-FOLDERA.md)  
 **Grafičke komponente (UI):** [GRAFICKI-SEGMENTI.md](GRAFICKI-SEGMENTI.md) – **60–68**  

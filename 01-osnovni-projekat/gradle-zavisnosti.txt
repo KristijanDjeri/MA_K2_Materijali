@@ -1,4 +1,8 @@
-// Dodaj u app/build.gradle → dependencies { }
+// Dodaj u app/build.gradle
+
+// android { compileSdk 36; defaultConfig { minSdk 30; targetSdk 36 } }
+
+// dependencies { ... }
 
 // Retrofit (GET zahtev ka API-ju)
 implementation 'com.squareup.retrofit2:retrofit:2.9.0'
