@@ -4,6 +4,8 @@ Sve helper klase idu u paket **`com.example.kolokvijum2.helper`**.
 
 Konvencija: `01-osnovni-projekat/helper-paket-README-snippet.md`
 
+**Dokumentacija:** u svakom segment README, `MainActivity` **samo povezuje** helper – kopiraš helper klasu i u `onCreate` pozivaš njene metode (`postRepository.ucitajPostoveSaApi()`, `geoHelper.pokreni()`, …). Ne pišeš istu logiku ponovo u Activity. Stari inline primeri su u `*Segment.java` fajlovima.
+
 ---
 
 ## Pravilo lifecycle-a

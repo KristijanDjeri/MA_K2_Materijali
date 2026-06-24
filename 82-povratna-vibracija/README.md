@@ -47,55 +47,11 @@ import com.example.kolokvijum2.helper.VibracijaHelper;
 VibracijaHelper.kratka(this);
 ```
 
-> **Alternativa:** inline `Vibrator` kod ispod.
+> Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ---
 
-## Alternativa: inline u `MainActivity.java`
-
-### Importi
-
-```java
-import android.content.Context;
-import android.os.Build;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
-import android.os.VibratorManager;
-```
-
-### Metoda
-
-```java
-private void povratnaVibracijaKratka() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-        VibratorManager vm = (VibratorManager) getSystemService(Context.VIBRATOR_MANAGER_SERVICE);
-        vm.getDefaultVibrator().vibrate(
-                VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-    } else {
-        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        if (v != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-            } else {
-                v.vibrate(500);
-            }
-        }
-    }
-}
-```
-
-> U **Fragmentu** koristi `requireContext().getSystemService(...)` umesto `getSystemService`.
-
-### Poziv (npr. u callback-u posle brisanja)
-
-```java
-postRepository.obrisiPrviPost(() -> {
-    VibracijaHelper.kratka(this);
-    NotifikacijaHelper.posaljiPraznaBaza(this);
-});
-```
-
----
+> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## Alternativa
 

@@ -1,7 +1,24 @@
 # Helper + lifecycle – šablon za MainActivity
 
-Svaki helper sa senzorom/mapom/audio ima **pune metode** u svojoj klasi.  
-MainActivity **samo delegira**:
+Svaki helper ima **pune metode** u svojoj klasi.  
+MainActivity **ne implementira** poslovnu logiku – samo:
+
+1. `new XxxHelper(...)` u `onCreate`
+2. listeneri koji pozivaju **postojeće metode** helpera (npr. `postRepository.ucitajPostoveSaApi()`)
+3. delegiranje lifecycle-a (`onResume`, `onPause`, `onDestroy`, dozvole)
+
+```java
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    // findViewById ...
+
+    postRepository = new PostRepository(this, postDao);
+    button.setOnClickListener(v -> postRepository.ucitajPostoveSaApi(listener));
+    // ostali helperi – samo init + poziv metode
+}
+```
 
 ```java
 @Override

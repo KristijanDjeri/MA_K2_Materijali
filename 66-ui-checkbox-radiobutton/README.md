@@ -75,59 +75,11 @@ new CheckBoxRadioHelper(
 );
 ```
 
-> **Alternativa:** inline listeneri ispod.
+> Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ---
 
-## Alternativa: inline u `MainActivity.java`
-
-### Importi
-
-```java
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-```
-
-### Polja
-
-```java
-private CheckBox checkBoxNotifikacije;
-private RadioGroup radioGroupSort;
-private RadioButton radioPoId;
-private RadioButton radioPoTitle;
-```
-
-### U `onCreate`
-
-```java
-checkBoxNotifikacije = findViewById(R.id.checkBoxNotifikacije);
-radioGroupSort = findViewById(R.id.radioGroupSort);
-radioPoId = findViewById(R.id.radioPoId);
-radioPoTitle = findViewById(R.id.radioPoTitle);
-
-checkBoxNotifikacije.setOnCheckedChangeListener((buttonView, isChecked) -> {
-    textView.setText(isChecked ? "Notifikacije: uključene" : "Notifikacije: isključene");
-});
-
-radioGroupSort.setOnCheckedChangeListener((group, checkedId) -> {
-    if (checkedId == R.id.radioPoId) {
-        textView.setText("Sortiranje: po ID");
-    } else if (checkedId == R.id.radioPoTitle) {
-        textView.setText("Sortiranje: po naslovu");
-    }
-});
-```
-
-### Čitanje stanja (npr. pre akcije)
-
-```java
-boolean notifUkljucene = checkBoxNotifikacije.isChecked();
-boolean sortPoTitle = radioPoTitle.isChecked();
-```
-
----
+> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## Primer povezivanja sa zadatkom
 

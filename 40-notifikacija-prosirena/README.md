@@ -55,11 +55,7 @@ button.setOnLongClickListener(v -> {
 
 ---
 
-## Alternativa: inline u `MainActivity.java` (zastarelo)
-
-Vidi detaljne primere `BigTextStyle`, `BigPictureStyle`, `InboxStyle` u starijoj verziji ili Android dokumentaciji.
-
----
+> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## Checklist
 

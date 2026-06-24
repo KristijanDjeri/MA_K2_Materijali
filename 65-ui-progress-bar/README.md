@@ -67,38 +67,7 @@ Vidi pun primer u **`73-okhttp-json/`**.
 
 ---
 
-## Alternativa: inline Retrofit u `MainActivity.java` (zastarelo)
-
-### Importi
-
-```java
-import android.view.View;
-import android.widget.ProgressBar;
-```
-
-### Metoda
-
-```java
-private void ucitajPostoveSaApi() {
-    progressBar.setVisibility(View.VISIBLE);
-
-    RetrofitClient.getApi().getPosts().enqueue(new Callback<List<Post>>() {
-        @Override
-        public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
-            progressBar.setVisibility(View.GONE);
-            // ...
-        }
-
-        @Override
-        public void onFailure(Call<List<Post>> call, Throwable t) {
-            progressBar.setVisibility(View.GONE);
-            // ...
-        }
-    });
-}
-```
-
----
+> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## Alternativa
 

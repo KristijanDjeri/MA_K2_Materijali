@@ -38,44 +38,11 @@ barometarHelper.onResume();
 barometarHelper.onPause();
 ```
 
-> **Alternativa:** inline kod ispod (zastarelo).
+> Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ---
 
-## Alternativa: inline u `MainActivity.java` (zastarelo)
-
-### 1. Polje
-
-```java
-private Sensor pressureSensor;
-```
-
-### 2. U `onCreate`
-
-```java
-pressureSensor = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
-```
-
-### 3. U `onResume`
-
-```java
-if (pressureSensor != null) {
-    sensorManager.registerListener(this, pressureSensor, SensorManager.SENSOR_DELAY_NORMAL);
-}
-```
-
-### 4. U `onSensorChanged`
-
-```java
-else if (event.sensor.getType() == Sensor.TYPE_PRESSURE) {
-    float pritisak = event.values[0]; // hPa
-    textView.setText("Pritisak: " + pritisak + " hPa");
-}
-```
-
-> **Napomena:** Nema na svakom telefonu. Ako je `pressureSensor == null`, prikaži Toast „Nema barometra".
-
----
+> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## Checklist
 

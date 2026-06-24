@@ -40,31 +40,11 @@ WebViewHelper webViewHelper = new WebViewHelper(this, webView);
 webViewHelper.ucitajUrl("https://dummy-json.mock.beeceptor.com/posts");
 ```
 
-> **Alternativa:** inline kod ispod ili `WebViewSegment.java`.
+> Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ---
 
-## 2. Alternativa: inline u `MainActivity.java`
-
-### Importi
-
-```java
-import android.webkit.WebView;
-import android.webkit.WebSettings;
-```
-
-### U `onCreate`
-
-```java
-WebView webView = findViewById(R.id.webView);
-WebSettings settings = webView.getSettings();
-settings.setJavaScriptEnabled(true);
-webView.loadUrl("https://dummy-json.mock.beeceptor.com/posts");
-```
-
-> **Napomena:** `setJavaScriptEnabled(true)` nije uvek obavezno – stavi ako stranica ne radi bez JS.
-
----
+> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## Alternativa: otvori u spoljašnjem browseru
 

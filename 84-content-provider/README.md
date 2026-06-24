@@ -41,33 +41,17 @@
 
 ---
 
-## MainActivity – samo povezivanje (preporučeno)
-
-### Sa helperom
+## MainActivity – samo povezivanje
 
 ```java
 import com.example.kolokvijum2.helper.ContentProviderHelper;
 
-String title = ContentProviderHelper.getFirstPostTitle(this);
-textView.setText(title);
-```
-
-### Direktno (bez helpera)
-
-```java
-import android.database.Cursor;
-import com.example.kolokvijum2.PostContentProvider;
-
-Cursor cursor = getContentResolver().query(
-        PostContentProvider.CONTENT_URI,
-        new String[]{"title"},
-        null, null,
-        "_id ASC LIMIT 1"
+button.setOnClickListener(v ->
+        textView.setText(ContentProviderHelper.getFirstPostTitle(this))
 );
-// ... vidi ispod
 ```
 
----
+> **Ne piši** `prikaziPrviPostPrekoProvidera()` u MainActivity – čitanje je u `ContentProviderHelper.getFirstPostTitle()`.
 
 ## 1. `PostContentProvider.java` (ceo fajl)
 
@@ -106,51 +90,6 @@ return cursor;
 
 ---
 
-## 3. Čitanje u `MainActivity.java`
-
-### Importi
-
-```java
-import android.database.Cursor;
-import com.example.kolokvijum2.PostContentProvider;
-```
-
-### Direktno (bez helpera)
-
-```java
-private void prikaziPrviPostPrekoProvidera() {
-    Cursor cursor = getContentResolver().query(
-            PostContentProvider.CONTENT_URI,
-            new String[]{"title"},
-            null,
-            null,
-            "_id ASC LIMIT 1"
-    );
-
-    if (cursor != null && cursor.moveToFirst()) {
-        String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
-        textView.setText(title);
-        cursor.close();
-    } else {
-        textView.setText("Nema postova");
-        if (cursor != null) {
-            cursor.close();
-        }
-    }
-}
-```
-
-### Sa helperom
-
-```java
-import com.example.kolokvijum2.helper.ContentProviderHelper;
-
-String title = ContentProviderHelper.getFirstPostTitle(this);
-textView.setText(title);
-```
-
----
-
 ## Poređenje sa kontaktima (zadatak 9)
 
 | | Kontakti (`14-kontakti/`) | Sopstveni provider (ovde) |
@@ -166,7 +105,7 @@ textView.setText(title);
 - [ ] `PostContentProvider` extends `ContentProvider`
 - [ ] `AUTHORITY` u Manifest-u = `AUTHORITY` u kodu
 - [ ] `query()` vraća `Cursor`
-- [ ] `getContentResolver().query()` radi u Activity
+- [ ] `ContentProviderHelper.getFirstPostTitle()` pozvan iz listenera
 
 ---
 

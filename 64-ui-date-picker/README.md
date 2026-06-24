@@ -45,64 +45,11 @@ button.setOnLongClickListener(v -> {
 // datePickerHelper.otvoriTimePicker();
 ```
 
-> **Alternativa:** inline dijalozi ispod.
+> Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ---
 
-## Alternativa: inline u `MainActivity.java`
-
-### Importi
-
-```java
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
-import java.util.Calendar;
-```
-
-### DatePicker
-
-```java
-private void otvoriDatePicker() {
-    Calendar c = Calendar.getInstance();
-    int godina = c.get(Calendar.YEAR);
-    int mesec = c.get(Calendar.MONTH);
-    int dan = c.get(Calendar.DAY_OF_MONTH);
-
-    DatePickerDialog dialog = new DatePickerDialog(this,
-            (view, y, m, d) -> {
-                String datum = d + "." + (m + 1) + "." + y;
-                textView.setText("Datum: " + datum);
-            },
-            godina, mesec, dan);
-    dialog.show();
-}
-```
-
-### TimePicker (opciono)
-
-```java
-private void otvoriTimePicker() {
-    Calendar c = Calendar.getInstance();
-    int sat = c.get(Calendar.HOUR_OF_DAY);
-    int min = c.get(Calendar.MINUTE);
-
-    TimePickerDialog dialog = new TimePickerDialog(this,
-            (view, h, m) -> {
-                String vreme = h + ":" + String.format("%02d", m);
-                textView.setText("Vreme: " + vreme);
-            },
-            sat, min, true);
-    dialog.show();
-}
-```
-
-### Poziv
-
-```java
-// imageButton.setOnLongClickListener(v -> { otvoriDatePicker(); return true; });
-```
-
----
+> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## Alternativa
 

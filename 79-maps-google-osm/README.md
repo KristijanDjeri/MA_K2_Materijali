@@ -70,51 +70,14 @@ mapsOsmHelper.onResume();
 mapsOsmHelper.onPause();
 ```
 
-> **Alternativa:** inline osmdroid ispod.
+> Za stari inline primer pogledaj `MapsOsmSegment.java` / `MapsGoogleSegment.java`.
 
-## `MainActivity.java` – OSM (inline)
-
-```java
-import org.osmdroid.config.Configuration;
-import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.MapView;
-import org.osmdroid.views.overlay.Marker;
-
-// onCreate, pre setContentView:
-Configuration.getInstance().setUserAgentValue(getPackageName());
-
-MapView mapView = findViewById(R.id.mapView);
-mapView.setMultiTouchControls(true);
-mapView.getController().setZoom(15.0);
-
-double lat = 44.7866;  // Beograd – ili iz Fused Location
-double lon = 20.4489;
-GeoPoint tačka = new GeoPoint(lat, lon);
-mapView.getController().setCenter(tačka);
-
-Marker marker = new Marker(mapView);
-marker.setPosition(tačka);
-marker.setTitle("Moja lokacija");
-mapView.getOverlays().add(marker);
-mapView.invalidate();
-```
-
-## Lifecycle (obavezno za osmdroid)
+## Lifecycle (preko helpera)
 
 ```java
-@Override
-public void onResume() {
-    super.onResume();
-    MapView mapView = findViewById(R.id.mapView);
-    if (mapView != null) mapView.onResume();
-}
-
-@Override
-public void onPause() {
-    super.onPause();
-    MapView mapView = findViewById(R.id.mapView);
-    if (mapView != null) mapView.onPause();
-}
+// onResume / onPause:
+mapsOsmHelper.onResume();
+mapsOsmHelper.onPause();
 ```
 
 ---
@@ -168,41 +131,6 @@ mapsGoogleHelper.setKoordinate(44.7866, 20.4489, "Beograd");
 ```
 
 > **Ne** moraš `implements OnMapReadyCallback` u MainActivity – helper to radi umesto tebe.
-
-## `MainActivity.java` – Google Maps (inline)
-
-```java
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        SupportMapFragment mapFragment = (SupportMapFragment)
-                getSupportFragmentManager().findFragmentById(R.id.mapFragment);
-        if (mapFragment != null) {
-            mapFragment.getMapAsync(this);
-        }
-    }
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        LatLng beograd = new LatLng(44.7866, 20.4489);
-        googleMap.addMarker(new MarkerOptions().position(beograd).title("Beograd"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(beograd, 14f));
-    }
-}
-```
-
----
 
 ## Povezivanje sa geolokacijom (zadatak 3)
 

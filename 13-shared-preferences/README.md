@@ -62,54 +62,11 @@ Ručni test (bez Switch-a):
 button.setOnClickListener(v -> prefsHelper.sacuvajTextView(textView));
 ```
 
-> **Alternativa:** inline kod ispod ili `SharedPreferencesSegment.java`.
+> Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ---
 
-## Alternativa: inline u `MainActivity.java`
-
-### 1. Import
-
-```java
-import android.content.SharedPreferences;
-```
-
-### 2. Polje
-
-```java
-private SharedPreferences prefs;
-```
-
-### 3. U `onCreate`
-
-```java
-prefs = getSharedPreferences("kolokvijum_prefs", MODE_PRIVATE);
-```
-
-### 4. Metoda `obradiSwitchOff()` (ceo deo za čuvanje)
-
-```java
-private void obradiSwitchOff() {
-  // 1. Sačuvaj trenutni tekst TextView-a
-    String trenutniTekst = textView.getText().toString();
-    prefs.edit().putString("tekst", trenutniTekst).apply();
-
-    // 2. Zameni TextView imenom prvog kontakta (folder 14-kontakti/)
-    postaviImePrvogKontakta();
-}
-```
-
-### 5. (Opciono) Učitavanje pri pokretanju – zadatak ne traži, ali korisno
-
-```java
-// U onCreate, posle prefs = ...
-String sacuvano = prefs.getString("tekst", "");
-if (!sacuvano.isEmpty()) {
-    // Ne postavljaj ovde ako lokacija treba da pregazi – zavisi od redosleda
-}
-```
-
----
+> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## Objašnjenje linija
 

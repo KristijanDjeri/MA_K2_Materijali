@@ -72,11 +72,7 @@ if (threadHelper != null) {
 
 ---
 
-## Alternativa: inline u `MainActivity.java` (zastarelo)
-
-Vidi `ThreadExecutorSegment.java` u ovom folderu.
-
----
+> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## Checklist
 

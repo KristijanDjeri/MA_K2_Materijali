@@ -59,66 +59,7 @@ if (prvi != null) {
 
 ---
 
-## Alternativa: inline u `MainActivity.java` (zastarelo)
-
-### Import
-
-```java
-import androidx.appcompat.app.AlertDialog;
-```
-
-### Varijanta A – potvrda brisanja
-
-```java
-private void potvrdiBrisanje() {
-    new AlertDialog.Builder(this)
-            .setTitle("Brisanje")
-            .setMessage("Obrisati prvi post iz baze?")
-            .setPositiveButton("Da", (dialog, which) ->
-                    postRepository.obrisiPrviPost(
-                            () -> NotifikacijaHelper.posaljiPraznaBaza(this)
-                    )
-            )
-            .setNegativeButton("Ne", null)
-            .show();
-}
-```
-
-Poziv:
-
-```java
-button.setOnClickListener(v -> potvrdiBrisanje());
-```
-
-### Varijanta B – samo informativni dijalog
-
-```java
-private void prikaziInfo(String tekst) {
-    new AlertDialog.Builder(this)
-            .setTitle("Obaveštenje")
-            .setMessage(tekst)
-            .setPositiveButton("OK", null)
-            .show();
-}
-```
-
-### Varijanta C – tri dugmeta (retko)
-
-```java
-new AlertDialog.Builder(this)
-        .setTitle("Izbor")
-        .setMessage("Šta želiš?")
-        .setPositiveButton("Obriši", (d, w) ->
-                postRepository.obrisiPrviPost(
-                        () -> NotifikacijaHelper.posaljiPraznaBaza(this)
-                )
-        )
-        .setNeutralButton("Prikaži", (d, w) -> postRepository.prikaziTitlePrvogPosta())
-        .setNegativeButton("Otkaži", null)
-        .show();
-```
-
----
+> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## U Fragmentu
 

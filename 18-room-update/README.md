@@ -65,48 +65,7 @@ button.setOnClickListener(v -> {
 
 ---
 
-## Alternativa: inline u `MainActivity.java` (zastarelo)
-
-### Import
-
-```java
-import com.example.kolokvijum2.model.Post;
-import android.widget.Toast;
-```
-
-### Izmena title prvog posta
-
-```java
-private void izmeniTitlePrvogPosta(String noviTitle) {
-    Post prvi = postDao.getFirst();
-    if (prvi != null) {
-        prvi.setTitle(noviTitle);
-        postDao.update(prvi);
-        Toast.makeText(this, "Ažurirano: " + noviTitle, Toast.LENGTH_SHORT).show();
-    } else {
-        Toast.makeText(this, "Nema postova", Toast.LENGTH_SHORT).show();
-    }
-}
-```
-
-### Poziv
-
-```java
-button.setOnClickListener(v -> {
-    Post prvi = postDao.getFirst();
-    if (prvi != null) {
-        izmeniTitlePrvogPosta(prvi.getTitle() + " (izmenjeno)");
-    }
-});
-```
-
-### Varijanta – `@Query` UPDATE (jedna SQL komanda)
-
-```java
-postDao.updateTitleFirst("Novi naslov");
-```
-
----
+> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## Napomena
 

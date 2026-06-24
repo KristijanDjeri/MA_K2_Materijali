@@ -31,7 +31,7 @@ Kopiraj **`PostRepository.java`** iz ovog foldera u `app/.../helper/`.
 
 ---
 
-## MainActivity – samo povezivanje (preporučeno)
+## MainActivity – samo povezivanje
 
 ### Importi
 
@@ -68,61 +68,7 @@ button.setOnClickListener(v -> postRepository.ucitajPostoveSaApi(
 ));
 ```
 
-> **Ne piši** `ucitajPostoveSaApi()` u MainActivity – logika je u `PostRepository`. Switch u `09-switch-listener/` poziva istu metodu preko `SwitchPostsHelper`.
-
----
-
-## Alternativa: inline u `MainActivity.java` (zastarelo)
-
-### Importi
-
-```java
-import android.widget.Toast;
-import com.example.kolokvijum2.api.RetrofitClient;
-import com.example.kolokvijum2.model.Post;
-import java.util.List;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-```
-
-### Polje (opciono – za kasniji Switch)
-
-```java
-private boolean postsUcitani = false;
-```
-
-### U `onCreate`
-
-```java
-button.setOnClickListener(v -> ucitajPostoveSaApi());
-```
-
-### Metoda za učitavanje
-
-```java
-private void ucitajPostoveSaApi() {
-    RetrofitClient.getApi().getPosts().enqueue(new Callback<List<Post>>() {
-        @Override
-        public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
-            if (response.isSuccessful() && response.body() != null) {
-                List<Post> svi = response.body();
-                int n = Math.min(10, svi.size());
-                postDao.insertAll(svi.subList(0, n));
-                postsUcitani = true;
-                Toast.makeText(MainActivity.this,
-                        "Učitano " + n + " postova", Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        @Override
-        public void onFailure(Call<List<Post>> call, Throwable t) {
-            Toast.makeText(MainActivity.this,
-                    "Greška: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-    });
-}
-```
+> **Ne piši** `ucitajPostoveSaApi()` u MainActivity – metoda **već postoji** u `PostRepository`. Switch u `09-switch-listener/` poziva istu metodu preko `SwitchPostsHelper`.
 
 ---
 
@@ -143,12 +89,12 @@ Kopiraj **`PostRepository.java`** iz `07-ucitaj-10-postova/`. MainActivity **ne 
 
 ---
 
-## Logika u rečima
+## Logika u rečima (unutar `PostRepository`, ne u MainActivity)
 
 1. `enqueue` – asinhroni GET
 2. `Math.min(10, svi.size())` – najviše 10 redova
 3. `postDao.insertAll(subList(0, n))` – upis u bazu
-4. `PostRepository` interno drži `postsUcitani` – kasnije koristi `09-switch-listener/`
+4. `postsUcitani` flag – kasnije koristi `09-switch-listener/`
 
 ---
 
@@ -164,7 +110,8 @@ Kopiraj **`PostRepository.java`** iz `07-ucitaj-10-postova/`. MainActivity **ne 
 
 ## Checklist
 
-- [ ] `PostRepository.java` u paketu `helper`
+- [ ] `PostRepository.java` kopiran u paket `helper` (metoda `ucitajPostoveSaApi` već unutra)
+- [ ] U `onCreate` samo: `new PostRepository(...)` + listener koji poziva `ucitajPostoveSaApi`
 - [ ] GET uspešan (internet uključen)
 - [ ] U bazu ide tačno 10 (ili manje ako API vrati manje)
 - [ ] Radi bez Switch-a

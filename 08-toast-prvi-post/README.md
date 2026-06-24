@@ -42,35 +42,7 @@ button.setOnClickListener(v -> postRepository.prikaziTitlePrvogPosta());
 
 ---
 
-## Alternativa: inline u `MainActivity.java` (zastarelo)
-
-### Importi
-
-```java
-import android.widget.Toast;
-import com.example.kolokvijum2.model.Post;
-```
-
-### U `onCreate`
-
-```java
-button.setOnClickListener(v -> prikaziTitlePrvogPosta());
-```
-
-### Metoda
-
-```java
-private void prikaziTitlePrvogPosta() {
-    Post prvi = postDao.getFirst();
-    if (prvi != null) {
-        Toast.makeText(this, prvi.getTitle(), Toast.LENGTH_SHORT).show();
-    } else {
-        Toast.makeText(this, "Nema postova u bazi", Toast.LENGTH_SHORT).show();
-    }
-}
-```
-
----
+> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## Brzi test bez API-ja
 

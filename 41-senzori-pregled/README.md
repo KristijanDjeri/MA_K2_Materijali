@@ -52,45 +52,9 @@ svetlostiHelper.onPause();
 
 ---
 
-## Alternativa: inline u MainActivity (zastarelo)
+## Koji senzori postoje na uređaju? (opciono)
 
-```java
-// 1. Polje
-private Sensor mojSenzor;
-
-// 2. onCreate
-mojSenzor = sensorManager.getDefaultSensor(Sensor.TYPE_...);
-
-// 3. onResume
-if (mojSenzor != null) {
-    sensorManager.registerListener(this, mojSenzor, SensorManager.SENSOR_DELAY_NORMAL);
-}
-
-// 4. onPause
-sensorManager.unregisterListener(this);
-
-// 5. onSensorChanged
-if (event.sensor.getType() == Sensor.TYPE_...) {
-    float vrednost = event.values[0];
-}
-```
-
-Za ovaj pristup Activity mora `implements SensorEventListener` – **ne preporučujemo** na kolokvijumu.
-
----
-
-## Koji senzori postoje na uređaju?
-
-```java
-private void ispisiDostupneSenzore() {
-    List<Sensor> lista = sensorManager.getSensorList(Sensor.TYPE_ALL);
-    for (Sensor s : lista) {
-        Log.d("SENZOR", s.getName() + " tip=" + s.getType());
-    }
-}
-```
-
-Pozovi u `onCreate` i pogledaj **Logcat** u Android Studio.
+Za debug listu senzora pogledaj `SenzoriPregledSegment.java` u ovom folderu (Logcat, nije deo MainActivity zadatka).
 
 ---
 

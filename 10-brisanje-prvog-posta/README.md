@@ -55,33 +55,7 @@ button.setOnClickListener(v -> postRepository.obrisiPrviPost(
 
 ---
 
-## Alternativa: inline u `MainActivity.java` (zastarelo)
-
-### Importi
-
-```java
-import com.example.kolokvijum2.model.Post;
-```
-
-### U `onCreate`
-
-```java
-button.setOnClickListener(v -> obrisiPrviPost());
-```
-
-### Metoda za brisanje
-
-```java
-private void obrisiPrviPost() {
-    Post prvi = postDao.getFirst();
-    if (prvi != null) {
-        postDao.delete(prvi);
-    }
-    // Notifikacija → folder 11
-}
-```
-
----
+> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## Važno: odvojeno od akcelerometra
 

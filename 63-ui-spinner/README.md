@@ -52,47 +52,11 @@ Spinner spinner = findViewById(R.id.spinner);
 new SpinnerHelper(this, spinner, textView, R.array.spinner_opcije);
 ```
 
-> **Alternativa:** inline `ArrayAdapter` ispod ili `SpinnerSegment.java`.
+> Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ---
 
-## 3. Alternativa: inline u `MainActivity.java`
-
-### Importi
-
-```java
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-```
-
-### U `onCreate`
-
-```java
-Spinner spinner = findViewById(R.id.spinner);
-ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-        this,
-        R.array.spinner_opcije,
-        android.R.layout.simple_spinner_item
-);
-adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-spinner.setAdapter(adapter);
-
-spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String izbor = parent.getItemAtPosition(position).toString();
-        Toast.makeText(MainActivity.this, "Izabrano: " + izbor, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-    }
-});
-```
-
----
+> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## Alternativa
 

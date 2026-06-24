@@ -57,11 +57,7 @@ button.setOnLongClickListener(v -> {
 
 ---
 
-## Alternativa: inline u `MainActivity.java` (zastarelo)
-
-Vidi stari kod u git istoriji ili kombinuj sa `11-notifikacija-prazna-baza/` inline sekcijom.
-
----
+> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## Objašnjenje polja
 

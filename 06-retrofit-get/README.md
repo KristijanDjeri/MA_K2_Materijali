@@ -96,7 +96,7 @@ Poruka znači da **telefon/emulator ne može da pronađe server** (DNS/mreža), 
 
 ---
 
-## Samostalni test u `MainActivity` (preporučeno: helper)
+## MainActivity – samo povezivanje
 
 Ovaj primer **ne koristi** `postDao`. Samo GET + Toast.
 
@@ -130,53 +130,7 @@ Kopiraj **`RetrofitGetHelper.java`** iz ovog foldera u `app/.../helper/`.
 
 ---
 
-## Alternativa: inline u `MainActivity.java` (zastarelo)
-
-### Importi
-
-```java
-import android.widget.Toast;
-import com.example.kolokvijum2.api.RetrofitClient;
-import com.example.kolokvijum2.model.Post;
-import java.util.List;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-```
-
-### Metoda
-
-```java
-private void testirajGet() {
-    RetrofitClient.getApi().getPosts().enqueue(new Callback<List<Post>>() {
-        @Override
-        public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
-            if (response.isSuccessful() && response.body() != null) {
-                int n = response.body().size();
-                Toast.makeText(MainActivity.this,
-                        "API vratio " + n + " postova", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(MainActivity.this,
-                        "Neuspešan odgovor", Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        @Override
-        public void onFailure(Call<List<Post>> call, Throwable t) {
-            Toast.makeText(MainActivity.this,
-                    "Greška: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-    });
-}
-```
-
-### Poziv (privremeno dugme u layoutu ili postojeći `button`)
-
-```java
-button.setOnClickListener(v -> testirajGet());
-```
-
----
+> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## API odgovor (format)
 

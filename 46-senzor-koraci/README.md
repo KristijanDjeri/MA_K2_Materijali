@@ -54,78 +54,11 @@ if (koraciHelper != null) {
 }
 ```
 
-> **Alternativa:** inline kod ispod (zastarelo).
+> Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ---
 
-## Alternativa: inline u `MainActivity.java` (zastarelo)
-
-## Kompletan kod za `MainActivity.java`
-
-### 1. Importi
-
-```java
-import android.os.Build;
-```
-
-### 2. Konstanta i polje
-
-```java
-private static final int REQ_ACTIVITY = 107;
-private Sensor stepCounterSensor;
-```
-
-### 3. U `onCreate`
-
-```java
-stepCounterSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-```
-
-### 4. U `onResume` – sa proverom dozvole na API 29+
-
-```java
-@Override
-protected void onResume() {
-    super.onResume();
-    // ... ostali senzori ...
-    if (stepCounterSensor != null) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION)
-                    != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACTIVITY_RECOGNITION}, REQ_ACTIVITY);
-            } else {
-                sensorManager.registerListener(this, stepCounterSensor, SensorManager.SENSOR_DELAY_NORMAL);
-            }
-        } else {
-            sensorManager.registerListener(this, stepCounterSensor, SensorManager.SENSOR_DELAY_NORMAL);
-        }
-    }
-}
-```
-
-### 5. U `onSensorChanged`
-
-```java
-else if (event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
-    float koraci = event.values[0];
-    button.setText("Koraci: " + (int) koraci);
-}
-```
-
-> **Napomena:** `TYPE_STEP_COUNTER` vraća ukupan broj od boot-a, ne korake u hodu. Za korake „uživo" postoji `TYPE_STEP_DETECTOR` (po jedan event po koraku).
-
-### 6. U `onRequestPermissionsResult`
-
-```java
-} else if (requestCode == REQ_ACTIVITY) {
-    if (stepCounterSensor != null) {
-        sensorManager.registerListener(this, stepCounterSensor, SensorManager.SENSOR_DELAY_NORMAL);
-    }
-}
-```
-
----
+> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## Alternativa: STEP_DETECTOR
 

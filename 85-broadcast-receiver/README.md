@@ -71,15 +71,7 @@ postRepository.ucitajPostoveSaApi(new PostRepository.OnApiDoneListener() {
 
 ---
 
-## Alternativa: inline u `MainActivity.java` (zastarelo)
-
-```java
-Intent intent = new Intent(PostUpdateReceiver.ACTION_POSTS_UPDATED);
-intent.setPackage(getPackageName());
-sendBroadcast(intent);
-```
-
----
+> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## Checklist
 

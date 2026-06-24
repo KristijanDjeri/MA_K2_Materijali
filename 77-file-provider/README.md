@@ -77,108 +77,14 @@ imageButton.setOnClickListener(v -> fileProviderHelper.pokreniKameru());
 
 ---
 
-## 3. `MainActivity.java`
-
-### Importi
+## 3. Deljenje slike (opciono)
 
 ```java
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Environment;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
-
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+// posle snimanja:
+fileProviderHelper.podeliSliku();
 ```
 
-### Polja
-
-```java
-private static final int REQ_CAMERA = 101;
-private static final String AUTHORITY = "com.example.kolokvijum2.fileprovider";
-
-private Uri photoUri;
-private File photoFile;
-
-private final ActivityResultLauncher<Uri> takePictureFullLauncher =
-        registerForActivityResult(new ActivityResultContracts.TakePicture(), success -> {
-            if (Boolean.TRUE.equals(success) && photoUri != null) {
-                imageView.setImageURI(photoUri);
-            }
-        });
-```
-
-### Kreiranje fajla za sliku
-
-```java
-private File createImageFile() throws IOException {
-    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault())
-            .format(new Date());
-    File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-    return File.createTempFile("JPEG_" + timeStamp + "_", ".jpg", storageDir);
-}
-```
-
-### Pokretanje kamere
-
-```java
-private void pokreniKameruPunaRezolucija() {
-    if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-            != PackageManager.PERMISSION_GRANTED) {
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.CAMERA}, REQ_CAMERA);
-        return;
-    }
-    try {
-        photoFile = createImageFile();
-        photoUri = FileProvider.getUriForFile(this, AUTHORITY, photoFile);
-        takePictureFullLauncher.launch(photoUri);
-    } catch (IOException e) {
-        Toast.makeText(this, "Greška: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-    }
-}
-```
-
-### Listener
-
-```java
-imageButton.setOnClickListener(v -> pokreniKameruPunaRezolucija());
-```
-
-### Dozvola – u `onRequestPermissionsResult`
-
-```java
-} else if (requestCode == REQ_CAMERA) {
-    pokreniKameruPunaRezolucija();
-}
-```
-
----
-
-## 4. Deljenje slike (implicit Intent + FileProvider)
-
-```java
-private void podeliSliku() {
-    if (photoUri == null) {
-        Toast.makeText(this, "Nema slike", Toast.LENGTH_SHORT).show();
-        return;
-    }
-    Intent intent = new Intent(Intent.ACTION_SEND);
-    intent.setType("image/jpeg");
-    intent.putExtra(Intent.EXTRA_STREAM, photoUri);
-    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-    startActivity(Intent.createChooser(intent, "Podeli sliku"));
-}
-```
+> Metoda `podeliSliku()` je u `FileProviderHelper` – ne piši je u MainActivity.
 
 ---
 

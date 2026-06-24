@@ -66,74 +66,7 @@ new SwitchPostsHelper(this, switchPosts, textView,
         postRepository, prefsHelper, kontaktiHelper);
 ```
 
-> **Ne piši** `obradiSwitchOn()` / `obradiSwitchOff()` u MainActivity – logika je u `SwitchPostsHelper`. Listener se registruje u konstruktoru helpera.
-
-> **Alternativa:** inline `OnCheckedChangeListener` ispod.
-
----
-
-## Alternativa: inline u `MainActivity.java` (zastarelo)
-
-### Importi
-
-```java
-import android.widget.CompoundButton;
-import android.widget.Switch;
-```
-
-### Polja
-
-```java
-private Switch switchPosts;
-private boolean postsUcitani = false;
-// postDao već iz 05-room-baza/
-```
-
-### U `onCreate`
-
-```java
-switchPosts.setOnCheckedChangeListener((buttonView, isChecked) -> {
-    if (isChecked) {
-        obradiSwitchOn();
-    } else {
-        obradiSwitchOff();
-    }
-});
-```
-
-### Switch ON – samo grananje
-
-```java
-private void obradiSwitchOn() {
-    if (!postsUcitani) {
-        ucitajPostoveSaApi();      // iz 07-ucitaj-10-postova/
-    } else {
-        prikaziTitlePrvogPosta();  // iz 08-toast-prvi-post/
-    }
-}
-```
-
-> U `ucitajPostoveSaApi()` na kraju uspešnog upisa postavi `postsUcitani = true` (već je u folderu 07).
-
-### Switch OFF – delegacija
-
-```java
-private void obradiSwitchOff() {
-    // Kopiraj telo iz 13-shared-preferences/ i 14-kontakti/
-    sacuvajBrojPostova();
-    postaviImePrvogKontakta();
-}
-```
-
-Dok ne uradiš zadatak 9, može ostati prazno:
-
-```java
-private void obradiSwitchOff() {
-    // TODO: 13-shared-preferences + 14-kontakti
-}
-```
-
----
+> **Ne piši** `obradiSwitchOn()` / `obradiSwitchOff()` u MainActivity – `SwitchPostsHelper` interno poziva `PostRepository`, `SharedPreferencesHelper` i `KontaktiHelper`.
 
 ## Testiranje po delovima
 

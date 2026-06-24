@@ -50,110 +50,18 @@ Vidi tabelu i primer iznad.
 
 ---
 
-## Alternativa: inline metode (bez helpera)
+> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
-## Import
+## ImplicitIntentHelper – dostupne metode
 
-```java
-import android.content.Intent;
-import android.net.Uri;
-```
-
----
-
-## 1. Otvori URL u browseru (`ACTION_VIEW`)
-
-```java
-private void otvoriUrl(String url) {
-    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-    startActivity(intent);
-}
-```
-
-Primer:
-
-```java
-button.setOnClickListener(v -> otvoriUrl("https://jsonplaceholder.typicode.com/posts/1"));
-```
-
----
-
-## 2. Podeli tekst (`ACTION_SEND`)
-
-```java
-private void podeliTekst(String tekst) {
-    Intent intent = new Intent(Intent.ACTION_SEND);
-    intent.setType("text/plain");
-    intent.putExtra(Intent.EXTRA_TEXT, tekst);
-    startActivity(Intent.createChooser(intent, "Podeli preko"));
-}
-```
-
-Primer – title prvog posta (preko `PostRepository`):
-
-```java
-Post prvi = postRepository.getFirst();
-if (prvi != null) {
-    ImplicitIntentHelper.podeliTekst(this, prvi.getTitle());
-}
-```
-
----
-
-## 3. SMS (`ACTION_SENDTO` + `smsto:`)
-
-```java
-private void posaljiSms(String broj, String poruka) {
-    Intent intent = new Intent(Intent.ACTION_SENDTO);
-    intent.setData(Uri.parse("smsto:" + broj));
-    intent.putExtra("sms_body", poruka);
-    if (intent.resolveActivity(getPackageManager()) != null) {
-        startActivity(intent);
-    }
-}
-```
-
-Primer:
-
-```java
-posaljiSms("0601234567", "Test poruka sa kolokvijuma");
-```
-
----
-
-## 4. Email (`ACTION_SENDTO` + `mailto:`)
-
-```java
-private void posaljiEmail(String adresa, String subject, String body) {
-    Intent intent = new Intent(Intent.ACTION_SENDTO);
-    intent.setData(Uri.parse("mailto:" + adresa));
-    intent.putExtra(Intent.EXTRA_SUBJECT, subject);
-    intent.putExtra(Intent.EXTRA_TEXT, body);
-    if (intent.resolveActivity(getPackageManager()) != null) {
-        startActivity(intent);
-    }
-}
-```
-
-Primer:
-
-```java
-posaljiEmail("profesor@example.com", "Kolokvijum", "Rad je završen.");
-```
-
----
-
-## 5. Mapa – koordinate (`geo:` URI)
-
-```java
-private void otvoriMapu(double lat, double lon) {
-    Uri geoUri = Uri.parse("geo:" + lat + "," + lon + "?q=" + lat + "," + lon);
-    Intent intent = new Intent(Intent.ACTION_VIEW, geoUri);
-    startActivity(intent);
-}
-```
-
-> Za ugrađenu mapu u aplikaciji vidi `79-maps-google-osm/`.
+| Metoda | Šta radi |
+|--------|----------|
+| `otvoriUrl(context, url)` | Browser (`ACTION_VIEW`) |
+| `podeliTekst(context, tekst)` | Share (`ACTION_SEND`) |
+| `podeliTitlePrvogPosta(context, post)` | Share naslova posta |
+| `posaljiSms(context, broj, poruka)` | SMS (`smsto:`) |
+| `posaljiEmail(context, adresa, subject, body)` | Email (`mailto:`) |
+| `otvoriMapu(context, lat, lon)` | Mapa (`geo:` URI) |
 
 ---
 

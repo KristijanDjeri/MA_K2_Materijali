@@ -22,7 +22,7 @@
 | 4 | `MainActivity.java` | **`onCreate`**: `geoHelper.pokreni();` |
 | 5 | `MainActivity.java` | **`onRequestPermissionsResult`**: `geoHelper.onPermissionGranted(requestCode, grantResults);` |
 
-> **Alternativa (stariji način):** metode direktno u `MainActivity` – vidi `GeoLokacijaSegment.java` (samo komentari).
+> Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ---
 
@@ -61,87 +61,7 @@ geoHelper.onPermissionGranted(requestCode, grantResults);
 
 ---
 
-## Kompletan kod za `MainActivity.java` (deo za geolokaciju – inline varijanta)
-
-Ako ne koristiš helper, metode idu **na dno klase** (pre zatvarajuće `}`):
-
-### 1. Importi (na vrh fajla, pored ostalih importa)
-
-```java
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-```
-
-### 2. Konstanta i polja (unutar klase, iznad `onCreate`)
-
-```java
-private static final int REQ_LOCATION = 100;
-
-private FusedLocationProviderClient fusedLocationClient;
-// textView već imaš iz osnovnog projekta
-```
-
-### 3. U `onCreate`, posle `findViewById` linija
-
-```java
-fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-pokreniLokaciju();
-```
-
-### 4. Metode (dodaj na dno klase, pre zatvarajuće `}`)
-
-```java
-private void pokreniLokaciju() {
-    if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED) {
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                REQ_LOCATION);
-        return;
-    }
-    ucitajLokaciju();
-}
-
-private void ucitajLokaciju() {
-    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED) {
-        return;
-    }
-    fusedLocationClient.getLastLocation()
-            .addOnSuccessListener(this, location -> {
-                if (location != null) {
-                    double lat = location.getLatitude();
-                    double lon = location.getLongitude();
-                    textView.setText("Širina: " + lat + ", Dužina: " + lon);
-                } else {
-                    textView.setText("Lokacija nije dostupna");
-                }
-            });
-}
-```
-
-### 5. Obrada dozvole (dodaj metodu u klasu)
-
-```java
-@Override
-public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    if (requestCode == REQ_LOCATION
-            && grantResults.length > 0
-            && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-        ucitajLokaciju();
-    }
-}
-```
-
-> **Napomena:** Kasnije ćeš u istu `onRequestPermissionsResult` dodavati i `REQ_CAMERA`, `REQ_CONTACTS` itd. – koristi `switch` ili više `if` grananja.
-
----
+> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## Kako testirati
 
@@ -165,10 +85,10 @@ public void onRequestPermissionsResult(int requestCode, String[] permissions, in
 
 ## Checklist
 
-- [ ] Importi dodati
-- [ ] `fusedLocationClient` inicijalizovan u `onCreate`
-- [ ] `pokreniLokaciju()` pozvan u `onCreate`
-- [ ] `onRequestPermissionsResult` postoji
+- [ ] `GeoLokacijaHelper` u paketu `helper`
+- [ ] `geoHelper = new GeoLokacijaHelper(this, textView)` u `onCreate`
+- [ ] `geoHelper.pokreni()` pozvan u `onCreate`
+- [ ] `geoHelper.onPermissionGranted(...)` u `onRequestPermissionsResult`
 - [ ] TextView prikazuje širinu i dužinu
 
 ---

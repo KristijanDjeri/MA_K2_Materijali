@@ -40,15 +40,11 @@ proksimitetHelper.onResume();
 proksimitetHelper.onPause();
 ```
 
-> **Alternativa:** inline kod ispod (zastarelo).
+> Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ---
 
-## Alternativa: inline u `MainActivity.java` (zastarelo)
-
-Vidi stari `ProksimitetSegment.java` ako ne koristiš helper.
-
----
+> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## Checklist
 

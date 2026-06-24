@@ -73,87 +73,11 @@ if (okHttpHelper != null) {
 }
 ```
 
-> **Alternativa:** inline OkHttp ispod.
+> Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ---
 
-## 2. Alternativa: inline u `MainActivity.java`
-
-### Importi
-
-```java
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import java.lang.reflect.Type;
-import java.util.List;
-```
-
-### Polja (iz 74-thread-executor – ili kreiraj ovde)
-
-```java
-private final ExecutorService executor = Executors.newSingleThreadExecutor();
-private final Handler mainHandler = new Handler(Looper.getMainLooper());
-```
-
-### Metoda
-
-```java
-private void ucitajJsonOkHttp() {
-    executor.execute(() -> {
-        try {
-            OkHttpClient client = new OkHttpClient();
-            Request request = new Request.Builder()
-                    .url("https://dummy-json.mock.beeceptor.com/posts")
-                    .build();
-
-            try (Response response = client.newCall(request).execute()) {
-                if (response.body() != null) {
-                    String json = response.body().string();
-                    Gson gson = new Gson();
-                    Type tip = new TypeToken<List<Post>>() {}.getType();
-                    List<Post> postovi = gson.fromJson(json, tip);
-
-                    mainHandler.post(() -> {
-                        int n = Math.min(10, postovi.size());
-                        postDao.insertAll(postovi.subList(0, n));
-                        postsUcitani = true;
-                        Toast.makeText(this, "Učitano OkHttp", Toast.LENGTH_SHORT).show();
-                    });
-                }
-            }
-        } catch (Exception e) {
-            mainHandler.post(() ->
-                    Toast.makeText(this, "Greška", Toast.LENGTH_SHORT).show());
-        }
-    });
-}
-```
-
-### Poziv umesto Retrofit-a (u `SwitchPostsHelper` ili test dugme)
-
-```java
-okHttpHelper.ucitajPostove(
-        "https://dummy-json.mock.beeceptor.com/posts",
-        new OkHttpHelper.OnDoneListener() {
-            @Override
-            public void onSuccess(int count) {
-                Toast.makeText(MainActivity.this, "Učitano " + count, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(String message) {
-                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-            }
-        }
-);
-```
-
-> Za Switch OFF/ON logiku i dalje koristi `SwitchPostsHelper` + `PostRepository` – zameni samo učitavanje sa API-ja.
-
----
+> **Napomena:** Ne implementiraj logiku u `MainActivity` – kopiraj helper klasu i u `onCreate` samo pozovi njene metode. Za stari inline primer pogledaj `*Segment.java` u istom folderu.
 
 ## Alternativa
 
