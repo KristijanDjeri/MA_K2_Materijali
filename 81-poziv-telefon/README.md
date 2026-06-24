@@ -16,7 +16,38 @@
 
 ---
 
-## Kompletan kod za `MainActivity.java`
+## Kompletan kod – helper klasa
+
+Kopiraj **`PozivHelper.java`** iz ovog foldera u `app/.../helper/PozivHelper.java`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+### Import
+
+```java
+import com.example.kolokvijum2.helper.PozivHelper;
+```
+
+### Otvori dialer sa brojem prvog kontakta
+
+```java
+PozivHelper.otvoriDialerPrvogKontakta(this);
+```
+
+### Ili ručno sa brojem
+
+```java
+String broj = PozivHelper.uzmiBrojPrvogKontakta(this);
+PozivHelper.otvoriDialer(this, broj);
+```
+
+> **Alternativa:** inline `ContentResolver` + `Intent` ispod.
+
+---
+
+## Alternativa: inline u `MainActivity.java`
 
 ### Importi
 

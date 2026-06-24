@@ -18,7 +18,59 @@
 
 ---
 
-## Kompletan kod za `MainActivity.java`
+## Koji fajlovi se menjaju / dodaju
+
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`GalerijaHelper.java`** | Novi fajl → `app/.../helper/` |
+| 2 | `MainActivity.java` | Polje + init u **`onCreate`** |
+| 3 | `MainActivity.java` | Klik na dugme: `galerijaHelper.otvori()` |
+| 4 | `MainActivity.java` | **`onRequestPermissionsResult`**: `galerijaHelper.onPermissionGranted(...)` |
+
+---
+
+## Kompletan kod – helper klasa
+
+Kopiraj **`GalerijaHelper.java`** iz ovog foldera u `app/.../helper/GalerijaHelper.java`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+### Import
+
+```java
+import com.example.kolokvijum2.helper.GalerijaHelper;
+```
+
+### Polje
+
+```java
+private GalerijaHelper galerijaHelper;
+```
+
+### U `onCreate`
+
+```java
+galerijaHelper = new GalerijaHelper(this, imageView, uri -> {
+    // opciono: dodatna logika posle izbora slike
+});
+imageButton.setOnClickListener(v -> galerijaHelper.otvori());
+```
+
+### U `onRequestPermissionsResult`
+
+```java
+if (galerijaHelper != null) {
+    galerijaHelper.onPermissionGranted(requestCode, grantResults);
+}
+```
+
+> **Alternativa:** inline kod ispod ili `GalerijaSegment.java`.
+
+---
+
+## Alternativa: inline u `MainActivity.java`
 
 ### 1. Importi
 

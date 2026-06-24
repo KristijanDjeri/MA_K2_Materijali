@@ -19,7 +19,49 @@ Ovaj segment **ne sadrži** Retrofit ni SQL – samo **usmerava** pozive ka meto
 
 ---
 
-## Kompletan kod za `MainActivity.java`
+## Koji fajlovi se menjaju / dodaju
+
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`SwitchPostsHelper.java`** | Novi fajl → `app/.../helper/` |
+| 2 | `MainActivity.java` | Zavisnosti: `PostRepository`, `SharedPreferencesHelper`, `KontaktiHelper` |
+| 3 | `MainActivity.java` | U **`onCreate`**: `new SwitchPostsHelper(...)` – listener se registruje u helperu |
+
+---
+
+## Kompletan kod – helper klasa
+
+Kopiraj **`SwitchPostsHelper.java`** iz ovog foldera u `app/.../helper/`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+### Importi
+
+```java
+import com.example.kolokvijum2.helper.KontaktiHelper;
+import com.example.kolokvijum2.helper.PostRepository;
+import com.example.kolokvijum2.helper.SharedPreferencesHelper;
+import com.example.kolokvijum2.helper.SwitchPostsHelper;
+```
+
+### U `onCreate` (posle `postDao` i `findViewById`)
+
+```java
+PostRepository postRepository = new PostRepository(this, postDao);
+SharedPreferencesHelper prefsHelper = new SharedPreferencesHelper(this);
+KontaktiHelper kontaktiHelper = new KontaktiHelper(this, textView);
+
+new SwitchPostsHelper(this, switchPosts, textView,
+        postRepository, prefsHelper, kontaktiHelper);
+```
+
+> **Alternativa:** inline `OnCheckedChangeListener` ispod.
+
+---
+
+## Alternativa: inline u `MainActivity.java`
 
 ### Importi
 

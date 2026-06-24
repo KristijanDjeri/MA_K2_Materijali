@@ -13,15 +13,49 @@ Radi **samostalno** – možeš testirati bez brisanja (npr. poziv posle ručnog
 
 ---
 
-## Koji fajlovi se menjaju
+## Koji fajlovi se menjaju / dodaju
 
-| Fajl | Šta radiš |
-|------|-----------|
-| `MainActivity.java` | NotificationChannel, `posaljiNotifikacijuPrazneBaze()` |
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`NotifikacijaHelper.java`** | Novi fajl → `app/.../helper/` |
+| 2 | `MainActivity.java` | U `onCreate`: `NotifikacijaHelper.kreirajKanal(this)` |
+| 3 | `MainActivity.java` | Kad je baza prazna: `NotifikacijaHelper.posaljiPraznaBaza(this)` |
 
 ---
 
-## Kompletan kod
+## Kompletan kod – helper klasa
+
+Kopiraj **`NotifikacijaHelper.java`** iz ovog foldera u `app/.../helper/`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+### Import
+
+```java
+import com.example.kolokvijum2.helper.NotifikacijaHelper;
+```
+
+### U `onCreate`
+
+```java
+NotifikacijaHelper.kreirajKanal(this);
+```
+
+### Kad je baza prazna (npr. posle brisanja)
+
+```java
+if (postDao.count() == 0) {
+    NotifikacijaHelper.posaljiPraznaBaza(this);
+}
+```
+
+> **Alternativa:** inline `NotificationCompat` ispod.
+
+---
+
+## Alternativa: inline u `MainActivity.java`
 
 ### Importi
 

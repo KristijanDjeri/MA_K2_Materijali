@@ -17,7 +17,34 @@
 
 ---
 
-## 2. U `MainActivity.java` (ceo deo)
+## Kompletan kod – helper klasa
+
+Kopiraj **`WebViewHelper.java`** iz ovog foldera u `app/.../helper/WebViewHelper.java`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+### Import
+
+```java
+import android.widget.WebView;
+import com.example.kolokvijum2.helper.WebViewHelper;
+```
+
+### U `onCreate`
+
+```java
+WebView webView = findViewById(R.id.webView);
+WebViewHelper webViewHelper = new WebViewHelper(this, webView);
+webViewHelper.ucitajUrl("https://dummy-json.mock.beeceptor.com/posts");
+```
+
+> **Alternativa:** inline kod ispod ili `WebViewSegment.java`.
+
+---
+
+## 2. Alternativa: inline u `MainActivity.java`
 
 ### Importi
 

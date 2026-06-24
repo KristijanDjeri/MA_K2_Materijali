@@ -11,15 +11,54 @@
 
 ---
 
-## Koji fajlovi se menjaju
+## Koji fajlovi se menjaju / dodaju
 
-| Fajl | Šta radiš |
-|------|-----------|
-| `MainActivity.java` | SharedPreferences init + `obradiSwitchOff()` |
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`SharedPreferencesHelper.java`** | Novi fajl → `app/.../helper/` |
+| 2 | `MainActivity.java` | Polje + init u **`onCreate`** |
+| 3 | `MainActivity.java` | U `obradiSwitchOff()`: `prefsHelper.sacuvajTextView(textView)` |
 
 ---
 
-## Kompletan kod za `MainActivity.java`
+## Kompletan kod – helper klasa
+
+Kopiraj **`SharedPreferencesHelper.java`** iz ovog foldera u `app/.../helper/`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+### Import
+
+```java
+import com.example.kolokvijum2.helper.SharedPreferencesHelper;
+```
+
+### Polje
+
+```java
+private SharedPreferencesHelper prefsHelper;
+```
+
+### U `onCreate`
+
+```java
+prefsHelper = new SharedPreferencesHelper(this);
+```
+
+### U `obradiSwitchOff()` (zadatak 9)
+
+```java
+prefsHelper.sacuvajTextView(textView);
+// zatim kontakti – vidi 14-kontakti/
+```
+
+> **Alternativa:** inline kod ispod ili `SharedPreferencesSegment.java`.
+
+---
+
+## Alternativa: inline u `MainActivity.java`
 
 ### 1. Import
 

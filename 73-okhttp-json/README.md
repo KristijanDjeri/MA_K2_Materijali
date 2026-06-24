@@ -27,7 +27,56 @@ Sync Now.
 
 ---
 
-## 2. U `MainActivity.java`
+## Kompletan kod – helper klasa
+
+Kopiraj **`OkHttpHelper.java`** iz ovog foldera u `app/.../helper/`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+### Import
+
+```java
+import com.example.kolokvijum2.helper.OkHttpHelper;
+```
+
+### Polje i poziv
+
+```java
+private OkHttpHelper okHttpHelper;
+
+// onCreate (posle postDao i progressBar):
+okHttpHelper = new OkHttpHelper(this, postDao, progressBar);
+okHttpHelper.ucitajPostove(
+        "https://dummy-json.mock.beeceptor.com/posts",
+        new OkHttpHelper.OnDoneListener() {
+            @Override
+            public void onSuccess(int count) {
+                Toast.makeText(MainActivity.this, "Učitano " + count, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(String message) {
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+            }
+        }
+);
+```
+
+### U `onDestroy`
+
+```java
+if (okHttpHelper != null) {
+    okHttpHelper.shutdown();
+}
+```
+
+> **Alternativa:** inline OkHttp ispod.
+
+---
+
+## 2. Alternativa: inline u `MainActivity.java`
 
 ### Importi
 

@@ -13,6 +13,33 @@
 | `AlarmReceiver.java` | `.../AlarmReceiver.java` |
 | Manifest | `<receiver>` unutar application |
 | `MainActivity.java` | zakazivanje alarma |
+| **`AlarmHelper.java`** | `app/.../helper/` (opciono, preporučeno) |
+
+---
+
+## Kompletan kod – helper klasa
+
+Kopiraj **`AlarmHelper.java`** iz ovog foldera u `app/.../helper/`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+### Import
+
+```java
+import com.example.kolokvijum2.AlarmReceiver;
+import com.example.kolokvijum2.helper.AlarmHelper;
+```
+
+### U `onCreate` ili na dugme
+
+```java
+AlarmHelper alarmHelper = new AlarmHelper(this, AlarmReceiver.class);
+alarmHelper.zakaziZaSekundi(10);
+```
+
+> **Alternativa:** inline `AlarmManager` kod u sekciji 3 ispod.
 
 ---
 
@@ -67,7 +94,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
 ---
 
-## 3. U `MainActivity.java`
+## 3. Alternativa: inline u `MainActivity.java`
 
 ### Importi
 

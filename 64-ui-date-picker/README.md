@@ -10,12 +10,46 @@
 
 | Korak | Fajl | Gde tačno |
 |-------|------|-----------|
-| 1 | `MainActivity.java` | Metode `otvoriDatePicker()` / `otvoriTimePicker()` – **dno klase** |
-| 2 | `MainActivity.java` | **`onCreate`**: `button.setOnLongClickListener(v -> { otvoriDatePicker(); return true; });` |
+| 1 | **`DatePickerHelper.java`** | Novi fajl → `app/.../helper/` |
+| 2 | `MainActivity.java` | Polje + init u **`onCreate`** |
+| 3 | `MainActivity.java` | Dugme/long click: `datePickerHelper.otvoriDatePicker()` |
 
 ---
 
-## Kompletan kod za `MainActivity.java`
+## Kompletan kod – helper klasa
+
+Kopiraj **`DatePickerHelper.java`** iz ovog foldera u `app/.../helper/`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+### Import
+
+```java
+import com.example.kolokvijum2.helper.DatePickerHelper;
+```
+
+### Polje i init
+
+```java
+private DatePickerHelper datePickerHelper;
+
+// onCreate:
+datePickerHelper = new DatePickerHelper(this, textView);
+button.setOnLongClickListener(v -> {
+    datePickerHelper.otvoriDatePicker();
+    return true;
+});
+// ili vreme:
+// datePickerHelper.otvoriTimePicker();
+```
+
+> **Alternativa:** inline dijalozi ispod.
+
+---
+
+## Alternativa: inline u `MainActivity.java`
 
 ### Importi
 

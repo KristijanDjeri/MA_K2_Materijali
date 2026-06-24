@@ -38,7 +38,19 @@ button.setOnClickListener(v ->
 
 ---
 
-## Inline metode (alternativa bez helpera)
+## Kompletan kod – helper klasa
+
+Kopiraj **`ImplicitIntentHelper.java`** iz ovog foldera u `app/.../helper/`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+Vidi tabelu i primer iznad.
+
+---
+
+## Alternativa: inline metode (bez helpera)
 
 ## Import
 

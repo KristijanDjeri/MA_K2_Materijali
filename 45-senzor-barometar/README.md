@@ -6,17 +6,43 @@
 
 ---
 
-**Helper (ceo kod):** `BarometarHelper.java` – `onResume()` / `onPause()`. **`HELPER-KLASE.md`**
+## Gde nalepiti kod
 
-```java
-barometarHelper = new BarometarHelper(this, textView);
-```
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`BarometarHelper.java`** | `app/.../helper/` |
+| 2 | `MainActivity.java` | **`onCreate`**: `barometarHelper = new BarometarHelper(this, textView);` |
+| 3 | `MainActivity.java` | **`onResume`**: `barometarHelper.onResume();` |
+| 4 | `MainActivity.java` | **`onPause`**: `barometarHelper.onPause();` |
 
 ---
 
-## Inline varijanta (zastarelo)
+## Kompletan kod – helper klasa
 
-## Kompletan kod za `MainActivity.java`
+Kopiraj **`BarometarHelper.java`** iz ovog foldera u `app/.../helper/`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+```java
+import com.example.kolokvijum2.helper.BarometarHelper;
+
+private BarometarHelper barometarHelper;
+
+// onCreate:
+barometarHelper = new BarometarHelper(this, textView);
+
+// onResume / onPause:
+barometarHelper.onResume();
+barometarHelper.onPause();
+```
+
+> **Alternativa:** inline kod ispod (zastarelo).
+
+---
+
+## Alternativa: inline u `MainActivity.java` (zastarelo)
 
 ### 1. Polje
 
@@ -47,25 +73,12 @@ else if (event.sensor.getType() == Sensor.TYPE_PRESSURE) {
 }
 ```
 
-> **Napomena:** Nema na svakom telefonu. Ako je `pressureSensor == null`, prikaži Toast "Nema barometra".
-
-### 5. (Opciono) Provera dostupnosti
-
-```java
-if (pressureSensor == null) {
-    Toast.makeText(this, "Barometar nije dostupan", Toast.LENGTH_SHORT).show();
-}
-```
-
----
-
-## Alternativa
-
-- Izračunaj nadmorsku visinu iz pritiska – formula, retko na kolokvijumu
+> **Napomena:** Nema na svakom telefonu. Ako je `pressureSensor == null`, prikaži Toast „Nema barometra".
 
 ---
 
 ## Checklist
 
-- [ ] `TYPE_PRESSURE`
+- [ ] `BarometarHelper` u paketu `helper`
+- [ ] `onResume` / `onPause` u MainActivity
 - [ ] Vrednost u hPa

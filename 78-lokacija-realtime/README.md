@@ -13,7 +13,51 @@
 
 ---
 
-## Kompletan kod za `MainActivity.java`
+## Koji fajlovi se menjaju / dodaju
+
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`LokacijaRealtimeHelper.java`** | Novi fajl → `app/.../helper/` |
+| 2 | `MainActivity.java` | Polje + init u **`onCreate`** |
+| 3 | `MainActivity.java` | **`onResume`**: `lokacijaRealtimeHelper.onResume()` |
+| 4 | `MainActivity.java` | **`onPause`**: `lokacijaRealtimeHelper.onPause()` |
+
+---
+
+## Kompletan kod – helper klasa
+
+Kopiraj **`LokacijaRealtimeHelper.java`** iz ovog foldera u `app/.../helper/`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+### Import
+
+```java
+import com.example.kolokvijum2.helper.LokacijaRealtimeHelper;
+```
+
+### Polje i lifecycle
+
+```java
+private LokacijaRealtimeHelper lokacijaRealtimeHelper;
+
+// onCreate:
+lokacijaRealtimeHelper = new LokacijaRealtimeHelper(this, textView);
+
+// onResume:
+lokacijaRealtimeHelper.onResume();
+
+// onPause:
+lokacijaRealtimeHelper.onPause();
+```
+
+> **Alternativa:** inline `LocationCallback` ispod.
+
+---
+
+## Alternativa: inline u `MainActivity.java`
 
 ### Importi
 

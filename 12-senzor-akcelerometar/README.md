@@ -32,7 +32,19 @@ Brisanje posta: **`onCreate`** → `button.setOnClickListener` (zadatak 10) – 
 
 ---
 
-## Kompletan kod (inline varijanta – zastarelo)
+## Kompletan kod – helper klasa
+
+Kopiraj **`AkcelerometarHelper.java`** iz ovog foldera u `app/.../helper/`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+Vidi tabelu iznad i lifecycle u `onResume` / `onPause`.
+
+---
+
+## Alternativa: inline u `MainActivity.java` (zastarelo)
 
 Ako nemaš helper, klasa implementira `SensorEventListener` u MainActivity.
 

@@ -20,7 +20,13 @@
 
 ---
 
-## Deo A: Magnetometar – ceo helper
+## Kompletan kod – helper klasa
+
+Kopiraj **`MagnetometarHelper.java`** i/ili **`KompasHelper.java`** iz ovog foldera u `app/.../helper/`.
+
+---
+
+## Deo A: Magnetometar – povezivanje u MainActivity
 
 Kopiraj **`MagnetometarHelper.java`** iz ovog foldera.
 

@@ -48,9 +48,31 @@ Sync.
     android:layout_marginTop="8dp" />
 ```
 
-## `MainActivity.java` – OSM
+## `MainActivity.java` – OSM (preporučeno: helper)
 
-Vidi `MapsOsmSegment.java`. Ukratko:
+### Kompletan kod – helper klasa
+
+Kopiraj **`MapsOsmHelper.java`** u `app/.../helper/`.
+
+```java
+import com.example.kolokvijum2.helper.MapsOsmHelper;
+import org.osmdroid.views.MapView;
+
+private MapsOsmHelper mapsOsmHelper;
+
+// onCreate:
+MapView mapView = findViewById(R.id.mapView);
+mapsOsmHelper = new MapsOsmHelper(this, mapView);
+mapsOsmHelper.prikaziTacku(44.7866, 20.4489, "Moja lokacija");
+
+// onResume / onPause:
+mapsOsmHelper.onResume();
+mapsOsmHelper.onPause();
+```
+
+> **Alternativa:** inline osmdroid ispod.
+
+## `MainActivity.java` – OSM (inline)
 
 ```java
 import org.osmdroid.config.Configuration;
@@ -129,7 +151,25 @@ implementation 'com.google.android.gms:play-services-maps:18.2.0'
 
 U `activity_main.xml` uključi `<include layout="@layout/map_fragment" />` ili stavi fragment direktno.
 
-## `MainActivity.java` – Google Maps
+## `MainActivity.java` – Google Maps (preporučeno: helper)
+
+### Kompletan kod – helper klasa
+
+Kopiraj **`MapsGoogleHelper.java`** u `app/.../helper/`.
+
+```java
+import com.example.kolokvijum2.helper.MapsGoogleHelper;
+
+private MapsGoogleHelper mapsGoogleHelper;
+
+// onCreate:
+mapsGoogleHelper = new MapsGoogleHelper(this, R.id.mapFragment);
+mapsGoogleHelper.setKoordinate(44.7866, 20.4489, "Beograd");
+```
+
+> **Ne** moraš `implements OnMapReadyCallback` u MainActivity – helper to radi umesto tebe.
+
+## `MainActivity.java` – Google Maps (inline)
 
 ```java
 import com.google.android.gms.maps.CameraUpdateFactory;

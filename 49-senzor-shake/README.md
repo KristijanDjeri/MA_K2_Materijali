@@ -14,7 +14,45 @@ shakeHelper = new ShakeHelper(this, () -> Toast.makeText(this, "Tresenje!", Toas
 
 ---
 
-## Kako radi (ukratko)
+## Gde nalepiti kod
+
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`ShakeHelper.java`** + **`ShakeDetector.java`** | `app/.../helper/` (oba fajla) |
+| 2 | `MainActivity.java` | **`onCreate`**: `shakeHelper = new ShakeHelper(this, callback);` |
+| 3 | `MainActivity.java` | **`onResume`**: `shakeHelper.onResume();` |
+| 4 | `MainActivity.java` | **`onPause`**: `shakeHelper.onPause();` |
+
+---
+
+## Kompletan kod – helper klasa
+
+Kopiraj **`ShakeHelper.java`** i **`ShakeDetector.java`** iz ovog foldera u `app/.../helper/`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+```java
+import com.example.kolokvijum2.helper.ShakeHelper;
+
+private ShakeHelper shakeHelper;
+
+// onCreate:
+shakeHelper = new ShakeHelper(this, () ->
+        Toast.makeText(this, "Tresenje detektovano!", Toast.LENGTH_SHORT).show()
+);
+
+// onResume / onPause:
+shakeHelper.onResume();
+shakeHelper.onPause();
+```
+
+> **Alternativa:** inline detekcija tresenja ispod.
+
+---
+
+## Alternativa: inline u `MainActivity.java`
 
 1. Akcelerometar šalje X, Y, Z u `onSensorChanged`
 2. Izračunaš ukupno ubrzanje: `√(x² + y² + z²)`

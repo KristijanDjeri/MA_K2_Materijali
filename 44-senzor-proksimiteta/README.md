@@ -4,70 +4,61 @@
 
 **Cilj:** Detektuj da li je nešto blizu senzora (npr. telefon uz uvo).
 
-**Helper (ceo kod):** `ProksimitetHelper.java` → `onResume()` / `onPause()` u MainActivity. Vidi **`HELPER-KLASE.md`**.
+---
+
+## Gde nalepiti kod
+
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`ProksimitetHelper.java`** | `app/.../helper/` |
+| 2 | `MainActivity.java` | **`onCreate`**: `proksimitetHelper = new ProksimitetHelper(this, textView);` |
+| 3 | `MainActivity.java` | **`onResume`**: `proksimitetHelper.onResume();` |
+| 4 | `MainActivity.java` | **`onPause`**: `proksimitetHelper.onPause();` |
 
 ---
 
-## Gde nalepiti
+## Kompletan kod – helper klasa
+
+Kopiraj **`ProksimitetHelper.java`** iz ovog foldera u `app/.../helper/`.
+
+Puna implementacija senzora je u helperu – **ne** u MainActivity.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
 
 ```java
+import com.example.kolokvijum2.helper.ProksimitetHelper;
+
+private ProksimitetHelper proksimitetHelper;
+
+// onCreate:
 proksimitetHelper = new ProksimitetHelper(this, textView);
-// onResume: proksimitetHelper.onResume();
-// onPause: proksimitetHelper.onPause();
+
+// onResume / onPause:
+proksimitetHelper.onResume();
+proksimitetHelper.onPause();
 ```
+
+> **Alternativa:** inline kod ispod (zastarelo).
 
 ---
 
-## Inline varijanta (zastarelo)
+## Alternativa: inline u `MainActivity.java` (zastarelo)
 
-## Kompletan kod za `MainActivity.java`
-
-### 1. Polje
-
-```java
-private Sensor proximitySensor;
-```
-
-### 2. U `onCreate`
-
-```java
-proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-```
-
-### 3. U `onResume`
-
-```java
-if (proximitySensor != null) {
-    sensorManager.registerListener(this, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL);
-}
-```
-
-### 4. U `onSensorChanged`
-
-```java
-else if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
-    float distance = event.values[0];
-    float maxRange = proximitySensor.getMaximumRange();
-    if (distance < maxRange) {
-        textView.setText("Blizu (proximity)");
-    } else {
-        textView.setText("Daleko (proximity)");
-    }
-}
-```
-
-> **Objašnjenje:** Većina uređaja vraća `0` kad je blizu, `maxRange` kad je daleko.
-
----
-
-## Alternativa
-
-- Ugasiti ekran kad je blizu – zahteva `FLAG_KEEP_SCREEN_ON` / PowerManager – naprednije
-- Toast umesto TextView
+Vidi stari `ProksimitetSegment.java` ako ne koristiš helper.
 
 ---
 
 ## Checklist
 
-- [ ] `TYPE_PROXIMITY`
-- [ ] Poređenje sa `getMaximumRange()`
+- [ ] Helper u paketu `helper`
+- [ ] `onResume` / `onPause` u MainActivity
+- [ ] TextView prikazuje blizu/daleko
+
+---
+
+## Povezano
+
+- Pregled senzora: `41-senzori-pregled/`
+- Helper mapa: `HELPER-KLASE.md`

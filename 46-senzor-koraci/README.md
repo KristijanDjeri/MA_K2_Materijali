@@ -14,15 +14,46 @@
 
 Na API 28–29 obično **nije** potrebna ova dozvola.
 
-**Helper (ceo kod):** `KoraciHelper.java` – uključuje dozvolu + `onResume()` / `onPause()` + `onPermissionGranted()`.
+---
 
-```java
-koraciHelper = new KoraciHelper(this, textView);
-```
+## Gde nalepiti kod
+
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`KoraciHelper.java`** | `app/.../helper/` |
+| 2 | `MainActivity.java` | **`onCreate`**: `koraciHelper = new KoraciHelper(this, textView);` |
+| 3 | `MainActivity.java` | **`onResume`**: `koraciHelper.onResume();` |
+| 4 | `MainActivity.java` | **`onPause`**: `koraciHelper.onPause();` |
+| 5 | `MainActivity.java` | **`onRequestPermissionsResult`**: `koraciHelper.onPermissionGranted(...)` |
 
 ---
 
-## Inline varijanta (zastarelo)
+## Kompletan kod – helper klasa
+
+Kopiraj **`KoraciHelper.java`** iz ovog foldera u `app/.../helper/`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+```java
+import com.example.kolokvijum2.helper.KoraciHelper;
+
+private KoraciHelper koraciHelper;
+
+// onCreate:
+koraciHelper = new KoraciHelper(this, textView);
+
+// onResume / onPause:
+koraciHelper.onResume();
+koraciHelper.onPause();
+```
+
+> **Alternativa:** inline kod ispod (zastarelo).
+
+---
+
+## Alternativa: inline u `MainActivity.java` (zastarelo)
 
 ## Kompletan kod za `MainActivity.java`
 

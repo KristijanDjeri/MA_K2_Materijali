@@ -13,6 +13,16 @@
 | 3 | `MainActivity.java` | **`onResume`**: `svetlostiHelper.onResume();` |
 | 4 | `MainActivity.java` | **`onPause`**: `svetlostiHelper.onPause();` |
 
+---
+
+## Kompletan kod – helper klasa
+
+Kopiraj **`SvetlostiHelper.java`** iz ovog foldera u `app/.../helper/`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
 ```java
 import com.example.kolokvijum2.helper.SvetlostiHelper;
 

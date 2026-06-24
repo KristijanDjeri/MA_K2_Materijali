@@ -19,7 +19,62 @@
 
 ---
 
-## Kompletan kod za `MainActivity.java`
+## Koji fajlovi se menjaju / dodaju
+
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`KontaktiHelper.java`** | Novi fajl → `app/.../helper/` |
+| 2 | `MainActivity.java` | Polje + init u **`onCreate`** |
+| 3 | `MainActivity.java` | U `obradiSwitchOff()`: `kontaktiHelper.postaviImePrvogKontakta()` |
+| 4 | `MainActivity.java` | **`onRequestPermissionsResult`**: `kontaktiHelper.onPermissionGranted(...)` |
+
+---
+
+## Kompletan kod – helper klasa
+
+Kopiraj **`KontaktiHelper.java`** iz ovog foldera u `app/.../helper/`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+### Import
+
+```java
+import com.example.kolokvijum2.helper.KontaktiHelper;
+```
+
+### Polje
+
+```java
+private KontaktiHelper kontaktiHelper;
+```
+
+### U `onCreate`
+
+```java
+kontaktiHelper = new KontaktiHelper(this, textView);
+```
+
+### U `obradiSwitchOff()` (posle SharedPreferences)
+
+```java
+kontaktiHelper.postaviImePrvogKontakta();
+```
+
+### U `onRequestPermissionsResult`
+
+```java
+if (kontaktiHelper != null) {
+    kontaktiHelper.onPermissionGranted(requestCode, grantResults);
+}
+```
+
+> **Alternativa:** inline kod ispod ili `KontaktiSegment.java`.
+
+---
+
+## Alternativa: inline u `MainActivity.java`
 
 ### 1. Importi
 

@@ -16,7 +16,35 @@
 
 ---
 
-## Kompletan kod za `MainActivity.java` (inline varijanta)
+## Kompletan kod – helper klasa
+
+Kopiraj **`InterniFajlHelper.java`** iz ovog foldera u `app/.../helper/`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+### Import
+
+```java
+import com.example.kolokvijum2.helper.InterniFajlHelper;
+```
+
+### Čuvanje i čitanje
+
+```java
+InterniFajlHelper.sacuvaj(this, textView.getText().toString());
+String ucitano = InterniFajlHelper.ucitaj(this);
+if (!ucitano.isEmpty()) {
+    textView.setText(ucitano);
+}
+```
+
+> **Alternativa:** inline `FileOutputStream` ispod.
+
+---
+
+## Alternativa: inline u `MainActivity.java`
 
 ### Importi
 

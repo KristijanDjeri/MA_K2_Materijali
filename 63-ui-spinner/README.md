@@ -29,7 +29,34 @@
 
 ---
 
-## 3. U `MainActivity.java` (ceo deo)
+## Kompletan kod – helper klasa
+
+Kopiraj **`SpinnerHelper.java`** iz ovog foldera u `app/.../helper/SpinnerHelper.java`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+### Import
+
+```java
+import android.widget.Spinner;
+import com.example.kolokvijum2.R;
+import com.example.kolokvijum2.helper.SpinnerHelper;
+```
+
+### U `onCreate`
+
+```java
+Spinner spinner = findViewById(R.id.spinner);
+new SpinnerHelper(this, spinner, textView, R.array.spinner_opcije);
+```
+
+> **Alternativa:** inline `ArrayAdapter` ispod ili `SpinnerSegment.java`.
+
+---
+
+## 3. Alternativa: inline u `MainActivity.java`
 
 ### Importi
 

@@ -84,6 +84,18 @@ Kopiraj iz `media_player_layout_snippet.xml` ili:
 
 ---
 
+## Kompletan kod – helper klasa
+
+Kopiraj **`MediaPlayerHelper.java`** iz ovog foldera u `app/.../helper/MediaPlayerHelper.java`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+Vidi sekciju 3 ispod za pun primer sa lifecycle-om.
+
+---
+
 ## 3. Kod u `MainActivity.java`
 
 ### Importi

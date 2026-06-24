@@ -43,7 +43,43 @@ Kopiraj iz `ui_checkbox_radiobutton_snippet.xml` ili:
 
 ---
 
-## Kod u `MainActivity.java`
+## Kompletan kod – helper klasa
+
+Kopiraj **`CheckBoxRadioHelper.java`** iz ovog foldera u `app/.../helper/`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+### Import
+
+```java
+import android.widget.CheckBox;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import com.example.kolokvijum2.R;
+import com.example.kolokvijum2.helper.CheckBoxRadioHelper;
+```
+
+### U `onCreate`
+
+```java
+CheckBox checkBoxNotifikacije = findViewById(R.id.checkBoxNotifikacije);
+RadioGroup radioGroupSort = findViewById(R.id.radioGroupSort);
+RadioButton radioPoId = findViewById(R.id.radioPoId);
+RadioButton radioPoTitle = findViewById(R.id.radioPoTitle);
+
+new CheckBoxRadioHelper(
+        checkBoxNotifikacije, radioGroupSort, textView,
+        R.id.radioPoId, R.id.radioPoTitle
+);
+```
+
+> **Alternativa:** inline listeneri ispod.
+
+---
+
+## Alternativa: inline u `MainActivity.java`
 
 ### Importi
 

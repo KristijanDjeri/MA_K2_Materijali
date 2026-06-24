@@ -23,7 +23,48 @@
 
 ---
 
-## Kompletan kod za `MainActivity.java` (inline varijanta)
+## Kompletan kod – helper klasa
+
+Kopiraj **`KameraHelper.java`** iz ovog foldera u `app/.../helper/KameraHelper.java`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+### Import
+
+```java
+import com.example.kolokvijum2.helper.KameraHelper;
+```
+
+### Polje
+
+```java
+private KameraHelper kameraHelper;
+```
+
+### U `onCreate`, posle `findViewById`
+
+```java
+kameraHelper = new KameraHelper(this, imageView, bitmap -> {
+    // Na ispitu: ziroskopHelper.prikaziToast(); — vidi 04-senzor-ziroskop/
+});
+imageButton.setOnClickListener(v -> kameraHelper.pokreni());
+```
+
+### U `onRequestPermissionsResult` (proširi postojeći)
+
+```java
+if (kameraHelper != null) {
+    kameraHelper.onPermissionGranted(requestCode, grantResults);
+}
+```
+
+> **Alternativa (stariji način):** metode direktno u `MainActivity` – vidi sekciju ispod ili `KameraSegment.java`.
+
+---
+
+## Alternativa: inline u `MainActivity.java`
 
 ### 1. Importi
 

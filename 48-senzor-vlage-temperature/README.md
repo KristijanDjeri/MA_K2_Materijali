@@ -4,11 +4,45 @@
 
 **Helper (ceo kod):** `VlagaTemperaturaHelper.java` – oba senzora, `onResume()` / `onPause()`.
 
-```java
-vlagaHelper = new VlagaTemperaturaHelper(this, textView);
-```
+---
+
+## Gde nalepiti kod
+
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`VlagaTemperaturaHelper.java`** | `app/.../helper/` |
+| 2 | `MainActivity.java` | **`onCreate`**: `vlagaHelper = new VlagaTemperaturaHelper(this, textView);` |
+| 3 | `MainActivity.java` | **`onResume`**: `vlagaHelper.onResume();` |
+| 4 | `MainActivity.java` | **`onPause`**: `vlagaHelper.onPause();` |
 
 ---
+
+## Kompletan kod – helper klasa
+
+Kopiraj **`VlagaTemperaturaHelper.java`** iz ovog foldera u `app/.../helper/`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+```java
+import com.example.kolokvijum2.helper.VlagaTemperaturaHelper;
+
+private VlagaTemperaturaHelper vlagaHelper;
+
+// onCreate:
+vlagaHelper = new VlagaTemperaturaHelper(this, textView);
+
+// onResume / onPause:
+vlagaHelper.onResume();
+vlagaHelper.onPause();
+```
+
+> **Alternativa:** inline kod ispod.
+
+---
+
+## Alternativa: inline u `MainActivity.java`
 
 ## Senzor vlage
 

@@ -117,4 +117,4 @@ public class MainActivity extends AppCompatActivity {
 
 **Referenca zvaničnih zadataka:** `15-main-activity-referenca/MainActivity.java`
 
-Stari `*Segment.java` fajlovi su zastareli – koristi helper `.java` fajlove iz foldera segmenta.
+Stari `*Segment.java` fajlovi služe kao **inline alternativa** – u README-u je uvek prvo **helper** pristup (vidi `02-geo-lokacija/` kao obrazac).

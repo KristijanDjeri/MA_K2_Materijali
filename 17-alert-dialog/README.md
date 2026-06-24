@@ -8,13 +8,46 @@
 
 ## Koji fajlovi se menjaju
 
-| Fajl | Šta radiš |
-|------|-----------|
-| `MainActivity.java` | `AlertDialog` pre `obrisiPrviPost()` |
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`AlertDialogHelper.java`** | Novi fajl → `app/.../helper/` |
+| 2 | `MainActivity.java` | Pre brisanja: `AlertDialogHelper.potvrdiBrisanje(...)` |
 
 ---
 
-## Kompletan kod
+## Kompletan kod – helper klasa
+
+Kopiraj **`AlertDialogHelper.java`** iz ovog foldera u `app/.../helper/`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+### Import
+
+```java
+import com.example.kolokvijum2.helper.AlertDialogHelper;
+```
+
+### Poziv pre brisanja
+
+```java
+button.setOnClickListener(v ->
+        AlertDialogHelper.potvrdiBrisanje(this, this::obrisiPrviPost)
+);
+```
+
+### Informativna poruka
+
+```java
+AlertDialogHelper.info(this, "Baza je prazna");
+```
+
+> **Alternativa:** inline `AlertDialog.Builder` ispod.
+
+---
+
+## Alternativa: inline u `MainActivity.java`
 
 ### Import
 

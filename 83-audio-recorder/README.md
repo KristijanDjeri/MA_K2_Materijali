@@ -114,7 +114,7 @@ audioPutanja = audioFajl.getAbsolutePath();
 
 ---
 
-## Korak 5: Helper klasa `AudioRecorder` (preporučeno)
+## Korak 5: Kompletan kod – helper klasa (`AudioRecorder`)
 
 | Korak | Fajl | Gde tačno |
 |-------|------|-----------|

@@ -17,7 +17,15 @@
 
 Gotovi: `file_paths.xml`, `AndroidManifest-provider.xml`, `FileProviderHelper.java`.
 
-### MainActivity – povezivanje
+---
+
+## Kompletan kod – helper klasa
+
+Kopiraj **`FileProviderHelper.java`** iz ovog foldera u `app/.../helper/`.
+
+---
+
+## MainActivity – povezivanje (preporučeno)
 
 ```java
 import com.example.kolokvijum2.helper.FileProviderHelper;

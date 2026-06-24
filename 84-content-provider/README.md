@@ -29,8 +29,43 @@
 | Fajl | Putanja |
 |------|---------|
 | `PostContentProvider.java` | `.../PostContentProvider.java` |
-| `ContentProviderHelper.java` | `.../helper/ContentProviderHelper.java` (opciono) |
+| `ContentProviderHelper.java` | `.../helper/ContentProviderHelper.java` |
 | Manifest | `<provider>` unutar application |
+
+---
+
+## Kompletan kod – provider + helper
+
+1. Kopiraj **`PostContentProvider.java`** u root paket (`com.example.kolokvijum2`).
+2. Kopiraj **`ContentProviderHelper.java`** u `app/.../helper/` (**kompletan kod – helper klasa** za čitanje).
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+### Sa helperom
+
+```java
+import com.example.kolokvijum2.helper.ContentProviderHelper;
+
+String title = ContentProviderHelper.getFirstPostTitle(this);
+textView.setText(title);
+```
+
+### Direktno (bez helpera)
+
+```java
+import android.database.Cursor;
+import com.example.kolokvijum2.PostContentProvider;
+
+Cursor cursor = getContentResolver().query(
+        PostContentProvider.CONTENT_URI,
+        new String[]{"title"},
+        null, null,
+        "_id ASC LIMIT 1"
+);
+// ... vidi ispod
+```
 
 ---
 

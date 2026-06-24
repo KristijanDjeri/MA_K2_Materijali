@@ -22,12 +22,36 @@
 
 | Korak | Fajl | Gde tačno |
 |-------|------|-----------|
-| 1 | `MainActivity.java` | Metoda `vibracija()` – **dno klase** |
-| 2 | `MainActivity.java` | Poziv unutar `PostRepository.obrisiPrviPost` callback-a kad je baza prazna, ili u `onEmpty` listeneru |
+| 1 | **`VibracijaHelper.java`** | Novi fajl → `app/.../helper/` |
+| 2 | `MainActivity.java` | Kad je baza prazna: `VibracijaHelper.kratka(this)` |
 
 ---
 
-## Kompletan kod za `MainActivity.java`
+## Kompletan kod – helper klasa
+
+Kopiraj **`VibracijaHelper.java`** iz ovog foldera u `app/.../helper/`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+### Import
+
+```java
+import com.example.kolokvijum2.helper.VibracijaHelper;
+```
+
+### Poziv (npr. kad nema postova)
+
+```java
+VibracijaHelper.kratka(this);
+```
+
+> **Alternativa:** inline `Vibrator` kod ispod.
+
+---
+
+## Alternativa: inline u `MainActivity.java`
 
 ### Importi
 

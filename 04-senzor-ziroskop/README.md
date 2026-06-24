@@ -30,6 +30,12 @@ Na ispitu: Toast posle nove slike u `ImageView` (spajanje sa `03-kamera/` u `16-
 
 ---
 
+## Kompletan kod – helper klasa
+
+Kopiraj **`ZiroskopHelper.java`** iz ovog foldera u `app/.../helper/ZiroskopHelper.java`.
+
+---
+
 ## MainActivity – povezivanje (helper)
 
 ```java

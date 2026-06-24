@@ -2,13 +2,49 @@
 
 **Dodatni segment.** **Slično:** žiroskop + akcelerometar, ali Android **već spaja** podatke u izvedene senzore.
 
-**Helper (ceo kod):** `IzvedeniSenzorHelper.java` (Gravity) – `onResume()` / `onPause()`. **`HELPER-KLASE.md`**
+**Helper (ceo kod):** `IzvedeniSenzorHelper.java` (Gravity) – `onResume()` / `onPause()`.
 
 ---
 
-## Pregled senzora
+## Gde nalepiti kod
 
-| Senzor | Tip | Šta daje |
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`IzvedeniSenzorHelper.java`** | `app/.../helper/` |
+| 2 | `MainActivity.java` | **`onCreate`**: `izvedeniHelper = new IzvedeniSenzorHelper(this, textView);` |
+| 3 | `MainActivity.java` | **`onResume`**: `izvedeniHelper.onResume();` |
+| 4 | `MainActivity.java` | **`onPause`**: `izvedeniHelper.onPause();` |
+
+---
+
+## Kompletan kod – helper klasa
+
+Kopiraj **`IzvedeniSenzorHelper.java`** iz ovog foldera u `app/.../helper/`.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+```java
+import com.example.kolokvijum2.helper.IzvedeniSenzorHelper;
+
+private IzvedeniSenzorHelper izvedeniHelper;
+
+// onCreate:
+izvedeniHelper = new IzvedeniSenzorHelper(this, textView);
+
+// onResume / onPause:
+izvedeniHelper.onResume();
+izvedeniHelper.onPause();
+```
+
+> **Alternativa:** inline registracija senzora ispod.
+
+---
+
+## Alternativa: inline u `MainActivity.java`
+
+## Pregled senzora
 |--------|-----|----------|
 | Rotation Vector | `TYPE_ROTATION_VECTOR` | Orijentacija uređaja (kvaternioni) |
 | Gravity | `TYPE_GRAVITY` | Gravitaciona komponenta (bez pokreta) |
