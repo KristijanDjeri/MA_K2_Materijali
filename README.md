@@ -102,6 +102,14 @@ Verovatnoća tema: **[DODATNI-SEGMENTI.md](DODATNI-SEGMENTI.md)**
 
 ---
 
+## Vežba F
+
+Zasebna vežba sa **CheckBox-ovima**, **audio snimanjem**, **državama** i **proksimitetom**:
+
+**[kolokvijumF/](kolokvijumF/)**
+
+---
+
 ## Redosled učenja
 
 1. `01-osnovni-projekat/` → projekat Kolokvijum2  
