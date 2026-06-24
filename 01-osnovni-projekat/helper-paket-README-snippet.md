@@ -1,5 +1,7 @@
 # Helper + lifecycle – šablon za MainActivity
 
+Početni **kostur** metoda (`onResume`, `onPause`, `onDestroy`, `onRequestPermissionsResult`) već postoji u **`01-osnovni-projekat/MainActivity.java`**. U segmentima samo dodaješ linije unutra.
+
 Svaki helper ima **pune metode** u svojoj klasi.  
 MainActivity **ne implementira** poslovnu logiku – samo:
 

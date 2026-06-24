@@ -3,6 +3,7 @@
 ## 1. Novi projekat
 - Ime: **Kolokvijum2**, aktivnost: **MainActivity**, minSdk **30**, targetSdk **36**
 - Layout: `01-osnovni-projekat/activity_main.xml`
+- MainActivity: `01-osnovni-projekat/MainActivity.java` (kostur lifecycle metoda)
 - Gradle: `01-osnovni-projekat/gradle-zavisnosti.txt`
 - Dozvole: `01-osnovni-projekat/AndroidManifest-dozvole.xml`
 

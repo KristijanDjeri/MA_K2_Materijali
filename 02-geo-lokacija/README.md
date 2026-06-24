@@ -52,7 +52,9 @@ geoHelper = new GeoLokacijaHelper(this, textView);
 geoHelper.pokreni();
 ```
 
-### U `onRequestPermissionsResult` (proširi postojeći, ne pravi novi od nule)
+### U `onRequestPermissionsResult` (dodaj liniju u postojeću metodu iz `01-osnovni-projekat/`)
+
+Metoda već postoji u početnom `MainActivity` – samo odkomentariši / dodaj:
 
 ```java
 geoHelper.onPermissionGranted(requestCode, grantResults);

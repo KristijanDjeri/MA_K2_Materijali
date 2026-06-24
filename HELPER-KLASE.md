@@ -2,7 +2,7 @@
 
 Sve helper klase idu u paket **`com.example.kolokvijum2.helper`**.
 
-Konvencija: `01-osnovni-projekat/helper-paket-README-snippet.md`
+Konvencija: `01-osnovni-projekat/MainActivity.java` (kostur) · `01-osnovni-projekat/helper-paket-README-snippet.md`
 
 **Dokumentacija:** u svakom segment README prvo ide **helper pristup** (`MainActivity` samo povezuje helper), a zatim sekcija **„Alternativa: inline implementacija u MainActivity“** sa kompletnim kodom za slučaj da helper ne radi. Izvorni snippeti su i u `*Segment.java` fajlovima u istom folderu.
 

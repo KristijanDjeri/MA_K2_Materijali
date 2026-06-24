@@ -219,7 +219,20 @@ Primer kako manifest treba da izgleda (skraćeno):
 **Putanja:**  
 `app/src/main/java/com/example/kolokvijum2/MainActivity.java`
 
-Za sada dovoljno da **povežeš view-ove**. Ostatak logike dolazi iz drugih foldera.
+Kopiraj **`MainActivity.java`** iz ovog foldera (ili nalepi kod ispod).  
+Sadrži **kostur** svih lifecycle metoda koje koristiš u segmentima – tela su prazna (samo komentari), da kasnije samo **dodaš jednu liniju** umesto da pišeš metodu od nule.
+
+### Šta koja metoda radi
+
+| Metoda | Kada se poziva | Šta dodaješ kasnije |
+|--------|----------------|---------------------|
+| `onCreate` | Jednom pri pokretanju | `findViewById`, helperi, listeneri |
+| `onResume` | Ekran postane vidljiv | `helper.onResume()` – senzori, mapa, lokacija |
+| `onPause` | Ekran nestane | `helper.onPause()` – uvek upari sa `onResume` |
+| `onDestroy` | Activity se uništava | `shutdown()` / `onDestroy()` – audio, OkHttp, niti |
+| `onRequestPermissionsResult` | Korisnik odgovori na dozvolu | `helper.onPermissionGranted(...)` – lokacija, kamera… |
+
+Mapa helpera po segmentu: **`HELPER-KLASE.md`** · primer popunjavanja: **`15-main-activity-referenca/MainActivity.java`**
 
 ```java
 package com.example.kolokvijum2;
@@ -251,9 +264,47 @@ public class MainActivity extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
         switchPosts = findViewById(R.id.switchPosts);
         button = findViewById(R.id.button);
+
+        // Inicijalizacija helpera i listenera – dodaješ u segment folderima
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Senzori, mapa, lokacija uživo – vidi HELPER-KLASE.md
+        // ziroskopHelper.onResume();
+        // akcelerometarHelper.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Uvek upari sa onResume()
+        // ziroskopHelper.onPause();
+        // akcelerometarHelper.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // audioRecorder.onDestroy();
+        // okHttpHelper.shutdown();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions,
+                                           int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        // geoHelper.onPermissionGranted(requestCode, grantResults);      // 02-geo-lokacija
+        // kameraHelper.onPermissionGranted(requestCode, grantResults);   // 03-kamera
+        // kontaktiHelper.onPermissionGranted(requestCode, grantResults); // 14-kontakti
     }
 }
 ```
+
+> **Važno:** Uvek prvo `super.onCreate(...)` / `super.onResume()` itd. U `onRequestPermissionsResult` **ne pravi novu metodu** u svakom segmentu – samo **dodaj liniju** u postojeću.
 
 > **Alternativa:** `findViewById` možeš pisati i bez polja u klasi, direktno u listenerima. Ovako je preglednije kad dodaješ ostale segmente.
 
@@ -262,7 +313,7 @@ public class MainActivity extends AppCompatActivity {
 ## Checklist pre prelaska na sledeći segment
 
 - [ ] Projekat se zove Kolokvijum2
-- [ ] `MainActivity` postoji
+- [ ] `MainActivity` postoji sa kosturom (`onResume`, `onPause`, `onDestroy`, `onRequestPermissionsResult`)
 - [ ] Layout ima svih 5 komponenti jedna ispod druge
 - [ ] Gradle Sync je uspeo
 - [ ] Dozvole su u Manifest-u
