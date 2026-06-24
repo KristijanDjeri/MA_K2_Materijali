@@ -9,19 +9,19 @@
 
 ## Preduslovi
 
-- `05-room-baza/` urađen
+- `05-room-baza/` + `07-ucitaj-10-postova/` – `PostRepository`
 - Gradle: `implementation 'androidx.recyclerview:recyclerview:1.3.2'`
 
 ---
 
-## Fajlovi koje praviš
+## Fajlovi koje praviš / kopiraš
 
 | Fajl | Putanja |
 |------|---------|
 | `item_post.xml` | `res/layout/item_post.xml` |
 | `PostAdapter.java` | `.../adapter/PostAdapter.java` |
+| **`RecyclerViewPostsHelper.java`** | `.../helper/RecyclerViewPostsHelper.java` |
 | Izmene u `activity_main.xml` | dodaj RecyclerView |
-| Izmene u `MainActivity.java` | adapter + osvežavanje |
 
 ---
 
@@ -39,7 +39,7 @@
 
 ---
 
-## 2. U `activity_main.xml` dodaj (npr. ispod Button)
+## 2. U `activity_main.xml` dodaj
 
 ```xml
 <androidx.recyclerview.widget.RecyclerView
@@ -50,124 +50,66 @@
 
 ---
 
-## 3. `PostAdapter.java` (ceo fajl)
+## 3. `PostAdapter.java`
 
-```java
-package com.example.kolokvijum2.adapter;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.kolokvijum2.R;
-import com.example.kolokvijum2.model.Post;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
-
-    private List<Post> posts = new ArrayList<>();
-
-    public void setPosts(List<Post> posts) {
-        this.posts = posts != null ? posts : new ArrayList<>();
-        notifyDataSetChanged();
-    }
-
-    @NonNull
-    @Override
-    public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_post, parent, false);
-        return new PostViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
-        Post post = posts.get(position);
-        holder.tvTitle.setText(post.getTitle());
-        holder.itemView.setOnClickListener(v ->
-                Toast.makeText(v.getContext(), post.getTitle(), Toast.LENGTH_SHORT).show()
-        );
-    }
-
-    @Override
-    public int getItemCount() {
-        return posts.size();
-    }
-
-    static class PostViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitle;
-
-        PostViewHolder(@NonNull View itemView) {
-            super(itemView);
-            tvTitle = itemView.findViewById(R.id.tvTitle);
-        }
-    }
-}
-```
+Kopiraj **`PostAdapter.java`** iz ovog foldera u `app/.../adapter/`.
 
 ---
 
-## 4. Deo u `MainActivity.java`
+## 4. MainActivity – samo povezivanje (preporučeno)
 
 ### Importi
 
 ```java
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.kolokvijum2.adapter.PostAdapter;
-import java.util.List;
+import com.example.kolokvijum2.helper.PostRepository;
+import com.example.kolokvijum2.helper.RecyclerViewPostsHelper;
 ```
 
 ### Polja
 
 ```java
-private RecyclerView recyclerView;
-private PostAdapter postAdapter;
+private RecyclerViewPostsHelper recyclerViewPostsHelper;
 ```
 
 ### U `onCreate`
 
 ```java
-recyclerView = findViewById(R.id.recyclerView);
-postAdapter = new PostAdapter();
-recyclerView.setLayoutManager(new LinearLayoutManager(this));
-recyclerView.setAdapter(postAdapter);
-osveziListuPostova();
+RecyclerView recyclerView = findViewById(R.id.recyclerView);
+recyclerViewPostsHelper = new RecyclerViewPostsHelper(recyclerView, postRepository);
 ```
 
-### Metoda za osvežavanje
+### Posle insert/delete
 
 ```java
-private void osveziListuPostova() {
-    List<Post> svi = postDao.getAll();
-    postAdapter.setPosts(svi);
-}
+recyclerViewPostsHelper.osvezi();
 ```
 
-### Pozovi `osveziListuPostova()` posle:
+Primer u callback-u `PostRepository`:
 
-- `postDao.insertAll(...)` u Retrofit callback-u
-- `postDao.delete(...)` u `obrisiPrviPost()`
+```java
+postRepository.ucitajPostoveSaApi(new PostRepository.OnApiDoneListener() {
+    @Override
+    public void onSuccess(int count) {
+        recyclerViewPostsHelper.osvezi();
+    }
+    @Override
+    public void onFailure(String message) { }
+});
+```
+
+> **Ne piši** `osveziListuPostova()` u MainActivity – `RecyclerViewPostsHelper.osvezi()` čita iz `PostRepository.getAll()`.
 
 ---
 
-## Alternativa
+## Alternativa: inline u `MainActivity.java` (zastarelo)
 
-- `GridLayoutManager` umesto `LinearLayoutManager` – mreža umesto liste
-- ViewHolder sa više TextView polja (title + body)
+Vidi `RecyclerViewSegment.java` u ovom folderu.
 
 ---
 
 ## Checklist
 
-- [ ] `item_post.xml` kreiran
+- [ ] `RecyclerViewPostsHelper` + `PostAdapter` u projektu
 - [ ] RecyclerView u layoutu
-- [ ] PostAdapter kreiran
-- [ ] Lista se osvežava posle insert/delete
+- [ ] `osvezi()` posle insert/delete

@@ -134,7 +134,9 @@ boolean sortPoTitle = radioPoTitle.isChecked();
 ```java
 button.setOnClickListener(v -> {
     if (checkBoxNotifikacije.isChecked()) {
-        obrisiPrviPost(); // iz 10-brisanje-prvog-posta/
+        postRepository.obrisiPrviPost(
+                () -> NotifikacijaHelper.posaljiPraznaBaza(this)
+        );
     } else {
         Toast.makeText(this, "Notifikacije isključene – brisanje preskočeno", Toast.LENGTH_SHORT).show();
     }

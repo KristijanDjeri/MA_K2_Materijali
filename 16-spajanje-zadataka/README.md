@@ -33,10 +33,10 @@ Kompletan primer: **`15-main-activity-referenca/MainActivity.java`**.
 
 **Vežba:** `03-kamera` bez Toast-a · `04-senzor-ziroskop` sa test dugmetom.
 
-**Ispit:** U callback-u kamere, posle `setImageBitmap`:
+**Ispit:** U callback-u `KameraHelper`, posle slike:
 
 ```java
-prikaziZiroskopToast(); // iz 04-senzor-ziroskop/
+ziroskopHelper.prikaziToast(); // iz 04-senzor-ziroskop/
 ```
 
 ### 2. Switch (zadaci 6 i 9)
@@ -49,14 +49,15 @@ prikaziZiroskopToast(); // iz 04-senzor-ziroskop/
 
 **Vežba:** `10` samo klik · `12` samo tekst iz senzora (bez klika na istom dugmetu).
 
-**Ispit:** Jedan `button`:
+**Ispit:** Jedan `button` – tekst iz `AkcelerometarHelper`, klik preko `PostRepository`:
 
 ```java
-// onSensorChanged (12):
-button.setText("X: " + ax + " Y: " + ay + " Z: " + az);
-
 // onCreate (10 + 11):
-button.setOnClickListener(v -> obrisiPrviPost());
+NotifikacijaHelper.kreirajKanal(this);
+button.setOnClickListener(v -> postRepository.obrisiPrviPost(
+        () -> NotifikacijaHelper.posaljiPraznaBaza(this)
+));
+// AkcelerometarHelper u onResume/onPause menja tekst dugmeta
 ```
 
 Tekst se menja iz senzora; **klik** i dalje briše i šalje notifikaciju.
@@ -65,40 +66,38 @@ Tekst se menja iz senzora; **klik** i dalje briše i šalje notifikaciju.
 
 **Vežba:** folderi `10` i `11` odvojeno.
 
-**Ispit:** U `obrisiPrviPost()` na kraju:
+**Ispit:** `PostRepository.obrisiPrviPost()` sa callback-om:
 
 ```java
-if (postDao.count() == 0) {
-    posaljiNotifikacijuPrazneBaze();
-}
+postRepository.obrisiPrviPost(() -> NotifikacijaHelper.posaljiPraznaBaza(this));
 ```
 
 ### 5. Switch OFF (zadatak 9)
 
 **Vežba:** `13` i `14` posebno (npr. dva dugmeta).
 
-**Ispit:** `obradiSwitchOff()` u `09-switch-listener/` poziva obe metode.
+**Ispit:** `SwitchPostsHelper` iz `09-switch-listener/` – OFF deo poziva `SharedPreferencesHelper` + `KontaktiHelper`.
 
 ---
 
-## Minimalna mapa metoda u jednom MainActivity
+## Minimalna mapa u jednom MainActivity (helper pristup)
 
 ```
 onCreate()
   ├── postDao init (05)
-  ├── kreirajNotificationChannel (11)
-  ├── switchPosts listener (09)
-  ├── button click → obrisiPrviPost (10+11)
-  ├── imageButton → kamera (03)
-  └── senzori register (04, 12)
+  ├── postRepository = new PostRepository(...) (07)
+  ├── NotifikacijaHelper.kreirajKanal (11)
+  ├── SwitchPostsHelper (09) – ON/OFF logika
+  ├── button → postRepository.obrisiPrviPost + NotifikacijaHelper (10+11)
+  ├── imageButton → kameraHelper.pokreni() (03)
+  ├── ziroskopHelper, akcelerometarHelper init (04, 12)
+  └── geoHelper, prefsHelper, kontaktiHelper...
 
-ucitajPostoveSaApi()     ← 07
-prikaziTitlePrvogPosta() ← 08
-obradiSwitchOn/Off()     ← 09, 13, 14
-obrisiPrviPost()         ← 10, 11
-prikaziZiroskopToast()   ← 04
-onSensorChanged()        ← 04, 12
+onResume/onPause
+  └── ziroskopHelper, akcelerometarHelper.onResume/onPause
 ```
+
+Kompletan primer: **`15-main-activity-referenca/MainActivity.java`**
 
 ---
 

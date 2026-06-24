@@ -89,12 +89,12 @@ private void podeliTekst(String tekst) {
 }
 ```
 
-Primer – title prvog posta:
+Primer – title prvog posta (preko `PostRepository`):
 
 ```java
-Post prvi = postDao.getFirst();
+Post prvi = postRepository.getFirst();
 if (prvi != null) {
-    podeliTekst(prvi.getTitle());
+    ImplicitIntentHelper.podeliTekst(this, prvi.getTitle());
 }
 ```
 

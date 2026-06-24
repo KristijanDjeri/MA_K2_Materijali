@@ -108,10 +108,24 @@ public boolean onCreateOptionsMenu(Menu menu) {
 public boolean onOptionsItemSelected(MenuItem item) {
     int id = item.getItemId();
     if (id == R.id.action_refresh) {
-        ucitajPostoveSaApi(); // iz 07-ucitaj-10-postova/
+        postRepository.ucitajPostoveSaApi(new PostRepository.OnApiDoneListener() {
+            @Override
+            public void onSuccess(int count) {
+                Toast.makeText(MainActivity.this, "Učitano " + count, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(String message) {
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+            }
+        });
         return true;
     } else if (id == R.id.action_delete) {
-        potvrdiBrisanje(); // iz 17-alert-dialog/
+        AlertDialogHelper.potvrdiBrisanje(this, () ->
+                postRepository.obrisiPrviPost(
+                        () -> NotifikacijaHelper.posaljiPraznaBaza(this)
+                )
+        );
         return true;
     } else if (id == R.id.action_settings) {
         Toast.makeText(this, "Podešavanja", Toast.LENGTH_SHORT).show();
@@ -120,6 +134,8 @@ public boolean onOptionsItemSelected(MenuItem item) {
     return super.onOptionsItemSelected(item);
 }
 ```
+
+Potrebni importi: `PostRepository`, `AlertDialogHelper`, `NotifikacijaHelper` (već iz segmenata 07, 11, 17).
 
 ---
 

@@ -33,9 +33,26 @@ Ovaj folder je **mapa** – svaki senzor ima **helper klasu** sa punim `onResume
 
 ---
 
-## Zajednički obrazac (isti za SVE senzore)
+## Zajednički obrazac (helper – preporučeno)
 
-Svaki senzor prati iste korake:
+Svaki senzor ima **helper klasu** u paketu `helper`. U `MainActivity` samo:
+
+```java
+private SvetlostiHelper svetlostiHelper;
+
+// onCreate:
+svetlostiHelper = new SvetlostiHelper(this, textView);
+
+// onResume / onPause:
+svetlostiHelper.onResume();
+svetlostiHelper.onPause();
+```
+
+**MainActivity NE implementira** `SensorEventListener` – helper to radi interno.
+
+---
+
+## Alternativa: inline u MainActivity (zastarelo)
 
 ```java
 // 1. Polje
@@ -55,11 +72,10 @@ sensorManager.unregisterListener(this);
 // 5. onSensorChanged
 if (event.sensor.getType() == Sensor.TYPE_...) {
     float vrednost = event.values[0];
-    // prikaži u TextView / Button / Toast
 }
 ```
 
-**MainActivity mora implementirati:** `implements SensorEventListener`
+Za ovaj pristup Activity mora `implements SensorEventListener` – **ne preporučujemo** na kolokvijumu.
 
 ---
 

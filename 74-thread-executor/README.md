@@ -2,7 +2,7 @@
 
 **Dodatni segment.** **Slično:** Room operacije (zadaci 5–7), ali **bez** `allowMainThreadQueries()`.
 
-**Cilj:** Baza se koristi u pozadinskoj niti; UI (Toast, adapter) na glavnoj niti.
+**Cilj:** Baza se koristi u pozadinskoj niti; UI (Toast, notifikacija) na glavnoj niti.
 
 ---
 
@@ -16,83 +16,71 @@ INSTANCE = Room.databaseBuilder(
 ).build();  // bez .allowMainThreadQueries()
 ```
 
-> **Napomena:** Za kolokvijum možeš ostaviti `allowMainThreadQueries()` i ipak pokazati da znaš Thread – profesor može tražiti jedno ili drugo.
+> Za kolokvijum možeš ostaviti `allowMainThreadQueries()` – helper i dalje pokazuje znanje o nitima.
 
 ---
 
-## 2. U `MainActivity.java`
+## Gde nalepiti kod
+
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`ThreadExecutorHelper.java`** | `app/.../helper/` |
+| 2 | `MainActivity.java` | Polje + init u **`onCreate`** |
+| 3 | `MainActivity.java` | **`onDestroy`**: `threadHelper.shutdown()` |
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
 
 ### Importi
 
 ```java
-import android.os.Handler;
-import android.os.Looper;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import com.example.kolokvijum2.db.PostDao;
+import com.example.kolokvijum2.helper.NotifikacijaHelper;
+import com.example.kolokvijum2.helper.PostRepository;
+import com.example.kolokvijum2.helper.ThreadExecutorHelper;
 ```
 
-### Polja
+### Polje i init
 
 ```java
-private final ExecutorService executor = Executors.newSingleThreadExecutor();
-private final Handler mainHandler = new Handler(Looper.getMainLooper());
+private ThreadExecutorHelper threadHelper;
+
+// onCreate, posle postDao:
+threadHelper = new ThreadExecutorHelper(this, postDao);
+
+button.setOnLongClickListener(v -> {
+    threadHelper.prikaziTitlePrvogAsync();
+    return true;
+});
+
+// Brisanje + notifikacija u pozadini:
+button.setOnClickListener(v -> threadHelper.obrisiPrviAsync(
+        () -> NotifikacijaHelper.posaljiPraznaBaza(this)
+));
 ```
 
 ### U `onDestroy`
 
 ```java
-@Override
-protected void onDestroy() {
-    super.onDestroy();
-    executor.shutdown();
+if (threadHelper != null) {
+    threadHelper.shutdown();
 }
 ```
+
+> **Ne piši** `ExecutorService` / `Handler` u MainActivity – sve je u `ThreadExecutorHelper`.
 
 ---
 
-## 3. Primer: učitaj postove i prikaži Toast
+## Alternativa: inline u `MainActivity.java` (zastarelo)
 
-```java
-private void ucitajPostoveIzBazeAsync() {
-    executor.execute(() -> {
-        List<Post> lista = postDao.getAll();
-        mainHandler.post(() -> {
-            if (!lista.isEmpty()) {
-                Toast.makeText(this, lista.get(0).getTitle(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    });
-}
-```
-
----
-
-## 4. Primer: brisanje + notifikacija
-
-```java
-private void obrisiPrviPostAsync() {
-    executor.execute(() -> {
-        Post prvi = postDao.getFirst();
-        if (prvi != null) {
-            postDao.delete(prvi);
-        }
-        int count = postDao.count();
-        mainHandler.post(() -> {
-            if (count == 0) {
-                posaljiNotifikaciju("Nema više postova!");
-            }
-        });
-    });
-}
-```
-
-> **Alternativa:** `runOnUiThread(() -> { ... })` umesto `mainHandler.post`.
+Vidi `ThreadExecutorSegment.java` u ovom folderu.
 
 ---
 
 ## Checklist
 
-- [ ] Room operacije u `executor.execute`
-- [ ] Toast/UI u `mainHandler.post` ili `runOnUiThread`
-- [ ] `executor.shutdown()` u onDestroy
+- [ ] `ThreadExecutorHelper` u paketu `helper`
+- [ ] Room operacije u pozadini
+- [ ] UI na glavnoj niti
+- [ ] `shutdown()` u `onDestroy`

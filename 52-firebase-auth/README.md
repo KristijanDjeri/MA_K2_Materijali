@@ -48,7 +48,35 @@
 
 ---
 
-## Korak 2: Kompletan kod u `MainActivity.java`
+## Korak 2: MainActivity – samo povezivanje (preporučeno)
+
+Kopiraj **`FirebaseAuthHelper.java`** iz ovog foldera u `app/.../helper/`.
+
+### Import
+
+```java
+import android.widget.Button;
+import android.widget.EditText;
+import com.example.kolokvijum2.helper.FirebaseAuthHelper;
+```
+
+### U `onCreate`, posle `findViewById`
+
+```java
+EditText editEmail = findViewById(R.id.editEmail);
+EditText editLozinka = findViewById(R.id.editLozinka);
+Button btnRegistracija = findViewById(R.id.btnRegistracija);
+Button btnPrijava = findViewById(R.id.btnPrijava);
+
+FirebaseAuthHelper firebaseAuthHelper = new FirebaseAuthHelper(
+        this, editEmail, editLozinka, btnRegistracija, btnPrijava);
+```
+
+> Listeneri na dugmad su **u konstruktoru** helpera – ne piši `registracija()` / `prijava()` u MainActivity.
+
+---
+
+## Alternativa: inline u `MainActivity.java` (zastarelo)
 
 ### 1. Importi
 
@@ -176,10 +204,9 @@ U konzoli: Authentication → Sign-in method → **Anonymous** → Enable.
 
 ## Checklist
 
+- [ ] `FirebaseAuthHelper` u paketu `helper`
 - [ ] Email/Password uključen u Firebase Console
-- [ ] `52-firebase-auth` u Gradle
 - [ ] Registracija i prijava rade
-- [ ] Toast na uspeh i grešku
 
 ---
 

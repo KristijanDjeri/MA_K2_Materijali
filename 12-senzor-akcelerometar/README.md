@@ -22,14 +22,6 @@ Radi **samostalno** – samo senzor i `setText` na dugmetu. **Brisanje posta** j
 | 3 | `MainActivity.java` | **`onResume`**: `akcelerometarHelper.onResume();` |
 | 4 | `MainActivity.java` | **`onPause`**: `akcelerometarHelper.onPause();` |
 
-```java
-import com.example.kolokvijum2.helper.AkcelerometarHelper;
-
-private AkcelerometarHelper akcelerometarHelper;
-```
-
-Brisanje posta: **`onCreate`** → `button.setOnClickListener` (zadatak 10) – odvojeno od senzora u vežbi.
-
 ---
 
 ## Kompletan kod – helper klasa
@@ -40,7 +32,43 @@ Kopiraj **`AkcelerometarHelper.java`** iz ovog foldera u `app/.../helper/`.
 
 ## MainActivity – samo povezivanje (preporučeno)
 
-Vidi tabelu iznad i lifecycle u `onResume` / `onPause`.
+### Import
+
+```java
+import com.example.kolokvijum2.helper.AkcelerometarHelper;
+```
+
+### Polje
+
+```java
+private AkcelerometarHelper akcelerometarHelper;
+```
+
+### U `onCreate`, posle `findViewById`
+
+```java
+akcelerometarHelper = new AkcelerometarHelper(this, button);
+```
+
+### Lifecycle
+
+```java
+@Override
+protected void onResume() {
+    super.onResume();
+    akcelerometarHelper.onResume();
+}
+
+@Override
+protected void onPause() {
+    super.onPause();
+    akcelerometarHelper.onPause();
+}
+```
+
+Brisanje posta: **`onCreate`** → `button.setOnClickListener` (zadatak 10) – odvojeno od senzora u vežbi.
+
+> **Ne** dodaj `implements SensorEventListener` u MainActivity.
 
 ---
 

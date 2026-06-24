@@ -86,13 +86,13 @@ private void povratnaVibracijaKratka() {
 
 > U **Fragmentu** koristi `requireContext().getSystemService(...)` umesto `getSystemService`.
 
-### Poziv (npr. kad nema postova)
+### Poziv (npr. u callback-u posle brisanja)
 
 ```java
-if (postDao.count() == 0) {
-    povratnaVibracijaKratka();
-    posaljiNotifikaciju("Nema više postova!");
-}
+postRepository.obrisiPrviPost(() -> {
+    VibracijaHelper.kratka(this);
+    NotifikacijaHelper.posaljiPraznaBaza(this);
+});
 ```
 
 ---

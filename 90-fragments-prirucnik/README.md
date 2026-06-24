@@ -117,18 +117,18 @@ implementation 'androidx.fragment:fragment:1.6.2'
 | [01-osnovni-projekat](../01-osnovni-projekat/) | Layout komponenti | `fragment_*.xml` |
 | [02-geo-lokacija](../02-geo-lokacija/) | Metode lokacije | `onViewCreated` + polja |
 | [03-kamera](../03-kamera/) | `ActivityResultLauncher` | Polje u Fragmentu, registrovano u `onCreate` |
-| [04-senzor-ziroskop](../04-senzor-ziroskop/) | `SensorEventListener` | Fragment `implements SensorEventListener`, `onResume`/`onPause` |
+| [04-senzor-ziroskop](../04-senzor-ziroskop/) | `ZiroskopHelper` | `onResume`/`onPause` u Fragmentu |
 | [05-room-baza](../05-room-baza/) | Room klase | **Ostaju iste**; u Fragmentu samo poziv |
 | [06-retrofit-get](../06-retrofit-get/) | API interfejs + client | Isto |
-| [07-ucitaj-10-postova](../07-ucitaj-10-postova/) | GET + insert | `onViewCreated` |
-| [08-toast-prvi-post](../08-toast-prvi-post/) | Toast iz baze | Dugme ili Switch |
-| [09-switch-listener](../09-switch-listener/) | Switch listener | `onViewCreated` |
-| [10-brisanje-prvog-posta](../10-brisanje-prvog-posta/) | Brisanje | Klik na dugme |
+| [07-ucitaj-10-postova](../07-ucitaj-10-postova/) | `PostRepository` | `onViewCreated` |
+| [08-toast-prvi-post](../08-toast-prvi-post/) | `PostRepository.prikaziTitlePrvogPosta()` | Dugme ili Switch |
+| [09-switch-listener](../09-switch-listener/) | `SwitchPostsHelper` | `onViewCreated` |
+| [10-brisanje-prvog-posta](../10-brisanje-prvog-posta/) | `PostRepository.obrisiPrviPost()` | Klik na dugme |
 | [11-notifikacija-prazna-baza](../11-notifikacija-prazna-baza/) | Notifikacija | `requireContext()` umesto `this` |
-| [12-senzor-akcelerometar](../12-senzor-akcelerometar/) | `onSensorChanged` | Isto kao žiroskop |
-| [13-shared-preferences](../13-shared-preferences/) | `getSharedPreferences` | `requireContext().getSharedPreferences(...)` |
-| [14-kontakti](../14-kontakti/) | ContentResolver | `requireContext().getContentResolver()` |
-| [60-ui-recyclerview](../60-ui-recyclerview/) | Adapter + RV | `view.findViewById(R.id.recyclerView)` |
+| [12-senzor-akcelerometar](../12-senzor-akcelerometar/) | `AkcelerometarHelper` | `onResume`/`onPause` |
+| [13-shared-preferences](../13-shared-preferences/) | `SharedPreferencesHelper` | `requireContext().getSharedPreferences(...)` |
+| [14-kontakti](../14-kontakti/) | `KontaktiHelper` | `requireContext().getContentResolver()` |
+| [60-ui-recyclerview](../60-ui-recyclerview/) | `RecyclerViewPostsHelper` | `view.findViewById(R.id.recyclerView)` |
 
 ---
 
@@ -201,36 +201,41 @@ public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceStat
     rv.setLayoutManager(new LinearLayoutManager(requireContext()));
     postAdapter = new PostAdapter();
     rv.setAdapter(postAdapter);
-    osveziListuPostova();
+    recyclerViewPostsHelper = new RecyclerViewPostsHelper(rv, postRepository);
 }
 ```
 
-`PostAdapter`, `PostDao`, `item_post.xml` – **bez izmene**.
+`PostAdapter`, `RecyclerViewPostsHelper`, `item_post.xml` – kopiraj iz segmenata.
 
 ---
 
 ## 9. Senzori u Fragmentu
 
-Iz [04-senzor-ziroskop](../04-senzor-ziroskop/) i [12-senzor-akcelerometar](../12-senzor-akcelerometar/):
+Iz [04-senzor-ziroskop](../04-senzor-ziroskop/) i [12-senzor-akcelerometar](../12-senzor-akcelerometar/) – koristi **helper**, ne `SensorEventListener` na Fragmentu:
 
 ```java
-public class HomeFragment extends Fragment implements SensorEventListener {
+private ZiroskopHelper ziroskopHelper;
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        sensorManager.registerListener(this, gyroscope, SensorManager.SENSOR_DELAY_NORMAL);
-    }
+@Override
+public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    ziroskopHelper = new ZiroskopHelper(requireContext());
+}
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        sensorManager.unregisterListener(this);
-    }
+@Override
+public void onResume() {
+    super.onResume();
+    if (ziroskopHelper != null) ziroskopHelper.onResume();
+}
+
+@Override
+public void onPause() {
+    super.onPause();
+    if (ziroskopHelper != null) ziroskopHelper.onPause();
 }
 ```
 
-**Važno:** registracija u Fragment `onResume`, ne u Activity – inače senzor radi i kad fragment nije vidljiv.
+**Važno:** `onResume`/`onPause` na **Fragmentu**, ne u Activity – inače senzor radi i kad fragment nije vidljiv.
 
 ---
 

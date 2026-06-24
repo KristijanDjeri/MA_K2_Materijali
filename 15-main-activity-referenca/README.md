@@ -357,7 +357,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 | 6 | `PostRepository.ucitajPostoveSaApi`, `prikaziTitlePrvogPosta` |
 | 7 | `PostRepository.obrisiPrviPost`, `NotifikacijaHelper` |
 | 8 | `AkcelerometarHelper` |
-| 9 | `SharedPreferencesHelper`, `KontaktiHelper`, `obradiSwitchOff()` |
+| 9 | `SharedPreferencesHelper`, `KontaktiHelper`, `SwitchPostsHelper` |
 
 ---
 

@@ -51,11 +51,11 @@ Kopiraj iz `fragment_home.xml` u ovom folderu (Switch + Button + TextView – ka
 
 ---
 
-## 3. `HomeFragment.java` (ceo fajl)
+## 3. `HomeFragment.java`
 
 Vidi `HomeFragment.java` u ovom folderu. Logika:
-- `postDao` iz Room-a
-- klik na dugme → Toast sa `postDao.count()`
+- `PostRepository` iz Room-a
+- klik na dugme → `postRepository.prikaziTitlePrvogPosta()` ili `Toast` sa `postRepository.count()`
 
 ---
 

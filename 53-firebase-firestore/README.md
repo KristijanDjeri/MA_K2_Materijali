@@ -32,9 +32,64 @@ U konzoli možeš ručno dodati dokumente za test.
 
 ---
 
-## Kompletan kod za `MainActivity.java`
+## Gde nalepiti kod
 
-### 1. Importi
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`FirestorePostsHelper.java`** | `app/.../helper/` |
+| 2 | `07-ucitaj-10-postova/` | `PostRepository` (hibrid: Firestore → Room) |
+| 3 | `MainActivity.java` | Polje + init u **`onCreate`** |
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+### Importi
+
+```java
+import com.example.kolokvijum2.helper.FirestorePostsHelper;
+import com.example.kolokvijum2.helper.NotifikacijaHelper;
+import com.example.kolokvijum2.helper.PostRepository;
+```
+
+### Polje i init
+
+```java
+private FirestorePostsHelper firestoreHelper;
+
+// onCreate, posle postRepository:
+firestoreHelper = new FirestorePostsHelper(this, postRepository);
+
+button.setOnClickListener(v -> firestoreHelper.ucitajPostove(
+        new FirestorePostsHelper.OnCountListener() {
+            @Override
+            public void onSuccess(int count) {
+                Toast.makeText(MainActivity.this,
+                        "Učitano " + count + " iz Firestore", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(String message) {
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+            }
+        }
+));
+
+// Toast prvog posta:
+// firestoreHelper.prikaziTitlePrvog(null);
+
+// Brisanje + notifikacija:
+// firestoreHelper.obrisiPrvi(() -> NotifikacijaHelper.posaljiPraznaBaza(this));
+```
+
+> **Ne piši** `ucitajPostoveIzFirestore()` u MainActivity – logika je u `FirestorePostsHelper`.  
+> Za Switch ON/OFF zameni `PostRepository` pozive u `SwitchPostsHelper` sa `FirestorePostsHelper` (ili hibrid: Firestore učitava → `postRepository.insertPosts`).
+
+---
+
+## Alternativa: inline u `MainActivity.java` (zastarelo)
+
+### Importi
 
 ```java
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -86,11 +141,11 @@ private void ucitajPostoveIzFirestore() {
 }
 ```
 
-Pozovi iz `obradiSwitchOn()` umesto `ucitajPostoveSaApi()`:
+Pozovi iz Switch ON umesto `postRepository.ucitajPostoveSaApi()`:
 
 ```java
-if (!postsUcitani) {
-    ucitajPostoveIzFirestore();
+if (!firestoreHelper.isPostsUcitani()) {
+    firestoreHelper.ucitajPostove(...);
 }
 ```
 
@@ -234,11 +289,11 @@ if (p != null) postDao.insert(p);
 
 ## Checklist
 
-- [ ] Firestore baza u konzoli
+- [ ] `FirestorePostsHelper` u paketu `helper`
 - [ ] Kolekcija `posts` sa test podacima
 - [ ] `.limit(10).get()` za učitavanje
 - [ ] `.delete()` za brisanje
-- [ ] Notifikacija kad je prazno
+- [ ] Notifikacija kad je prazno (preko callback-a)
 
 ---
 

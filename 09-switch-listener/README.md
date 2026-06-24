@@ -2,19 +2,20 @@
 
 **Cilj:** `Switch` sa `onCheckedChangeListener` – **ON** poziva logiku iz drugih foldera, **OFF** poziva zadatak 9.
 
-Ovaj segment **ne sadrži** Retrofit ni SQL – samo **usmerava** pozive ka metodama koje već imaš:
+Ovaj segment **ne sadrži** Retrofit ni SQL – samo **usmerava** pozive ka helper klasama:
 
-| Switch | Pozovi metodu iz foldera |
-|--------|--------------------------|
-| ON (prvi put) | `07-ucitaj-10-postova/` → `ucitajPostoveSaApi()` |
-| ON (drugi+ put) | `08-toast-prvi-post/` → `prikaziTitlePrvogPosta()` |
-| OFF | `13-shared-preferences/` + `14-kontakti/` → `obradiSwitchOff()` |
+| Switch | Pozovi (preko `SwitchPostsHelper`) |
+|--------|-------------------------------------|
+| ON (prvi put) | `PostRepository.ucitajPostoveSaApi()` |
+| ON (drugi+ put) | `PostRepository.prikaziTitlePrvogPosta()` |
+| OFF | `SharedPreferencesHelper` + `KontaktiHelper` |
 
 ---
 
 ## Šta ti treba pre ovoga
 
-- Metode iz `07-`, `08-`, `13-`, `14-` (mogu biti prazne dok ne uradiš zadatak 9)
+- `07-ucitaj-10-postova/` – `PostRepository`
+- `08-toast-prvi-post/`, `13-shared-preferences/`, `14-kontakti/` – metode su u helper klasama
 - `switchPosts` u layoutu (`01-osnovni-projekat/`)
 
 ---
@@ -46,22 +47,32 @@ import com.example.kolokvijum2.helper.SharedPreferencesHelper;
 import com.example.kolokvijum2.helper.SwitchPostsHelper;
 ```
 
+### Polja
+
+```java
+private PostRepository postRepository;
+private SharedPreferencesHelper prefsHelper;
+private KontaktiHelper kontaktiHelper;
+```
+
 ### U `onCreate` (posle `postDao` i `findViewById`)
 
 ```java
-PostRepository postRepository = new PostRepository(this, postDao);
-SharedPreferencesHelper prefsHelper = new SharedPreferencesHelper(this);
-KontaktiHelper kontaktiHelper = new KontaktiHelper(this, textView);
+postRepository = new PostRepository(this, postDao);
+prefsHelper = new SharedPreferencesHelper(this);
+kontaktiHelper = new KontaktiHelper(this, textView);
 
 new SwitchPostsHelper(this, switchPosts, textView,
         postRepository, prefsHelper, kontaktiHelper);
 ```
 
+> **Ne piši** `obradiSwitchOn()` / `obradiSwitchOff()` u MainActivity – logika je u `SwitchPostsHelper`. Listener se registruje u konstruktoru helpera.
+
 > **Alternativa:** inline `OnCheckedChangeListener` ispod.
 
 ---
 
-## Alternativa: inline u `MainActivity.java`
+## Alternativa: inline u `MainActivity.java` (zastarelo)
 
 ### Importi
 

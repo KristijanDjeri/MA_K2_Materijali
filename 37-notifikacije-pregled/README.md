@@ -19,27 +19,13 @@ Mapa notifikacija u materijalu. **Zadatak 7** koristi [10-brisanje-prvog-posta](
 
 ## Obavezno za sve (Android 8+)
 
-1. **NotificationChannel** – kreira se jednom u `onCreate`
-2. **NotificationCompat.Builder** – gradi notifikaciju
+1. **NotificationChannel** – `NotifikacijaHelper.kreirajKanal(this)` u `onCreate`
+2. **NotificationCompat.Builder** – gradi notifikaciju (u helperima)
 3. **NotificationManagerCompat.notify()** – prikazuje je
 
 ### Android 13+ (API 33)
 
-Runtime dozvola:
-
-```xml
-<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-```
-
-```java
-if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-    if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
-            != PackageManager.PERMISSION_GRANTED) {
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.POST_NOTIFICATIONS}, REQ_NOTIF);
-    }
-}
-```
+Runtime dozvola – **`NotifikacijaHelper.proveriDozvolu(this)`** u `onCreate`.
 
 ---
 

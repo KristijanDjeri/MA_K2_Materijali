@@ -22,8 +22,9 @@ Sync Now.
 | Korak | Fajl | Gde tačno |
 |-------|------|-----------|
 | 1 | `app/build.gradle` | OkHttp + Gson u `dependencies` |
-| 2 | `MainActivity.java` | Metoda `ucitajOkHttp()` – **dno klase** |
-| 3 | `MainActivity.java` | Poziv iz `obradiSwitchOn()` umesto Retrofit-a, ili test dugme u **`onCreate`** |
+| 2 | **`OkHttpHelper.java`** | Novi fajl → `app/.../helper/` |
+| 3 | `MainActivity.java` | Polje + init u **`onCreate`**, poziv `ucitajPostove()` |
+| 4 | `MainActivity.java` | **`onDestroy`**: `okHttpHelper.shutdown()` |
 
 ---
 
@@ -131,13 +132,26 @@ private void ucitajJsonOkHttp() {
 }
 ```
 
-### Poziv umesto Retrofit-a u `obradiSwitchOn`
+### Poziv umesto Retrofit-a (u `SwitchPostsHelper` ili test dugme)
 
 ```java
-if (!postsUcitani) {
-    ucitajJsonOkHttp();  // umesto ucitajPostoveSaApi();
-}
+okHttpHelper.ucitajPostove(
+        "https://dummy-json.mock.beeceptor.com/posts",
+        new OkHttpHelper.OnDoneListener() {
+            @Override
+            public void onSuccess(int count) {
+                Toast.makeText(MainActivity.this, "Učitano " + count, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(String message) {
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+            }
+        }
+);
 ```
+
+> Za Switch OFF/ON logiku i dalje koristi `SwitchPostsHelper` + `PostRepository` – zameni samo učitavanje sa API-ja.
 
 ---
 

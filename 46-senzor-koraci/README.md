@@ -47,6 +47,11 @@ koraciHelper = new KoraciHelper(this, textView);
 // onResume / onPause:
 koraciHelper.onResume();
 koraciHelper.onPause();
+
+// onRequestPermissionsResult (proširi postojeći):
+if (koraciHelper != null) {
+    koraciHelper.onPermissionGranted(requestCode, grantResults);
+}
 ```
 
 > **Alternativa:** inline kod ispod (zastarelo).

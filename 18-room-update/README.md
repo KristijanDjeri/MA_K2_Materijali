@@ -8,28 +8,64 @@
 
 ## Koji fajlovi se menjaju
 
-| Fajl | Šta radiš |
-|------|-----------|
-| `PostDao.java` | Dodaješ `@Update` |
-| `MainActivity.java` | Metoda `izmeniPrviPost()` |
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | `PostDao.java` | `@Update` – **već u** `05-room-baza/PostDao.java` (kopiraj ceo fajl ako nemaš) |
+| 2 | `PostRepository.java` | Metoda `izmeniTitlePrvogPosta()` – **već u** `07-ucitaj-10-postova/PostRepository.java` |
+| 3 | `MainActivity.java` | Listener na dugme (primer ispod) |
 
 ---
 
-## 1. Proširi `PostDao.java`
+## 1. `PostDao.java` – `@Update`
+
+Ako si kopirao `PostDao.java` iz `05-room-baza/`, ovo **već postoji**:
 
 ```java
 import androidx.room.Update;
 
 @Update
 void update(Post post);
+```
 
+Dodatno (opciono) u `PostDao.java`:
+
+```java
 @Update
 void updateAll(List<Post> posts);
+
+@Query("UPDATE posts SET title = :noviTitle WHERE rowid = (SELECT rowid FROM posts LIMIT 1)")
+void updateTitleFirst(String noviTitle);
 ```
+
+Vidi i `PostDaoUpdate.java` u ovom folderu.
 
 ---
 
-## 2. Kod u `MainActivity.java`
+## 2. MainActivity – samo povezivanje (preporučeno)
+
+### Import
+
+```java
+import com.example.kolokvijum2.helper.PostRepository;
+import com.example.kolokvijum2.model.Post;
+```
+
+### Test – dugme dodaje „ (izmenjeno)“ na kraj naslova
+
+```java
+button.setOnClickListener(v -> {
+    Post prvi = postRepository.getFirst();
+    if (prvi != null) {
+        postRepository.izmeniTitlePrvogPosta(prvi.getTitle() + " (izmenjeno)");
+    }
+});
+```
+
+> **Ne piši** `izmeniTitlePrvogPosta()` u MainActivity – metoda je u `PostRepository` i interno poziva `postDao.update()`.
+
+---
+
+## Alternativa: inline u `MainActivity.java` (zastarelo)
 
 ### Import
 
@@ -53,7 +89,7 @@ private void izmeniTitlePrvogPosta(String noviTitle) {
 }
 ```
 
-### Test – dugme dodaje „ (izmenjeno)“ na kraj naslova
+### Poziv
 
 ```java
 button.setOnClickListener(v -> {
@@ -65,15 +101,6 @@ button.setOnClickListener(v -> {
 ```
 
 ### Varijanta – `@Query` UPDATE (jedna SQL komanda)
-
-U `PostDao`:
-
-```java
-@Query("UPDATE posts SET title = :noviTitle WHERE rowid = (SELECT rowid FROM posts LIMIT 1)")
-void updateTitleFirst(String noviTitle);
-```
-
-Poziv:
 
 ```java
 postDao.updateTitleFirst("Novi naslov");
@@ -90,8 +117,8 @@ postDao.updateTitleFirst("Novi naslov");
 
 ## Checklist
 
-- [ ] `@Update` u DAO-u
-- [ ] Učitaj post → promeni polje → `postDao.update(post)`
+- [ ] `@Update` u `PostDao` (iz `05-room-baza/`)
+- [ ] `PostRepository.izmeniTitlePrvogPosta()` pozvan iz listenera
 - [ ] Proveri Toast-om ili `getFirst()` posle izmene
 
 ---

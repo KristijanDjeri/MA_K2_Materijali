@@ -2,16 +2,14 @@
 
 **Dodatni segment.** **Slično:** `80-alarm-notifikacija/` (`AlarmReceiver`), ali ovde **ti** šalješ broadcast iz aplikacije.
 
-> **Napomena:** Ispravan Android termin je **BroadcastReceiver**, ne „ContentReceiver“. ContentProvider (`84-content-provider/`) služi za podatke; BroadcastReceiver služi za događaje (Intent).
-
 **Cilj:** Posle učitavanja postova pošalji broadcast; `PostUpdateReceiver` prikaže Toast.
 
 ---
 
 ## Preduslovi
 
-- `05-room-baza/` + učitavanje postova
-- Razumevanje Intent-a (`70-intent-druga-aktivnost/`)
+- `05-room-baza/` + `07-ucitaj-10-postova/` – `PostRepository`
+- **`BroadcastHelper.java`** iz ovog foldera
 
 ---
 
@@ -20,38 +18,18 @@
 | Fajl | Putanja |
 |------|---------|
 | `PostUpdateReceiver.java` | `.../PostUpdateReceiver.java` |
+| **`BroadcastHelper.java`** | `.../helper/BroadcastHelper.java` |
 | Manifest | `<receiver>` unutar application |
-| `MainActivity.java` | `sendBroadcast(...)` |
 
 ---
 
-## 1. `PostUpdateReceiver.java` (ceo fajl)
+## 1. `PostUpdateReceiver.java`
 
-```java
-package com.example.kolokvijum2;
-
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.widget.Toast;
-
-public class PostUpdateReceiver extends BroadcastReceiver {
-
-    public static final String ACTION_POSTS_UPDATED =
-            "com.example.kolokvijum2.POSTS_UPDATED";
-
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        if (ACTION_POSTS_UPDATED.equals(intent.getAction())) {
-            Toast.makeText(context, "Lista postova osvežena", Toast.LENGTH_SHORT).show();
-        }
-    }
-}
-```
+Kopiraj iz ovog foldera.
 
 ---
 
-## 2. `AndroidManifest.xml` – unutar `<application>`
+## 2. Manifest
 
 ```xml
 <receiver
@@ -65,78 +43,46 @@ public class PostUpdateReceiver extends BroadcastReceiver {
 
 ---
 
-## 3. Slanje broadcast-a iz `MainActivity.java`
+## MainActivity – samo povezivanje (preporučeno)
 
-### Importi
-
-```java
-import android.content.Intent;
-import com.example.kolokvijum2.PostUpdateReceiver;
-```
-
-### Metoda
+### Import
 
 ```java
-private void obavestiDaSuPostoviUcitani() {
-    Intent intent = new Intent(PostUpdateReceiver.ACTION_POSTS_UPDATED);
-    intent.setPackage(getPackageName()); // obavezno od API 26 za manifest receiver
-    sendBroadcast(intent);
-}
+import com.example.kolokvijum2.helper.BroadcastHelper;
+import com.example.kolokvijum2.helper.PostRepository;
 ```
 
-Pozovi na kraju metode koja upisuje postove u bazu:
+### Posle uspešnog učitavanja postova
 
 ```java
-postDao.insertAll(postovi);
-obavestiDaSuPostoviUcitani();
+postRepository.ucitajPostoveSaApi(new PostRepository.OnApiDoneListener() {
+    @Override
+    public void onSuccess(int count) {
+        BroadcastHelper.posaljiPostsUpdated(MainActivity.this);
+        Toast.makeText(MainActivity.this, "Učitano " + count, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onFailure(String message) { }
+});
 ```
 
-> **API 26+:** `intent.setPackage(getPackageName())` – bez toga manifest receiver ne prima custom broadcast.
+> **Ne piši** `obavestiDaSuPostoviUcitani()` u MainActivity – koristi `BroadcastHelper.posaljiPostsUpdated()`.
 
 ---
 
-## Razlika: Alarm vs custom broadcast
-
-| | `80-alarm-notifikacija/` | Ovde |
-|--|--------------------------|------|
-| Ko šalje | `AlarmManager` + `PendingIntent` | `sendBroadcast()` iz Activity |
-| Šta radi receiver | Notifikacija posle 10 s | Toast odmah |
-| Registracija | `<receiver>` u Manifest-u | Isto |
-
----
-
-## Dinamička registracija (alternativa)
-
-Bez Manifest-a, samo dok je Activity aktivna:
+## Alternativa: inline u `MainActivity.java` (zastarelo)
 
 ```java
-// polje:
-private PostUpdateReceiver postUpdateReceiver;
-
-// u onCreate:
-postUpdateReceiver = new PostUpdateReceiver();
-IntentFilter filter = new IntentFilter(PostUpdateReceiver.ACTION_POSTS_UPDATED);
-registerReceiver(postUpdateReceiver, filter);
-
-// u onDestroy:
-unregisterReceiver(postUpdateReceiver);
+Intent intent = new Intent(PostUpdateReceiver.ACTION_POSTS_UPDATED);
+intent.setPackage(getPackageName());
+sendBroadcast(intent);
 ```
-
-Na kolokvijumu je dovoljna **statička** registracija u Manifest-u.
 
 ---
 
 ## Checklist
 
-- [ ] `BroadcastReceiver` klasa sa `onReceive`
-- [ ] `<receiver>` u Manifest-u
-- [ ] `sendBroadcast` sa istom akcijom kao u `intent-filter`
-- [ ] Receiver radi i kad Activity nije na ekranu (Manifest registracija)
-
----
-
-## Povezano
-
-- Zakazani alarm: `80-alarm-notifikacija/`
-- Notifikacija sa dugmadima: `39-notifikacija-akcije/`
-- ContentProvider za podatke: `84-content-provider/`
+- [ ] `BroadcastHelper` + `PostUpdateReceiver` u projektu
+- [ ] Receiver u Manifest-u
+- [ ] `sendBroadcast` posle upisa u bazu

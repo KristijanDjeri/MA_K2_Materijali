@@ -11,7 +11,7 @@
 | Korak | Fajl | Gde tačno |
 |-------|------|-----------|
 | 1 | **`InterniFajlHelper.java`** | Novi fajl → `app/.../helper/` (kopiraj iz ovog foldera) |
-| 2 | `MainActivity.java` | U `obradiSwitchOff()` ili na klik: `InterniFajlHelper.sacuvaj(this, textView.getText().toString());` |
+| 2 | `MainActivity.java` | Na klik ili u `SwitchPostsHelper` OFF toku: `InterniFajlHelper.sacuvaj(this, textView.getText().toString());` |
 | 3 | `MainActivity.java` | Pri pokretanju (opciono): `String s = InterniFajlHelper.ucitaj(this);` |
 
 ---

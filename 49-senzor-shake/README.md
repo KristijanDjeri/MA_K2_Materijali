@@ -237,7 +237,9 @@ shakeDetector.obradiSensorEvent(event);
 ```java
 private void onShakeDetektovan() {
     Toast.makeText(this, "Shake – brišem prvi post", Toast.LENGTH_SHORT).show();
-    obrisiPrviPost(); // iz 11-notifikacija-prazna-baza/
+    postRepository.obrisiPrviPost(
+            () -> NotifikacijaHelper.posaljiPraznaBaza(this)
+    );
 }
 ```
 

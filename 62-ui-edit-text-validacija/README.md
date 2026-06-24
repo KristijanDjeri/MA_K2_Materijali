@@ -2,7 +2,7 @@
 
 **Dodatni segment.** **Slično:** UI komponente (zadatak 2) + upis u bazu.
 
-**Cilj:** Korisnik unese naslov; ako je prazan → greška; inače → upis u Room.
+**Cilj:** Korisnik unese naslov; ako je prazan → greška; inače → upis u Room preko `PostRepository`.
 
 ---
 
@@ -19,71 +19,57 @@
 
 ---
 
-## 2. U `MainActivity.java`
+## Gde nalepiti kod
+
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | **`EditTextValidacijaHelper.java`** | `app/.../helper/` |
+| 2 | `MainActivity.java` | Polje + init u **`onCreate`** |
+| 3 | `MainActivity.java` | Poziv `editTextHelper.dodajPost()` |
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
 
 ### Importi
 
 ```java
-import android.text.TextUtils;
 import android.widget.EditText;
+import com.example.kolokvijum2.helper.EditTextValidacijaHelper;
+import com.example.kolokvijum2.helper.PostRepository;
 ```
 
-### Polje
+### Polja
 
 ```java
-private EditText editTextNaslov;
+private EditTextValidacijaHelper editTextHelper;
 ```
 
 ### U `onCreate`
 
 ```java
-editTextNaslov = findViewById(R.id.editTextNaslov);
-```
+EditText editTextNaslov = findViewById(R.id.editTextNaslov);
+editTextHelper = new EditTextValidacijaHelper(editTextNaslov, postRepository);
 
-### Validacija i insert
-
-```java
-private void dodajPostIzUnosa() {
-    String naslov = editTextNaslov.getText().toString().trim();
-
-    if (TextUtils.isEmpty(naslov)) {
-        Toast.makeText(this, "Naslov ne sme biti prazan!", Toast.LENGTH_SHORT).show();
-        return;
-    }
-
-    if (naslov.length() < 3) {
-        Toast.makeText(this, "Naslov mora imati bar 3 karaktera", Toast.LENGTH_SHORT).show();
-        return;
-    }
-
-    Post post = new Post((int) System.currentTimeMillis(), naslov, "", 1);
-    postDao.insert(post);
-    editTextNaslov.setText("");
-    Toast.makeText(this, "Post dodat", Toast.LENGTH_SHORT).show();
-}
-```
-
-### Poziv (npr. dugi klik na Switch)
-
-```java
 switchPosts.setOnLongClickListener(v -> {
-    dodajPostIzUnosa();
+    editTextHelper.dodajPost();
     return true;
 });
 ```
 
+> Validacija i `postDao.insert` su u `PostRepository.dodajIzNaslova()` – **ne piši** `dodajPostIzUnosa()` u MainActivity.
+
 ---
 
-## Alternativa
+## Alternativa: inline u `MainActivity.java` (zastarelo)
 
-- Email validacija: `Patterns.EMAIL_ADDRESS.matcher(email).matches()`
-- `TextInputLayout` + error poruka – Material Design, više XML-a
+Vidi `EditTextValidacijaSegment.java` u ovom folderu.
 
 ---
 
 ## Checklist
 
-- [ ] EditText u layoutu
-- [ ] `trim()` pre provere
-- [ ] `isEmpty()` → Toast i `return`
-- [ ] Uspešan unos → `postDao.insert`
+- [ ] `EditTextValidacijaHelper` u paketu `helper`
+- [ ] `PostRepository` inicijalizovan
+- [ ] Prazan naslov → Toast greška
+- [ ] Uspešan unos → polje se briše

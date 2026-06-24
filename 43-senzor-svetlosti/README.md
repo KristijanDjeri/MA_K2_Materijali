@@ -30,6 +30,12 @@ private SvetlostiHelper svetlostiHelper;
 
 // onCreate:
 svetlostiHelper = new SvetlostiHelper(this, textView);
+
+// onResume:
+svetlostiHelper.onResume();
+
+// onPause:
+svetlostiHelper.onPause();
 ```
 
 Puna implementacija senzora je u **`SvetlostiHelper.java`** – ne u MainActivity.

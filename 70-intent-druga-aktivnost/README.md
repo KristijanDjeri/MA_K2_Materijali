@@ -12,64 +12,18 @@
 |------|---------|
 | `activity_detail.xml` | `res/layout/activity_detail.xml` |
 | `DetailActivity.java` | `.../DetailActivity.java` |
+| **`DetailIntentHelper.java`** | `.../helper/DetailIntentHelper.java` |
 | Manifest unos | unutar `<application>` |
-| Poziv iz MainActivity | `Intent` + `startActivity` |
 
 ---
 
-## 1. `res/layout/activity_detail.xml` (ceo fajl)
+## 1. Layout i `DetailActivity`
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
-
-    <TextView
-        android:id="@+id/textDetail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="18sp" />
-
-</LinearLayout>
-```
+Kopiraj **`activity_detail.xml`** i **`DetailActivity.java`** iz ovog foldera.
 
 ---
 
-## 2. `DetailActivity.java` (ceo fajl)
-
-```java
-package com.example.kolokvijum2;
-
-import android.os.Bundle;
-import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-public class DetailActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
-
-        TextView textDetail = findViewById(R.id.textDetail);
-
-        String naslov = getIntent().getStringExtra("naslov");
-        if (naslov != null) {
-            textDetail.setText(naslov);
-        } else {
-            textDetail.setText("Nema prosleđenih podataka");
-        }
-    }
-}
-```
-
----
-
-## 3. `AndroidManifest.xml` – unutar `<application>`
+## 2. `AndroidManifest.xml` – unutar `<application>`
 
 ```xml
 <activity
@@ -79,48 +33,43 @@ public class DetailActivity extends AppCompatActivity {
 
 ---
 
-## 4. U `MainActivity.java`
+## MainActivity – samo povezivanje (preporučeno)
 
 ### Import
 
 ```java
-import android.content.Intent;
+import com.example.kolokvijum2.helper.DetailIntentHelper;
+import com.example.kolokvijum2.helper.PostRepository;
 ```
 
-### Metoda
-
-```java
-private void otvoriDetalj(String naslov) {
-    Intent intent = new Intent(this, DetailActivity.class);
-    intent.putExtra("naslov", naslov);
-    startActivity(intent);
-}
-```
-
-### Primer poziva (npr. dugi klik na Switch)
+### U `onCreate`
 
 ```java
 switchPosts.setOnLongClickListener(v -> {
-    Post prvi = postDao.getFirst();
-    if (prvi != null) {
-        otvoriDetalj(prvi.getTitle());
-    }
+    DetailIntentHelper.otvoriDetaljPrvogPosta(this, postRepository);
     return true;
 });
+
+// ili sa fiksnim naslovom:
+// DetailIntentHelper.otvoriDetalj(this, "Probni naslov");
 ```
+
+> **Ne piši** `otvoriDetalj()` u MainActivity – helper kreira `Intent` i poziva `startActivity`.
 
 ---
 
-## Alternativa
+## Alternativa: inline u `MainActivity.java` (zastarelo)
 
-- `putExtra("naslov", prvi.getId())` + slanje int-a – `getIntExtra`
-- `Serializable` / `Parcelable` za ceo `Post` objekat – više koda
+```java
+Intent intent = new Intent(this, DetailActivity.class);
+intent.putExtra("naslov", postRepository.getFirst().getTitle());
+startActivity(intent);
+```
 
 ---
 
 ## Checklist
 
-- [ ] DetailActivity kreirana
-- [ ] Layout postoji
-- [ ] Aktivnost u Manifest-u
+- [ ] `DetailIntentHelper` u paketu `helper`
+- [ ] DetailActivity u Manifest-u
 - [ ] `putExtra` / `getStringExtra` rade

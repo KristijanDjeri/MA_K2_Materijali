@@ -20,7 +20,54 @@
 
 ---
 
-## 2. U `MainActivity.java`
+## Gde nalepiti kod (preporučeno: `OkHttpHelper`)
+
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | `ProgressBar` | `activity_main.xml` (iznad) |
+| 2 | **`OkHttpHelper.java`** | Iz `73-okhttp-json/` → `app/.../helper/` |
+| 3 | `MainActivity.java` | `okHttpHelper = new OkHttpHelper(this, postDao, progressBar);` |
+
+`OkHttpHelper` **sam** prikazuje/sakriva ProgressBar – ne pišeš logiku u MainActivity.
+
+---
+
+## MainActivity – samo povezivanje (preporučeno)
+
+### Importi
+
+```java
+import android.widget.ProgressBar;
+import com.example.kolokvijum2.helper.OkHttpHelper;
+```
+
+### U `onCreate`
+
+```java
+ProgressBar progressBar = findViewById(R.id.progressBar);
+OkHttpHelper okHttpHelper = new OkHttpHelper(this, postDao, progressBar);
+
+button.setOnClickListener(v -> okHttpHelper.ucitajPostove(
+        "https://dummy-json.mock.beeceptor.com/posts",
+        new OkHttpHelper.OnDoneListener() {
+            @Override
+            public void onSuccess(int count) {
+                Toast.makeText(MainActivity.this, "Učitano " + count, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(String message) {
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+            }
+        }
+));
+```
+
+Vidi pun primer u **`73-okhttp-json/`**.
+
+---
+
+## Alternativa: inline Retrofit u `MainActivity.java` (zastarelo)
 
 ### Importi
 
@@ -29,21 +76,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 ```
 
-### Polje
-
-```java
-private ProgressBar progressBar;
-```
-
-### U `onCreate`
-
-```java
-progressBar = findViewById(R.id.progressBar);
-```
-
-### U Retrofit metodi (`ucitajPostoveSaApi`)
-
-Zameni ili dopuni postojeći callback:
+### Metoda
 
 ```java
 private void ucitajPostoveSaApi() {
@@ -53,18 +86,13 @@ private void ucitajPostoveSaApi() {
         @Override
         public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
             progressBar.setVisibility(View.GONE);
-            if (response.isSuccessful() && response.body() != null) {
-                List<Post> svi = response.body();
-                int n = Math.min(10, svi.size());
-                postDao.insertAll(svi.subList(0, n));
-                postsUcitani = true;
-            }
+            // ...
         }
 
         @Override
         public void onFailure(Call<List<Post>> call, Throwable t) {
             progressBar.setVisibility(View.GONE);
-            Toast.makeText(MainActivity.this, "API greška", Toast.LENGTH_SHORT).show();
+            // ...
         }
     });
 }
@@ -82,5 +110,5 @@ private void ucitajPostoveSaApi() {
 ## Checklist
 
 - [ ] ProgressBar u layoutu, početno `gone`
-- [ ] `VISIBLE` pre enqueue
-- [ ] `GONE` u onResponse i onFailure
+- [ ] `OkHttpHelper` prima `progressBar` u konstruktoru
+- [ ] `VISIBLE` pre poziva, `GONE` u callback-u (automatski u helperu)

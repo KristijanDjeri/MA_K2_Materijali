@@ -9,19 +9,40 @@ Radi **samostalno** – samo čita iz Room baze. Ne zove API.
 ## Šta ti treba pre ovoga
 
 - `05-room-baza/` – `postDao`
+- `07-ucitaj-10-postova/` – **`PostRepository`** (već ima metodu `prikaziTitlePrvogPosta()`)
 - U bazi bar jedan post (ručno `insert` ili prethodno `07-ucitaj-10-postova/`)
 
 ---
 
 ## Koji fajlovi se menjaju
 
-| Fajl | Šta radiš |
-|------|-----------|
-| `MainActivity.java` | Metoda `prikaziTitlePrvogPosta()` + listener |
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | `PostRepository.java` | Već iz `07-ucitaj-10-postova/` – **ne dodaješ** novu metodu |
+| 2 | `MainActivity.java` | Listener na dugme (primer ispod) |
 
 ---
 
-## Kompletan kod
+## MainActivity – samo povezivanje (preporučeno)
+
+### Import
+
+```java
+import com.example.kolokvijum2.helper.PostRepository;
+```
+
+### U `onCreate` (samostalni test)
+
+```java
+// postRepository već inicijalizovan u 07-ucitaj-10-postova/
+button.setOnClickListener(v -> postRepository.prikaziTitlePrvogPosta());
+```
+
+> **Ne piši** `prikaziTitlePrvogPosta()` u MainActivity – metoda je u `PostRepository`.
+
+---
+
+## Alternativa: inline u `MainActivity.java` (zastarelo)
 
 ### Importi
 
@@ -30,10 +51,9 @@ import android.widget.Toast;
 import com.example.kolokvijum2.model.Post;
 ```
 
-### U `onCreate` (samostalni test)
+### U `onCreate`
 
 ```java
-// Npr. drugo dugme ili isto dugme posle što si učitao postove
 button.setOnClickListener(v -> prikaziTitlePrvogPosta());
 ```
 
@@ -66,12 +86,13 @@ Klik na dugme → Toast **"Probni naslov"**.
 
 ## Na ispitu (Switch)
 
-U `09-switch-listener/` pozivaš ovu metodu kada je `postsUcitani == true` i Switch je ON.
+U `09-switch-listener/` `SwitchPostsHelper` poziva `postRepository.prikaziTitlePrvogPosta()` kada je `isPostsUcitani() == true` i Switch je ON.
 
 ---
 
 ## Checklist
 
+- [ ] `PostRepository.prikaziTitlePrvogPosta()` pozvan iz listenera
 - [ ] `getFirst()` vraća prvi red tabele
 - [ ] Toast prikazuje `getTitle()`
 - [ ] Poruka kad je baza prazna

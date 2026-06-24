@@ -6,7 +6,7 @@
 
 ## Šta ti treba pre ovoga
 
-- `09-switch-listener/` – `obradiSwitchOff()` poziva metode iz ovog foldera
+- `09-switch-listener/` – `SwitchPostsHelper` poziva `prefsHelper` na Switch OFF
 - `textView` u layoutu
 
 ---
@@ -17,7 +17,7 @@
 |-------|------|-----------|
 | 1 | **`SharedPreferencesHelper.java`** | Novi fajl → `app/.../helper/` |
 | 2 | `MainActivity.java` | Polje + init u **`onCreate`** |
-| 3 | `MainActivity.java` | U `obradiSwitchOff()`: `prefsHelper.sacuvajTextView(textView)` |
+| 3 | `09-switch-listener/` | `SwitchPostsHelper` automatski poziva `prefsHelper.sacuvajTextView(textView)` na Switch OFF |
 
 ---
 
@@ -47,11 +47,19 @@ private SharedPreferencesHelper prefsHelper;
 prefsHelper = new SharedPreferencesHelper(this);
 ```
 
-### U `obradiSwitchOff()` (zadatak 9)
+### Na Switch OFF
+
+Kad u `09-switch-listener/` inicijalizuješ `SwitchPostsHelper`, čuvanje se dešava automatski:
 
 ```java
+// unutar SwitchPostsHelper.obradiSwitchOff():
 prefsHelper.sacuvajTextView(textView);
-// zatim kontakti – vidi 14-kontakti/
+```
+
+Ručni test (bez Switch-a):
+
+```java
+button.setOnClickListener(v -> prefsHelper.sacuvajTextView(textView));
 ```
 
 > **Alternativa:** inline kod ispod ili `SharedPreferencesSegment.java`.
@@ -126,8 +134,8 @@ if (!sacuvano.isEmpty()) {
 
 ## Checklist
 
-- [ ] `prefs` inicijalizovan u `onCreate`
-- [ ] Switch OFF poziva `obradiSwitchOff()`
+- [ ] `prefsHelper` inicijalizovan u `onCreate`
+- [ ] Switch OFF (preko `SwitchPostsHelper`) poziva `sacuvajTextView`
 - [ ] `putString("tekst", ...)` sa sadržajem TextView-a
 
 ---

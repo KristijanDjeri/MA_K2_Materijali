@@ -9,6 +9,7 @@ Radi **samostalno** – **bez notifikacije**. Kad tabela ostane prazna, notifika
 ## Šta ti treba pre ovoga
 
 - `05-room-baza/` – `postDao`
+- `07-ucitaj-10-postova/` – **`PostRepository`** (već ima metodu `obrisiPrviPost()`)
 - `button` u layoutu
 - U bazi bar jedan post (npr. iz `07-ucitaj-10-postova/`)
 
@@ -16,13 +17,45 @@ Radi **samostalno** – **bez notifikacije**. Kad tabela ostane prazna, notifika
 
 ## Koji fajlovi se menjaju
 
-| Fajl | Šta radiš |
-|------|-----------|
-| `MainActivity.java` | `obrisiPrviPost()` + listener na dugme |
+| Korak | Fajl | Gde tačno |
+|-------|------|-----------|
+| 1 | `PostRepository.java` | Već iz `07-ucitaj-10-postova/` – **ne dodaješ** novu metodu |
+| 2 | `MainActivity.java` | Listener na dugme (primer ispod) |
 
 ---
 
-## Kompletan kod
+## MainActivity – samo povezivanje (preporučeno)
+
+### Import
+
+```java
+import com.example.kolokvijum2.helper.PostRepository;
+```
+
+### U `onCreate` – samo brisanje (dok ne uradiš folder 11)
+
+```java
+button.setOnClickListener(v -> postRepository.obrisiPrviPost(null));
+```
+
+### U `onCreate` – sa notifikacijom (posle `11-notifikacija-prazna-baza/`)
+
+```java
+import com.example.kolokvijum2.helper.NotifikacijaHelper;
+
+// u onCreate, jednom:
+NotifikacijaHelper.kreirajKanal(this);
+
+button.setOnClickListener(v -> postRepository.obrisiPrviPost(
+        () -> NotifikacijaHelper.posaljiPraznaBaza(this)
+));
+```
+
+> **Ne piši** `obrisiPrviPost()` u MainActivity – metoda je u `PostRepository`. Callback `onEmpty` se poziva kad je `count() == 0`.
+
+---
+
+## Alternativa: inline u `MainActivity.java` (zastarelo)
 
 ### Importi
 
@@ -37,21 +70,6 @@ button.setOnClickListener(v -> obrisiPrviPost());
 ```
 
 ### Metoda za brisanje
-
-```java
-private void obrisiPrviPost() {
-    Post prvi = postDao.getFirst();
-    if (prvi != null) {
-        postDao.delete(prvi);
-    }
-
-    if (postDao.count() == 0) {
-        posaljiNotifikacijuPrazneBaze(); // iz 11-notifikacija-prazna-baza/
-    }
-}
-```
-
-### Privremeno (dok ne uradiš folder 11)
 
 ```java
 private void obrisiPrviPost() {
@@ -82,12 +100,13 @@ Ne testiraj oba na istom dugmetu dok ne vežbaš spajanje.
 
 | Ovaj primer | Alternativa |
 |-------------|-------------|
-| `getFirst()` + `delete(prvi)` | `postDao.deleteFirst()` – jedna SQL komanda |
+| `PostRepository.obrisiPrviPost()` | `postDao.deleteFirst()` – jedna SQL komanda u DAO-u |
 
 ---
 
 ## Checklist
 
+- [ ] `PostRepository.obrisiPrviPost()` pozvan iz listenera
 - [ ] Klik briše prvi red (ne post sa fiksnim id=1)
 - [ ] Radi bez notifikacije (ili sa 11)
 - [ ] Ne meša se sa senzorom u ovom koraku

@@ -6,27 +6,17 @@
 
 ## Šta ti treba pre ovoga
 
-- `13-shared-preferences/` – `obradiSwitchOff()` poziva `postaviImePrvogKontakta()`
+- `13-shared-preferences/` – `SharedPreferencesHelper` (poziva `SwitchPostsHelper` na Switch OFF)
 - Dozvola `READ_CONTACTS` u Manifest-u
 
 ---
-
-## Koji fajlovi se menjaju
-
-| Fajl | Šta radiš |
-|------|-----------|
-| `MainActivity.java` | ContentResolver query, runtime dozvola |
-
----
-
-## Koji fajlovi se menjaju / dodaju
 
 | Korak | Fajl | Gde tačno |
 |-------|------|-----------|
 | 1 | **`KontaktiHelper.java`** | Novi fajl → `app/.../helper/` |
 | 2 | `MainActivity.java` | Polje + init u **`onCreate`** |
-| 3 | `MainActivity.java` | U `obradiSwitchOff()`: `kontaktiHelper.postaviImePrvogKontakta()` |
-| 4 | `MainActivity.java` | **`onRequestPermissionsResult`**: `kontaktiHelper.onPermissionGranted(...)` |
+| 3 | `MainActivity.java` | **`onRequestPermissionsResult`**: `kontaktiHelper.onPermissionGranted(...)` |
+| 4 | `09-switch-listener/` | `SwitchPostsHelper` automatski poziva `kontaktiHelper.postaviImePrvogKontakta()` na Switch OFF |
 
 ---
 
@@ -56,10 +46,19 @@ private KontaktiHelper kontaktiHelper;
 kontaktiHelper = new KontaktiHelper(this, textView);
 ```
 
-### U `obradiSwitchOff()` (posle SharedPreferences)
+### Na Switch OFF
+
+Kad u `09-switch-listener/` inicijalizuješ `SwitchPostsHelper`, kontakt se učitava automatski:
 
 ```java
+// unutar SwitchPostsHelper.obradiSwitchOff():
 kontaktiHelper.postaviImePrvogKontakta();
+```
+
+Ručni test (bez Switch-a):
+
+```java
+button.setOnClickListener(v -> kontaktiHelper.postaviImePrvogKontakta());
 ```
 
 ### U `onRequestPermissionsResult`

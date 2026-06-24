@@ -96,9 +96,41 @@ Poruka znači da **telefon/emulator ne može da pronađe server** (DNS/mreža), 
 
 ---
 
-## Samostalni test u `MainActivity` (dugme ili Switch)
+## Samostalni test u `MainActivity` (preporučeno: helper)
 
 Ovaj primer **ne koristi** `postDao`. Samo GET + Toast.
+
+### Import
+
+```java
+import com.example.kolokvijum2.helper.RetrofitGetHelper;
+```
+
+### U `onCreate`
+
+```java
+button.setOnClickListener(v -> RetrofitGetHelper.testGet(this,
+        new RetrofitGetHelper.Listener() {
+            @Override
+            public void onSuccess(int count) {
+                Toast.makeText(MainActivity.this,
+                        "API vratio " + count + " postova", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(String message) {
+                Toast.makeText(MainActivity.this,
+                        "Greška: " + message, Toast.LENGTH_SHORT).show();
+            }
+        }
+));
+```
+
+Kopiraj **`RetrofitGetHelper.java`** iz ovog foldera u `app/.../helper/`.
+
+---
+
+## Alternativa: inline u `MainActivity.java` (zastarelo)
 
 ### Importi
 

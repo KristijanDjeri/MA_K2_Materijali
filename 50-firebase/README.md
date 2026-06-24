@@ -15,10 +15,11 @@ Firebase je Google-ova platforma za backend usluge. Na kolokvijumu može zamenit
 
 | Zvanični zadatak | Firebase ekvivalent |
 |------------------|---------------------|
-| Retrofit GET (zadatak 5) | Firestore `collection("posts").get()` |
-| Room baza (zadatak 5–7) | Firestore kolekcija `posts` |
-| Switch učitaj 10 postova (zadatak 6) | Firestore query `.limit(10)` |
-| Obriši prvi post (zadatak 7) | Firestore `delete()` na dokumentu |
+| Retrofit GET (zadatak 5) | `PostRepository` / `FirestorePostsHelper` |
+| Room baza (zadatak 5–7) | Room + opciono Firestore hibrid |
+| Switch učitaj 10 postova (zadatak 6) | `PostRepository` ili `FirestorePostsHelper` |
+| Obriši prvi post (zadatak 7) | `PostRepository` ili `FirestorePostsHelper` |
+| Auth | `FirebaseAuthHelper` |
 | Notifikacija (zadatak 7) | FCM ili lokalna notifikacija |
 
 ## Šta ti treba pre početka

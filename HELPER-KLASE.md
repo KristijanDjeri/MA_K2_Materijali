@@ -37,9 +37,19 @@ Helper koji koristi senzor, mapu, lokaciju u realnom vremenu ili audio **mora** 
 | 02 geo | `GeoLokacijaHelper` | — (+ `onPermissionGranted`) |
 | 03 kamera | `KameraHelper` | — (+ permission) |
 | 04 žiroskop | `ZiroskopHelper` | `onResume`, `onPause` |
+| 06 retrofit GET test | `RetrofitGetHelper` | statičke metode |
 | 07–18 postovi | `PostRepository` | — |
 | 09 switch | `SwitchPostsHelper` | listener u konstruktoru |
 | 11 notifikacija | `NotifikacijaHelper` | statičke metode |
+| 38–40 notifikacije | `NotifikacijaHelper`, `NotifikacijaAkcijeHelper`, `NotifikacijaProsirenaHelper` | statičke |
+| **60** recycler | `RecyclerViewPostsHelper` | `osvezi()` posle insert/delete |
+| **62** edit validacija | `EditTextValidacijaHelper` | — |
+| **70** detail intent | `DetailIntentHelper` | statičke metode |
+| **72** retrofit POST | `PostRepository.posaljiPostNaServer()` | — |
+| **74** thread | `ThreadExecutorHelper` | `shutdown()` u `onDestroy` |
+| **85** broadcast | `BroadcastHelper` | statičke metode |
+| **52** firebase auth | `FirebaseAuthHelper` | listeneri u konstruktoru |
+| **53** firestore | `FirestorePostsHelper` | — |
 | 12 akcelerometar | `AkcelerometarHelper` | `onResume`, `onPause` |
 | 13 prefs | `SharedPreferencesHelper` | — |
 | 14 kontakti | `KontaktiHelper` | — (+ permission) |

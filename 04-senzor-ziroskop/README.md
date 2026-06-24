@@ -11,7 +11,7 @@ Na ispitu: Toast posle nove slike u `ImageView` (spajanje sa `03-kamera/` u `16-
 ## Šta ti treba pre ovoga
 
 - `01-osnovni-projekat/` – layout
-- `MainActivity` implementira `SensorEventListener`
+- `ZiroskopHelper` – **ne** dodaj `implements SensorEventListener` u MainActivity
 
 ---
 
@@ -172,10 +172,10 @@ prikaziZiroskopToast();
 
 ## Checklist
 
-- [ ] Klasa implementira `SensorEventListener`
-- [ ] Žiroskop registrovan u `onResume`
-- [ ] Odjavljen u `onPause`
-- [ ] `prikaziZiroskopToast()` radi (dugme ili posle kamere)
+- [ ] `ZiroskopHelper` u paketu `helper`
+- [ ] Žiroskop registrovan u `onResume` (preko helpera)
+- [ ] Odjavljen u `onPause` (preko helpera)
+- [ ] `ziroskopHelper.prikaziToast()` radi (dugme ili posle kamere)
 - [ ] Toast prikazuje X, Y, Z
 
 ---

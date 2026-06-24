@@ -41,17 +41,30 @@ import com.example.kolokvijum2.helper.NotifikacijaHelper;
 
 ```java
 NotifikacijaHelper.kreirajKanal(this);
+NotifikacijaHelper.proveriDozvolu(this);
 ```
 
-### Kad je baza prazna (npr. posle brisanja)
+### Kad je baza prazna (preko PostRepository callback-a)
+
+U `10-brisanje-prvog-posta/` već koristiš:
 
 ```java
+button.setOnClickListener(v -> postRepository.obrisiPrviPost(
+        () -> NotifikacijaHelper.posaljiPraznaBaza(this)
+));
+```
+
+> **Ne piši** proveru `postDao.count() == 0` u MainActivity – `PostRepository.obrisiPrviPost()` poziva callback kad je baza prazna.
+
+### Samostalni test (bez brisanja)
+
+```java
+// Privremeno u onCreate – obriši sve postove pa pozovi notifikaciju
+postDao.deleteFirst(); // ponovi dok count != 0, ili obriši sve
 if (postDao.count() == 0) {
     NotifikacijaHelper.posaljiPraznaBaza(this);
 }
 ```
-
-> **Alternativa:** inline `NotificationCompat` ispod.
 
 ---
 
@@ -137,13 +150,7 @@ private void proveriNotifikacijeDozvolu() {
 
 ## Samostalni test
 
-```java
-// Privremeno u onCreate – obriši sve postove pa pozovi notifikaciju
-postDao.deleteFirst(); // ponovi dok count != 0, ili obriši sve
-if (postDao.count() == 0) {
-    posaljiNotifikacijuPrazneBaze();
-}
-```
+Vidi primer iznad u sekciji „Kad je baza prazna“.
 
 ---
 

@@ -5,7 +5,7 @@ Materijal za kolokvijum: gotovi segmenti koda i uputstva po temama.
 
 **Organizacija foldera:** [KONVENCIJA-FOLDERA.md](KONVENCIJA-FOLDERA.md)  
 **Grafičke komponente (UI):** [GRAFICKI-SEGMENTI.md](GRAFICKI-SEGMENTI.md) – **60–68**  
-**Helper klase:** [HELPER-KLASE.md](HELPER-KLASE.md) – logika van `MainActivity`  
+**Helper klase:** [HELPER-KLASE.md](HELPER-KLASE.md) – logika van `MainActivity` (copy-paste helper → tanak `MainActivity`)  
 **Spajanje za ispit:** [16-spajanje-zadataka](16-spajanje-zadataka/)  
 **Fragmenti na ispitu:** [90-fragments-prirucnik](90-fragments-prirucnik/)  
 **Testiranje:** [IZVESTAJ-TESTIRANJA.md](IZVESTAJ-TESTIRANJA.md) · projekat `99-test-okruzenje/`
