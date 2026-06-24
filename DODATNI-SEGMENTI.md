@@ -19,6 +19,7 @@ Ovi folderi pokrivaju teme **slične težine i principa** kao zvanični zadaci, 
 | [67-ui-toolbar-options-menu](67-ui-toolbar-options-menu/) | Meni u action bar-u | 5–7 |
 | [79-maps-google-osm](79-maps-google-osm/) | Mapa umesto TextView lat/long | 3 |
 | [77-file-provider](77-file-provider/) | Kamera pun rez + deljenje slike | 4 |
+| [86-camerax](86-camerax/) | CameraX live preview (story kamera) | 4 |
 
 ## Visoka verovatnoća (isti obrazac kao na kolokvijumu)
 

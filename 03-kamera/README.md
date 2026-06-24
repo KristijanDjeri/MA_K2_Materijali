@@ -135,6 +135,7 @@ private void pokreniKameru() {
 | `TakePicturePreview()` – brzo, bez fajla | `TakePicture()` + `FileProvider` – puna rezolucija, više koda |
 | Bitmap u ImageView | `setImageURI(uri)` – ako čuvaš sliku u fajl |
 | Kamera | Galerija – folder `76-galerija/` |
+| Spoljašnja kamera (ovaj folder) | **CameraX** live preview – folder `86-camerax/` |
 
 ---
 

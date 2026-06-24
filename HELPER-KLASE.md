@@ -38,6 +38,7 @@ Helper koji koristi senzor, mapu, lokaciju u realnom vremenu ili audio **mora** 
 |---------|--------|------------------|
 | 02 geo | `GeoLokacijaHelper` | — (+ `onPermissionGranted`) |
 | 03 kamera | `KameraHelper` | — (+ permission) |
+| **86** camerax | `CameraXHelper` | Activity Result (dugi klik) |
 | 04 žiroskop | `ZiroskopHelper` | `onResume`, `onPause` |
 | 06 retrofit GET test | `RetrofitGetHelper` | statičke metode |
 | 07–18 postovi | `PostRepository` | — |

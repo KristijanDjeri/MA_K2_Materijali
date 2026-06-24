@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.kolokvijum2.db.AppDatabase;
 import com.example.kolokvijum2.helper.AkcelerometarHelper;
+import com.example.kolokvijum2.helper.CameraXHelper;
 import com.example.kolokvijum2.helper.GeoLokacijaHelper;
 import com.example.kolokvijum2.helper.KameraHelper;
 import com.example.kolokvijum2.helper.KontaktiHelper;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private GeoLokacijaHelper geoHelper;
     private KameraHelper kameraHelper;
+    private CameraXHelper cameraXHelper;
     private ZiroskopHelper ziroskopHelper;
     private AkcelerometarHelper akcelerometarHelper;
     private PostRepository postRepository;
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         ziroskopHelper = new ZiroskopHelper(this);
         akcelerometarHelper = new AkcelerometarHelper(this, button);
         kameraHelper = new KameraHelper(this, imageView, bitmap -> ziroskopHelper.prikaziToast());
+        cameraXHelper = new CameraXHelper(this, imageView, uri -> ziroskopHelper.prikaziToast());
         postRepository = new PostRepository(this, AppDatabase.getInstance(this).postDao());
         prefsHelper = new SharedPreferencesHelper(this);
         kontaktiHelper = new KontaktiHelper(this, textView);
@@ -62,6 +65,10 @@ public class MainActivity extends AppCompatActivity {
         geoHelper.pokreni();
 
         imageButton.setOnClickListener(v -> kameraHelper.pokreni());
+        imageButton.setOnLongClickListener(v -> {
+            cameraXHelper.pokreni();
+            return true;
+        });
         button.setOnClickListener(v -> postRepository.obrisiPrviPost(
                 () -> NotifikacijaHelper.posaljiPraznaBaza(this)));
     }

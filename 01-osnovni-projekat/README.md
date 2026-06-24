@@ -114,6 +114,13 @@ implementation 'com.google.android.gms:play-services-location:21.0.1'
 
 // RecyclerView (lista postova – dodatni segment, opciono za sada)
 implementation 'androidx.recyclerview:recyclerview:1.3.2'
+
+// CameraX (dodatni segment 86-camerax – live preview u aplikaciji)
+def camerax_version = "1.3.1"
+implementation "androidx.camera:camera-core:${camerax_version}"
+implementation "androidx.camera:camera-camera2:${camerax_version}"
+implementation "androidx.camera:camera-lifecycle:${camerax_version}"
+implementation "androidx.camera:camera-view:${camerax_version}"
 ```
 
 Proveri da u istom fajlu postoji i ovo (obično već postoji):
